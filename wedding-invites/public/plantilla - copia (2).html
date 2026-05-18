@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitación de Boda</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg-main:#0e0e0e;
+  --card-bg:#161616;
+  --accent:#c8a96a;
+  --text:#eaeaea;
+  --muted:#b5b5b5;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:'Montserrat',sans-serif;
+  background:var(--bg-main);
+  color:var(--text);
+  scroll-behavior:smooth;
+  overflow-x:hidden;
+}
+
+/* ===== FLORES ===== */
+.petals{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:1;
+}
+.petal{
+  position:absolute;
+  width:18px;
+  height:18px;
+  background:radial-gradient(circle at 30% 30%, #f5e6c8, #c8a96a);
+  border-radius:50% 0 50% 0;
+  opacity:.7;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  0%{transform:translateY(-10vh) rotate(0deg);}
+  100%{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* ===== REVEAL ===== */
+.reveal{
+  opacity:0;
+  transform:translateY(60px);
+  transition:all 1.2s ease;
+}
+.reveal.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;
+  background:
+    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+    url("https://images.unsplash.com/photo-1523437237164-d442d57cc3c9");
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:2rem;
+  position:relative;
+  z-index:2;
+}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:3.5rem;
+}
+.subtitle{
+  letter-spacing:4px;
+  font-size:.85rem;
+  margin-bottom:1rem;
+  color:var(--accent);
+}
+.date{
+  margin-top:1rem;
+  letter-spacing:2px;
+  color:#ddd;
+}
+
+/* ===== SECTIONS ===== */
+.section{
+  padding:5rem 1.5rem;
+  position:relative;
+  z-index:2;
+}
+.card{
+  max-width:900px;
+  margin:0 auto;
+  background:var(--card-bg);
+  border-radius:24px;
+  padding:4rem 2.5rem;
+  box-shadow:0 25px 60px rgba(0,0,0,.6);
+  text-align:center;
+}
+.card h2{
+  font-family:'Playfair Display',serif;
+  font-size:2.3rem;
+}
+.divider{
+  width:70px;
+  height:2px;
+  background:var(--accent);
+  margin:1.8rem auto;
+}
+.card p{
+  max-width:720px;
+  margin:0 auto;
+  line-height:1.9;
+  font-size:1.05rem;
+  color:var(--muted);
+}
+
+/* ===== IMAGES ===== */
+img{
+  max-width:100%;
+  border-radius:18px;
+}
+.shadow{
+  box-shadow:0 18px 45px rgba(0,0,0,.8);
+}
+
+/* ===== GRID ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:2.5rem;
+  margin-top:3rem;
+}
+.subcard{
+  background:#1f1f1f;
+  padding:2rem;
+  border-radius:20px;
+}
+
+/* ===== COUNTDOWN ===== */
+.countdown{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  margin-top:2.5rem;
+}
+.time{
+  background:#1f1f1f;
+  padding:18px;
+  border-radius:14px;
+  min-width:80px;
+  font-size:.9rem;
+}
+
+/* ===== MAP ===== */
+iframe{
+  width:100%;
+  height:300px;
+  border:none;
+  border-radius:18px;
+  margin-top:2rem;
+}
+
+/* ===== BUTTON ===== */
+.btn{
+  margin-top:3rem;
+  padding:1.1rem 3rem;
+  border:none;
+  border-radius:999px;
+  background:var(--accent);
+  color:#000;
+  font-size:1rem;
+  cursor:pointer;
+}
+
+/* ===== MUSIC ===== */
+.music-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  background:var(--accent);
+  color:#000;
+  border:none;
+  font-size:18px;
+  cursor:pointer;
+  box-shadow:0 10px 25px rgba(0,0,0,.6);
+  z-index:999;
+}
+
+@media(max-width:600px){
+  .hero h1{font-size:2.5rem;}
+  .card{padding:3rem 1.8rem;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- FLORES -->
+<div class="petals" id="petals"></div>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+<button class="music-btn" onclick="toggleMusic()">🔊</button>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="reveal">
+    <div class="subtitle">NOS CASAMOS</div>
+    <h1>Laura & Miguel</h1>
+    <div class="date">14 · Septiembre · 2026</div>
+  </div>
+</section>
+
+<!-- INVITADO -->
+<section class="section">
+  <div class="card reveal">
+    <h2>Invitación para</h2>
+    <div class="divider"></div>
+    <p id="guestName"></p>
+    <p id="guestPasses"></p>
+  </div>
+</section>
+
+<!-- FRASE -->
+<section class="section">
+  <div class="card reveal">
+    <h2>Un amor eterno</h2>
+    <div class="divider"></div>
+    <p>
+      Donde hay amor verdadero, cada instante se convierte en eternidad.
+    </p>
+  </div>
+</section>
+
+<!-- NUESTRA BODA -->
+<section class="section">
+  <div class="card reveal">
+    <h2>Nuestra Boda</h2>
+    <div class="divider"></div>
+    <p>Nos encantaría compartir contigo este momento inolvidable.</p>
+    <img src="pareja.jpg" class="shadow" style="margin-top:3rem;width:280px;">
+  </div>
+</section>
+
+<!-- PADRES / PADRINOS -->
+<section class="section">
+  <div class="card reveal">
+    <h2>Con la bendición de Dios y nuestros padres</h2>
+    <div class="grid">
+      <div class="subcard">
+        <h3>Padres</h3>
+        <p>María López<br>José Martínez</p>
+        <img src="padres.jpg">
+      </div>
+      <div class="subcard">
+        <h3>Padrinos</h3>
+        <p>Laura Gómez<br>Pedro Sánchez</p>
+        <img src="padrinos.jpg">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="section">
+  <div class="card reveal">
+    <h2>Falta poco</h2>
+    <div class="divider"></div>
+    <div class="countdown" id="countdown"></div>
+  </div>
+</section>
+
+<!-- CEREMONIA -->
+<section class="section">
+  <div class="card reveal">
+    <h2>Ceremonia</h2>
+    <p>Iglesia San José · 5:00 PM</p>
+    <iframe src="https://www.google.com/maps?q=Iglesia%20San%20Jose&output=embed"></iframe>
+  </div>
+</section>
+
+<!-- EVENTO -->
+<section class="section">
+  <div class="card reveal">
+    <h2>Evento Social</h2>
+    <p>Salón Real · 7:00 PM</p>
+    <iframe src="https://www.google.com/maps?q=Salon%20Real&output=embed"></iframe>
+    <button class="btn" onclick="confirmar()">Confirmar asistencia</button>
+  </div>
+</section>
+
+<script>
+/* FLORES */
+const petalsContainer=document.getElementById("petals");
+for(let i=0;i<25;i++){
+  const petal=document.createElement("div");
+  petal.className="petal";
+  petal.style.left=Math.random()*100+"%";
+  petal.style.animationDuration=8+Math.random()*8+"s";
+  petal.style.animationDelay=Math.random()*5+"s";
+  petalsContainer.appendChild(petal);
+}
+
+/* REVEAL */
+const reveals=document.querySelectorAll('.reveal');
+function revealScroll(){
+  reveals.forEach(el=>{
+    if(el.getBoundingClientRect().top < window.innerHeight-120){
+      el.classList.add('show');
+    }
+  });
+}
+window.addEventListener('scroll',revealScroll);
+revealScroll();
+
+/* COUNTDOWN */
+const eventDate=new Date("2026-09-14T17:00:00").getTime();
+const countdown=document.getElementById("countdown");
+setInterval(()=>{
+  const now=new Date().getTime();
+  const diff=eventDate-now;
+  const d=Math.floor(diff/(1000*60*60*24));
+  const h=Math.floor((diff/(1000*60*60))%24);
+  const m=Math.floor((diff/(1000*60))%60);
+  const s=Math.floor((diff/1000)%60);
+  countdown.innerHTML=`
+    <div class="time">${d}<br>Días</div>
+    <div class="time">${h}<br>Horas</div>
+    <div class="time">${m}<br>Min</div>
+    <div class="time">${s}<br>Seg</div>`;
+},1000);
+
+/* MUSIC */
+const music=document.getElementById("music");
+let playing=false;
+function toggleMusic(){
+  playing?music.pause():music.play();
+  playing=!playing;
+}
+
+/* INVITADO */
+const params=new URLSearchParams(window.location.search);
+const invitado=params.get("invitado")||"Nuestros invitados especiales";
+const pases=params.get("pases")||"";
+document.getElementById("guestName").innerText=invitado;
+document.getElementById("guestPasses").innerText=
+  pases?`Número de pases: ${pases}`:"";
+
+/* WHATSAPP */
+function confirmar(){
+  const texto=`Hola, somos ${invitado}. Confirmamos nuestra asistencia a la boda 🖤`;
+  window.open(`https://wa.me/521XXXXXXXXXX?text=${encodeURIComponent(texto)}`);
+}
+</script>
+
+</body>
+</html>

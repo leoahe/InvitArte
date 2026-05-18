@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Resumen de precios</title>
+
+<link rel="stylesheet" href="/css/global.css">
+
+<style>
+
+body{
+  font-family: 'Montserrat', sans-serif;
+  background:#111;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+}
+
+/* CONTENEDOR */
+.pricing-container{
+  max-width:900px;
+  width:90%;
+}
+
+/* CARD */
+.pricing-card{
+  background:#1a1a1a;
+  border-radius:20px;
+  padding:40px;
+  text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+}
+
+/* TITULO */
+.pricing-card h1{
+  font-family:'Playfair Display', serif;
+  margin-bottom:20px;
+}
+
+/* PRECIO */
+.price{
+  font-size:3rem;
+  color:#c8a96a;
+  margin:20px 0;
+}
+
+/* LISTA */
+.features{
+  text-align:left;
+  margin:30px auto;
+  max-width:400px;
+}
+
+.features li{
+  margin-bottom:10px;
+}
+
+/* OPCION EXTRA */
+.extra{
+  background:#141414;
+  padding:20px;
+  border-radius:12px;
+  margin-top:20px;
+}
+
+/* BOTON */
+.btn{
+  margin-top:30px;
+  padding:15px 40px;
+  border:none;
+  border-radius:30px;
+  background:#c8a96a;
+  color:black;
+  font-size:16px;
+  cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="pricing-container">
+
+<div class="pricing-card">
+
+<h1>Invitación Elegante</h1>
+
+<div class="price">
+$199 MXN
+</div>
+
+<ul class="features">
+<li>✔ Invitación digital animada</li>
+<li>✔ Cuenta regresiva</li>
+<li>✔ Música de fondo</li>
+<li>✔ Mapas de ubicación</li>
+<li>✔ Galería de fotos</li>
+<li>✔ Confirmación por WhatsApp</li>
+</ul>
+
+<div class="extra">
+
+<h3>Invitaciones personalizadas por invitado</h3>
+
+<p>
+Si deseas que cada invitación incluya el nombre de cada invitado,
+puedes subir un listado (Excel o CSV).
+</p>
+
+<p><b>Costo adicional:</b> $5 MXN por invitado</p>
+
+</div>
+
+<button class="btn" id="continuar">
+Crear mi invitación
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const diseno = params.get("diseno") || "1";
+
+document.getElementById("continuar").onclick = () => {
+
+  window.location.href = "/registro.html?diseno=" + diseno;
+
+}
+
+</script>
+
+</body>
+</html>

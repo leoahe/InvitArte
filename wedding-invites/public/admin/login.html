@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Admin Login</title><link rel="stylesheet" href="../styles.css"></head><body>
+  <main class="container centered">
+    <h2>Admin — Iniciar sesión</h2>
+    <form id="frm">
+      <input id="pw" type="password" placeholder="Contraseña" required />
+      <button class="btn primary" type="submit">Entrar</button>
+      <div id="msg" class="small"></div>
+    </form>
+  </main>
+<script>
+document.getElementById('frm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const pw = document.getElementById('pw').value;
+  const res = await fetch('/admin/login', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ password: pw })
+  });
+  const j = await res.json();
+  if(j.ok) location.href = '/admin/dashboard.html';
+  else document.getElementById('msg').textContent = j.message || 'Error';
+});
+</script>
+</body></html>

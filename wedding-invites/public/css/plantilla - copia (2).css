@@ -1,0 +1,195 @@
+:root{
+  --accent:#c8a96a;
+  --text:#eaeaea;
+  --muted:#b5b5b5;
+}
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box}
+
+/* BODY */
+body{
+  font-family:'Montserrat',sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 20% 10%, rgba(200,169,106,.08), transparent 40%),
+    radial-gradient(circle at 80% 90%, rgba(180,120,150,.12), transparent 45%),
+    linear-gradient(rgba(0,0,0,.92),rgba(0,0,0,.92)),
+    url("../images/ink-bg.jpg") center/cover fixed;
+  overflow-x:hidden;
+}
+
+/* FLORAL FRAME */
+.floral-frame{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+.floral-frame::before,
+.floral-frame::after{
+  content:"";
+  position:absolute;
+  top:0;
+  width:220px;
+  height:100%;
+  background-size:contain;
+  background-repeat:no-repeat;
+  opacity:.75;
+}
+.floral-frame::before{
+  left:0;
+  background-image:url("../images/floral-left.png");
+}
+.floral-frame::after{
+  right:0;
+  background-image:url("../images/floral-right.png");
+}
+
+/* PETALOS */
+.petals{position:fixed;inset:0;pointer-events:none;z-index:0}
+.petal{
+  position:absolute;
+  width:18px;height:18px;
+  background:radial-gradient(circle,#f5e6c8,#c8a96a);
+  border-radius:50% 0;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg)}
+}
+
+/* HERO */
+.plantilla-hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  z-index:5;
+}
+.hero-content{
+  max-width:900px;
+  padding:3rem 2rem;
+}
+.plantilla-hero h2{
+  letter-spacing:4px;
+  font-size:.9rem;
+  color:var(--accent);
+  text-transform:uppercase;
+}
+.plantilla-hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:4rem;
+}
+.fecha{
+  margin-top:1rem;
+  letter-spacing:2px;
+}
+
+/* DECORACION */
+#decoracion{
+  height:3px;
+  width:120px;
+  background:var(--accent);
+  margin:2.5rem auto;
+  border-radius:4px;
+}
+
+/* SECCIONES */
+.plantilla-section{
+  padding:4rem 1.5rem;
+  position:relative;
+  z-index:5;
+}
+
+/* CARD */
+.card{
+  max-width:900px;
+  margin:auto;
+  background:linear-gradient(160deg,#121212,#2a1f25);
+  border-radius:26px;
+  padding:3.5rem 2.5rem;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(0,0,0,.6);
+}
+.card.rose{
+  background:linear-gradient(160deg,#2a1f25,#3a2730);
+}
+.divider{
+  width:70px;height:2px;
+  background:var(--accent);
+  margin:1.8rem auto;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:2rem;
+  margin-top:3rem;
+}
+.subcard{
+  background:#1f1f1f;
+  padding:2rem;
+  border-radius:20px;
+}
+
+/* IMGS */
+img{max-width:100%;border-radius:18px}
+.pareja-img{margin-top:3rem;width:280px}
+
+/* COUNTDOWN */
+.countdown{display:flex;gap:18px;justify-content:center}
+.time{
+  background:#1f1f1f;
+  padding:18px;
+  border-radius:14px;
+}
+
+/* VELAS */
+.candles{display:flex;justify-content:center;gap:40px;margin-top:3rem}
+.candle{width:14px;height:80px;background:#e6d3a3;border-radius:6px;position:relative}
+.flame{
+  position:absolute;
+  top:-18px;left:50%;
+  width:10px;height:18px;
+  background:radial-gradient(circle,#ffd27d,#ff9f1c);
+  border-radius:50%;
+  transform:translateX(-50%);
+  animation:flicker .15s infinite alternate;
+}
+@keyframes flicker{to{transform:translateX(-50%) scale(.9)}}
+
+/* BUTTON */
+.btn{
+  margin-top:3rem;
+  padding:1.1rem 3rem;
+  border:none;border-radius:999px;
+  background:var(--accent);
+  color:#000;
+  cursor:pointer;
+}
+
+/* MUSIC */
+.music-btn{
+  position:fixed;
+  bottom:20px;right:20px;
+  width:54px;height:54px;
+  border-radius:50%;
+  background:var(--accent);
+  border:none;
+  z-index:999;
+}
+
+/* REVEAL */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:.9s ease;
+}
+.reveal.show{
+  opacity:1;
+  transform:none;
+}

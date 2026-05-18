@@ -1,0 +1,89 @@
+/* ===============================
+   🌍 GLOBAL.CSS
+   Estilos compartidos del sitio
+================================ */
+
+/* RESET BÁSICO */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* VARIABLES DE DISEÑO */
+:root {
+  --color-primario: #000000;
+  --color-secundario: #ffffff;
+  --color-acento: #c9a24d; /* dorado elegante */
+  --color-texto: #2b2b2b;
+  --color-muted: #777;
+
+  --radius: 16px;
+  --sombra-suave: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* TIPOGRAFÍA GLOBAL */
+body {
+  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--color-texto);
+  background: #ffffff;
+  line-height: 1.6;
+}
+
+/* LINKS */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* BOTONES BASE */
+.btn {
+  display: inline-block;
+  padding: 12px 26px;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+/* BOTÓN PRINCIPAL */
+.btn.primary {
+  background: var(--color-primario);
+  color: var(--color-secundario);
+}
+
+.btn.primary:hover {
+  background: #333;
+  transform: translateY(-2px);
+}
+
+/* BOTÓN SECUNDARIO */
+.btn.secondary {
+  border: 2px solid var(--color-primario);
+  background: transparent;
+  color: var(--color-primario);
+}
+
+.btn.secondary:hover {
+  background: var(--color-primario);
+  color: #fff;
+}
+
+/* CONTENEDOR GENERAL */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+/* TITULOS */
+h1, h2, h3 {
+  font-weight: 600;
+}
+
+/* UTILIDADES */
+.text-center {
+  text-align: center;
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Diseños - InvitArte</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/catalogo.css">
+</head>
+
+<body class="catalogo-body">
+
+  <!-- ENCABEZADO -->
+  <header class="catalogo-header">
+    <h1>Catálogo de Diseños</h1>
+    <p>Explora nuestros diseños digitales para invitaciones de boda</p>
+  </header>
+
+
+  <!-- GALERÍA -->
+<section class="catalogo-grid">
+
+  <!-- CARD 1 -->
+  <div class="catalogo-item" data-category="elegante">
+    <span class="tag nuevo">Nuevo</span>
+
+    <div class="catalogo-preview">
+      <img src="images/elegante.png" alt="Invitación Elegante">
+
+      <div class="preview-overlay">
+        <button class="btn-preview" data-preview="/plantilla.html?diseno=1">
+          Vista previa
+        </button>
+        <a href="/plantilla.html?diseno=1" class="btn-usar">
+          Usar diseño
+        </a>
+      </div>
+    </div>
+
+    <h3>Invitación Elegante</h3>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="catalogo-item" data-category="floral">
+    <span class="tag premium">Premium</span>
+
+    <div class="catalogo-preview">
+      <img src="https://images.unsplash.com/photo-1523437237164-d442d57cc3c9" alt="Invitación Floral">
+
+      <div class="preview-overlay">
+        <button class="btn-preview" data-preview="/plantilla.html?diseno=2">
+          Vista previa
+        </button>
+        <a href="/plantilla.html?diseno=2" class="btn-usar">
+          Usar diseño
+        </a>
+      </div>
+    </div>
+
+    <h3>Invitación Floral Premium</h3>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="catalogo-item" data-category="moderno">
+    <span class="tag vendido">Más vendido</span>
+
+    <div class="catalogo-preview">
+      <img src="https://images.unsplash.com/photo-1523437237164-d442d57cc3c9" alt="Invitación Moderna">
+
+      <div class="preview-overlay">
+        <button class="btn-preview" data-preview="/plantilla.html?diseno=3">
+          Vista previa
+        </button>
+        <a href="/plantilla.html?diseno=3" class="btn-usar">
+          Usar diseño
+        </a>
+      </div>
+    </div>
+
+    <h3>Invitación Moderna</h3>
+  </div>
+
+</section>
+
+
+
+  <!-- MODAL PREVIEW -->
+   <!-- 
+  <div class="preview-modal" id="previewModal">
+    <div class="preview-box">
+      <button class="close-preview" id="closePreview">×</button>
+      <iframe id="previewFrame" src=""></iframe>
+    </div>
+  </div>
+  -->
+  <!-- MODAL PREVIEW iPHONE -->
+<!-- MODAL PREVIEW iPHONE -->
+<div class="preview-modal" id="previewModal">
+
+  <button class="close-preview" id="closePreview">×</button>
+
+  <div class="iphone-frame">
+    <div class="iphone-notch"></div>
+
+    <div class="iphone-screen">
+      <iframe id="previewFrame" src=""></iframe>
+    </div>
+  </div>
+
+</div>
+
+  <!-- JS -->
+  <script src="/js/catalogo.js"></script>
+
+</body>
+</html>

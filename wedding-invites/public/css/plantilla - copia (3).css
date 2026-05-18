@@ -1,0 +1,321 @@
+:root{
+  --accent:#c8a96a;        /* dorado */
+  --accent-soft:#e6d3a3;
+  --text:#f2f2f2;
+  --muted:#cfcfcf;
+}
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box}
+
+/* ===== BODY – FONDO ELEGANTE ===== */
+body{
+  font-family:'Montserrat',sans-serif;
+  color:var(--text);
+
+  /* === FONDO NEGRO + DORADO (ACTIVO) === */
+  background:
+    radial-gradient(circle at 15% 20%, rgba(200,169,106,.18), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(200,169,106,.12), transparent 50%),
+    linear-gradient(180deg, #1a1a1d 0%, #121214 60%, #0e0e10 100%),
+    url("../images/ink-bg.jpg");
+
+  /* === FONDO MORADO ELEGANTE (OPCIONAL)
+  background:
+    radial-gradient(circle at 20% 20%, rgba(150,90,170,.25), transparent 45%),
+    radial-gradient(circle at 80% 85%, rgba(200,169,106,.18), transparent 50%),
+    linear-gradient(180deg, #241728 0%, #161018 70%, #0f0b12 100%),
+    url("../images/ink-bg.jpg");
+  */
+
+  background-size:cover;
+  background-attachment:fixed;
+  overflow-x:hidden;
+}
+
+/* ===== MARCO FLORAL ===== */
+.floral-frame{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+.floral-frame::before,
+.floral-frame::after{
+  animation:floralMove 12s ease-in-out infinite alternate;/*se agrego*/
+  content:"";
+  position:absolute;
+  top:0;
+  width:220px;
+  height:100%;
+  background-size:contain;
+  background-repeat:no-repeat;
+  opacity:.7;
+}
+.floral-frame::before{
+  left:0;
+  background-image:url("../images/floral-left.png");
+}
+.floral-frame::after{
+  right:0;
+  background-image:url("../images/floral-right.png");
+}
+
+/* ===== PETALOS ===== */
+.petals{position:fixed;inset:0;pointer-events:none;z-index:0}
+.petal{
+  position:absolute;
+  width:18px;height:18px;
+  background:radial-gradient(circle,var(--accent-soft),var(--accent));
+  border-radius:50% 0;
+  opacity:.75;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg)}
+
+}
+
+/*Se agrego*/
+@keyframes floralMove{
+  from{transform:translateY(0)}
+  to{transform:translateY(-30px)}
+}
+/**/
+
+
+/* ===== HERO ===== */
+.plantilla-hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  z-index:5;
+}
+.hero-content{
+  max-width:900px;
+  padding:3rem 2rem;
+}
+.plantilla-hero h2{
+  letter-spacing:4px;
+  font-size:.85rem;
+  color:var(--accent);
+  text-transform:uppercase;
+  margin-bottom:1rem;
+}
+.plantilla-hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:4rem;
+  font-weight:600;
+}
+.fecha{
+  margin-top:1.2rem;
+  font-size:1.1rem;
+  letter-spacing:2px;
+  color:#e0e0e0;
+}
+
+/* ===== DECORACION ===== */
+#decoracion{
+  height:3px;
+  width:120px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  margin:2.5rem auto;
+  border-radius:4px;
+}
+
+/* ===== SECCIONES ===== */
+.plantilla-section{
+  padding:4rem 1.5rem;
+  position:relative;
+  z-index:5;
+}
+
+/* ===== TARJETAS ===== */
+.card{
+  max-width:900px;
+  margin:auto;
+  padding:3.5rem 2.5rem;
+  text-align:center;
+
+  background:
+    linear-gradient(160deg, rgba(255,255,255,.05), rgba(0,0,0,.25)),
+    linear-gradient(180deg, #1b1b1f, #141418);
+
+  border-radius:28px;
+
+  box-shadow:
+    0 20px 45px rgba(0,0,0,.6),
+    inset 0 0 0 1px rgba(255,255,255,.04);
+}
+.card.rose{
+  background:
+    linear-gradient(160deg, rgba(180,120,150,.15), rgba(0,0,0,.35)),
+    linear-gradient(180deg, #2a1f2f, #1a141f);
+}
+
+.divider{
+  width:70px;
+  height:2px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  margin:1.8rem auto;
+}
+
+/* ===== GRID ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:2rem;
+  margin-top:3rem;
+}
+.subcard{
+  background:rgba(0,0,0,.35);
+  padding:2rem;
+  border-radius:20px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);
+}
+
+/* ===== IMAGENES ===== */
+img{
+  max-width:100%;
+  border-radius:18px;
+}
+.pareja-img{
+  margin-top:3rem;
+  width:280px;
+  box-shadow:0 20px 45px rgba(0,0,0,.6);
+}
+
+/* ===== COUNTDOWN ===== */
+.countdown{
+  display:flex;
+  gap:18px;
+  justify-content:center;
+}
+.time{
+  background:rgba(0,0,0,.35);
+  padding:18px;
+  border-radius:14px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);
+}
+
+/* ===== VELAS ===== */
+.candles{
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  margin-top:3rem;
+}
+.candle{
+  width:14px;
+  height:80px;
+  background:#e6d3a3;
+  border-radius:6px;
+  position:relative;
+}
+.flame{
+  position:absolute;
+  top:-18px;
+  left:50%;
+  width:10px;
+  height:18px;
+  background:radial-gradient(circle,#ffd27d,#ff9f1c);
+  border-radius:50%;
+  transform:translateX(-50%);
+  animation:flicker .15s infinite alternate;
+}
+@keyframes flicker{
+  to{transform:translateX(-50%) scale(.9)}
+}
+
+/* ===== BOTON ===== */
+.btn{
+  margin-top:3rem;
+  padding:1.1rem 3rem;
+  border:none;
+  border-radius:999px;
+  background:linear-gradient(135deg,var(--accent),#e6d3a3);
+  color:#000;
+  font-weight:500;
+  cursor:pointer;
+}
+
+/* ===== MUSICA ===== */
+.music-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),#e6d3a3);
+  border:none;
+  z-index:999;
+}
+
+/* ===== REVEAL ===== */
+.reveal{
+  opacity:0;
+  transform:translateY(35px);
+  transition:.9s ease;
+}
+.reveal.show{
+  opacity:1;
+  transform:none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .plantilla-hero h1{font-size:2.6rem}
+  .card{padding:3rem 1.8rem}
+}
+
+
+
+/* ===== PARTICULAS DORADAS ===== */
+.gold-particles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+}
+.gold{
+  position:absolute;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:radial-gradient(circle, #ffe6a6, #c8a96a);
+  opacity:.6;
+  animation:goldFloat linear infinite;
+}
+
+@keyframes goldFloat{
+  from{
+    transform:translateY(100vh) scale(.6);
+    opacity:0;
+  }
+  20%{opacity:.7}
+  to{
+    transform:translateY(-10vh) scale(1);
+    opacity:0;
+  }
+}
+
+
+.hero-content{
+  animation:heroFade 2s ease forwards;
+}
+
+@keyframes heroFade{
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+

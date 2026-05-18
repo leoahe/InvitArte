@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Invitación de Boda</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: #333;
+      background: #fff;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)),
+        url("https://images.unsplash.com/photo-1523437237164-d442d57cc3c9");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 2rem;
+    }
+
+    .hero-content {
+      max-width: 700px;
+    }
+
+    .hero .subtitle {
+      letter-spacing: 3px;
+      font-size: .9rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero .date {
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+    }
+
+    /* ===== SECCIÓN ===== */
+    .section {
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: #c8a96a;
+      margin: 1.5rem auto;
+    }
+
+    .section p {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    /* ===== INFO ===== */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .info-box {
+      background: #fafafa;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,.08);
+    }
+
+    .info-box h3 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: .5rem;
+    }
+
+    /* ===== CTA ===== */
+    .cta {
+      background: #f5f5f5;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .cta button {
+      padding: 1rem 2.5rem;
+      border-radius: 999px;
+      border: none;
+      font-size: 1rem;
+      background: #c8a96a;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="subtitle">NOS CASAMOS</div>
+      <h1>Laura & Miguel</h1>
+      <div class="date">14 · Septiembre · 2026</div>
+    </div>
+  </section>
+
+  <!-- MENSAJE -->
+  <section class="section">
+    <h2>Estás invitado</h2>
+    <div class="divider"></div>
+    <p>
+      Con enorme alegría queremos invitarte a celebrar con nosotros
+      el inicio de una nueva etapa llena de amor y felicidad.
+    </p>
+  </section>
+
+  <!-- INFO -->
+  <section class="section">
+    <div class="info-grid">
+      <div class="info-box">
+        <h3>📍 Lugar</h3>
+        <p>Finca La Magnolia</p>
+      </div>
+      <div class="info-box">
+        <h3>⏰ Hora</h3>
+        <p>18:00 hrs</p>
+      </div>
+      <div class="info-box">
+        <h3>📅 Fecha</h3>
+        <p>14 de Septiembre de 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <button>Confirmar asistencia</button>
+  </section>
+
+</body>
+</html>

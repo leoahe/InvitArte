@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitación de Boda</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/plantilla.css">
+
+  <!-- JS -->
+  <script src="js/plantilla.js" defer></script>
+</head>
+
+<body class="plantilla-body">
+
+  <!-- MARCO FLORAL -->
+  <div class="floral-frame"></div>
+
+  <!-- PETALOS -->
+  <div class="petals" id="petals"></div>
+
+  <!-- MUSICA -->
+  <audio id="music" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+  </audio>
+  <button class="music-btn" id="musicBtn">🔊</button>
+
+  <!-- HERO -->
+  <section class="plantilla-hero">
+    <div class="hero-content reveal">
+      <h2 id="titulo">Nos casamos</h2>
+      <h1 id="nombres">Laura & Miguel</h1>
+      <div class="fecha" id="fecha">14 de Septiembre de 2026</div>
+    </div>
+  </section>
+
+  <div id="decoracion"></div>
+
+  <!-- INVITADO -->
+  <section class="plantilla-section">
+    <div class="card reveal">
+      <h2>Invitación para</h2>
+      <div class="divider"></div>
+      <p id="guestName"></p>
+      <p id="guestPasses"></p>
+    </div>
+  </section>
+
+  <!-- FRASE -->
+  <section class="plantilla-section">
+    <div class="card rose reveal">
+      <h2>Un amor eterno</h2>
+      <div class="divider"></div>
+      <p>Donde hay amor verdadero, cada instante se convierte en eternidad.</p>
+    </div>
+  </section>
+
+  <!-- NUESTRA BODA -->
+  <section class="plantilla-section">
+    <div class="card reveal">
+      <h2>Nuestra Boda</h2>
+      <div class="divider"></div>
+      <p>Nos encantaría compartir contigo este momento inolvidable.</p>
+      <img src="images/mockup-elegante.png" class="pareja-img">
+    </div>
+  </section>
+
+  <!-- PADRES / PADRINOS -->
+  <section class="plantilla-section">
+    <div class="card reveal">
+      <h2>Con la bendición de Dios y nuestros padres</h2>
+      <div class="grid">
+        <div class="subcard">
+          <h3>Padres</h3>
+          <p>María López<br>José Martínez</p>
+          <img src="images/padres.png">
+        </div>
+        <div class="subcard">
+          <h3>Padrinos</h3>
+          <p>Laura Gómez<br>Pedro Sánchez</p>
+          <img src="images/padrinos.png">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section class="plantilla-section">
+    <div class="card reveal">
+      <h2>Falta poco</h2>
+      <div class="divider"></div>
+      <div class="countdown" id="countdown"></div>
+
+      <div class="candles">
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CEREMONIA -->
+  <section class="plantilla-section">
+    <div class="card reveal">
+      <h2>Ceremonia</h2>
+      <p>Iglesia San José · 5:00 PM</p>
+      <iframe src="https://www.google.com/maps?q=Iglesia%20San%20Jose&output=embed"></iframe>
+    </div>
+  </section>
+
+  <!-- EVENTO -->
+  <section class="plantilla-section">
+    <div class="card reveal">
+      <h2>Evento Social</h2>
+      <p>Salón Real · 7:00 PM</p>
+      <iframe src="https://www.google.com/maps?q=Salon%20Real&output=embed"></iframe>
+      <button class="btn" id="btnConfirmar">Confirmar asistencia</button>
+    </div>
+  </section>
+
+</body>
+</html>

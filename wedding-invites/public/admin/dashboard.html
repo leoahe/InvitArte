@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Admin Dashboard</title><link rel="stylesheet" href="../styles.css"></head><body>
+<nav class="navbar"><div class="container nav-wrap"><a class="logo" href="/index.html">InvitArte</a><ul class="nav-links"><li><a href="/admin/dashboard.html" class="active">Dashboard</a></li><li><a href="/admin/login.html" id="logoutLink">Cerrar sesión</a></li></ul></div></nav>
+<main class="container">
+  <h1>Panel de administración</h1>
+
+  <section>
+    <h2>Plantillas</h2>
+    <div id="tplList"></div>
+    <h3>Agregar plantilla</h3>
+    <form id="addTpl">
+      <input name="title" placeholder="Título" required />
+      <input name="description" placeholder="Descripción" required />
+      <input name="img" placeholder="URL imagen" required />
+      <button class="btn primary" type="submit">Agregar</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Órdenes</h2>
+    <div id="orders"></div>
+  </section>
+</main>
+
+<script>
+async function loadTemplates(){
+  const r = await fetch('/api/templates');
+  const tpl = await r.json();
+  const el = document.getElementById('tplList');
+  el.innerHTML = '';
+  tpl.forEach(t => {
+    const d = document.createElement('div');
+    d.className = 'card';
+    d.innerHTML = '<strong>'+t.title+'</strong><div class="small">'+t.description+'</div><img src="'+t.img+'" style="max-width:180px;margin-top:8px"/><div style="margin-top:6px"><button class="btn" data-id="'+t.id+'" onclick="delTpl(\''+t.id+'\')">Eliminar</button></div>';
+    el.appendChild(d);
+  });
+}
+
+async function loadOrders(){
+  const r = await fetch('/api/orders');
+  const ord = await r.json();
+  const el = document.getElementById('orders');
+  el.innerHTML = '';
+  ord.forEach(o=>{
+    const d = document.createElement('div');
+    d.className = 'card';
+    d.innerHTML = '<div><strong>Pedido</strong> - '+o.id+' <div class="small">Correo: '+(o.email||'—')+'</div></div><div style="margin-top:8px">Total: $'+(o.total/100).toFixed(2)+' MXN</div><div class="small">Stripe session: '+(o.sessionId||'—')+'</div>';
+    el.appendChild(d);
+  });
+}
+
+async function delTpl(id){
+  await fetch('/api/templates/'+id,{ method: 'DELETE' });
+  loadTemplates();
+}
+
+document.getElementById('addTpl').addEventListener('submit', async e=> {
+  e.preventDefault();
+  const f= e.target;
+  const body = { title: f.title.value, description: f.description.value, img: f.img.value };
+  await fetch('/api/templates', { method: 'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body) });
+  f.reset();
+  loadTemplates();
+});
+
+document.getElementById('logoutLink').addEventListener('click', async (e) => {
+  // clear session by hitting logout endpoint
+  e.preventDefault();
+  await fetch('/admin/logout', { method: 'POST' });
+  location.href = '/admin/login.html';
+});
+
+loadTemplates();
+loadOrders();
+</script>
+</body></html>

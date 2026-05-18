@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contacto — InvitArte</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container nav-wrap">
+      <a class="logo" href="index.html">InvitArte</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="precios.html">Precios</a></li>
+        <li><a href="contacto.html" class="active">Contacto</a></li>
+        <li><a href="catalogo.html" class="btn primary">Comprar</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1>Contacto</h1>
+    <p class="lead">Escríbenos y te responderemos lo antes posible.</p>
+
+    <form id="contactForm" class="contact-form">
+      <label>Nombre</label>
+      <input name="name" required>
+
+      <label>Email</label>
+      <input name="email" type="email" required>
+
+      <label>Mensaje</label>
+      <textarea name="message" rows="6" required></textarea>
+
+      <button class="btn primary" type="submit">Enviar</button>
+      <div id="contactMsg" class="small"></div>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© 2026 InvitArte</div>
+  </footer>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value
+      };
+      const btn = form.querySelector('button');
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+      try {
+        const r = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const json = await r.json();
+        document.getElementById('contactMsg').textContent = json.message || 'Enviado';
+        form.reset();
+      } catch (err) {
+        document.getElementById('contactMsg').textContent = 'Error enviando mensaje';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Enviar';
+      }
+    });
+  </script>
+</body>
+</html>

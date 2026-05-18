@@ -1,0 +1,34 @@
+[
+  {
+    "id": "tpl1",
+    "title": "Tradicional Elegante",
+    "description": "Clásico, tipografía serif y tonos pastel.",
+    "price_standard": 45000,
+    "price_premium": 90000,
+    "img": "https://picsum.photos/seed/tpl1/800/1200"
+  },
+  {
+    "id": "tpl2",
+    "title": "Moderno Minimalista",
+    "description": "Líneas limpias y tipografía moderna.",
+    "price_standard": 45000,
+    "price_premium": 90000,
+    "img": "https://picsum.photos/seed/tpl2/800/1200"
+  },
+  {
+    "id": "tpl3",
+    "title": "Boho Chic",
+    "description": "Estilo bohemio y elementos naturales.",
+    "price_standard": 45000,
+    "price_premium": 90000,
+    "img": "https://picsum.photos/seed/tpl3/800/1200"
+  },
+  {
+    "id": "tpl4",
+    "title": "Acuarela Floral",
+    "description": "Ilustraciones en acuarela, romántico.",
+    "price_standard": 45000,
+    "price_premium": 90000,
+    "img": "https://picsum.photos/seed/tpl4/800/1200"
+  }
+]

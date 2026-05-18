@@ -1,0 +1,465 @@
+:root{
+  --accent:#c8a96a;
+  --accent-soft:#e6d3a3;
+  --text:#f2f2f2;
+  --muted:#cfcfcf;
+}
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box}
+
+/* ===== BODY – FONDO NEGRO + DORADO ===== */
+body{
+  font-family:'Montserrat',sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 15% 20%, rgba(200,169,106,.18), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(200,169,106,.12), transparent 50%),
+    linear-gradient(180deg, #1a1a1d 0%, #121214 60%, #0e0e10 100%),
+    url("../images/ink-bg.jpg");
+  background-size:cover;
+  background-attachment:fixed;
+  overflow-x:hidden;
+}
+
+/* ===== MARCO FLORAL ===== */
+.floral-frame{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+.floral-frame::before,
+.floral-frame::after{
+  content:"";
+  position:absolute;
+  top:0;
+  width:220px;
+  height:100%;
+  background-size:contain;
+  background-repeat:no-repeat;
+  opacity:.7;
+  animation:floralMove 12s ease-in-out infinite alternate;
+}
+.floral-frame::before{
+  left:0;
+  background-image:url("../images/floral-left.png");
+}
+.floral-frame::after{
+  right:0;
+  background-image:url("../images/floral-right.png");
+}
+@keyframes floralMove{
+  from{transform:translateY(0)}
+  to{transform:translateY(-30px)}
+}
+
+/* ===== PETALOS ===== */
+.petals{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+}
+.petal{
+  position:absolute;
+  width:18px;height:18px;
+  background:radial-gradient(circle,var(--accent-soft),var(--accent));
+  border-radius:50% 0;
+  opacity:.75;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg)}
+}
+
+
+
+/* ===== HERO ===== */
+.plantilla-hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  z-index:5;
+}
+.plantilla-hero h2{
+  letter-spacing:4px;
+  font-size:.85rem;
+  color:var(--accent);
+  text-transform:uppercase;
+  margin-bottom:1rem;
+}
+.plantilla-hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:4rem;
+  font-weight:600;
+}
+.fecha{
+  margin-top:1.2rem;
+  font-size:1.1rem;
+  letter-spacing:2px;
+  color:#e0e0e0;
+}
+
+/* ===== DECORACION ===== */
+#decoracion{
+  height:3px;
+  width:120px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  margin:2.5rem auto;
+  border-radius:4px;
+}
+
+/* ===== SECCIONES ===== */
+.plantilla-section{
+  padding:4.5rem 1.5rem;
+  position:relative;
+  z-index:5;
+}
+
+
+
+/* =====================================================
+   TARJETAS CLARAS (SOLUCIÓN DEFINITIVA)
+===================================================== */
+.card{
+  max-width:900px;
+  margin:auto;
+  padding:3.8rem 2.8rem;
+  text-align:center;
+  position:relative;
+  z-index:6;
+
+  background:linear-gradient(
+    180deg,
+    #f7f3ec 0%,
+    #efe8dd 100%
+  );
+
+  border-radius:30px;
+
+  box-shadow:
+    0 30px 60px rgba(0,0,0,.35),
+    inset 0 0 0 1px rgba(200,169,106,.35);
+}
+
+.card h2{
+  font-family:'Playfair Display',serif;
+  color:#1f1f1f;
+}
+
+.card p{
+  color:#555;
+  line-height:1.9;
+}
+
+/* FRASE ROMÁNTICA */
+.card.rose{
+  background:linear-gradient(
+    180deg,
+    #f3e2d5 0%,
+    #e9d1c3 100%
+  );
+}
+
+/* ===== DIVIDER ===== */
+.divider{
+  width:90px;
+  height:2px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  margin:2rem auto;
+}
+
+/* ===== GRID ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:2rem;
+  margin-top:3rem;
+}
+
+/* PADRES / PADRINOS */
+.subcard{
+  background:linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f6f1ea 100%
+  );
+  padding:2rem;
+  border-radius:22px;
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.25),
+    inset 0 0 0 1px rgba(200,169,106,.25);
+}
+
+.subcard h3{
+  color:#1f1f1f;
+}
+.subcard p{
+  color:#555;
+}
+
+/* ===== IMAGENES ===== */
+img{
+  max-width:100%;
+  border-radius:18px;
+}
+.pareja-img{
+  margin-top:3rem;
+  width:280px;
+  box-shadow:0 20px 45px rgba(0,0,0,.6);
+}
+
+/* ===== COUNTDOWN ===== */
+.countdown{
+  display:flex;
+  gap:18px;
+  justify-content:center;
+}
+.time{
+  background:linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f4efe8 100%
+  );
+  padding:18px;
+  border-radius:16px;
+  color:#1f1f1f;
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.25),
+    inset 0 0 0 1px rgba(200,169,106,.25);
+}
+
+/* ===== VELAS ===== */
+.candles{
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  margin-top:3rem;
+}
+.candle{
+  width:14px;
+  height:80px;
+  background:#e6d3a3;
+  border-radius:6px;
+  position:relative;
+}
+.flame{
+  position:absolute;
+  top:-18px;
+  left:50%;
+  width:10px;
+  height:18px;
+  background:radial-gradient(circle,#ffd27d,#ff9f1c);
+  border-radius:50%;
+  transform:translateX(-50%);
+  animation:flicker .15s infinite alternate;
+}
+@keyframes flicker{
+  to{transform:translateX(-50%) scale(.9)}
+}
+
+/* ===== BOTON ===== */
+.btn{
+  margin-top:3rem;
+  padding:1.1rem 3rem;
+  border:none;
+  border-radius:999px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-soft));
+  color:#000;
+  font-weight:500;
+  cursor:pointer;
+}
+
+/* ===== MUSICA ===== */
+.music-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent-soft));
+  border:none;
+  z-index:999;
+}
+
+/* ===== REVEAL ===== */
+.reveal{
+  opacity:0;
+  transform:translateY(35px);
+  transition:.9s ease;
+}
+.reveal.show{
+  opacity:1;
+  transform:none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .plantilla-hero h1{font-size:2.6rem}
+  .card{padding:3rem 1.8rem}
+}
+
+
+/* ===============================
+   PADRES Y PADRINOS – ESTRUCTURA
+================================ */
+
+/* Padres Novia / Novio */
+.parents-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:2.5rem;
+  margin-top:3rem;
+}
+
+/* Caja padrinos */
+.padrinos-box{
+  margin-top:3.5rem;
+  padding:2.5rem 2rem;
+
+  background:linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f6f1ea 100%
+  );
+
+  border-radius:24px;
+
+  box-shadow:
+    0 20px 45px rgba(0,0,0,.25),
+    inset 0 0 0 1px rgba(200,169,106,.25);
+}
+
+.padrinos-box h3{
+  font-family:'Playfair Display',serif;
+  color:#1f1f1f;
+  margin-bottom:.8rem;
+}
+
+.padrinos-box p{
+  color:#555;
+  margin-bottom:1.5rem;
+}
+/* ===== IMAGENES UNIFICADAS (PADRES Y PADRINOS) ===== */
+.image-box{
+  width:100%;
+  max-width:420px;
+  height:240px;               /* 🔑 altura fija */
+  margin:1.5rem auto 0;
+  border-radius:18px;
+  overflow:hidden;
+
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.35),
+    inset 0 0 0 1px rgba(255,255,255,.06);
+}
+
+.image-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;           /* 🔑 recorte elegante */
+  display:block;
+}
+
+
+.parents-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+  gap:2.5rem;
+  margin-top:3rem;
+}
+
+.subcard{
+  background:#faf6ef;
+  padding:2rem;
+  border-radius:22px;
+  text-align:center;
+}
+
+
+.parents-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+  gap:2.5rem;
+  margin-top:3rem;
+}
+
+.image-box{
+  width:100%;
+  max-width:420px;
+  height:220px;
+  margin:1.5rem auto 0;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 18px 40px rgba(0,0,0,.35);
+}
+
+.image-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.padrinos-img{
+  max-width:360px;
+}
+
+/* ===== FECHA Y HORA EVENTO ===== */
+.event-datetime{
+  margin-top:3rem;
+  text-align:center;
+}
+
+.event-date{
+  font-family:'Playfair Display', serif;
+  font-size:1.2rem;
+  color:var(--accent);
+  letter-spacing:1px;
+  margin-top:1.2rem;
+}
+
+.event-time{
+  font-size:1rem;
+  color:#6b6b6b;
+  letter-spacing:2px;
+  margin-top:.4rem;
+  text-transform:uppercase;
+}
+
+/* ===== CTA FINAL ===== */
+/* ===== TITULO CTA FINAL ===== */
+.cta-card h2{
+  font-family:'Playfair Display', serif;
+  font-size:2.1rem;
+  color:var(--accent);
+  letter-spacing:1px;
+  margin-bottom:1rem;
+  text-shadow:0 2px 12px rgba(200,169,106,.35);
+}
+
+
+.cta-card{
+  background:
+    linear-gradient(160deg, rgba(200,169,106,.15), rgba(0,0,0,.35)),
+    linear-gradient(180deg, #1c1c20, #141418);
+}
+
+.btn-quiero{
+  margin-top:2.5rem;
+  font-size:1.1rem;
+  letter-spacing:1px;
+  padding:1.2rem 3.5rem;
+  background:linear-gradient(135deg, #c8a96a, #f0d9a6);
+  color:#000;
+  transition:.3s ease;
+}
+
+.btn-quiero:hover{
+  transform:translateY(-2px);
+  box-shadow:0 15px 35px rgba(200,169,106,.45);
+}

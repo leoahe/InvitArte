@@ -1,0 +1,446 @@
+/* ===============================
+   BASE
+
+   .catalogo-body {
+  background: #f5f5f5;
+  min-height: 100vh;
+}
+
+================================ */
+body {
+  background: #f5f5f5;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Montserrat', system-ui, sans-serif;
+}
+
+/* ===============================
+   HEADER
+================================ */
+.catalogo-header {
+  text-align: center;
+  padding: 3rem 1rem 2rem;
+}
+
+.catalogo-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: .5rem;
+}
+
+.catalogo-header p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+
+/* ===============================
+   GRID
+================================ */
+.catalogo-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2.5rem;
+}
+
+/* ===============================
+   CARD
+================================ */
+.catalogo-item {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,.08);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.catalogo-item h3 {
+  padding: 1.2rem;
+  text-align: center;
+  font-size: 1.05rem;
+}
+
+/* ===============================
+   PREVIEW
+================================ */
+.catalogo-preview {
+  position: relative;
+  aspect-ratio: 3 / 4;
+}
+
+.catalogo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===============================
+   OVERLAY
+================================ */
+.preview-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.7), rgba(0,0,0,.2));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.catalogo-item:hover .preview-overlay {
+  opacity: 1;
+}
+
+/* ===============================
+   BOTONES
+================================ */
+.btn-preview,
+.btn-usar {
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-preview {
+  background: white;
+  color: #333;
+}
+
+.btn-usar {
+  background: #d4a373;
+  color: white;
+  text-decoration: none;
+}
+
+/* ===============================
+   TAGS
+================================ */
+.tag {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: white;
+  z-index: 10;
+}
+
+.tag.nuevo { background: #2ecc71; }
+.tag.premium { background: #9b59b6; }
+.tag.vendido { background: #e67e22; }
+
+/* ===============================
+   MODAL
+================================ */
+.preview-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.preview-box {
+  width: 90vw;
+  max-width: 900px;
+  height: 90vh;
+  max-height: 700px;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.preview-box iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.close-preview {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: black;
+  color: white;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+
+/* ===== CONTENEDOR GENERAL ===== */
+.catalogo-body {
+  padding-bottom: 4rem;
+}
+
+/* ===== GRID MEJORADO ===== */
+.catalogo-grid {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 3rem;
+}
+
+/* ===== CARD ===== */
+.catalogo-item {
+  background: white;
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(0,0,0,.08);
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.catalogo-item:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 35px 70px rgba(0,0,0,.15);
+}
+
+/* ===== PREVIEW ===== */
+.catalogo-preview {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+.catalogo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+
+.catalogo-item:hover img {
+  transform: scale(1.08);
+}
+
+/* ===== OVERLAY ELEGANTE ===== */
+.preview-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,.15),
+    rgba(0,0,0,.65)
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem;
+  gap: .8rem;
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+
+.catalogo-item:hover .preview-overlay {
+  opacity: 1;
+}
+
+/* ===== BOTONES ===== */
+.btn-preview,
+.btn-usar {
+  width: 100%;
+  padding: .85rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: .95rem;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-preview {
+  background: rgba(255,255,255,.95);
+  color: #222;
+}
+
+.btn-usar {
+  background: #c8a96a;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+/* ===== TEXTO ===== */
+.catalogo-item h3 {
+  padding: 1.6rem;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* ===== TAGS ===== */
+.tag {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 600;
+  color: white;
+  z-index: 2;
+}
+
+.tag.nuevo { background: #2ecc71; }
+.tag.premium { background: #9b59b6; }
+.tag.vendido { background: #e67e22; }
+
+
+/* ===============================
+   ANIMACIONES PREMIUM
+================================ */
+
+/* Estado inicial (oculto) */
+.catalogo-item {
+  opacity: 0;
+  transform: translateY(40px) scale(0.97);
+  transition:
+    opacity .8s ease,
+    transform .8s cubic-bezier(.22,1,.36,1);
+}
+
+/* Cuando entra en pantalla */
+.catalogo-item.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Delay escalonado */
+.catalogo-item:nth-child(1) { transition-delay: .05s; }
+.catalogo-item:nth-child(2) { transition-delay: .12s; }
+.catalogo-item:nth-child(3) { transition-delay: .18s; }
+.catalogo-item:nth-child(4) { transition-delay: .24s; }
+.catalogo-item:nth-child(5) { transition-delay: .30s; }
+.catalogo-item:nth-child(6) { transition-delay: .36s; }
+
+/* Overlay más suave */
+.preview-overlay {
+  transition:
+    opacity .4s ease,
+    transform .4s ease;
+  transform: translateY(10px);
+}
+
+.catalogo-item:hover .preview-overlay {
+  transform: translateY(0);
+}
+
+/* Botones micro interacción */
+.btn-preview,
+.btn-usar {
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+.btn-preview:hover,
+.btn-usar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0,0,0,.15);
+}
+
+/* Imagen con easing premium */
+.catalogo-preview img {
+  transition: transform .9s cubic-bezier(.22,1,.36,1);
+}
+
+/* ===============================
+   MODAL PREVIEW iPHONE
+================================ */
+
+.preview-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.85);
+  display: none; /* IMPORTANTE */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Botón cerrar */
+.close-preview {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+/* iPhone */
+.iphone-frame {
+  width: 360px;
+  height: 740px;
+  background: black;
+  border-radius: 48px;
+  padding: 14px;
+  box-shadow: 0 40px 120px rgba(0,0,0,.6);
+  position: relative;
+}
+
+/* Notch */
+.iphone-notch {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 26px;
+  background: black;
+  border-radius: 0 0 18px 18px;
+  z-index: 5;
+}
+
+/* Pantalla */
+.iphone-screen {
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: 36px;
+  overflow: hidden;
+}
+
+/* Iframe */
+.iphone-screen iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .iphone-frame {
+    transform: scale(.9);
+  }
+}
+
+/*
+.catalogo-item {
+  opacity: 1 !important;
+  transform: none !important;
+}
+  */

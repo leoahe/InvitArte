@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>InvitArte — Invitaciones de boda</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <nav class="navbar">
+    <div class="container nav-wrap">
+      <a class="logo" href="index.html">InvitArte</a>
+      <button class="btn-burger" id="burger">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="active">Inicio</a></li>
+        <li><a href="precios.html">Precios</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="catalogo.html" class="btn primary">Comprar</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<header class="hero hero-with-bg">
+
+  <div class="hero-overlay"></div>
+
+  <!-- Texto decorativo -->
+  <div class="hero-tagline">
+    ✨ Invitaciones digitales únicas para tu gran día ✨
+  </div>
+
+  <div class="container hero-inner">
+    <h1>Invitaciones digitales para tu boda</h1>
+    <p class="lead">Diseños hermosos, personalizados y listos para compartir.  
+    Elige, personaliza y paga en línea.</p>
+
+    <div class="hero-cta">
+      <a href="./catalogo.html" class="btn primary">Ver catálogo</a>
+      <a href="muestras.html" class="btn">Ver muestras</a>
+    </div>
+  </div>
+</header>
+
+
+<!--inicio Se agrega banner-->
+<section class="banner-two">
+  <div class="banner-two-content">
+
+    <!-- TEXTO -->
+    <div class="banner-two-text">
+      <h1>Invitaciones Digitales para Bodas</h1>
+      <p class="slogan">
+        Elige entre estilos elegantes o modernos.  
+        100% personalizadas, hermosas y listas para enviar. 💍✨
+      </p>
+      <a href="./catalogo.html" class="btn primary">Ver Catálogo de Diseños</a>
+    </div>
+
+    <!-- MOCKUPS 
+    <div class="banner-two-mockups">
+-->
+      <!-- Mockup elegante 
+      <div class="mockup-card elegant">
+        <img src="images/mockup-elegante.png" alt="Mockup Elegante">
+        <span class="label">Estilo Elegante</span>
+      </div>
+-->
+      <!-- Mockup moderno 
+      <div class="mockup-card modern">
+        <img src="images/mockup-moderno.png" alt="Mockup Moderno">
+        <span class="label">Estilo Moderno</span>
+      </div>
+
+    </div>-->
+
+<div class="mockup-card elegant reveal">
+  <div class="mockup-iphone">
+    
+    <!-- Dynamic Island con cámara y sensores -->
+    <div class="dynamic-island">
+      <div class="camera"></div>
+      <div class="sensor"></div>
+    </div>
+
+    <!-- Botones laterales -->
+    <div class="btn-vol"></div>
+    <div class="btn-power"></div>
+
+    <!-- Imagen del mockup -->
+    <img src="images/mockup-elegante.png" alt="Mockup Elegante">
+  </div>
+
+  <span class="label">Estilo Elegante</span>
+</div>
+
+
+<div class="mockup-card modern reveal">
+  <div class="mockup-iphone">
+
+
+    <!-- Dynamic Island con cámara y sensores -->
+    <div class="dynamic-island">
+      <div class="camera"></div>
+      <div class="sensor"></div>
+    </div>
+
+    <!-- Botones -->
+    <div class="btn-vol"></div>
+    <div class="btn-power"></div>
+
+    <!-- Imagen -->
+    <img src="images/mockup-moderno.png" alt="Mockup Moderno">
+  </div>
+
+  <span class="label">Estilo Moderno</span>
+</div>
+
+
+  </div>
+</section>
+<!--fin se agrega banner-->
+
+
+
+
+
+  <main class="container">
+    <section class="features">
+      <div class="feature">
+        <h3>Diseños Profesionales</h3>
+        <p>Plantillas creadas por diseñadores — edición fácil.</p>
+      </div>
+      <div class="feature">
+        <h3>Entrega Rápida</h3>
+        <p>Recibe tu invitación lista para compartir en 24-72 hrs.</p>
+      </div>
+      <div class="feature">
+        <h3>Pago Seguro</h3>
+        <p>Paga con Stripe (MXN). Tarjetas seguras y confiables.</p>
+      </div>
+    </section>
+
+    <section class="preview-section">
+      <h2>Muestras destacadas</h2>
+      <div id="preview-grid" class="grid"></div>
+      <div class="center">
+        <a href="muestras.html" class="btn">Ver todas las muestras</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div>© 2026 InvitArte</div>
+      <div class="small">Diseños temporales de stock — puedes reemplazarlos en el panel de administración.</div>
+    </div>
+  </footer>
+
+
+
+
+
+  <script src="app-front.js"></script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+  const elements = document.querySelectorAll(".reveal");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add("visible");
+    });
+  }, { threshold: 0.2 });
+
+  elements.forEach(el => observer.observe(el));
+});
+</script>
+
+<script>
+  window.addEventListener("scroll", function () {
+    const hero = document.querySelector(".hero-with-bg");
+    if (!hero) return;
+
+    const scrollPosition = window.pageYOffset;
+    const parallaxAmount = scrollPosition * 0.15; // Intensidad
+
+    hero.style.backgroundPosition = `center calc(50% + ${parallaxAmount}px)`;
+  });
+</script>
+
+
+</body>
+</html>

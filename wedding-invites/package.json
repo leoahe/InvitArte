@@ -1,0 +1,16 @@
+{
+  "name": "proyecto-invitaciones-2025",
+  "version": "1.0.0",
+  "description": "Sitio para invitaciones de boda",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.22.1"
+  }
+}
