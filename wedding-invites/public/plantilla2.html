@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitación Premium — InvitArte</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/plantilla2.css">
+  <script src="js/plantilla2.js" defer></script>
+</head>
+
+<body class="plantilla-body">
+
+  <!-- VIGENCIA FLOTANTE (exclusiva Premium) -->
+  <div class="vigencia-badge" id="vigencia-badge">
+    ✦ Invitación válida hasta: <span id="vigencia-fecha">—</span>
+  </div>
+
+  <!-- MARCO FLORAL -->
+  <div class="floral-frame"></div>
+
+  <!-- PÉTALOS -->
+  <div class="petals" id="petals"></div>
+  <div class="gold-particles" id="goldParticles"></div>
+
+  <!-- MÚSICA -->
+  <audio id="music" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+  </audio>
+  <button class="music-btn" id="musicBtn" title="Música">🎵</button>
+
+  <!-- ══════════════════════════════════
+       HERO
+  ══════════════════════════════════ -->
+  <section class="plantilla-hero">
+    <div class="hero-content reveal">
+      <div class="hero-eyebrow">Nos complace invitarte a nuestra boda</div>
+
+      <div class="hero-names">
+        <span id="nombre-novia">Laura</span>
+        <span class="hero-amp">&amp;</span>
+        <span id="nombre-novio">Miguel</span>
+      </div>
+
+      <div id="decoracion"></div>
+
+      <div class="hero-fecha" id="fecha-display">
+        14 de Septiembre de 2026
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       INVITADO PERSONALIZADO
+  ══════════════════════════════════ -->
+  <section class="plantilla-section" id="seccion-invitado">
+    <div class="card reveal">
+      <h2>Esta invitación es especialmente para</h2>
+      <div class="divider"></div>
+      <div class="invitado-nombre" id="guestName">—</div>
+      <div class="invitado-pases" id="guestPasses"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       FRASE ROMÁNTICA
+  ══════════════════════════════════ -->
+  <section class="plantilla-section">
+    <div class="card rose reveal">
+      <h2>Un amor eterno</h2>
+      <div class="divider"></div>
+      <p>
+        Donde hay amor verdadero, cada instante se convierte en eternidad.<br>
+        Hoy iniciamos el capítulo más hermoso de nuestra historia.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       NUESTRA BODA
+  ══════════════════════════════════ -->
+  <section class="plantilla-section">
+    <div class="card reveal">
+      <h2>Nuestra Boda</h2>
+      <div class="divider"></div>
+      <p>Nos encantaría compartir contigo este momento inolvidable.</p>
+      <img src="images/mockup-elegante.png" class="pareja-img" alt="Pareja">
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       PADRES
+  ══════════════════════════════════ -->
+  <section class="plantilla-section">
+    <div class="card reveal">
+      <h2>Con la bendición de Dios y nuestros padres</h2>
+      <div class="divider"></div>
+
+      <div class="parents-grid">
+        <div class="subcard">
+          <h3>Padres de la Novia</h3>
+          <p>María López<br>José Martínez</p>
+          <div class="image-box">
+            <img src="images/padres-novia.png" alt="Padres de la novia">
+          </div>
+        </div>
+        <div class="subcard">
+          <h3>Padres del Novio</h3>
+          <p>Carmen Rodríguez<br>Luis Fernández</p>
+          <div class="image-box">
+            <img src="images/padres-novio.png" alt="Padres del novio">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       PADRINOS
+  ══════════════════════════════════ -->
+  <section class="plantilla-section">
+    <div class="card reveal">
+      <h2>Padrinos</h2>
+      <div class="divider"></div>
+      <p>Laura Gómez &amp; Pedro Sánchez</p>
+      <div class="image-box padrinos-img">
+        <img src="images/padrinos.png" alt="Padrinos">
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       CUENTA REGRESIVA
+  ══════════════════════════════════ -->
+  <section class="plantilla-section">
+    <div class="card reveal">
+      <h2>Falta poco</h2>
+      <div class="divider"></div>
+      <div class="countdown" id="countdown"></div>
+
+      <div class="candles">
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+      </div>
+    </div>
+
+    <div class="event-datetime">
+      <div class="divider"></div>
+      <p class="event-date" id="event-date-text">Sábado 14 de Septiembre de 2026</p>
+      <p class="event-time">5:00 PM</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       CEREMONIA
+  ══════════════════════════════════ -->
+  <section class="plantilla-section">
+    <div class="card reveal">
+      <h2>Ceremonia</h2>
+      <div class="divider"></div>
+      <p>Iglesia San José · 5:00 PM</p>
+      <iframe
+        src="https://www.google.com/maps?q=Iglesia%20San%20Jose&output=embed"
+        title="Ubicación ceremonia"
+        loading="lazy">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       RECEPCIÓN
+  ══════════════════════════════════ -->
+  <section class="plantilla-section">
+    <div class="card reveal">
+      <h2>Evento Social</h2>
+      <div class="divider"></div>
+      <p>Salón Real · 7:00 PM</p>
+      <iframe
+        src="https://www.google.com/maps?q=Salon%20Real&output=embed"
+        title="Ubicación recepción"
+        loading="lazy">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       VIGENCIA (sección informativa)
+  ══════════════════════════════════ -->
+  <section class="plantilla-section">
+    <div class="card premium-dark reveal">
+      <h2>Invitación Premium</h2>
+      <div class="divider"></div>
+
+      <div class="vigencia-card">
+        <div class="vigencia-card__icon">⏳</div>
+        <div class="vigencia-card__title">Vigencia de tu invitación</div>
+        <div class="vigencia-card__text">
+          Esta invitación digital estará disponible en línea durante
+          <strong style="color:var(--accent-soft)">3 meses</strong> a partir de su activación,
+          para que tus invitados puedan consultarla en cualquier momento antes del gran día.
+        </div>
+        <div class="vigencia-card__date" id="vigencia-hasta">
+          Válida hasta: —
+        </div>
+      </div>
+
+      <div class="vigencia-card" style="margin-top:1.5rem">
+        <div class="vigencia-card__icon">🎵</div>
+        <div class="vigencia-card__title">Música de fondo incluida</div>
+        <div class="vigencia-card__text">
+          Tu invitación cuenta con música de fondo que se reproduce automáticamente
+          al ser abierta, creando una experiencia emotiva e inolvidable.
+        </div>
+      </div>
+
+      <div class="vigencia-card" style="margin-top:1.5rem">
+        <div class="vigencia-card__icon">✨</div>
+        <div class="vigencia-card__title">Nombre personalizado por invitado</div>
+        <div class="vigencia-card__text">
+          Cada invitado recibe su propio enlace con su nombre integrado en la invitación,
+          haciendo cada experiencia única y especial.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       CTA FINAL
+  ══════════════════════════════════ -->
+  <section class="plantilla-section">
+    <div class="card reveal cta-card">
+      <h2>¿Te gustó este diseño?</h2>
+      <div class="divider"></div>
+      <p>
+        Personaliza esta invitación Premium con tus datos.<br>
+        Incluye música, vigencia de 3 meses y nombres personalizados.
+      </p>
+
+      <button class="btn-quiero"
+        onclick="window.location.href='/precios.html?diseno=2'">
+        ✨ Lo quiero
+      </button>
+    </div>
+  </section>
+
+</body>
+</html>

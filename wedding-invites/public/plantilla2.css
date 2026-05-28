@@ -1,0 +1,529 @@
+/* =====================================================
+   PLANTILLA 2 — INVITACIÓN PREMIUM
+   Paleta: Negro profundo + Dorado + Rosa champagne
+   Misma estructura base que plantilla.css
+   + elementos premium diferenciadores
+===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&family=Great+Vibes&display=swap');
+
+:root {
+  --accent:       #c8a96a;
+  --accent-soft:  #e6d3a3;
+  --accent-rose:  #d4a5a0;
+  --accent-rose2: #e8c4bf;
+  --text:         #f2f2f2;
+  --muted:        #cfcfcf;
+  --card-bg1:     #f7f3ec;
+  --card-bg2:     #efe8dd;
+  --dark1:        #0f0f11;
+  --dark2:        #141416;
+  --dark3:        #1a1a1d;
+}
+
+/* ── RESET ─────────────────────────────────── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+/* ── BODY ──────────────────────────────────── */
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 10% 15%, rgba(212,165,160,.14), transparent 45%),
+    radial-gradient(circle at 90% 85%, rgba(200,169,106,.12), transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(200,169,106,.06), transparent 70%),
+    linear-gradient(180deg, #1a1a1d 0%, #121214 60%, #0e0e10 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ── MARCO FLORAL ──────────────────────────── */
+.floral-frame {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.floral-frame::before,
+.floral-frame::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 220px;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: .7;
+  animation: floralMove 12s ease-in-out infinite alternate;
+}
+.floral-frame::before {
+  left: 0;
+  background-image: url("../images/floral-left.png");
+}
+.floral-frame::after {
+  right: 0;
+  background-image: url("../images/floral-right.png");
+}
+@keyframes floralMove {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-30px); }
+}
+
+/* ── PARTÍCULAS ────────────────────────────── */
+.petals {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.petal {
+  position: absolute;
+  width: 14px; height: 14px;
+  background: radial-gradient(circle, var(--accent-rose2), var(--accent-rose));
+  border-radius: 50% 0;
+  opacity: .7;
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(360deg); }
+}
+
+.gold-particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── MÚSICA ────────────────────────────────── */
+.music-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+  border: none;
+  z-index: 999;
+  cursor: pointer;
+  font-size: 1.3rem;
+  box-shadow: 0 8px 24px rgba(200,169,106,.4);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.music-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 32px rgba(200,169,106,.6);
+}
+
+/* ── VIGENCIA BADGE (exclusivo Premium) ────── */
+.vigencia-badge {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  background: linear-gradient(135deg, rgba(200,169,106,.18), rgba(200,169,106,.08));
+  border: 1px solid rgba(200,169,106,.4);
+  border-radius: 999px;
+  padding: 8px 22px;
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  white-space: nowrap;
+}
+
+.vigencia-badge span {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ── HERO ──────────────────────────────────── */
+.plantilla-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  z-index: 5;
+  padding: 2rem 1.5rem;
+}
+
+.hero-content { max-width: 600px; }
+
+.hero-eyebrow {
+  font-size: .72rem;
+  letter-spacing: .35em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+}
+
+.hero-names {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(3.5rem, 10vw, 6rem);
+  font-weight: 400;
+  color: var(--accent-soft);
+  line-height: 1.1;
+  text-shadow: 0 0 60px rgba(200,169,106,.25);
+}
+
+.hero-amp {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  color: rgba(200,169,106,.5);
+  display: block;
+  margin: .5rem 0;
+  letter-spacing: .2em;
+}
+
+.hero-fecha {
+  margin-top: 1.6rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  letter-spacing: .12em;
+  color: #e0e0e0;
+}
+
+#decoracion {
+  height: 2px;
+  width: 120px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  margin: 2.5rem auto;
+  border-radius: 4px;
+}
+
+/* Ornamento script bajo nombres */
+.hero-ornament {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.6rem;
+  color: rgba(200,169,106,.35);
+  margin: .8rem 0;
+}
+
+/* ── SECCIONES ─────────────────────────────── */
+.plantilla-section {
+  padding: 4.5rem 1.5rem;
+  position: relative;
+  z-index: 5;
+}
+
+/* ── CARDS ─────────────────────────────────── */
+.card {
+  max-width: 860px;
+  margin: auto;
+  padding: 3.8rem 3rem;
+  text-align: center;
+  position: relative;
+  z-index: 6;
+  background: linear-gradient(180deg, #f7f3ec 0%, #efe8dd 100%);
+  border-radius: 30px;
+  box-shadow:
+    0 30px 60px rgba(0,0,0,.35),
+    inset 0 0 0 1px rgba(200,169,106,.3);
+}
+
+.card h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.9rem;
+  font-weight: 400;
+  color: #1f1f1f;
+  letter-spacing: .04em;
+}
+
+.card p {
+  color: #555;
+  line-height: 1.9;
+  margin-top: .8rem;
+}
+
+/* Card rosa (frase romántica) */
+.card.rose {
+  background: linear-gradient(180deg, #f3e2d5 0%, #e9d1c3 100%);
+}
+
+/* Card premium oscura (exclusiva diseño 2) */
+.card.premium-dark {
+  background: linear-gradient(160deg, rgba(200,169,106,.12), rgba(0,0,0,.4)),
+              linear-gradient(180deg, #1c1c20, #141418);
+  color: var(--text);
+  border: 1px solid rgba(200,169,106,.2);
+}
+
+.card.premium-dark h2 {
+  color: var(--accent-soft);
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.card.premium-dark p { color: #aaa; }
+
+/* ── DIVIDER ───────────────────────────────── */
+.divider {
+  width: 90px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  margin: 2rem auto;
+}
+
+/* ── INVITADO PERSONALIZADO ────────────────── */
+.invitado-nombre {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.6rem;
+  color: var(--accent);
+  line-height: 1.2;
+  margin: .5rem 0;
+}
+
+.invitado-pases {
+  font-size: .82rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #777;
+  margin-top: .4rem;
+}
+
+/* ── PADRES / PADRINOS ─────────────────────── */
+.parents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.subcard {
+  background: linear-gradient(180deg, #ffffff 0%, #f6f1ea 100%);
+  padding: 2rem;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.25),
+    inset 0 0 0 1px rgba(200,169,106,.2);
+}
+
+.subcard h3 {
+  font-family: 'Cormorant Garamond', serif;
+  color: #1f1f1f;
+  font-size: 1.15rem;
+  margin-bottom: .5rem;
+}
+
+.subcard p { color: #555; }
+
+.image-box {
+  width: 100%;
+  max-width: 420px;
+  height: 220px;
+  margin: 1.5rem auto 0;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0,0,0,.35);
+}
+
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.padrinos-img { max-width: 360px; }
+
+/* ── COUNTDOWN ─────────────────────────────── */
+.countdown {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.time {
+  background: linear-gradient(180deg, #ffffff 0%, #f4efe8 100%);
+  padding: 18px 22px;
+  border-radius: 16px;
+  color: #1f1f1f;
+  min-width: 72px;
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.25),
+    inset 0 0 0 1px rgba(200,169,106,.2);
+}
+
+.time span {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #1f1f1f;
+  line-height: 1;
+}
+
+.time small {
+  display: block;
+  font-size: .6rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: #888;
+  margin-top: 4px;
+}
+
+/* ── VELAS ─────────────────────────────────── */
+.candles {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 3rem;
+}
+.candle {
+  width: 14px; height: 80px;
+  background: var(--accent-soft);
+  border-radius: 6px;
+  position: relative;
+}
+.flame {
+  position: absolute;
+  top: -18px; left: 50%;
+  width: 10px; height: 18px;
+  background: radial-gradient(circle, #ffd27d, #ff9f1c);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  animation: flicker .15s infinite alternate;
+}
+@keyframes flicker {
+  to { transform: translateX(-50%) scale(.9); }
+}
+
+/* ── EVENTO FECHA/HORA ─────────────────────── */
+.event-datetime {
+  margin-top: 3rem;
+  text-align: center;
+}
+.event-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  color: var(--accent);
+  letter-spacing: 1px;
+  margin-top: 1.2rem;
+}
+.event-time {
+  font-size: 1rem;
+  color: #6b6b6b;
+  letter-spacing: 2px;
+  margin-top: .4rem;
+  text-transform: uppercase;
+}
+
+/* ── MAPAS ─────────────────────────────────── */
+iframe {
+  width: 100%;
+  height: 240px;
+  border: none;
+  border-radius: 16px;
+  margin-top: 1.5rem;
+  box-shadow: 0 12px 30px rgba(0,0,0,.3);
+}
+
+/* ── VIGENCIA INFO CARD (dentro de invitación) */
+.vigencia-card {
+  background: linear-gradient(135deg,
+    rgba(200,169,106,.12) 0%,
+    rgba(200,169,106,.04) 100%);
+  border: 1px solid rgba(200,169,106,.3);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.vigencia-card__icon { font-size: 2.2rem; margin-bottom: 1rem; }
+
+.vigencia-card__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  color: var(--accent-soft);
+  margin-bottom: .6rem;
+}
+
+.vigencia-card__text {
+  font-size: .82rem;
+  color: #aaa;
+  line-height: 1.7;
+}
+
+.vigencia-card__date {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 8px 24px;
+  border: 1px solid rgba(200,169,106,.35);
+  border-radius: 999px;
+  font-size: .78rem;
+  color: var(--accent);
+  letter-spacing: .12em;
+}
+
+/* ── CTA FINAL ─────────────────────────────── */
+.cta-card {
+  background:
+    linear-gradient(160deg, rgba(200,169,106,.15), rgba(0,0,0,.35)),
+    linear-gradient(180deg, #1c1c20, #141418);
+}
+
+.cta-card h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.1rem;
+  color: var(--accent);
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 12px rgba(200,169,106,.35);
+}
+
+.cta-card p { color: #aaa; }
+
+.btn-quiero {
+  margin-top: 2.5rem;
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  padding: 1.2rem 3.5rem;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #c8a96a, #f0d9a6);
+  color: #000;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: .3s ease;
+  box-shadow: 0 8px 28px rgba(200,169,106,.35);
+}
+
+.btn-quiero:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(200,169,106,.5);
+}
+
+/* ── REVEAL ────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: .9s ease;
+}
+.reveal.show {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── RESPONSIVE ────────────────────────────── */
+@media (max-width: 768px) {
+  .hero-names { font-size: clamp(3rem, 12vw, 4.5rem); }
+  .card { padding: 2.8rem 1.6rem; }
+  .vigencia-badge { font-size: .6rem; padding: 6px 16px; }
+}
+
+@media (max-width: 480px) {
+  .countdown { gap: 10px; }
+  .time { padding: 14px 16px; min-width: 60px; }
+  .time span { font-size: 1.8rem; }
+}
