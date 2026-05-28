@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Panel — InvitArte</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+<!-- PAGE LOADER -->
+<div id="page-loader">
+  <div class="loader-logo">InvitArte</div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- MOBILE TOPBAR -->
+<div class="mobile-topbar">
+  <span class="mobile-topbar__logo">InvitArte</span>
+  <div class="mobile-menu-toggle" id="menu-toggle">
+    <span></span><span></span><span></span>
+  </div>
+</div>
+
+<!-- SIDEBAR OVERLAY -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<!-- DASHBOARD LAYOUT -->
+<div class="dashboard-layout">
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__header">
+      <span class="sidebar__logo">InvitArte</span>
+      <div class="sidebar__plan">
+        <span class="badge badge--gold" id="sidebar-plan">✦ Plan Básico</span>
+      </div>
+    </div>
+
+    <nav class="sidebar__nav">
+      <div class="sidebar__section-label">Principal</div>
+      <a class="sidebar__link active" data-section="overview" onclick="showSection('overview')">
+        <span class="sidebar__link-icon">⊞</span>
+        Resumen
+      </a>
+      <a class="sidebar__link" data-section="invitaciones" onclick="showSection('invitaciones')">
+        <span class="sidebar__link-icon">✉</span>
+        Mis Invitaciones
+        <span class="sidebar__link-badge" id="inv-count-badge">0</span>
+      </a>
+      <a class="sidebar__link" data-section="crear" onclick="window.location.href='personalizar.html'">
+        <span class="sidebar__link-icon">＋</span>
+        Nueva Invitación
+      </a>
+
+      <div class="sidebar__section-label">Gestión</div>
+      <a class="sidebar__link" data-section="invitados" onclick="showSection('invitados')">
+        <span class="sidebar__link-icon">👥</span>
+        Invitados
+      </a>
+      <a class="sidebar__link" data-section="pagos" onclick="showSection('pagos')">
+        <span class="sidebar__link-icon">💳</span>
+        Pagos & Plan
+      </a>
+
+      <div class="sidebar__section-label">Cuenta</div>
+      <a class="sidebar__link" data-section="perfil" onclick="showSection('perfil')">
+        <span class="sidebar__link-icon">◎</span>
+        Mi Perfil
+      </a>
+      <a class="sidebar__link" onclick="confirmLogout()">
+        <span class="sidebar__link-icon">↩</span>
+        Cerrar Sesión
+      </a>
+    </nav>
+
+    <div class="sidebar__footer">
+      <div class="sidebar__user" id="sidebar-user">
+        <div class="sidebar__user-avatar" id="user-avatar">?</div>
+        <div class="sidebar__user-info">
+          <div class="sidebar__user-name" id="user-name">—</div>
+          <div class="sidebar__user-email" id="user-email">—</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ═══ TOPBAR ═══ -->
+  <header class="dashboard-topbar">
+    <div class="topbar__left">
+      <div>
+        <div class="topbar__breadcrumb">Panel de control</div>
+        <div class="topbar__title" id="topbar-title">Resumen</div>
+      </div>
+    </div>
+    <div class="topbar__actions">
+      <a href="personalizar.html" class="btn btn--primary btn--sm">
+        ＋ Nueva Invitación
+      </a>
+    </div>
+  </header>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <main class="dashboard-main">
+
+    <!-- ─── SECTION: OVERVIEW ─── -->
+    <section id="section-overview" class="dash-section active">
+
+      <!-- Upgrade banner (shown for free plan) -->
+      <div class="upgrade-banner" id="upgrade-banner" style="display:none">
+        <div class="upgrade-banner__content">
+          <div class="upgrade-banner__tag">✦ Oferta especial</div>
+          <div class="upgrade-banner__title">Lleva tus invitaciones al siguiente <em>nivel</em></div>
+          <div class="upgrade-banner__sub">Desbloquea más invitados, QR personalizados y plantillas exclusivas.</div>
+        </div>
+        <a href="checkout.html" class="btn btn--primary">Ver Planes Premium →</a>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid" id="stats-grid">
+        <div class="stat-card skeleton" style="height:120px"></div>
+        <div class="stat-card skeleton" style="height:120px"></div>
+        <div class="stat-card skeleton" style="height:120px"></div>
+        <div class="stat-card skeleton" style="height:120px"></div>
+      </div>
+
+      <!-- Recent invitations -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--sp-lg)">
+        <div>
+          <div class="section-tag">Gestión</div>
+          <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:300;color:var(--blanco)">
+            Invitaciones recientes
+          </h2>
+        </div>
+        <a href="personalizar.html" class="btn btn--outline btn--sm">+ Nueva</a>
+      </div>
+
+      <div id="recent-invitations-list" class="inv-grid">
+        <!-- Populated by JS -->
+      </div>
+
+    </section>
+
+    <!-- ─── SECTION: MIS INVITACIONES ─── -->
+    <section id="section-invitaciones" class="dash-section">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--sp-xl)">
+        <div>
+          <div class="section-tag">Gestión</div>
+          <h2 style="font-family:var(--font-display);font-size:1.8rem;font-weight:300;color:var(--blanco)">
+            Mis <em style="color:var(--dorado);font-style:italic">Invitaciones</em>
+          </h2>
+        </div>
+        <a href="personalizar.html" class="btn btn--primary">+ Nueva Invitación</a>
+      </div>
+
+      <div id="all-invitations-list" class="inv-grid"></div>
+    </section>
+
+    <!-- ─── SECTION: INVITADOS ─── -->
+    <section id="section-invitados" class="dash-section">
+      <div style="margin-bottom:var(--sp-xl)">
+        <div class="section-tag">Lista</div>
+        <h2 style="font-family:var(--font-display);font-size:1.8rem;font-weight:300;color:var(--blanco)">
+          Gestión de <em style="color:var(--dorado);font-style:italic">Invitados</em>
+        </h2>
+      </div>
+
+      <!-- Selector de invitación activa -->
+      <div class="form-group" style="max-width:400px;margin-bottom:var(--sp-xl)">
+        <label class="form-label">Selecciona una invitación</label>
+        <select id="guest-inv-select" class="form-input">
+          <option value="">— Elige una invitación —</option>
+        </select>
+      </div>
+
+      <div id="guests-module" style="display:none">
+        <a href="invitados.html" class="btn btn--primary">Administrar Invitados →</a>
+      </div>
+      <div id="guests-no-selection">
+        <div class="empty-state">
+          <div class="empty-state__icon">👥</div>
+          <div class="empty-state__title">Selecciona una invitación</div>
+          <div class="empty-state__subtitle">Para gestionar invitados, primero selecciona una invitación activa.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SECTION: PAGOS ─── -->
+    <section id="section-pagos" class="dash-section">
+      <div style="margin-bottom:var(--sp-xl)">
+        <div class="section-tag">Cuenta</div>
+        <h2 style="font-family:var(--font-display);font-size:1.8rem;font-weight:300;color:var(--blanco)">
+          Plan &amp; <em style="color:var(--dorado);font-style:italic">Pagos</em>
+        </h2>
+      </div>
+
+      <div id="current-plan-card" style="margin-bottom:var(--sp-xl)">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Plans comparison -->
+      <div style="margin-bottom:var(--sp-lg)">
+        <h3 style="font-family:var(--font-display);font-size:1.2rem;color:var(--blanco);margin-bottom:var(--sp-lg)">
+          Cambiar de plan
+        </h3>
+        <div id="plans-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-lg)">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SECTION: PERFIL ─── -->
+    <section id="section-perfil" class="dash-section">
+      <div style="margin-bottom:var(--sp-xl)">
+        <div class="section-tag">Cuenta</div>
+        <h2 style="font-family:var(--font-display);font-size:1.8rem;font-weight:300;color:var(--blanco)">
+          Mi <em style="color:var(--dorado);font-style:italic">Perfil</em>
+        </h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-xl);max-width:800px">
+        <div class="card" style="padding:var(--sp-xl)">
+          <h3 style="font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--dorado);margin-bottom:var(--sp-xl)">
+            Información Personal
+          </h3>
+          <form id="profile-form" class="auth-form">
+            <div class="form-group">
+              <label class="form-label">Nombre completo</label>
+              <input type="text" id="profile-nombre" class="form-input" autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Correo electrónico</label>
+              <input type="email" id="profile-email" class="form-input" autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Teléfono</label>
+              <input type="tel" id="profile-telefono" class="form-input" autocomplete="tel">
+            </div>
+            <button type="submit" class="btn btn--outline">Guardar cambios</button>
+          </form>
+        </div>
+
+        <div class="card" style="padding:var(--sp-xl)">
+          <h3 style="font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--dorado);margin-bottom:var(--sp-xl)">
+            Cambiar Contraseña
+          </h3>
+          <form id="password-form" class="auth-form">
+            <div class="form-group">
+              <label class="form-label">Contraseña actual</label>
+              <input type="password" id="current-pass" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Nueva contraseña</label>
+              <input type="password" id="new-pass" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Confirmar nueva contraseña</label>
+              <input type="password" id="confirm-pass" class="form-input">
+            </div>
+            <button type="submit" class="btn btn--outline">Actualizar contraseña</button>
+          </form>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--sp-xl);padding:var(--sp-xl);background:rgba(224,85,85,0.05);border:1px solid rgba(224,85,85,0.2);border-radius:var(--r-lg);max-width:800px">
+        <h3 style="color:var(--rojo-error);font-size:0.85rem;margin-bottom:var(--sp-md)">Zona de peligro</h3>
+        <p style="font-size:0.82rem;color:var(--gris-texto);margin-bottom:var(--sp-lg)">
+          Al eliminar tu cuenta se borrarán permanentemente todas tus invitaciones y datos.
+        </p>
+        <button class="btn btn--danger btn--sm" onclick="confirmDeleteAccount()">
+          Eliminar mi cuenta
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<!-- ═══ MODAL: ELIMINAR INVITACIÓN ═══ -->
+<div class="modal-overlay" id="modal-delete-inv">
+  <div class="modal">
+    <div class="modal__header">
+      <span class="modal__title">Eliminar invitación</span>
+      <button class="modal__close" data-modal-close>✕</button>
+    </div>
+    <div class="modal__body">
+      <p style="color:var(--gris-texto);font-size:0.88rem;line-height:1.7">
+        ¿Estás segura de que deseas eliminar esta invitación? Esta acción no se puede deshacer y se perderán todos los datos de invitados asociados.
+      </p>
+    </div>
+    <div class="modal__footer">
+      <button class="btn btn--ghost" data-modal-close>Cancelar</button>
+      <button class="btn btn--danger" id="confirm-delete-btn">Sí, eliminar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MODAL: COMPARTIR INVITACIÓN ═══ -->
+<div class="modal-overlay" id="modal-share">
+  <div class="modal">
+    <div class="modal__header">
+      <span class="modal__title">Compartir invitación</span>
+      <button class="modal__close" data-modal-close>✕</button>
+    </div>
+    <div class="modal__body">
+      <p style="font-size:0.82rem;color:var(--gris-texto);margin-bottom:var(--sp-lg)">
+        Comparte el enlace con tus invitados o cópialo para enviarlo como prefieras.
+      </p>
+
+      <div style="
+        display:flex;
+        gap:var(--sp-sm);
+        background:var(--negro-3);
+        border:1px solid var(--gris-borde);
+        border-radius:var(--r-md);
+        padding:var(--sp-sm) var(--sp-md);
+        margin-bottom:var(--sp-lg);
+        overflow:hidden;
+      ">
+        <span id="share-url" style="
+          flex:1;font-size:0.8rem;color:var(--dorado);
+          white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+          line-height:2;
+        "></span>
+        <button class="btn btn--sm btn--outline" onclick="copyShareUrl()">Copiar</button>
+      </div>
+
+      <div id="share-qr" style="text-align:center;margin-bottom:var(--sp-lg)">
+        <img id="qr-img" src="" alt="QR Code" style="
+          width:160px;height:160px;
+          border:2px solid var(--dorado-borde);
+          border-radius:var(--r-md);
+          margin:0 auto var(--sp-md);
+        ">
+      </div>
+
+      <div style="display:flex;gap:var(--sp-sm)">
+        <button class="btn btn--primary btn--full" id="share-whatsapp-btn">
+          📱 Compartir por WhatsApp
+        </button>
+        <button class="btn btn--ghost" onclick="downloadQR()">
+          ⬇ QR
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>

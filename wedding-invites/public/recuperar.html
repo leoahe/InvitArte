@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recuperar Contraseña — InvitArte</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+<div id="page-loader">
+  <div class="loader-logo">InvitArte</div>
+  <div class="loader-bar"></div>
+</div>
+
+<canvas id="particles-canvas"></canvas>
+
+<div class="auth-page">
+
+  <aside class="auth-visual">
+    <div class="auth-visual__bg"></div>
+    <div class="auth-visual__grid"></div>
+    <div class="auth-visual__content">
+      <span class="auth-visual__logo">InvitArte</span>
+      <p class="auth-visual__tagline">Recupera el acceso<br><em>a tus invitaciones</em></p>
+      <p class="auth-visual__description">
+        No te preocupes. Te enviaremos un correo para restablecer tu contraseña en segundos.
+      </p>
+    </div>
+  </aside>
+
+  <main class="auth-form-side">
+    <div class="auth-container">
+
+      <div class="auth-header">
+        <a href="login.html" class="auth-header__back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Volver al login
+        </a>
+        <h1 class="auth-header__title">Recuperar <em>contraseña</em></h1>
+      </div>
+
+      <!-- PASO 1: Ingresa correo -->
+      <div id="step-1" class="recovery-step active">
+        <p class="auth-header__subtitle" style="margin-bottom:var(--sp-xl)">
+          Ingresa el correo asociado a tu cuenta y te enviaremos las instrucciones.
+        </p>
+
+        <form id="recovery-form" class="auth-form" novalidate>
+          <div class="form-group">
+            <label for="email" class="form-label">Correo electrónico</label>
+            <div class="form-input-wrapper">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                placeholder="tu@correo.com"
+                autocomplete="email"
+                required
+              >
+              <span class="form-input-icon">✉</span>
+            </div>
+          </div>
+
+          <button type="submit" id="submit-btn" class="btn btn--primary btn--full btn--lg">
+            Enviar instrucciones
+          </button>
+
+          <div class="auth-form__footer">
+            <p>¿Recordaste tu contraseña? <a href="login.html">Inicia sesión</a></p>
+          </div>
+        </form>
+      </div>
+
+      <!-- PASO 2: Email enviado -->
+      <div id="step-2" class="recovery-step">
+        <div class="auth-success">
+          <div class="auth-success__icon" style="
+            background:rgba(201,168,76,0.1);
+            border-color:var(--dorado);
+          ">✉</div>
+          <h2 class="auth-success__title">Revisa tu correo</h2>
+          <p class="auth-success__subtitle">
+            Enviamos las instrucciones para restablecer tu contraseña a<br>
+            <strong id="sent-email" style="color:var(--dorado)"></strong>
+          </p>
+          <p style="font-size:0.8rem;color:var(--gris-texto);margin-bottom:var(--sp-xl)">
+            No olvides revisar tu carpeta de spam. El enlace es válido por 60 minutos.
+          </p>
+
+          <!-- Simulated: new password form (in prod this would be on separate page via token) -->
+          <div id="token-form-wrapper" style="
+            background:var(--negro-3);
+            border:1px solid var(--dorado-borde);
+            border-radius:var(--r-lg);
+            padding:var(--sp-xl);
+            text-align:left;
+            margin-bottom:var(--sp-lg);
+          ">
+            <p style="font-size:0.75rem;color:var(--dorado);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:var(--sp-lg)">
+              ◈ Modo Demo — Ingresa nueva contraseña
+            </p>
+
+            <form id="new-password-form" class="auth-form" novalidate>
+              <div class="form-group">
+                <label for="new-password" class="form-label">Nueva contraseña</label>
+                <div class="form-input-wrapper">
+                  <input type="password" id="new-password" class="form-input"
+                    placeholder="Mínimo 8 caracteres" autocomplete="new-password">
+                  <span class="form-input-icon" id="toggle-new" style="cursor:pointer">👁</span>
+                </div>
+                <div id="new-strength"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="confirm-new-password" class="form-label">Confirmar contraseña</label>
+                <div class="form-input-wrapper">
+                  <input type="password" id="confirm-new-password" class="form-input"
+                    placeholder="Repite tu nueva contraseña" autocomplete="new-password">
+                </div>
+              </div>
+
+              <button type="submit" id="new-pass-btn" class="btn btn--primary btn--full">
+                Restablecer contraseña
+              </button>
+            </form>
+          </div>
+
+          <button class="btn btn--ghost btn--full" onclick="showStep(1)">
+            Intentar con otro correo
+          </button>
+        </div>
+      </div>
+
+      <!-- PASO 3: Éxito -->
+      <div id="step-3" class="recovery-step">
+        <div class="auth-success">
+          <div class="auth-success__icon">✓</div>
+          <h2 class="auth-success__title">¡Contraseña actualizada!</h2>
+          <p class="auth-success__subtitle">
+            Tu contraseña ha sido restablecida exitosamente.<br>
+            Ya puedes iniciar sesión con tu nueva contraseña.
+          </p>
+          <a href="login.html" class="btn btn--primary btn--lg">
+            Ir a iniciar sesión
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/auth.js"></script>
+
+</body>
+</html>

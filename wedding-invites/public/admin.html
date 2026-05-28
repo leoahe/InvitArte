@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Admin — InvitArte</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<div id="page-loader">
+  <div class="loader-logo">InvitArte</div>
+  <div class="loader-bar"></div>
+</div>
+
+<div class="admin-layout">
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="admin-sidebar" id="admin-sidebar">
+    <div class="admin-sidebar__header">
+      <span class="admin-sidebar__brand">InvitArte</span>
+      <div class="admin-sidebar__role">Admin Panel</div>
+    </div>
+
+    <nav class="admin-nav">
+      <div class="admin-nav__section">Overview</div>
+      <a class="admin-nav__link active" data-section="dashboard" onclick="adminSection('dashboard')">
+        <span class="admin-nav__icon">⊞</span> Dashboard
+      </a>
+
+      <div class="admin-nav__section">Datos</div>
+      <a class="admin-nav__link" data-section="usuarios" onclick="adminSection('usuarios')">
+        <span class="admin-nav__icon">👥</span> Usuarios
+      </a>
+      <a class="admin-nav__link" data-section="invitaciones" onclick="adminSection('invitaciones')">
+        <span class="admin-nav__icon">✉</span> Invitaciones
+      </a>
+      <a class="admin-nav__link" data-section="ventas" onclick="adminSection('ventas')">
+        <span class="admin-nav__icon">💰</span> Ventas & Ingresos
+      </a>
+
+      <div class="admin-nav__section">Sistema</div>
+      <a class="admin-nav__link" onclick="window.location.href='dashboard.html'">
+        <span class="admin-nav__icon">↩</span> Salir del Admin
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ═══ TOPBAR ═══ -->
+  <header class="admin-topbar">
+    <div style="display:flex;align-items:center;gap:var(--sp-md)">
+      <button id="admin-burger" onclick="toggleAdminSidebar()"
+        style="display:none;background:none;border:1px solid var(--gris-borde);border-radius:var(--r-md);padding:8px;cursor:pointer;color:var(--dorado)">
+        ☰
+      </button>
+      <div class="admin-topbar__title" id="admin-topbar-title">Dashboard</div>
+    </div>
+    <div class="admin-topbar__right">
+      <span class="admin-badge">Admin</span>
+      <span id="admin-datetime" style="font-size:0.75rem;color:var(--gris-texto)"></span>
+    </div>
+  </header>
+
+  <!-- ═══ MAIN ═══ -->
+  <main class="admin-main">
+
+    <!-- ── SECTION: DASHBOARD ── -->
+    <section class="admin-section active" id="section-dashboard">
+
+      <!-- KPIs -->
+      <div class="kpi-grid" id="kpi-grid">
+        <div class="kpi-card skeleton" style="height:130px"></div>
+        <div class="kpi-card skeleton" style="height:130px"></div>
+        <div class="kpi-card skeleton" style="height:130px"></div>
+        <div class="kpi-card skeleton" style="height:130px"></div>
+      </div>
+
+      <!-- Charts row -->
+      <div class="charts-row">
+
+        <!-- Revenue bar chart -->
+        <div class="chart-card">
+          <div class="chart-card__header">
+            <div>
+              <div class="chart-card__title">Ingresos por mes</div>
+              <div class="chart-card__sub">Últimos 6 meses (simulado)</div>
+            </div>
+            <span class="badge badge--gold">MXN</span>
+          </div>
+          <div id="revenue-chart" style="padding-bottom:24px">
+            <!-- populated by JS -->
+          </div>
+        </div>
+
+        <!-- Plan distribution -->
+        <div class="chart-card">
+          <div class="chart-card__header">
+            <div>
+              <div class="chart-card__title">Distribución de planes</div>
+              <div class="chart-card__sub">Usuarios por plan</div>
+            </div>
+          </div>
+          <div class="donut-chart" id="donut-container">
+            <svg class="donut-svg" width="120" height="120" viewBox="0 0 120 120">
+              <circle id="donut-bg" class="donut-circle" cx="60" cy="60" r="50"
+                stroke="rgba(255,255,255,0.05)" stroke-dasharray="314 314"/>
+              <circle id="donut-basico" class="donut-circle" cx="60" cy="60" r="50"
+                stroke="#7a9e87" stroke-dasharray="0 314"/>
+              <circle id="donut-premium" class="donut-circle" cx="60" cy="60" r="50"
+                stroke="var(--dorado)" stroke-dasharray="0 314"/>
+              <circle id="donut-ultra" class="donut-circle" cx="60" cy="60" r="50"
+                stroke="#4a9eda" stroke-dasharray="0 314"/>
+            </svg>
+            <div class="donut-label">
+              <div class="donut-total" id="donut-total">0</div>
+              <div class="donut-sub">usuarios</div>
+            </div>
+          </div>
+          <div class="plan-legend" id="plan-legend">
+            <!-- populated by JS -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Recent users table -->
+      <div class="admin-table-card">
+        <div class="admin-table-header">
+          <div class="admin-table-title">Usuarios recientes</div>
+          <button class="btn btn--ghost btn--sm" onclick="adminSection('usuarios')">
+            Ver todos →
+          </button>
+        </div>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Usuario</th>
+              <th>Correo</th>
+              <th>Plan</th>
+              <th>Registro</th>
+              <th>Invitaciones</th>
+            </tr>
+          </thead>
+          <tbody id="recent-users-tbody">
+            <!-- populated by JS -->
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+
+    <!-- ── SECTION: USUARIOS ── -->
+    <section class="admin-section" id="section-usuarios">
+
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--sp-xl)">
+        <div>
+          <div class="section-tag">Gestión</div>
+          <h2 style="font-family:var(--font-display);font-size:1.8rem;font-weight:300;color:var(--blanco)">
+            Todos los <em style="color:var(--dorado);font-style:italic">Usuarios</em>
+          </h2>
+        </div>
+        <div style="display:flex;gap:var(--sp-sm)">
+          <input type="text" class="form-input" id="users-search"
+            placeholder="Buscar usuario..." style="max-width:240px"
+            oninput="filterUsers()">
+          <button class="btn btn--ghost btn--sm" onclick="exportUsers()">📥 Exportar</button>
+        </div>
+      </div>
+
+      <div class="admin-table-card">
+        <table class="admin-table" id="users-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Plan</th>
+              <th>Invitaciones</th>
+              <th>Registro</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="all-users-tbody">
+            <!-- populated by JS -->
+          </tbody>
+        </table>
+        <div class="table-footer">
+          <span class="table-footer__info" id="users-count">0 usuarios</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── SECTION: INVITACIONES ── -->
+    <section class="admin-section" id="section-invitaciones">
+
+      <div style="margin-bottom:var(--sp-xl)">
+        <div class="section-tag">Contenido</div>
+        <h2 style="font-family:var(--font-display);font-size:1.8rem;font-weight:300;color:var(--blanco)">
+          Todas las <em style="color:var(--dorado);font-style:italic">Invitaciones</em>
+        </h2>
+      </div>
+
+      <div class="admin-table-card">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Evento</th>
+              <th>Usuario</th>
+              <th>Fecha evento</th>
+              <th>Estado</th>
+              <th>Vistas</th>
+              <th>Plan</th>
+            </tr>
+          </thead>
+          <tbody id="all-invitations-tbody">
+            <!-- populated by JS -->
+          </tbody>
+        </table>
+        <div class="table-footer">
+          <span class="table-footer__info" id="invitations-count">0 invitaciones</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── SECTION: VENTAS ── -->
+    <section class="admin-section" id="section-ventas">
+
+      <div style="margin-bottom:var(--sp-xl)">
+        <div class="section-tag">Finanzas</div>
+        <h2 style="font-family:var(--font-display);font-size:1.8rem;font-weight:300;color:var(--blanco)">
+          Ventas &amp; <em style="color:var(--dorado);font-style:italic">Ingresos</em>
+        </h2>
+      </div>
+
+      <!-- Revenue KPIs -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-lg);margin-bottom:var(--sp-xl)" id="revenue-kpis">
+        <!-- populated by JS -->
+      </div>
+
+      <!-- Orders table -->
+      <div class="admin-table-card">
+        <div class="admin-table-header">
+          <div class="admin-table-title">Historial de órdenes</div>
+          <button class="btn btn--ghost btn--sm" onclick="exportOrders()">📥 Exportar CSV</button>
+        </div>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Orden ID</th>
+              <th>Usuario</th>
+              <th>Plan</th>
+              <th>Método</th>
+              <th>Total</th>
+              <th>Estado</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody id="orders-tbody">
+            <!-- populated by JS -->
+          </tbody>
+        </table>
+        <div class="table-footer">
+          <span class="table-footer__info" id="orders-count">0 órdenes</span>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+<div id="toast-container"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/admin.js"></script>
+
+</body>
+</html>

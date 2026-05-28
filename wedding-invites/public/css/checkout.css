@@ -1,0 +1,391 @@
+/* ============================================
+   INVITARTE — CHECKOUT CSS
+   Pasarela de pago premium
+   ============================================ */
+
+.checkout-page {
+  min-height: 100vh;
+  background: var(--negro);
+  padding-top: 70px;
+}
+
+.checkout-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--sp-xl);
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: var(--sp-xl);
+  align-items: start;
+}
+
+/* ─── LEFT: PAYMENT FORM ─────────────────── */
+.checkout-form-panel {
+  background: var(--negro-2);
+  border: 1px solid var(--gris-borde);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+}
+
+.checkout-form-header {
+  padding: var(--sp-xl);
+  border-bottom: 1px solid var(--gris-borde);
+  background: var(--negro-3);
+}
+
+.checkout-form-header__title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--blanco);
+}
+
+.checkout-form-header__sub {
+  font-size: 0.78rem;
+  color: var(--gris-texto);
+  margin-top: var(--sp-xs);
+}
+
+/* Plan selector at top */
+.plan-selector-bar {
+  padding: var(--sp-lg) var(--sp-xl);
+  border-bottom: 1px solid var(--gris-borde);
+  display: flex;
+  gap: var(--sp-md);
+}
+
+.plan-pill {
+  flex: 1;
+  padding: var(--sp-md);
+  background: var(--negro-3);
+  border: 2px solid var(--gris-borde);
+  border-radius: var(--r-lg);
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--t-base);
+}
+
+.plan-pill:hover { border-color: var(--dorado-borde); }
+
+.plan-pill.selected {
+  border-color: var(--dorado);
+  background: rgba(201,168,76,0.08);
+}
+
+.plan-pill__name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--blanco);
+}
+
+.plan-pill__price {
+  font-size: 1.2rem;
+  color: var(--dorado);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.plan-pill__sub {
+  font-size: 0.65rem;
+  color: var(--gris-texto);
+  margin-top: 2px;
+}
+
+.plan-pill.selected .plan-pill__name { color: var(--dorado); }
+
+/* Extra guests calculator */
+.extras-calc {
+  padding: var(--sp-lg) var(--sp-xl);
+  border-bottom: 1px solid var(--gris-borde);
+  background: rgba(201,168,76,0.03);
+}
+
+.extras-calc__title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gris-texto);
+  margin-bottom: var(--sp-md);
+}
+
+.extras-calc__row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+}
+
+.extras-calc__label { font-size: 0.83rem; color: var(--blanco); flex: 1; }
+.extras-calc__sub { font-size: 0.72rem; color: var(--gris-texto); }
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  background: var(--negro-3);
+  border: 1px solid var(--gris-borde);
+  border-radius: var(--r-md);
+  padding: 4px;
+}
+
+.qty-btn {
+  width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--r-sm);
+  background: var(--negro-4);
+  color: var(--dorado);
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all var(--t-fast);
+  border: none;
+  line-height: 1;
+}
+
+.qty-btn:hover { background: rgba(201,168,76,0.15); }
+
+.qty-value {
+  min-width: 40px;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--blanco);
+  font-weight: 600;
+}
+
+/* Payment methods */
+.payment-methods {
+  padding: var(--sp-xl);
+  border-bottom: 1px solid var(--gris-borde);
+}
+
+.payment-methods__title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gris-texto);
+  margin-bottom: var(--sp-lg);
+}
+
+.payment-tabs {
+  display: flex;
+  gap: var(--sp-sm);
+  margin-bottom: var(--sp-xl);
+}
+
+.payment-tab {
+  flex: 1;
+  padding: var(--sp-md);
+  background: var(--negro-3);
+  border: 2px solid var(--gris-borde);
+  border-radius: var(--r-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-sm);
+  font-size: 0.82rem;
+  color: var(--gris-texto);
+  transition: all var(--t-base);
+}
+
+.payment-tab:hover { border-color: var(--dorado-borde); }
+.payment-tab.active {
+  border-color: var(--dorado);
+  color: var(--dorado);
+  background: rgba(201,168,76,0.06);
+}
+
+.payment-tab__logo { font-size: 1.2rem; }
+
+/* Payment content panels */
+.payment-panel { display: none; animation: fadeUp 0.3s ease; }
+.payment-panel.active { display: block; }
+
+/* Stripe card field */
+.stripe-field {
+  background: var(--negro-3);
+  border: 1px solid var(--gris-borde);
+  border-radius: var(--r-md);
+  padding: 16px 18px;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: var(--sp-md);
+  transition: border-color var(--t-base);
+  cursor: text;
+}
+
+.stripe-field:focus-within { border-color: var(--dorado-borde); }
+
+.stripe-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-md);
+}
+
+.secure-badges {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+  margin-top: var(--sp-md);
+}
+
+.secure-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  color: var(--gris-texto);
+}
+
+/* MercadoPago */
+.mp-methods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-sm);
+}
+
+.mp-method {
+  padding: var(--sp-md);
+  background: var(--negro-3);
+  border: 1px solid var(--gris-borde);
+  border-radius: var(--r-md);
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--t-base);
+  font-size: 0.78rem;
+  color: var(--gris-texto);
+}
+
+.mp-method:hover {
+  border-color: var(--dorado-borde);
+  color: var(--dorado);
+}
+
+.mp-method__icon { font-size: 1.5rem; display: block; margin-bottom: 4px; }
+
+/* Submit button area */
+.checkout-submit {
+  padding: var(--sp-xl);
+}
+
+/* ─── RIGHT: ORDER SUMMARY ───────────────── */
+.order-summary {
+  position: sticky;
+  top: 80px;
+  background: var(--negro-2);
+  border: 1px solid var(--dorado-borde);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-gold);
+}
+
+.order-summary__header {
+  padding: var(--sp-lg) var(--sp-xl);
+  border-bottom: 1px solid var(--gris-borde);
+  background: var(--negro-3);
+}
+
+.order-summary__title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--dorado);
+}
+
+.order-summary__body { padding: var(--sp-xl); }
+
+.order-plan-name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--blanco);
+  margin-bottom: var(--sp-sm);
+}
+
+.order-features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-sm);
+  margin: var(--sp-lg) 0;
+}
+
+.order-feature {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  font-size: 0.8rem;
+  color: var(--gris-texto);
+}
+
+.order-feature::before {
+  content: '✓';
+  color: var(--dorado);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.order-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--sp-sm) 0;
+  font-size: 0.82rem;
+  border-bottom: 1px solid var(--gris-borde);
+}
+
+.order-line:last-child { border-bottom: none; }
+
+.order-line__label { color: var(--gris-texto); }
+.order-line__value { color: var(--blanco); font-weight: 600; }
+
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--sp-lg) 0 0;
+  margin-top: var(--sp-md);
+  border-top: 2px solid var(--dorado-borde);
+}
+
+.order-total__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dorado);
+}
+
+.order-total__value {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--dorado);
+}
+
+/* Success screen */
+.checkout-success {
+  text-align: center;
+  padding: var(--sp-3xl) var(--sp-xl);
+  animation: fadeUp 0.5s ease;
+}
+
+.checkout-success__icon {
+  width: 80px; height: 80px;
+  margin: 0 auto var(--sp-xl);
+  background: rgba(94,196,122,0.1);
+  border: 2px solid var(--verde-ok);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem;
+}
+
+/* ─── RESPONSIVE ─────────────────────────── */
+@media (max-width: 800px) {
+  .checkout-container {
+    grid-template-columns: 1fr;
+  }
+  .order-summary { position: static; }
+  .plan-selector-bar { flex-direction: column; }
+  .mp-methods { grid-template-columns: 1fr; }
+  .stripe-grid { grid-template-columns: 1fr; }
+}

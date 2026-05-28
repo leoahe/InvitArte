@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Cuenta — InvitArte</title>
+  <meta name="description" content="Crea tu cuenta en InvitArte y empieza a diseñar invitaciones digitales elegantes para tu boda o evento especial.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+<!-- ═══ PAGE LOADER ═══ -->
+<div id="page-loader">
+  <div class="loader-logo">InvitArte</div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- ═══ CANVAS PARTÍCULAS ═══ -->
+<canvas id="particles-canvas"></canvas>
+
+<div class="auth-page">
+
+  <!-- ─── VISUAL SIDE ─── -->
+  <aside class="auth-visual">
+    <div class="auth-visual__bg"></div>
+    <div class="auth-visual__grid"></div>
+
+    <div class="auth-visual__content">
+      <span class="auth-visual__logo">InvitArte</span>
+      <p class="auth-visual__tagline">
+        Invitaciones digitales<br><em>que emocionan</em>
+      </p>
+      <p class="auth-visual__description">
+        Crea experiencias memorables para tu boda o evento especial. 
+        Personaliza cada detalle y sorprende a tus invitados.
+      </p>
+
+      <div class="auth-visual__features">
+        <div class="auth-feature">
+          <div class="auth-feature__icon">✦</div>
+          <div class="auth-feature__text">
+            <strong>Diseños Premium</strong>
+            Plantillas exclusivas diseñadas para eventos de lujo
+          </div>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature__icon">⚡</div>
+          <div class="auth-feature__text">
+            <strong>Lista en minutos</strong>
+            Personaliza y comparte tu invitación en menos de 10 minutos
+          </div>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature__icon">♾</div>
+          <div class="auth-feature__text">
+            <strong>Gestión de invitados</strong>
+            Carga tu lista y genera enlaces personalizados automáticamente
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating preview card -->
+    <div class="auth-preview-card">
+      <div class="auth-preview-card__title">Sofía &amp; Mateo</div>
+      <div class="auth-preview-card__ornament">✦ ─────── ✦</div>
+      <div class="auth-preview-card__date">15 · noviembre · 2025</div>
+    </div>
+  </aside>
+
+  <!-- ─── FORM SIDE ─── -->
+  <main class="auth-form-side">
+    <div class="auth-container">
+
+      <div class="auth-header">
+        <a href="index.html" class="auth-header__back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Volver al inicio
+        </a>
+        <h1 class="auth-header__title">Crea tu <em>cuenta</em></h1>
+        <p class="auth-header__subtitle">
+          Comienza gratis. Sin tarjeta de crédito requerida.
+        </p>
+      </div>
+
+      <!-- SUCCESS STATE -->
+      <div id="success-state" style="display:none">
+        <div class="auth-success">
+          <div class="auth-success__icon">✓</div>
+          <h2 class="auth-success__title">¡Bienvenida!</h2>
+          <p class="auth-success__subtitle">
+            Tu cuenta ha sido creada exitosamente.<br>
+            Te estamos redirigiendo a tu panel de control.
+          </p>
+          <div class="loader-bar" style="margin:0 auto;width:200px"></div>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <form id="registro-form" class="auth-form" novalidate>
+
+        <div class="auth-form__row">
+          <div class="form-group">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              class="form-input"
+              placeholder="María"
+              autocomplete="given-name"
+              required
+            >
+          </div>
+          <div class="form-group">
+            <label for="apellido" class="form-label">Apellido</label>
+            <input
+              type="text"
+              id="apellido"
+              name="apellido"
+              class="form-input"
+              placeholder="García"
+              autocomplete="family-name"
+              required
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label">Correo electrónico</label>
+          <div class="form-input-wrapper">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-input"
+              placeholder="tu@correo.com"
+              autocomplete="email"
+              required
+            >
+            <span class="form-input-icon" id="email-icon">✉</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono" class="form-label">Teléfono <span style="color:var(--gris-texto);font-size:0.65rem">(Opcional)</span></label>
+          <div class="form-input-wrapper">
+            <input
+              type="tel"
+              id="telefono"
+              name="telefono"
+              class="form-input"
+              placeholder="+52 55 1234 5678"
+              autocomplete="tel"
+            >
+            <span class="form-input-icon">☎</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label">Contraseña</label>
+          <div class="form-input-wrapper">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-input"
+              placeholder="Mínimo 8 caracteres"
+              autocomplete="new-password"
+              required
+            >
+            <span class="form-input-icon" id="toggle-password" title="Mostrar/ocultar" style="cursor:pointer;user-select:none">👁</span>
+          </div>
+          <div id="password-strength"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirm-password" class="form-label">Confirmar contraseña</label>
+          <div class="form-input-wrapper">
+            <input
+              type="password"
+              id="confirm-password"
+              name="confirm-password"
+              class="form-input"
+              placeholder="Repite tu contraseña"
+              autocomplete="new-password"
+              required
+            >
+            <span class="form-input-icon" id="toggle-confirm" style="cursor:pointer;user-select:none">👁</span>
+          </div>
+        </div>
+
+        <p class="auth-terms">
+          Al registrarte aceptas nuestros
+          <a href="#">Términos de Servicio</a> y
+          <a href="#">Política de Privacidad</a>.
+        </p>
+
+        <button type="submit" id="submit-btn" class="btn btn--primary btn--full btn--lg">
+          Crear cuenta gratuita
+        </button>
+
+        <div class="divider">o continúa con</div>
+
+        <div class="auth-social">
+          <button type="button" class="btn--social" onclick="Toast.info('Próximamente disponible')">
+            <img src="https://www.google.com/favicon.ico" alt="Google" onerror="this.style.display='none'">
+            Continuar con Google
+          </button>
+        </div>
+
+        <div class="auth-form__footer">
+          <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a></p>
+        </div>
+
+      </form>
+
+    </div>
+  </main>
+
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/auth.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personalizar Invitación — InvitArte</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/personalizar.css">
+</head>
+<body>
+
+<div id="page-loader">
+  <div class="loader-logo">InvitArte</div>
+  <div class="loader-bar"></div>
+</div>
+
+<div class="personalizar-layout">
+
+  <!-- ════════════════════════════════
+       PANEL IZQUIERDO: FORMULARIO
+  ════════════════════════════════ -->
+  <div class="pform-panel">
+
+    <!-- Header -->
+    <div class="pform-header">
+      <a href="dashboard.html" class="pform-header__back" title="Volver al dashboard">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+      </a>
+      <div class="pform-header__info">
+        <div class="pform-header__title" id="pform-title">Nueva Invitación</div>
+        <div class="pform-header__sub">Personaliza cada detalle de tu invitación</div>
+      </div>
+      <div class="pform-header__save">
+        <div class="autosave-indicator" id="autosave-indicator">
+          <div class="autosave-dot"></div>
+          <span>Guardado</span>
+        </div>
+        <button class="btn btn--primary btn--sm" id="publish-btn" onclick="publishInvitation()">
+          Publicar
+        </button>
+      </div>
+    </div>
+
+    <!-- Progress steps -->
+    <div class="pform-steps" id="pform-steps">
+      <div class="step-item active" data-step="0" onclick="goToStep(0)">
+        <div class="step-bubble">1</div>
+        <span class="step-label">Plantilla</span>
+      </div>
+      <div class="step-item" data-step="1" onclick="goToStep(1)">
+        <div class="step-bubble">2</div>
+        <span class="step-label">Novios</span>
+      </div>
+      <div class="step-item" data-step="2" onclick="goToStep(2)">
+        <div class="step-bubble">3</div>
+        <span class="step-label">Evento</span>
+      </div>
+      <div class="step-item" data-step="3" onclick="goToStep(3)">
+        <div class="step-bubble">4</div>
+        <span class="step-label">Familia</span>
+      </div>
+      <div class="step-item" data-step="4" onclick="goToStep(4)">
+        <div class="step-bubble">5</div>
+        <span class="step-label">Fotos</span>
+      </div>
+      <div class="step-item" data-step="5" onclick="goToStep(5)">
+        <div class="step-bubble">6</div>
+        <span class="step-label">Música</span>
+      </div>
+      <div class="step-item" data-step="6" onclick="goToStep(6)">
+        <div class="step-bubble">7</div>
+        <span class="step-label">Estilo</span>
+      </div>
+    </div>
+
+    <!-- ── STEP 0: PLANTILLA ── -->
+    <div class="pform-step active" id="step-0">
+      <div class="pform-section-title"><span>🎨</span> Elige tu plantilla</div>
+
+      <div class="template-grid" id="template-grid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <!-- ── STEP 1: NOVIOS ── -->
+    <div class="pform-step" id="step-1">
+      <div class="pform-section-title"><span>💍</span> Datos de los novios</div>
+
+      <div class="pform-grid" style="margin-bottom:var(--sp-lg)">
+        <div class="form-group">
+          <label class="form-label">Nombre de la novia</label>
+          <input type="text" class="form-input" id="field-novia"
+            placeholder="Ana García" data-preview="novia">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Nombre del novio</label>
+          <input type="text" class="form-input" id="field-novio"
+            placeholder="Carlos Méndez" data-preview="novio">
+        </div>
+      </div>
+
+      <div class="form-group pform-grid--full" style="margin-bottom:var(--sp-lg)">
+        <label class="form-label">Frase principal de la invitación</label>
+        <textarea class="form-input" id="field-frase"
+          placeholder="Ej: Juntos hacia el resto de nuestras vidas..."
+          rows="3" style="resize:vertical" data-preview="frase"></textarea>
+      </div>
+
+      <div class="form-group pform-grid--full">
+        <label class="form-label">Historia de la pareja <span style="color:var(--gris-texto)">(opcional)</span></label>
+        <textarea class="form-input" id="field-historia"
+          placeholder="Cuéntanos cómo se conocieron..."
+          rows="4" style="resize:vertical"></textarea>
+      </div>
+
+      <div class="pform-nav">
+        <button class="btn btn--ghost" onclick="goToStep(0)">← Anterior</button>
+        <button class="btn btn--primary" onclick="goToStep(2)">Siguiente →</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 2: EVENTO ── -->
+    <div class="pform-step" id="step-2">
+      <div class="pform-section-title"><span>📅</span> Detalles del evento</div>
+
+      <div class="pform-grid" style="margin-bottom:var(--sp-lg)">
+        <div class="form-group">
+          <label class="form-label">Fecha de la boda</label>
+          <input type="date" class="form-input" id="field-fecha" data-preview="fecha">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Hora de inicio</label>
+          <input type="time" class="form-input" id="field-hora" value="18:00">
+        </div>
+      </div>
+
+      <!-- Ceremonia -->
+      <div class="pform-section-title" style="font-size:0.95rem;margin-top:var(--sp-lg)">
+        <span>⛪</span> Ceremonia
+      </div>
+
+      <div class="form-group pform-grid--full" style="margin-bottom:var(--sp-md)">
+        <label class="form-label">Lugar de la ceremonia</label>
+        <input type="text" class="form-input" id="field-lugarCeremonia"
+          placeholder="Catedral Metropolitana, CDMX" data-preview="lugarCeremonia">
+      </div>
+
+      <div class="pform-grid" style="margin-bottom:var(--sp-lg)">
+        <div class="form-group">
+          <label class="form-label">Dirección</label>
+          <input type="text" class="form-input" id="field-direccionCeremonia"
+            placeholder="Plaza de la Constitución S/N">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Hora ceremonia</label>
+          <input type="time" class="form-input" id="field-horaCeremonia" value="17:00">
+        </div>
+      </div>
+
+      <div class="form-group pform-grid--full" style="margin-bottom:var(--sp-lg)">
+        <label class="form-label">Link de Google Maps (ceremonia)</label>
+        <input type="url" class="form-input" id="field-mapsCeremonia"
+          placeholder="https://maps.google.com/?q=...">
+      </div>
+
+      <!-- Recepción -->
+      <div class="pform-section-title" style="font-size:0.95rem;margin-top:var(--sp-md)">
+        <span>🥂</span> Recepción
+      </div>
+
+      <div class="form-group pform-grid--full" style="margin-bottom:var(--sp-md)">
+        <label class="form-label">Lugar de la recepción</label>
+        <input type="text" class="form-input" id="field-lugarRecepcion"
+          placeholder="Hacienda Los Morales" data-preview="lugarRecepcion">
+      </div>
+
+      <div class="pform-grid" style="margin-bottom:var(--sp-lg)">
+        <div class="form-group">
+          <label class="form-label">Dirección recepción</label>
+          <input type="text" class="form-input" id="field-direccionRecepcion"
+            placeholder="Av. Reforma 123, CDMX">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Hora recepción</label>
+          <input type="time" class="form-input" id="field-horaRecepcion" value="20:00">
+        </div>
+      </div>
+
+      <div class="form-group pform-grid--full">
+        <label class="form-label">Link de Google Maps (recepción)</label>
+        <input type="url" class="form-input" id="field-mapsRecepcion"
+          placeholder="https://maps.google.com/?q=...">
+      </div>
+
+      <div class="pform-nav">
+        <button class="btn btn--ghost" onclick="goToStep(1)">← Anterior</button>
+        <button class="btn btn--primary" onclick="goToStep(3)">Siguiente →</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 3: FAMILIA ── -->
+    <div class="pform-step" id="step-3">
+
+      <!-- Padres de la novia -->
+      <div class="pform-section-title"><span>👨‍👩‍👧</span> Padres de la novia</div>
+      <div class="people-list" id="padres-novia">
+        <div class="person-row">
+          <div class="form-group">
+            <label class="form-label">Nombre del padre</label>
+            <input type="text" class="form-input pn-padre" placeholder="Roberto García">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nombre de la madre</label>
+            <input type="text" class="form-input pn-madre" placeholder="Laura Méndez de García">
+          </div>
+          <button class="person-row__remove" onclick="removePersonRow(this)" title="Eliminar">✕</button>
+        </div>
+      </div>
+      <button class="btn btn--ghost btn--sm mt-md" onclick="addPersonRow('padres-novia','pn-padre','pn-madre')">
+        + Agregar pareja de padres
+      </button>
+
+      <!-- Padres del novio -->
+      <div class="pform-section-title" style="margin-top:var(--sp-xl)"><span>👨‍👩‍👦</span> Padres del novio</div>
+      <div class="people-list" id="padres-novio">
+        <div class="person-row">
+          <div class="form-group">
+            <label class="form-label">Nombre del padre</label>
+            <input type="text" class="form-input pp-padre" placeholder="Miguel Méndez">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nombre de la madre</label>
+            <input type="text" class="form-input pp-madre" placeholder="Carmen Ruiz de Méndez">
+          </div>
+          <button class="person-row__remove" onclick="removePersonRow(this)" title="Eliminar">✕</button>
+        </div>
+      </div>
+      <button class="btn btn--ghost btn--sm mt-md" onclick="addPersonRow('padres-novio','pp-padre','pp-madre')">
+        + Agregar pareja de padres
+      </button>
+
+      <!-- Padrinos -->
+      <div class="pform-section-title" style="margin-top:var(--sp-xl)"><span>🌟</span> Padrinos</div>
+      <div class="people-list" id="padrinos-list">
+        <div class="person-row">
+          <div class="form-group">
+            <label class="form-label">Padrino / Madrina</label>
+            <input type="text" class="form-input pad-nombre" placeholder="Juan & María López">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Concepto</label>
+            <input type="text" class="form-input pad-concepto" placeholder="Ej: Flores">
+          </div>
+          <button class="person-row__remove" onclick="removePersonRow(this)" title="Eliminar">✕</button>
+        </div>
+      </div>
+      <button class="btn btn--ghost btn--sm mt-md" onclick="addPadrinoRow()">
+        + Agregar padrinos
+      </button>
+
+      <div class="pform-nav">
+        <button class="btn btn--ghost" onclick="goToStep(2)">← Anterior</button>
+        <button class="btn btn--primary" onclick="goToStep(4)">Siguiente →</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 4: FOTOS ── -->
+    <div class="pform-step" id="step-4">
+      <div class="pform-section-title"><span>📷</span> Fotos de la pareja</div>
+
+      <div class="photo-upload-zone" id="upload-zone">
+        <input type="file" id="photo-input" accept="image/*" multiple>
+        <div class="photo-upload-zone__icon">📸</div>
+        <div class="photo-upload-zone__title">Arrastra tus fotos aquí</div>
+        <div class="photo-upload-zone__sub">o haz clic para seleccionar · JPG, PNG · Máx 5MB c/u</div>
+      </div>
+
+      <div class="photos-preview" id="photos-preview"></div>
+
+      <div style="margin-top:var(--sp-xl)">
+        <div class="pform-section-title"><span>🖼</span> Foto de portada</div>
+        <div class="photo-upload-zone" id="upload-zone-cover" style="height:120px">
+          <input type="file" id="cover-input" accept="image/*">
+          <div class="photo-upload-zone__icon" style="font-size:1.8rem;margin-bottom:var(--sp-sm)">🌅</div>
+          <div class="photo-upload-zone__title" style="font-size:0.8rem">Foto de portada principal</div>
+        </div>
+      </div>
+
+      <div class="pform-nav">
+        <button class="btn btn--ghost" onclick="goToStep(3)">← Anterior</button>
+        <button class="btn btn--primary" onclick="goToStep(5)">Siguiente →</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 5: MÚSICA ── -->
+    <div class="pform-step" id="step-5">
+      <div class="pform-section-title"><span>🎵</span> Música de fondo</div>
+
+      <p style="font-size:0.82rem;color:var(--gris-texto);margin-bottom:var(--sp-lg);line-height:1.7">
+        Elige una melodía que sonará automáticamente cuando tus invitados abran la invitación.
+      </p>
+
+      <div class="music-list" id="music-list">
+        <!-- Populated by JS -->
+      </div>
+
+      <div style="margin-top:var(--sp-xl)">
+        <label class="form-label">O ingresa una URL de audio personalizada</label>
+        <input type="url" class="form-input mt-sm" id="field-musicaUrl"
+          placeholder="https://... .mp3">
+        <p class="form-hint mt-sm">Compatible con archivos .mp3, .ogg, .wav</p>
+      </div>
+
+      <div class="pform-nav">
+        <button class="btn btn--ghost" onclick="goToStep(4)">← Anterior</button>
+        <button class="btn btn--primary" onclick="goToStep(6)">Siguiente →</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 6: ESTILO ── -->
+    <div class="pform-step" id="step-6">
+      <div class="pform-section-title"><span>🎨</span> Colores y estilo</div>
+
+      <div class="form-group" style="margin-bottom:var(--sp-xl)">
+        <label class="form-label">Color principal</label>
+        <div class="color-palette" id="color-palette">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-bottom:var(--sp-xl)">
+        <label class="form-label">Color personalizado</label>
+        <div style="display:flex;gap:var(--sp-md);align-items:center">
+          <input type="color" id="custom-color" value="#c9a84c"
+            style="width:50px;height:40px;cursor:pointer;border:none;background:none">
+          <input type="text" class="form-input" id="custom-color-hex"
+            placeholder="#c9a84c" style="max-width:140px">
+          <button class="btn btn--outline btn--sm" onclick="applyCustomColor()">
+            Aplicar
+          </button>
+        </div>
+      </div>
+
+      <!-- Fuente -->
+      <div class="form-group" style="margin-bottom:var(--sp-xl)">
+        <label class="form-label">Estilo tipográfico</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--sp-sm);margin-top:var(--sp-sm)">
+          <div class="font-option active" data-font="clasico" onclick="selectFont(this)">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;text-align:center;color:var(--dorado)">
+              Clásico
+            </div>
+            <div style="font-size:0.65rem;text-align:center;color:var(--gris-texto);margin-top:4px">
+              Cormorant
+            </div>
+          </div>
+          <div class="font-option" data-font="moderno" onclick="selectFont(this)">
+            <div style="font-family:'Great Vibes',cursive;font-size:1.4rem;text-align:center;color:var(--dorado)">
+              Moderno
+            </div>
+            <div style="font-size:0.65rem;text-align:center;color:var(--gris-texto);margin-top:4px">
+              Great Vibes
+            </div>
+          </div>
+          <div class="font-option" data-font="elegante" onclick="selectFont(this)">
+            <div style="font-family:'Montserrat',sans-serif;font-weight:300;font-size:0.9rem;letter-spacing:0.15em;text-align:center;color:var(--dorado)">
+              Elegante
+            </div>
+            <div style="font-size:0.65rem;text-align:center;color:var(--gris-texto);margin-top:4px">
+              Montserrat
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Efectos -->
+      <div class="form-group" style="margin-bottom:var(--sp-xl)">
+        <label class="form-label">Efectos visuales</label>
+        <div style="display:flex;flex-direction:column;gap:var(--sp-sm);margin-top:var(--sp-sm)">
+          <label style="display:flex;align-items:center;gap:var(--sp-md);cursor:pointer">
+            <input type="checkbox" id="efecto-particulas" checked
+              style="accent-color:var(--dorado);width:16px;height:16px">
+            <span style="font-size:0.85rem">✨ Partículas doradas animadas</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:var(--sp-md);cursor:pointer">
+            <input type="checkbox" id="efecto-petalos"
+              style="accent-color:var(--dorado);width:16px;height:16px">
+            <span style="font-size:0.85rem">🌸 Lluvia de pétalos</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:var(--sp-md);cursor:pointer">
+            <input type="checkbox" id="efecto-countdown" checked
+              style="accent-color:var(--dorado);width:16px;height:16px">
+            <span style="font-size:0.85rem">⏳ Cuenta regresiva</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:var(--sp-md);cursor:pointer">
+            <input type="checkbox" id="efecto-rsvp"
+              style="accent-color:var(--dorado);width:16px;height:16px">
+            <span style="font-size:0.85rem">📋 Formulario de confirmación (RSVP)</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="pform-nav">
+        <button class="btn btn--ghost" onclick="goToStep(5)">← Anterior</button>
+        <button class="btn btn--primary btn--lg" onclick="publishInvitation()">
+          ✓ Guardar y Publicar
+        </button>
+      </div>
+
+    </div><!-- /step-6 -->
+
+  </div><!-- /pform-panel -->
+
+  <!-- ════════════════════════════════
+       PANEL DERECHO: PREVIEW
+  ════════════════════════════════ -->
+  <div class="preview-panel">
+    <div class="preview-panel__header">
+      <span class="preview-panel__title">Vista previa en vivo</span>
+      <div class="preview-device-toggle">
+        <button class="preview-device-btn active" onclick="setDevice('mobile',this)">📱 Móvil</button>
+        <button class="preview-device-btn" onclick="setDevice('desktop',this)">🖥 Desktop</button>
+      </div>
+    </div>
+
+    <div class="preview-panel__body">
+      <div class="preview-phone" id="preview-phone">
+        <div class="preview-phone__notch">
+          <div class="preview-phone__notch-bar"></div>
+        </div>
+        <div class="preview-phone__screen" id="preview-screen">
+
+          <div class="lp-header">
+            <div class="lp-eyebrow">Invitación de boda</div>
+            <div class="lp-names" id="lp-names">
+              <span id="lp-novia">Novia</span>
+              <span class="lp-amp">&amp;</span>
+              <span id="lp-novio">Novio</span>
+            </div>
+            <div class="lp-ornament">✦ ─────── ✦</div>
+            <div class="lp-phrase" id="lp-phrase">
+              Juntos hacia el resto de nuestras vidas...
+            </div>
+          </div>
+
+          <div class="lp-ornament">─────────────</div>
+
+          <div class="lp-date" id="lp-date">
+            <div class="lp-date-day">—</div>
+            <div class="lp-date-rest">Fecha por definir</div>
+          </div>
+
+          <div class="lp-ornament">─────────────</div>
+
+          <div class="lp-location" id="lp-ceremonia">
+            <div class="lp-location-label">Ceremonia</div>
+            <div class="lp-location-name">Por definir</div>
+          </div>
+
+          <div class="lp-location" id="lp-recepcion" style="margin-top:8px">
+            <div class="lp-location-label">Recepción</div>
+            <div class="lp-location-name">Por definir</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /personalizar-layout -->
+
+<!-- Style block for font options -->
+<style>
+.font-option {
+  padding: var(--sp-md);
+  background: var(--negro-3);
+  border: 1px solid var(--gris-borde);
+  border-radius: var(--r-md);
+  cursor: pointer;
+  transition: all var(--t-base);
+}
+.font-option:hover { border-color: var(--dorado-borde); }
+.font-option.active {
+  border-color: var(--dorado);
+  background: rgba(201,168,76,0.08);
+}
+</style>
+
+<div id="toast-container"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/personalizar.js"></script>
+
+</body>
+</html>

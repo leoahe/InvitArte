@@ -1,0 +1,355 @@
+/* ============================================
+   INVITARTE — AUTH CSS
+   Login, Registro, Recuperar Contraseña
+   ============================================ */
+
+.auth-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── LEFT SIDE (decorative) ─────────────── */
+.auth-visual {
+  position: relative;
+  background: var(--negro-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.auth-visual__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 30% 60%, rgba(201,168,76,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 80% 20%, rgba(201,168,76,0.05) 0%, transparent 60%);
+}
+
+.auth-visual__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.auth-visual__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: var(--sp-2xl);
+  max-width: 480px;
+}
+
+.auth-visual__logo {
+  font-family: var(--font-script);
+  font-size: 4.5rem;
+  color: var(--dorado);
+  display: block;
+  margin-bottom: var(--sp-md);
+  filter: drop-shadow(0 0 30px rgba(201,168,76,0.3));
+}
+
+.auth-visual__tagline {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--blanco);
+  line-height: 1.4;
+  margin-bottom: var(--sp-lg);
+}
+
+.auth-visual__tagline em {
+  color: var(--dorado);
+  font-style: italic;
+}
+
+.auth-visual__description {
+  font-size: 0.85rem;
+  color: var(--gris-texto);
+  line-height: 1.8;
+  margin-bottom: var(--sp-xl);
+}
+
+.auth-visual__features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+  text-align: left;
+}
+
+.auth-feature {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+  padding: var(--sp-md) var(--sp-lg);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-md);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+}
+
+.auth-feature__icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(201,168,76,0.1);
+  border-radius: var(--r-sm);
+  color: var(--dorado);
+}
+
+.auth-feature__text {
+  font-size: 0.82rem;
+  color: var(--gris-texto);
+  line-height: 1.5;
+}
+
+.auth-feature__text strong {
+  color: var(--blanco);
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 2px;
+}
+
+/* Floating invitation preview card */
+.auth-preview-card {
+  position: absolute;
+  bottom: 40px;
+  right: -20px;
+  width: 200px;
+  background: var(--negro-3);
+  border: 1px solid var(--dorado-borde);
+  border-radius: var(--r-lg);
+  padding: var(--sp-lg);
+  animation: float 4s ease-in-out infinite;
+  box-shadow: var(--shadow-gold);
+}
+
+.auth-preview-card__title {
+  font-family: var(--font-script);
+  font-size: 1.6rem;
+  color: var(--dorado);
+  text-align: center;
+  line-height: 1;
+  margin-bottom: var(--sp-sm);
+}
+
+.auth-preview-card__date {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gris-texto);
+  text-align: center;
+}
+
+.auth-preview-card__ornament {
+  text-align: center;
+  color: var(--dorado);
+  font-size: 0.7rem;
+  margin: var(--sp-sm) 0;
+  letter-spacing: 0.3em;
+}
+
+/* ─── RIGHT SIDE (form) ──────────────────── */
+.auth-form-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-2xl) var(--sp-xl);
+  overflow-y: auto;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 440px;
+}
+
+.auth-header {
+  margin-bottom: var(--sp-2xl);
+}
+
+.auth-header__back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  color: var(--gris-texto);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color var(--t-base);
+  margin-bottom: var(--sp-xl);
+}
+
+.auth-header__back:hover { color: var(--dorado); }
+.auth-header__back svg  { width: 16px; height: 16px; }
+
+.auth-header__title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--blanco);
+  line-height: 1.2;
+  margin-bottom: var(--sp-sm);
+}
+
+.auth-header__title em {
+  font-style: italic;
+  color: var(--dorado);
+}
+
+.auth-header__subtitle {
+  font-size: 0.85rem;
+  color: var(--gris-texto);
+  line-height: 1.7;
+}
+
+/* Auth form */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-lg);
+}
+
+.auth-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-md);
+}
+
+.auth-form__footer {
+  text-align: center;
+  margin-top: var(--sp-md);
+}
+
+.auth-form__footer p {
+  font-size: 0.82rem;
+  color: var(--gris-texto);
+}
+
+.auth-form__footer a {
+  color: var(--dorado);
+  text-decoration: none;
+  transition: color var(--t-fast);
+}
+
+.auth-form__footer a:hover { color: var(--dorado-claro); }
+
+.auth-terms {
+  font-size: 0.72rem;
+  color: var(--gris-texto);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.auth-terms a { color: var(--dorado); }
+
+/* Password strength */
+#password-strength { min-height: 40px; }
+
+/* Social login (preparado para futuro) */
+.auth-social {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-sm);
+  margin-top: var(--sp-sm);
+}
+
+.btn--social {
+  background: var(--negro-3);
+  border: 1px solid var(--gris-borde);
+  color: var(--blanco);
+  font-size: 0.82rem;
+  gap: var(--sp-md);
+  justify-content: center;
+  padding: 12px;
+  border-radius: var(--r-md);
+  transition: all var(--t-base);
+}
+
+.btn--social:hover {
+  background: var(--negro-4);
+  border-color: rgba(255,255,255,0.15);
+}
+
+.btn--social img {
+  width: 18px;
+  height: 18px;
+}
+
+/* Success state */
+.auth-success {
+  text-align: center;
+  padding: var(--sp-2xl) 0;
+  animation: fadeUp 0.5s ease;
+}
+
+.auth-success__icon {
+  width: 72px;
+  height: 72px;
+  background: rgba(94,196,122,0.1);
+  border: 2px solid var(--verde-ok);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto var(--sp-xl);
+  animation: glowPulse 2s ease infinite;
+}
+
+.auth-success__title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--blanco);
+  margin-bottom: var(--sp-md);
+}
+
+.auth-success__subtitle {
+  font-size: 0.88rem;
+  color: var(--gris-texto);
+  line-height: 1.7;
+  margin-bottom: var(--sp-xl);
+}
+
+/* ─── RECOVERY EMAIL sent ────────────────── */
+.recovery-step {
+  display: none;
+}
+.recovery-step.active { display: block; }
+
+/* ─── RESPONSIVE ─────────────────────────── */
+@media (max-width: 900px) {
+  .auth-page {
+    grid-template-columns: 1fr;
+  }
+  .auth-visual {
+    display: none;
+  }
+  .auth-form-side {
+    padding: var(--sp-xl) var(--sp-lg);
+    min-height: 100vh;
+    background: var(--negro);
+  }
+  .auth-container {
+    padding-top: var(--sp-xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-form__row {
+    grid-template-columns: 1fr;
+  }
+  .auth-header__title {
+    font-size: 1.8rem;
+  }
+}
