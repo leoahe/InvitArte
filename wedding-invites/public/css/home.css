@@ -1,0 +1,880 @@
+/* ============================================
+   INVITARTE — HOME.CSS
+   Página principal premium
+   ============================================ */
+
+/* ── BODY HOME ───────────────────────────── */
+body {
+  background: var(--negro);
+  overflow-x: hidden;
+}
+
+/* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: var(--sp-2xl);
+  padding: 120px var(--sp-2xl) 80px;
+  overflow: hidden;
+}
+
+/* Canvas partículas */
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+/* Gradiente de fondo hero */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 70% at 15% 40%, rgba(201,168,76,.07) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 50% at 85% 20%, rgba(201,168,76,.04) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── HERO CONTENT ────────────────────────── */
+.hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 560px;
+}
+
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--dorado);
+  margin-bottom: var(--sp-lg);
+  padding: 8px 18px;
+  border: 1px solid var(--dorado-borde);
+  border-radius: var(--r-full);
+  background: rgba(201,168,76,.06);
+}
+
+.hero__dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--dorado);
+  animation: pulse 2s ease infinite;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4.5vw, 4rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--blanco);
+  margin-bottom: var(--sp-lg);
+}
+
+.hero__title em {
+  font-style: italic;
+  color: var(--dorado);
+  display: block;
+}
+
+.hero__subtitle {
+  font-size: .95rem;
+  color: var(--gris-texto);
+  line-height: 1.8;
+  margin-bottom: var(--sp-xl);
+  max-width: 440px;
+}
+
+/* Stats row */
+.hero__stats {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-lg);
+  margin-bottom: var(--sp-xl);
+}
+
+.hero__stat {
+  text-align: center;
+}
+
+.hero__stat-num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--dorado);
+  line-height: 1;
+}
+
+.hero__stat-label {
+  display: block;
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--gris-texto);
+  margin-top: 4px;
+}
+
+.hero__stat-divider {
+  width: 1px;
+  height: 36px;
+  background: var(--gris-borde);
+}
+
+/* CTA buttons */
+.hero__cta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+  margin-bottom: var(--sp-lg);
+  flex-wrap: wrap;
+}
+
+/* Trust badges */
+.hero__trust {
+  display: flex;
+  gap: var(--sp-lg);
+  flex-wrap: wrap;
+}
+
+.trust-item {
+  font-size: .72rem;
+  color: var(--gris-texto);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── HERO PHONES ─────────────────────────── */
+.hero__phones {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 24px;
+  padding-bottom: 40px;
+}
+
+/* ── PHONE WRAPPER ───────────────────────── */
+.phone-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+
+.phone-wrapper.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Teléfonos laterales más pequeños y desplazados */
+.phone-wrapper--left  { transform: translateY(60px) scale(.9); margin-bottom: -30px; }
+.phone-wrapper--right { transform: translateY(60px) scale(.9); margin-bottom: -30px; }
+.phone-wrapper--center { z-index: 3; }
+
+.phone-wrapper--left.visible  { transform: translateY(30px) scale(.92); }
+.phone-wrapper--right.visible { transform: translateY(30px) scale(.92); }
+.phone-wrapper--center.visible { transform: translateY(0) scale(1); }
+
+/* Label encima del teléfono */
+.phone-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-size: .95rem;
+  font-weight: 300;
+  color: var(--blanco);
+  text-align: center;
+}
+
+.phone-label__tag {
+  font-family: var(--font-body);
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: var(--r-full);
+  background: rgba(201,168,76,.12);
+  border: 1px solid var(--dorado-borde);
+  color: var(--dorado);
+}
+
+.phone-label__tag--premium {
+  background: linear-gradient(135deg, rgba(201,168,76,.2), rgba(201,168,76,.08));
+  border-color: var(--dorado);
+  color: var(--dorado-claro);
+}
+
+.phone-label__tag--sold {
+  background: rgba(94,196,122,.1);
+  border-color: rgba(94,196,122,.3);
+  color: #7ee89a;
+}
+
+/* ── IPHONE FRAME ────────────────────────── */
+.iphone {
+  position: relative;
+  width: 220px;
+  border-radius: 44px;
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  padding: 3px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.08),
+    0 40px 80px rgba(0,0,0,.7),
+    0 20px 40px rgba(0,0,0,.5),
+    inset 0 0 0 1px rgba(255,255,255,.04);
+  animation: phoneFloat 4s ease-in-out infinite;
+}
+
+/* iPhone central más grande */
+.iphone--featured {
+  width: 260px;
+  box-shadow:
+    0 0 0 1px rgba(201,168,76,.2),
+    0 50px 100px rgba(0,0,0,.8),
+    0 25px 50px rgba(201,168,76,.08),
+    inset 0 0 0 1px rgba(255,255,255,.06);
+  animation: phoneFloat 4s ease-in-out infinite;
+  animation-delay: .5s;
+}
+
+.phone-wrapper--left  .iphone { animation-delay: .3s; }
+.phone-wrapper--right .iphone { animation-delay: .7s; }
+
+@keyframes phoneFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
+
+/* Botones laterales */
+.iphone__side {
+  position: absolute;
+  z-index: 2;
+}
+
+.iphone__side--left {
+  left: -3px;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.iphone__btn--right {
+  position: absolute;
+  right: -3px;
+  top: 130px;
+}
+
+.iphone__btn {
+  background: linear-gradient(180deg, #3a3a3a, #2a2a2a);
+  border-radius: 2px;
+}
+
+.iphone__btn--silent { width: 3px; height: 32px; }
+.iphone__btn--vol1   { width: 3px; height: 40px; }
+.iphone__btn--vol2   { width: 3px; height: 40px; }
+.iphone__btn--power  { width: 3px; height: 60px; }
+
+/* Cuerpo */
+.iphone__body {
+  border-radius: 42px;
+  background: #000;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Dynamic Island */
+.iphone__notch {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+}
+
+.iphone__dynamic-island {
+  background: #000;
+  border-radius: 20px;
+  width: 80px; height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.04);
+}
+
+.iphone__camera {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #1a3a5c, #0a0a0a);
+  box-shadow: 0 0 0 1px rgba(255,255,255,.08);
+}
+
+/* Pantalla */
+.iphone__screen {
+  height: 440px;
+  overflow: hidden;
+  position: relative;
+  background: #0a0a0a;
+}
+
+.iphone--featured .iphone__screen { height: 520px; }
+
+.iphone__iframe {
+  width: 375px;
+  height: 812px;
+  border: none;
+  transform-origin: top left;
+  transform: scale(0.587);
+  pointer-events: none;
+  display: block;
+}
+
+.iphone--featured .iphone__iframe {
+  transform: scale(0.693);
+}
+
+/* Chin */
+.iphone__chin {
+  height: 28px;
+  background: #000;
+  position: relative;
+}
+
+.iphone__chin::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px; height: 4px;
+  background: rgba(255,255,255,.15);
+  border-radius: var(--r-full);
+}
+
+/* Reflejo premium */
+.iphone__reflection {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 50%;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,.06) 0%,
+    transparent 100%);
+  border-radius: 42px 42px 0 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* ── PHONE ACTION BUTTONS ────────────────── */
+.phone-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.phone-btn {
+  padding: 10px 20px;
+  border-radius: var(--r-full);
+  font-family: var(--font-body);
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--t-base);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phone-btn--primary {
+  background: linear-gradient(135deg, var(--dorado), var(--dorado-claro));
+  color: var(--negro);
+  border: none;
+  box-shadow: 0 4px 16px rgba(201,168,76,.3);
+}
+
+.phone-btn--primary:hover {
+  box-shadow: 0 8px 24px rgba(201,168,76,.5);
+  transform: translateY(-2px);
+}
+
+.phone-btn--secondary {
+  background: transparent;
+  color: var(--gris-texto);
+  border: 1px solid var(--gris-borde);
+}
+
+.phone-btn--secondary:hover {
+  color: var(--blanco);
+  border-color: rgba(255,255,255,.2);
+}
+
+/* ── SCROLL INDICATOR ────────────────────── */
+.hero__scroll {
+  position: absolute;
+  bottom: 32px;
+  left: var(--sp-2xl);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 2;
+}
+
+.hero__scroll-line {
+  width: 40px; height: 1px;
+  background: linear-gradient(90deg, var(--dorado), transparent);
+}
+
+.hero__scroll span {
+  font-size: .62rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gris-texto);
+}
+
+/* ══════════════════════════════════════════
+   ORNAMENTO SEPARADOR
+══════════════════════════════════════════ */
+.section-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 0 var(--sp-2xl);
+  margin: 0;
+}
+
+.section-ornament__line {
+  flex: 1;
+  height: 1px;
+  max-width: 200px;
+  background: linear-gradient(to right, transparent, var(--dorado-borde));
+}
+
+.section-ornament:last-child .section-ornament__line {
+  background: linear-gradient(to left, transparent, var(--dorado-borde));
+}
+
+.section-ornament__symbol {
+  color: var(--dorado);
+  font-size: 1rem;
+  opacity: .5;
+}
+
+/* ══════════════════════════════════════════
+   BENEFICIOS
+══════════════════════════════════════════ */
+.benefits {
+  padding: 100px var(--sp-2xl);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.benefits__header {
+  text-align: center;
+  margin-bottom: 72px;
+}
+
+.benefits__header .section-subtitle {
+  margin: var(--sp-md) auto 0;
+}
+
+/* Grid 3 columnas */
+.benefits__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-lg);
+}
+
+/* Benefit card */
+.benefit-card {
+  background: var(--negro-2);
+  border: 1px solid var(--gris-borde);
+  border-radius: var(--r-xl);
+  padding: var(--sp-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-lg);
+  transition: all var(--t-base);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.benefit-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.benefit-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--dorado-borde), transparent);
+  opacity: 0;
+  transition: opacity var(--t-base);
+}
+
+.benefit-card:hover {
+  border-color: var(--dorado-borde);
+  box-shadow: var(--shadow-gold);
+  transform: translateY(-4px);
+}
+
+.benefit-card:hover::before { opacity: 1; }
+
+/* Icon */
+.benefit-card__icon {
+  width: 52px; height: 52px;
+  border-radius: var(--r-lg);
+  background: rgba(201,168,76,.08);
+  border: 1px solid rgba(201,168,76,.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--t-base);
+}
+
+.benefit-card__icon svg {
+  width: 24px; height: 24px;
+  stroke: var(--dorado);
+  transition: stroke var(--t-base);
+}
+
+.benefit-card:hover .benefit-card__icon {
+  background: rgba(201,168,76,.14);
+  border-color: var(--dorado-borde);
+}
+
+/* Content */
+.benefit-card__content {}
+
+.benefit-card__title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--blanco);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.benefit-card__text {
+  font-size: .82rem;
+  color: var(--gris-texto);
+  line-height: 1.75;
+}
+
+/* ══════════════════════════════════════════
+   CTA SECTION
+══════════════════════════════════════════ */
+.cta-section {
+  padding: 100px var(--sp-2xl);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+
+.cta-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cta-section__inner {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 72px var(--sp-2xl);
+  background:
+    linear-gradient(160deg, rgba(201,168,76,.07) 0%, rgba(201,168,76,.02) 100%),
+    var(--negro-2);
+  border: 1px solid var(--dorado-borde);
+  border-radius: var(--r-xl);
+  box-shadow: 0 0 80px rgba(201,168,76,.06);
+  animation: glowPulse 4s ease infinite;
+}
+
+.cta-section__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 300;
+  color: var(--blanco);
+  line-height: 1.2;
+  margin-bottom: var(--sp-md);
+}
+
+.cta-section__title em {
+  font-style: italic;
+  color: var(--dorado);
+  display: block;
+}
+
+.cta-section__sub {
+  font-size: .9rem;
+  color: var(--gris-texto);
+  margin-bottom: var(--sp-xl);
+  line-height: 1.7;
+}
+
+.cta-section__actions {
+  display: flex;
+  gap: var(--sp-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+.footer {
+  border-top: 1px solid var(--gris-borde);
+  padding: var(--sp-xl) var(--sp-2xl);
+  background: var(--negro-2);
+}
+
+.footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-xl);
+  flex-wrap: wrap;
+}
+
+.footer__logo {
+  font-family: var(--font-script);
+  font-size: 2rem;
+  color: var(--dorado);
+  display: block;
+  line-height: 1;
+}
+
+.footer__tagline {
+  font-size: .75rem;
+  color: var(--gris-texto);
+  margin-top: 4px;
+}
+
+.footer__links {
+  display: flex;
+  gap: var(--sp-xl);
+}
+
+.footer__links a,
+.footer__links button {
+  font-size: .75rem;
+  color: var(--gris-texto);
+  letter-spacing: .08em;
+  transition: color var(--t-base);
+  font-family: var(--font-body);
+}
+
+.footer__links a:hover,
+.footer__links button:hover { color: var(--dorado); }
+
+.footer__copy {
+  font-size: .72rem;
+  color: rgba(255,255,255,.2);
+}
+
+/* ══════════════════════════════════════════
+   MODAL CONTACTO
+══════════════════════════════════════════ */
+.modal--contacto {
+  max-width: 500px;
+}
+
+/* Opciones rápidas */
+.contact-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 0;
+}
+
+.contact-option {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+  padding: var(--sp-md) var(--sp-lg);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--gris-borde);
+  background: var(--glass-bg);
+  transition: all var(--t-base);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.contact-option:hover {
+  border-color: var(--dorado-borde);
+  background: rgba(201,168,76,.05);
+  transform: translateX(4px);
+}
+
+.contact-option--whatsapp:hover { border-color: rgba(37,211,102,.4); }
+
+.contact-option__icon {
+  width: 40px; height: 40px;
+  border-radius: var(--r-md);
+  background: rgba(201,168,76,.1);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact-option--whatsapp .contact-option__icon {
+  background: rgba(37,211,102,.1);
+  color: #25d366;
+}
+
+.contact-option--whatsapp .contact-option__icon svg { fill: #25d366; width: 20px; height: 20px; }
+.contact-option--email .contact-option__icon svg { width: 20px; height: 20px; stroke: var(--dorado); }
+
+.contact-option__text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.contact-option__text strong {
+  font-size: .85rem;
+  color: var(--blanco);
+  font-weight: 600;
+}
+
+.contact-option__text span {
+  font-size: .72rem;
+  color: var(--gris-texto);
+}
+
+.contact-option__arrow {
+  color: var(--gris-texto);
+  font-size: 1rem;
+  transition: transform var(--t-base);
+}
+
+.contact-option:hover .contact-option__arrow { transform: translateX(4px); }
+
+/* ══════════════════════════════════════════
+   REVEAL ANIMATIONS
+══════════════════════════════════════════ */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 100px var(--sp-xl) 60px;
+    text-align: center;
+  }
+
+  .hero__content {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero__phones {
+    gap: 16px;
+  }
+
+  .iphone { width: 180px; }
+  .iphone--featured { width: 210px; }
+  .iphone__screen { height: 360px; }
+  .iphone--featured .iphone__screen { height: 420px; }
+  .iphone__iframe { transform: scale(.48); }
+  .iphone--featured .iphone__iframe { transform: scale(.56); }
+
+  .hero__scroll { display: none; }
+
+  .benefits__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 90px var(--sp-md) 60px;
+  }
+
+  .hero__phones {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .phone-wrapper--left,
+  .phone-wrapper--right {
+    display: none; /* en móvil solo muestra el central */
+  }
+
+  .phone-wrapper--center.visible {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  .iphone--featured { width: 240px; }
+  .iphone--featured .iphone__screen { height: 480px; }
+  .iphone--featured .iphone__iframe { transform: scale(.64); }
+
+  .hero__stats { justify-content: center; }
+  .hero__cta   { justify-content: center; }
+  .hero__trust { justify-content: center; }
+
+  .benefits { padding: 60px var(--sp-md); }
+  .benefits__grid { grid-template-columns: 1fr; }
+
+  .cta-section { padding: 60px var(--sp-md); }
+  .cta-section__inner { padding: var(--sp-xl) var(--sp-lg); }
+
+  .footer__inner { flex-direction: column; text-align: center; }
+  .footer__links { justify-content: center; flex-wrap: wrap; gap: var(--sp-md); }
+}
+
+@media (max-width: 480px) {
+  .hero__title { font-size: 2rem; }
+  .hero__cta   { flex-direction: column; width: 100%; }
+  .hero__cta .btn { width: 100%; justify-content: center; }
+  .cta-section__actions { flex-direction: column; }
+  .cta-section__actions .btn { width: 100%; justify-content: center; }
+}
