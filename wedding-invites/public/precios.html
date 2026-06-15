@@ -4,550 +4,159 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Precios — InvitArte</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/global.css">
-
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
-
-    /* ── BASE ──────────────────────────────── */
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background:
-        radial-gradient(circle at 15% 20%, rgba(200,169,106,.12), transparent 45%),
-        radial-gradient(circle at 85% 80%, rgba(200,169,106,.08), transparent 50%),
-        linear-gradient(180deg, #1a1a1d 0%, #111113 100%);
-      color: #f2f2f2;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
-    }
-
-    /* ── CONTAINER ─────────────────────────── */
-    .pricing-wrapper {
-      width: 100%;
-      max-width: 960px;
-    }
-
-    /* ── PAGE HEADER ───────────────────────── */
-    .page-header {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-
-    .page-header__eyebrow {
-      font-size: .68rem;
-      letter-spacing: .3em;
-      text-transform: uppercase;
-      color: #c8a96a;
-      margin-bottom: 12px;
-    }
-
-    .page-header__title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 400;
-      color: #fff;
-      margin-bottom: 12px;
-    }
-
-    .page-header__sub {
-      font-size: .85rem;
-      color: #888;
-      max-width: 480px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-
-    /* ── CARDS GRID ────────────────────────── */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-bottom: 40px;
-    }
-
-    /* ── PRICING CARD ──────────────────────── */
-    .pricing-card {
-      background: #1a1a1a;
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 24px;
-      padding: 40px 36px;
-      position: relative;
-      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
-      cursor: pointer;
-    }
-
-    .pricing-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 24px 60px rgba(0,0,0,.5);
-    }
-
-    /* Card elegante */
-    .pricing-card.elegante {
-      border-color: rgba(200,169,106,.2);
-    }
-
-    .pricing-card.elegante:hover {
-      border-color: rgba(200,169,106,.45);
-      box-shadow: 0 24px 60px rgba(200,169,106,.1);
-    }
-
-    /* Card premium — destacada */
-    .pricing-card.premium {
-      border-color: rgba(200,169,106,.45);
-      background:
-        linear-gradient(160deg, rgba(200,169,106,.09), rgba(0,0,0,.2)),
-        #1a1a1a;
-      box-shadow: 0 0 0 1px rgba(200,169,106,.2),
-                  0 20px 50px rgba(200,169,106,.12);
-    }
-
-    .pricing-card.premium:hover {
-      border-color: rgba(200,169,106,.7);
-      box-shadow: 0 28px 70px rgba(200,169,106,.2);
-    }
-
-    /* Badge "Más popular" */
-    .popular-badge {
-      position: absolute;
-      top: -14px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: linear-gradient(135deg, #c8a96a, #f0d9a6);
-      color: #000;
-      font-size: .62rem;
-      font-weight: 700;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      padding: 5px 18px;
-      border-radius: 999px;
-      white-space: nowrap;
-    }
-
-    /* ── CARD HEADER ───────────────────────── */
-    .card-tag {
-      font-size: .62rem;
-      font-weight: 600;
-      letter-spacing: .25em;
-      text-transform: uppercase;
-      color: #c8a96a;
-      margin-bottom: 8px;
-    }
-
-    .card-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      font-weight: 400;
-      color: #fff;
-      margin-bottom: 4px;
-    }
-
-    .card-desc {
-      font-size: .78rem;
-      color: #777;
-      line-height: 1.5;
-      margin-bottom: 24px;
-    }
-
-    /* ── PRICE ─────────────────────────────── */
-    .price-block {
-      display: flex;
-      align-items: flex-end;
-      gap: 6px;
-      margin-bottom: 8px;
-    }
-
-    .price-currency {
-      font-size: 1rem;
-      color: #c8a96a;
-      font-weight: 500;
-      padding-bottom: 4px;
-    }
-
-    .price-amount {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.2rem;
-      font-weight: 600;
-      color: #c8a96a;
-      line-height: 1;
-    }
-
-    .price-period {
-      font-size: .72rem;
-      color: #666;
-      padding-bottom: 8px;
-    }
-
-    /* Precio tachado (para premium mostrar base) */
-    .price-original {
-      font-size: .8rem;
-      color: #555;
-      text-decoration: line-through;
-      margin-bottom: 4px;
-    }
-
-    .price-ahorro {
-      display: inline-block;
-      background: rgba(200,169,106,.12);
-      border: 1px solid rgba(200,169,106,.25);
-      border-radius: 999px;
-      padding: 3px 12px;
-      font-size: .65rem;
-      color: #c8a96a;
-      font-weight: 600;
-      letter-spacing: .08em;
-      margin-bottom: 20px;
-    }
-
-    /* ── DIVIDER ───────────────────────────── */
-    .card-divider {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(200,169,106,.3), transparent);
-      margin: 20px 0;
-    }
-
-    /* ── FEATURES ──────────────────────────── */
-    .features-title {
-      font-size: .62rem;
-      font-weight: 700;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: #555;
-      margin-bottom: 14px;
-    }
-
-    .features-list {
-      list-style: none;
-      padding: 0; margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-
-    .features-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: .82rem;
-      color: #ccc;
-      line-height: 1.5;
-    }
-
-    .features-list li::before {
-      content: '✓';
-      color: #c8a96a;
-      font-weight: 700;
-      font-size: .8rem;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
-    /* Feature exclusiva (solo premium) */
-    .feature-exclusive {
-      color: #e6d3a3 !important;
-      font-weight: 500;
-    }
-
-    .feature-exclusive::before {
-      content: '✦' !important;
-    }
-
-    /* ── EXTRA INVITADOS ───────────────────── */
-    .extra-block {
-      background: rgba(255,255,255,.03);
-      border: 1px solid rgba(255,255,255,.06);
-      border-radius: 14px;
-      padding: 16px 18px;
-      margin-bottom: 24px;
-    }
-
-    .extra-block__title {
-      font-size: .72rem;
-      font-weight: 600;
-      color: #c8a96a;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    .extra-block__text {
-      font-size: .78rem;
-      color: #777;
-      line-height: 1.6;
-    }
-
-    .extra-block__price {
-      display: inline-block;
-      margin-top: 8px;
-      font-size: .78rem;
-      font-weight: 600;
-      color: #c8a96a;
-    }
-
-    /* ── BUTTON ────────────────────────────── */
-    .btn-elegante {
-      width: 100%;
-      padding: 14px;
-      border: 1px solid rgba(200,169,106,.4);
-      border-radius: 999px;
-      background: transparent;
-      color: #c8a96a;
-      font-family: 'Montserrat', sans-serif;
-      font-size: .78rem;
-      font-weight: 600;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all .3s ease;
-    }
-
-    .btn-elegante:hover {
-      background: rgba(200,169,106,.1);
-      border-color: #c8a96a;
-    }
-
-    .btn-premium {
-      width: 100%;
-      padding: 15px;
-      border: none;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #c8a96a, #f0d9a6);
-      color: #000;
-      font-family: 'Montserrat', sans-serif;
-      font-size: .78rem;
-      font-weight: 700;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all .3s ease;
-      box-shadow: 0 8px 28px rgba(200,169,106,.3);
-    }
-
-    .btn-premium:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 40px rgba(200,169,106,.5);
-    }
-
-    /* ── NOTA INFERIOR ─────────────────────── */
-    .pricing-note {
-      text-align: center;
-      font-size: .75rem;
-      color: #555;
-      line-height: 1.8;
-    }
-
-    .pricing-note a {
-      color: #c8a96a;
-      text-decoration: none;
-    }
-
-    /* ── RESPONSIVE ────────────────────────── */
-    @media (max-width: 680px) {
-      .cards-grid {
-        grid-template-columns: 1fr;
-      }
-      .pricing-card {
-        padding: 32px 24px;
-      }
-    }
-
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--marfil:#FAF8F4;--beige:#EADFCF;--champ:#D8C3A5;--gold:#C9A876;--gold2:#B8935A;--titulo:#2C2C2C;--muted:#8A8078;--borde:rgba(200,180,150,.22);--borde2:rgba(200,180,150,.38)}
+body{font-family:'Montserrat',sans-serif;background:var(--marfil);color:var(--titulo);min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Ccircle cx='30' cy='30' r='8' fill='none' stroke='%23C9A876' stroke-width='.5' opacity='.1'/%3E%3Cpath d='M27 24 Q30 18 33 24 Q39 27 33 30 Q30 36 27 30 Q21 27 27 24Z' fill='%23C9A876' opacity='.04'/%3E%3Ccircle cx='120' cy='100' r='7' fill='none' stroke='%23C9A876' stroke-width='.5' opacity='.08'/%3E%3C/svg%3E");background-size:160px 160px}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:13px 44px;background:rgba(250,248,244,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--borde)}
+.nav-logo{font-family:'Great Vibes',cursive;font-size:1.9rem;color:var(--gold);text-decoration:none}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-link{font-size:.64rem;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s}
+.nav-link:hover,.nav-link.active{color:var(--gold)}
+.nav-actions{display:flex;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 22px;font-family:'Montserrat',sans-serif;font-size:.64rem;font-weight:700;letter-spacing:.17em;text-transform:uppercase;border-radius:999px;transition:all .3s;cursor:pointer;border:none;text-decoration:none;white-space:nowrap}
+.btn-primary{background:linear-gradient(135deg,var(--gold),#dfc085);color:#fff;box-shadow:0 4px 16px rgba(201,168,118,.28)}
+.btn-primary:hover{box-shadow:0 8px 26px rgba(201,168,118,.44);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--muted);border:1.5px solid var(--borde)}
+.btn-ghost:hover{color:var(--titulo);border-color:var(--borde2)}
+.btn-sm{padding:8px 17px;font-size:.6rem}
+.btn-outline{background:transparent;color:var(--gold);border:1.5px solid rgba(201,168,118,.4)}
+.btn-outline:hover{background:rgba(201,168,118,.07)}
+.page{position:relative;z-index:1;padding:108px 24px 60px;max-width:980px;margin:0 auto}
+.hdr{text-align:center;margin-bottom:48px}
+.hdr-eye{font-size:.6rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:block}
+.hdr-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:400;color:var(--titulo);line-height:1.15;margin-bottom:10px}
+.hdr-title em{font-style:italic;color:var(--gold)}
+.hdr-sub{font-size:.87rem;color:var(--muted);line-height:1.8;max-width:460px;margin:0 auto}
+.orn{display:flex;align-items:center;gap:14px;margin:18px auto;max-width:260px}
+.orn::before,.orn::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,var(--champ))}
+.orn::after{background:linear-gradient(to left,transparent,var(--champ))}
+.orn span{color:var(--gold);font-size:.85rem;opacity:.5}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:36px}
+.card{background:#fff;border:1.5px solid var(--borde);border-radius:22px;padding:34px 30px;position:relative;transition:all .35s;box-shadow:0 4px 18px rgba(60,40,20,.07)}
+.card:hover{border-color:var(--borde2);box-shadow:0 12px 38px rgba(60,40,20,.12);transform:translateY(-4px)}
+.card.elegante{border-color:rgba(201,168,118,.25)}.card.elegante:hover{border-color:rgba(201,168,118,.5)}
+.card.premium{border-color:rgba(201,168,118,.4);background:linear-gradient(180deg,rgba(234,223,207,.2),#fff 60%);box-shadow:0 0 0 1px rgba(201,168,118,.2),0 8px 36px rgba(60,40,20,.1)}
+.card.premium:hover{border-color:rgba(201,168,118,.65)}
+.pop{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),#dfc085);color:#fff;font-size:.57rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:5px 17px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 13px rgba(201,168,118,.35)}
+.ctag{font-size:.57rem;font-weight:700;letter-spacing:.27em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.cname{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:400;color:var(--titulo);margin-bottom:4px}
+.cdesc{font-size:.77rem;color:var(--muted);line-height:1.5;margin-bottom:20px}
+.porig{font-size:.73rem;color:var(--muted);text-decoration:line-through;margin-bottom:2px}
+.pblock{display:flex;align-items:flex-end;gap:4px;margin-bottom:5px}
+.pcur{font-size:.93rem;color:var(--gold);font-weight:600;padding-bottom:5px}
+.pamt{font-family:'Playfair Display',serif;font-size:2.9rem;font-weight:400;color:var(--gold);line-height:1}
+.pper{font-size:.67rem;color:var(--muted);padding-bottom:8px}
+.pnote{display:inline-block;background:rgba(201,168,118,.1);border:1px solid rgba(201,168,118,.22);border-radius:999px;padding:3px 11px;font-size:.6rem;color:var(--gold2);font-weight:600;letter-spacing:.06em;margin-bottom:16px}
+.cdiv{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--champ),transparent);margin:16px 0}
+.ftit{font-size:.57rem;font-weight:700;letter-spacing:.21em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.flist{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.flist li{display:flex;align-items:flex-start;gap:8px;font-size:.79rem;color:var(--muted);line-height:1.4}
+.flist li::before{content:'✓';color:var(--gold);font-weight:700;font-size:.72rem;flex-shrink:0;margin-top:1px}
+.fex{color:var(--titulo)!important;font-weight:500}.fex::before{content:'✦'!important}
+.extra{background:var(--marfil);border:1px solid var(--borde);border-radius:13px;padding:13px 15px;margin-bottom:20px}
+.etit{font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold2);margin-bottom:4px}
+.etxt{font-size:.75rem;color:var(--muted);line-height:1.55}
+.eprice{display:inline-block;margin-top:5px;font-size:.75rem;font-weight:600;color:var(--gold2)}
+.note{text-align:center;font-size:.73rem;color:var(--muted);line-height:1.8}
+.note a{color:var(--gold);text-decoration:none;font-weight:600}
+@media(max-width:680px){.grid{grid-template-columns:1fr}.card{padding:26px 20px}.nav{padding:12px 18px}.nav-links,.nav-actions{display:none}}
   </style>
 </head>
-
 <body>
-
-<div class="pricing-wrapper">
-
-  <!-- HEADER -->
-  <div class="page-header">
-    <div class="page-header__eyebrow">✦ InvitArte</div>
-    <h1 class="page-header__title" id="page-title">Elige tu plan</h1>
-    <p class="page-header__sub" id="page-sub">
-      Selecciona la opción que mejor se adapte a tu evento especial.
-    </p>
+<nav class="nav">
+  <a href="index.html" class="nav-logo">InvitArte</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="nav-link">Inicio</a></li>
+    <li><a href="catalogo.html" class="nav-link">Catálogo</a></li>
+    <li><a href="precios.html" class="nav-link active">Precios</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="login.html" class="btn btn-ghost btn-sm">Iniciar sesión</a>
+    <a href="catalogo.html" class="btn btn-primary btn-sm">Ver diseños</a>
   </div>
-
-  <!-- CARDS -->
-  <div class="cards-grid">
-
-    <!-- ════════════════════════════
-         CARD 1: ELEGANTE
-    ════════════════════════════ -->
-    <div class="pricing-card elegante" id="card-elegante">
-
-      <div class="card-tag">Diseño 1</div>
-      <div class="card-name">Invitación Elegante</div>
-      <div class="card-desc">
-        Todo lo que necesitas para una invitación digital perfecta.
-      </div>
-
-      <div class="price-block">
-        <span class="price-currency">$</span>
-        <span class="price-amount">199</span>
-        <span class="price-period">MXN · pago único</span>
-      </div>
-
-      <div class="card-divider"></div>
-
-      <div class="features-title">Incluye</div>
-      <ul class="features-list">
+</nav>
+<div class="page">
+  <div class="hdr">
+    <span class="hdr-eye">Planes y precios</span>
+    <h1 class="hdr-title">Elige tu <em>invitación perfecta</em></h1>
+    <p class="hdr-sub">Pago único, sin suscripciones. Tu invitación lista en minutos.</p>
+    <div class="orn"><span>✦</span></div>
+  </div>
+  <div class="grid">
+    <div class="card elegante" id="card-elegante">
+      <div class="ctag">Diseño 1</div>
+      <div class="cname">Invitación Elegante</div>
+      <div class="cdesc">Todo lo esencial para una invitación digital perfecta.</div>
+      <div class="pblock"><span class="pcur">$</span><span class="pamt">199</span><span class="pper">MXN · pago único</span></div>
+      <div class="cdiv"></div>
+      <div class="ftit">Incluye</div>
+      <ul class="flist">
         <li>Invitación digital animada</li>
         <li>Cuenta regresiva al evento</li>
         <li>Música de fondo</li>
-        <li>Mapas de ubicación (ceremonia y recepción)</li>
-        <li>Galería de fotos</li>
+        <li>Mapas de ceremonia y recepción</li>
         <li>Sección de padres y padrinos</li>
-        <li>Confirmación por WhatsApp</li>
+        <li>Galería de fotos</li>
+        <li>Confirmación de asistencia</li>
         <li>Pétalos y partículas animadas</li>
         <li>Compatible con celular y computadora</li>
       </ul>
-
-      <div class="extra-block">
-        <div class="extra-block__title">Nombres personalizados</div>
-        <div class="extra-block__text">
-          Agrega el nombre de cada invitado en su enlace individual.
-          Sube tu lista en Excel o CSV.
-        </div>
-        <span class="extra-block__price">+ $5 MXN por invitado</span>
+      <div class="extra">
+        <div class="etit">Nombres personalizados</div>
+        <div class="etxt">Agrega el nombre de cada invitado en su enlace. Sube tu lista en Excel o CSV.</div>
+        <span class="eprice">+ $5 MXN por invitado</span>
       </div>
-
-      <button class="btn-elegante" id="btn-elegante">
-        Crear mi invitación Elegante
-      </button>
-
+      <button class="btn btn-outline" style="width:100%" id="btn-elegante">Crear mi invitación Elegante</button>
     </div>
-
-    <!-- ════════════════════════════
-         CARD 2: PREMIUM
-    ════════════════════════════ -->
-    <div class="pricing-card premium" id="card-premium">
-
-      <div class="popular-badge">✦ Más completo</div>
-
-      <div class="card-tag">Diseño 2 — Premium</div>
-      <div class="card-name">Invitación Premium</div>
-      <div class="card-desc">
-        La experiencia más completa e inolvidable para tu gran día.
-      </div>
-
-      <div class="price-original" id="premium-precio-original"></div>
-      <div class="price-block">
-        <span class="price-currency">$</span>
-        <span class="price-amount" id="premium-precio">289</span>
-        <span class="price-period">MXN · pago único</span>
-      </div>
-      <div class="price-ahorro" id="premium-ahorro">Incluye 45% de beneficios adicionales</div>
-
-      <div class="card-divider"></div>
-
-      <div class="features-title">Todo lo de Elegante, más</div>
-      <ul class="features-list">
+    <div class="card premium" id="card-premium">
+      <div class="pop">✦ Más completo</div>
+      <div class="ctag">Diseño 2 — Premium</div>
+      <div class="cname">Invitación Premium</div>
+      <div class="cdesc">La experiencia más completa e inolvidable para tu gran día.</div>
+      <div class="porig" id="p-orig"></div>
+      <div class="pblock"><span class="pcur">$</span><span class="pamt" id="p-amt">289</span><span class="pper">MXN · pago único</span></div>
+      <div class="pnote" id="p-note">Incluye 45% de beneficios adicionales</div>
+      <div class="cdiv"></div>
+      <div class="ftit">Todo lo de Elegante, más</div>
+      <ul class="flist">
         <li>Invitación digital animada</li>
         <li>Cuenta regresiva al evento</li>
         <li>Mapas de ubicación</li>
         <li>Galería de fotos</li>
         <li>Sección de padres y padrinos</li>
-        <li>Confirmación por WhatsApp</li>
-        <li>Pétalos y partículas animadas</li>
-        <li class="feature-exclusive">✦ Música de fondo incluida</li>
-        <li class="feature-exclusive">✦ Vigencia de 3 meses en línea</li>
-        <li class="feature-exclusive">✦ Nombre del invitado personalizado (incluido)</li>
-        <li class="feature-exclusive">✦ Tipografía y animaciones Premium</li>
-        <li class="feature-exclusive">✦ Diseño exclusivo diferenciado</li>
+        <li>Confirmación de asistencia</li>
+        <li class="fex">Música de fondo incluida</li>
+        <li class="fex">Vigencia de 3 meses en línea</li>
+        <li class="fex">Nombre del invitado incluido</li>
+        <li class="fex">Tipografía y animaciones Premium</li>
+        <li class="fex">Diseño floral exclusivo</li>
       </ul>
-
-      <div class="extra-block" style="border-color:rgba(200,169,106,.2);background:rgba(200,169,106,.05)">
-        <div class="extra-block__title">Invitados adicionales</div>
-        <div class="extra-block__text">
-          Los nombres personalizados <strong style="color:#e6d3a3">están incluidos</strong> en el plan Premium.
-          Si necesitas más de 100 invitados, el costo adicional es mínimo.
-        </div>
-        <span class="extra-block__price">+ $4 MXN por invitado extra (después de 100)</span>
+      <div class="extra" style="border-color:rgba(201,168,118,.22);background:rgba(201,168,118,.05)">
+        <div class="etit">Invitados adicionales</div>
+        <div class="etxt">Los nombres personalizados <strong style="color:#2C2C2C">están incluidos</strong>. Para más de 100 invitados aplica costo mínimo.</div>
+        <span class="eprice">+ $4 MXN por invitado extra (después de 100)</span>
       </div>
-
-      <button class="btn-premium" id="btn-premium">
-        ✨ Crear mi invitación Premium
-      </button>
-
+      <button class="btn btn-primary" style="width:100%" id="btn-premium">✨ Crear mi invitación Premium</button>
     </div>
-
   </div>
-
-  <!-- NOTA INFERIOR -->
-  <div class="pricing-note">
-    Pago único · Sin suscripción · Sin renovación automática<br>
-    ¿Tienes dudas? <a href="mailto:hola@invitarte.mx">Escríbenos</a>
-  </div>
-
+  <p class="note">Pago único · Sin suscripción · Sin renovación automática<br>¿Tienes dudas? <a href="mailto:hola@invitarte.mx">hola@invitarte.mx</a> · <a href="https://wa.me/5215500000000" target="_blank">WhatsApp</a></p>
 </div>
-
 <script>
-  /* ── LEER DISEÑO DESDE URL ─────────────────────── */
-  const params = new URLSearchParams(window.location.search);
-  const diseno = params.get('diseno') || '1';
-
-  /* ── PRECIO BASE ELEGANTE ──────────────────────── */
-  const PRECIO_ELEGANTE = 199;
-  const FACTOR_PREMIUM  = 1.45; // +45%
-  const precioPremium   = Math.round(PRECIO_ELEGANTE * FACTOR_PREMIUM);
-
-  /* ── ACTUALIZAR PRECIO PREMIUM ─────────────────── */
-  document.getElementById('premium-precio').textContent = precioPremium;
-  document.getElementById('premium-precio-original').textContent =
-    `Precio base: $${PRECIO_ELEGANTE} MXN`;
-  document.getElementById('premium-ahorro').textContent =
-    `Incluye 45% de características adicionales — solo $${precioPremium - PRECIO_ELEGANTE} MXN más`;
-
-  /* ── DESTACAR CARD SEGÚN DISEÑO ELEGIDO ────────── */
-  if (diseno === '2') {
-    document.getElementById('page-title').textContent = 'Plan para tu Invitación Premium';
-    document.getElementById('page-sub').textContent =
-      'Elegiste el diseño Premium. Aquí tienes todo lo que incluye tu invitación.';
-
-    // Resaltar card premium
-    const cardPremium = document.getElementById('card-premium');
-    cardPremium.style.transform = 'scale(1.02)';
-    cardPremium.style.boxShadow = '0 0 0 2px #c8a96a, 0 30px 70px rgba(200,169,106,.25)';
-
-  } else if (diseno === '1') {
-    document.getElementById('page-title').textContent = 'Plan para tu Invitación Elegante';
-    document.getElementById('page-sub').textContent =
-      'Elegiste el diseño Elegante. Aquí tienes todo lo que incluye tu invitación.';
-
-    // Resaltar card elegante
-    const cardElegante = document.getElementById('card-elegante');
-    cardElegante.style.transform = 'scale(1.02)';
-    cardElegante.style.borderColor = 'rgba(200,169,106,.7)';
-    cardElegante.style.boxShadow = '0 0 0 2px rgba(200,169,106,.5), 0 30px 70px rgba(200,169,106,.15)';
-  }
-
-  /* ── BOTONES ───────────────────────────────────── */
-  document.getElementById('btn-elegante').addEventListener('click', () => {
-    window.location.href = '/registro.html?diseno=1';
-  });
-
-  document.getElementById('btn-premium').addEventListener('click', () => {
-    window.location.href = '/registro.html?diseno=2';
-  });
-
-  /* ── Click en card también redirige ────────────── */
-  document.getElementById('card-elegante').addEventListener('click', (e) => {
-    if (e.target.tagName !== 'BUTTON') {
-      window.location.href = '/precios.html?diseno=1';
-    }
-  });
-
-  document.getElementById('card-premium').addEventListener('click', (e) => {
-    if (e.target.tagName !== 'BUTTON') {
-      window.location.href = '/precios.html?diseno=2';
-    }
-  });
+(function(){
+  const p=new URLSearchParams(window.location.search);
+  const d=p.get('diseno')||'1';
+  const pr=Math.round(199*1.45);
+  document.getElementById('p-amt').textContent=pr;
+  document.getElementById('p-orig').textContent='Precio base: $199 MXN';
+  document.getElementById('p-note').textContent='Incluye 45% de beneficios adicionales — solo $'+(pr-199)+' MXN más';
+  function hl(id){var c=document.getElementById(id);if(!c)return;c.style.transform='scale(1.02)';c.style.boxShadow='0 0 0 2.5px #C9A876,0 20px 50px rgba(201,168,118,.2)';c.style.borderColor='rgba(201,168,118,.65)';}
+  if(d==='2')hl('card-premium');else hl('card-elegante');
+  document.getElementById('btn-elegante').onclick=()=>window.location.href='registro.html?diseno=1';
+  document.getElementById('btn-premium').onclick=()=>window.location.href='registro.html?diseno=2';
+})();
 </script>
-
 </body>
 </html>

@@ -3,116 +3,127 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catálogo de Diseños - InvitArte</title>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="/css/global.css">
-  <link rel="stylesheet" href="/css/catalogo.css">
+  <title>Catálogo — InvitArte</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/catalogo.css">
 </head>
-
 <body class="catalogo-body">
-
-  <!-- ENCABEZADO -->
-  <header class="catalogo-header">
-    <h1>Catálogo de Diseños</h1>
-    <p>Explora nuestros diseños digitales para invitaciones de boda</p>
-  </header>
-
-
-  <!-- GALERÍA -->
+<nav class="catalogo-header-nav">
+  <a href="index.html" class="cat-logo">InvitArte</a>
+  <ul class="cat-nav-links">
+    <li><a href="index.html" class="cat-nav-link">Inicio</a></li>
+    <li><a href="catalogo.html" class="cat-nav-link active">Catálogo</a></li>
+    <li><a href="precios.html" class="cat-nav-link">Precios</a></li>
+  </ul>
+  <div style="display:flex;gap:10px;align-items:center">
+    <a href="login.html" style="font-size:.64rem;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#8A8078;text-decoration:none">Iniciar sesión</a>
+    <a href="registro.html" style="display:inline-flex;align-items:center;padding:9px 20px;background:linear-gradient(135deg,#C9A876,#dfc085);color:#fff;font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.17em;text-transform:uppercase;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(201,168,118,.28)">Comenzar</a>
+  </div>
+</nav>
+<header class="catalogo-header">
+  <h1>Catálogo de Diseños</h1>
+  <p>Explora nuestras invitaciones digitales premium para bodas y eventos especiales</p>
+</header>
 <section class="catalogo-grid">
-
   <!-- CARD 1 -->
   <div class="catalogo-item" data-category="elegante">
     <span class="tag nuevo">Nuevo</span>
-
     <div class="catalogo-preview">
-      <img src="images/elegante.png" alt="Invitación Elegante">
-
+      <img src="images/elegante.png" alt="Invitación Elegante" onerror="this.style.display='none'">
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(160deg,#1a1a1d,#0e0e10);pointer-events:none">
+        <div style="font-family:'Great Vibes',cursive;font-size:2.2rem;color:#c9a84c;line-height:1">Laura</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;color:rgba(201,168,76,.4);margin:4px 0;font-style:italic">&amp;</div>
+        <div style="font-family:'Great Vibes',cursive;font-size:2.2rem;color:#c9a84c;line-height:1">Miguel</div>
+        <div style="width:60px;height:1px;background:linear-gradient(90deg,transparent,#c9a84c,transparent);margin:10px 0"></div>
+        <div style="font-size:.6rem;letter-spacing:.2em;color:rgba(201,168,76,.5);text-transform:uppercase">14 · Sep · 2026</div>
+      </div>
       <div class="preview-overlay">
-        <button class="btn-preview" data-preview="/plantilla.html?diseno=1">
-          Vista previa
-        </button>
-        <a href="/plantilla.html?diseno=1" class="btn-usar">
-          Usar diseño
-        </a>
+        <button class="btn-preview" data-preview="plantilla.html">Vista previa</button>
+        <a href="plantilla.html" class="btn-usar" target="_blank">Ver diseño completo</a>
       </div>
     </div>
-
-    <h3>Invitación Elegante</h3>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-top:1px solid rgba(200,180,150,.22)">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:400;color:#2C2C2C">Invitación Elegante</h3>
+      <a href="precios.html?diseno=1" style="font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C9A876;text-decoration:none;border:1px solid rgba(201,168,118,.3);padding:5px 13px;border-radius:999px;transition:all .3s">Lo quiero</a>
+    </div>
   </div>
-
   <!-- CARD 2 -->
   <div class="catalogo-item" data-category="floral">
     <span class="tag premium">Premium</span>
-
     <div class="catalogo-preview">
-      <img src="https://images.unsplash.com/photo-1523437237164-d442d57cc3c9" alt="Invitación Floral">
-
+      <img src="images/floral.png" alt="Invitación Floral Pastel" onerror="this.style.display='none'">
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(160deg,#fff5f8,#f7eefa);pointer-events:none">
+        <div style="font-size:.6rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#9b7db8;margin-bottom:10px">Juntos para siempre</div>
+        <div style="font-family:'Great Vibes',cursive;font-size:2.2rem;color:#4a3545;line-height:1">Valentina</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;color:rgba(201,168,212,.6);margin:4px 0;font-style:italic">&amp;</div>
+        <div style="font-family:'Great Vibes',cursive;font-size:2.2rem;color:#4a3545;line-height:1">Sebastián</div>
+        <div style="font-size:.55rem;letter-spacing:.15em;color:#8a7080;text-transform:uppercase;margin-top:10px">20 · Sep · 2025</div>
+        <div style="display:flex;gap:6px;margin-top:10px">
+          <div style="width:8px;height:8px;border-radius:50%;background:#f9b8c4;opacity:.7"></div>
+          <div style="width:8px;height:8px;border-radius:50%;background:#e8b4d8;opacity:.7"></div>
+          <div style="width:8px;height:8px;border-radius:50%;background:#c9a8d4;opacity:.7"></div>
+        </div>
+      </div>
       <div class="preview-overlay">
-        <button class="btn-preview" data-preview="/plantilla.html?diseno=2">
-          Vista previa
-        </button>
-        <a href="/plantilla.html?diseno=2" class="btn-usar">
-          Usar diseño
-        </a>
+        <button class="btn-preview" data-preview="plantilla2.html">Vista previa</button>
+        <a href="plantilla2.html" class="btn-usar" target="_blank">Ver diseño completo</a>
       </div>
     </div>
-
-    <h3>Invitación Floral Premium</h3>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-top:1px solid rgba(200,180,150,.22)">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:400;color:#2C2C2C">Floral Pastel</h3>
+      <a href="precios.html?diseno=2" style="font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C9A876;text-decoration:none;border:1px solid rgba(201,168,118,.3);padding:5px 13px;border-radius:999px;transition:all .3s">Lo quiero</a>
+    </div>
   </div>
-
   <!-- CARD 3 -->
   <div class="catalogo-item" data-category="moderno">
     <span class="tag vendido">Más vendido</span>
-
     <div class="catalogo-preview">
-      <img src="https://images.unsplash.com/photo-1523437237164-d442d57cc3c9" alt="Invitación Moderna">
-
+      <img src="images/beige.png" alt="Invitación Beige Premium" onerror="this.style.display='none'">
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(160deg,#FAF8F4,#EADFCF);pointer-events:none">
+        <div style="width:40px;height:1px;background:linear-gradient(90deg,transparent,#B8935A,transparent);margin-bottom:12px"></div>
+        <div style="font-size:.55rem;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:#B8935A;margin-bottom:8px">Matrimonio</div>
+        <div style="font-family:'Great Vibes',cursive;font-size:2.2rem;color:#2C2C2C;line-height:1">Isabella</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;color:rgba(184,147,90,.5);margin:4px 0;font-style:italic">&amp;</div>
+        <div style="font-family:'Great Vibes',cursive;font-size:2.2rem;color:#2C2C2C;line-height:1">Alejandro</div>
+        <div style="width:80px;height:1px;background:linear-gradient(90deg,transparent,#B8935A,transparent);margin:10px 0"></div>
+        <div style="font-size:.6rem;letter-spacing:.25em;color:#8A8078;text-transform:uppercase">20 · IX · 2025</div>
+      </div>
       <div class="preview-overlay">
-        <button class="btn-preview" data-preview="/plantilla.html?diseno=3">
-          Vista previa
-        </button>
-        <a href="/plantilla.html?diseno=3" class="btn-usar">
-          Usar diseño
-        </a>
+        <button class="btn-preview" data-preview="plantilla3.html">Vista previa</button>
+        <a href="plantilla3.html" class="btn-usar" target="_blank">Ver diseño completo</a>
       </div>
     </div>
-
-    <h3>Invitación Moderna</h3>
-  </div>
-
-</section>
-
-
-
-  <!-- MODAL PREVIEW -->
-   <!-- 
-  <div class="preview-modal" id="previewModal">
-    <div class="preview-box">
-      <button class="close-preview" id="closePreview">×</button>
-      <iframe id="previewFrame" src=""></iframe>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-top:1px solid rgba(200,180,150,.22)">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:400;color:#2C2C2C">Beige Premium</h3>
+      <a href="precios.html?diseno=3" style="font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C9A876;text-decoration:none;border:1px solid rgba(201,168,118,.3);padding:5px 13px;border-radius:999px;transition:all .3s">Lo quiero</a>
     </div>
   </div>
-  -->
-  <!-- MODAL PREVIEW iPHONE -->
-<!-- MODAL PREVIEW iPHONE -->
+</section>
 <div class="preview-modal" id="previewModal">
-
-  <button class="close-preview" id="closePreview">×</button>
-
+  <button class="close-preview" id="closePreview">✕</button>
   <div class="iphone-frame">
     <div class="iphone-notch"></div>
-
     <div class="iphone-screen">
-      <iframe id="previewFrame" src=""></iframe>
+      <iframe id="previewFrame" src="" title="Vista previa" scrolling="yes"></iframe>
     </div>
   </div>
-
 </div>
-
-  <!-- JS -->
-  <script src="/js/catalogo.js"></script>
-
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const modal=document.getElementById('previewModal');
+  const frame=document.getElementById('previewFrame');
+  const closeBtn=document.getElementById('closePreview');
+  if(!modal||!frame)return;
+  document.querySelectorAll('.btn-preview').forEach(btn=>{
+    btn.addEventListener('click',e=>{e.stopPropagation();const url=btn.dataset.preview;if(!url)return;frame.src=url;modal.classList.add('open');document.body.style.overflow='hidden';});
+  });
+  const close=()=>{modal.classList.remove('open');document.body.style.overflow='';setTimeout(()=>{frame.src='';},300);};
+  closeBtn?.addEventListener('click',close);
+  modal.addEventListener('click',e=>{if(e.target===modal)close();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+  const scr=document.querySelector('.iphone-screen');
+  if(scr){scr.addEventListener('wheel',e=>{e.preventDefault();scr.scrollBy({top:e.deltaY,behavior:'auto'});},{passive:false});}
+});
+</script>
 </body>
 </html>

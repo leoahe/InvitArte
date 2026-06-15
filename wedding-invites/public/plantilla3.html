@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitación Beige Premium — InvitArte</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/plantilla3.css">
+</head>
+<body>
+<canvas class="p3-canvas" id="p3canvas"></canvas>
+<audio id="music" loop><source src="musica.mp3" type="audio/mpeg"></audio>
+<button class="p3-music-btn" id="musicBtn" title="Música">♪</button>
+
+<section class="p3-hero">
+  <div class="p3-hero__bg"></div>
+  <div class="p3-hero__content reveal">
+    <div class="p3-hero__line"></div>
+    <p class="p3-eyebrow">Matrimonio</p>
+    <div class="p3-hero__line"></div>
+    <h1 class="p3-names"><span id="nombre-novia">Isabella</span><span class="p3-amp">&amp;</span><span id="nombre-novio">Alejandro</span></h1>
+    <div class="p3-rule"></div>
+    <p class="p3-fecha" id="fecha-display">20 · IX · 2025</p>
+    <p class="p3-lugar">Ciudad de México</p>
+  </div>
+</section>
+
+<section class="p3-section" id="sec-invitado">
+  <div class="p3-block reveal">
+    <p class="p3-label">Invitación especial para</p>
+    <div class="p3-thin-rule"></div>
+    <p class="p3-guest-name" id="guestName">—</p>
+    <p class="p3-guest-passes" id="guestPasses"></p>
+  </div>
+</section>
+
+<section class="p3-section p3-section--alt">
+  <div class="p3-editorial reveal">
+    <div class="p3-editorial__num">01</div>
+    <div class="p3-editorial__content">
+      <p class="p3-label">Nuestra historia</p>
+      <div class="p3-thin-rule"></div>
+      <p class="p3-body-text">Dos almas que encontraron en el otro su lugar en el mundo. Hoy, con el corazón lleno de gratitud, los invitamos a ser testigos del inicio de nuestro capítulo más hermoso.</p>
+      <img src="images/mockup-elegante.png" class="p3-couple-img" alt="Pareja">
+    </div>
+  </div>
+</section>
+
+<section class="p3-section">
+  <div class="p3-quote reveal">
+    <div class="p3-quote__bar"></div>
+    <p class="p3-quote__text">Amar es encontrar en la felicidad de otro tu propia felicidad.</p>
+    <p class="p3-quote__author">— Gottfried Leibniz</p>
+  </div>
+</section>
+
+<section class="p3-section p3-section--alt">
+  <div class="p3-editorial reveal">
+    <div class="p3-editorial__num">02</div>
+    <div class="p3-editorial__content">
+      <p class="p3-label">Nuestras familias</p>
+      <div class="p3-thin-rule"></div>
+      <div class="p3-families">
+        <div class="p3-family"><p class="p3-family__side">Familia de la novia</p><p class="p3-family__names">Sra. Elena Ruiz de López<br>Sr. Fernando López Mora</p></div>
+        <div class="p3-family__sep"></div>
+        <div class="p3-family"><p class="p3-family__side">Familia del novio</p><p class="p3-family__names">Sra. Carmen Vega de Torres<br>Sr. Rodrigo Torres Salinas</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p3-section">
+  <div class="p3-block reveal">
+    <p class="p3-label">Padrinos</p>
+    <div class="p3-thin-rule"></div>
+    <p class="p3-padrino-name">Ana Gómez &amp; Luis Herrera</p>
+    <p class="p3-padrino-rol">Padrinos de honor</p>
+  </div>
+</section>
+
+<section class="p3-section p3-section--dark">
+  <div class="p3-countdown-wrap reveal">
+    <p class="p3-label p3-label--light">Cuenta regresiva</p>
+    <div class="p3-thin-rule p3-thin-rule--light"></div>
+    <div class="p3-countdown">
+      <div class="p3-time"><span id="cd-days">00</span><small>Días</small></div>
+      <div class="p3-time__sep">·</div>
+      <div class="p3-time"><span id="cd-hours">00</span><small>Horas</small></div>
+      <div class="p3-time__sep">·</div>
+      <div class="p3-time"><span id="cd-minutes">00</span><small>Min</small></div>
+      <div class="p3-time__sep">·</div>
+      <div class="p3-time"><span id="cd-seconds">00</span><small>Seg</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="p3-section">
+  <div class="p3-editorial reveal">
+    <div class="p3-editorial__num">03</div>
+    <div class="p3-editorial__content">
+      <p class="p3-label">Ceremonia</p>
+      <div class="p3-thin-rule"></div>
+      <p class="p3-event-name">Parroquia de Santa María</p>
+      <p class="p3-event-detail">Sábado · 17:00 hrs</p>
+      <iframe src="https://www.google.com/maps?q=Parroquia+Santa+Maria&output=embed" class="p3-map" loading="lazy" title="Ceremonia"></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="p3-section p3-section--alt">
+  <div class="p3-editorial reveal">
+    <div class="p3-editorial__num">04</div>
+    <div class="p3-editorial__content">
+      <p class="p3-label">Recepción</p>
+      <div class="p3-thin-rule"></div>
+      <p class="p3-event-name">Hacienda La Cantera</p>
+      <p class="p3-event-detail">Sábado · 19:30 hrs</p>
+      <iframe src="https://www.google.com/maps?q=Hacienda+La+Cantera&output=embed" class="p3-map" loading="lazy" title="Recepción"></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="p3-section">
+  <div class="p3-block reveal">
+    <p class="p3-label">Galería</p>
+    <div class="p3-thin-rule"></div>
+    <div class="p3-gallery">
+      <div class="p3-gallery__main"></div>
+      <div class="p3-gallery__grid">
+        <div class="p3-gallery__sm"></div><div class="p3-gallery__sm"></div>
+        <div class="p3-gallery__sm"></div><div class="p3-gallery__sm"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p3-section p3-section--alt">
+  <div class="p3-block reveal">
+    <p class="p3-label">Confirmación de asistencia</p>
+    <div class="p3-thin-rule"></div>
+    <p class="p3-body-text">Agradecemos confirmar tu asistencia antes del 1 de agosto.</p>
+    <div class="p3-rsvp">
+      <button class="p3-rsvp-btn p3-rsvp-btn--yes" onclick="rsvp3('si',this)">Confirmar asistencia</button>
+      <button class="p3-rsvp-btn p3-rsvp-btn--no" onclick="rsvp3('no',this)">No podré asistir</button>
+    </div>
+    <p class="p3-rsvp-msg" id="rsvp-msg"></p>
+  </div>
+</section>
+
+<section class="p3-section p3-section--cta">
+  <div class="p3-cta reveal">
+    <div class="p3-cta__rule"></div>
+    <p class="p3-label">InvitArte</p>
+    <h2 class="p3-cta__title">¿Te gustó este diseño?</h2>
+    <p class="p3-body-text">Personalízalo con cada detalle de tu boda.</p>
+    <button class="p3-btn-quiero" onclick="window.location.href='precios.html?diseno=3'">Quiero este diseño</button>
+    <div class="p3-cta__rule"></div>
+  </div>
+</section>
+
+<footer class="p3-footer">
+  <p>Isabella &amp; Alejandro · 2025</p>
+  <p class="p3-footer__credit">InvitArte · Invitaciones Digitales Premium</p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const params=new URLSearchParams(window.location.search);
+  const invitado=params.get('invitado');
+  const pases=parseInt(params.get('pases'))||1;
+  const FECHA='2025-09-20';
+  const secInv=document.getElementById('sec-invitado');
+  const gName=document.getElementById('guestName');
+  const gPass=document.getElementById('guestPasses');
+  if(invitado&&invitado.trim()){gName.textContent=decodeURIComponent(invitado);gPass.textContent=pases>1?pases+' lugares reservados':'1 lugar reservado';}else{if(secInv)secInv.style.display='none';}
+  function updateCD(){const diff=new Date(FECHA+'T17:00:00')-Date.now();if(diff<=0)return;document.getElementById('cd-days').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');document.getElementById('cd-hours').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');document.getElementById('cd-minutes').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');document.getElementById('cd-seconds').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');}
+  updateCD();setInterval(updateCD,1000);
+  const music=document.getElementById('music');const btn=document.getElementById('musicBtn');let playing=false;
+  const tryPlay=()=>{if(!playing&&music){music.volume=0.3;music.play().then(()=>{playing=true;btn.textContent='♫';}).catch(()=>{});}document.removeEventListener('click',tryPlay);};
+  document.addEventListener('click',tryPlay,{once:true});
+  btn.addEventListener('click',e=>{e.stopPropagation();if(playing){music.pause();playing=false;btn.textContent='♪';}else{music.play().catch(()=>{});playing=true;btn.textContent='♫';}});
+  const canvas=document.getElementById('p3canvas');
+  if(canvas){const ctx=canvas.getContext('2d');let W,H,pts=[];const resize=()=>{W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;};resize();window.addEventListener('resize',resize,{passive:true});for(let i=0;i<35;i++)pts.push({x:Math.random()*1200,y:Math.random()*800,vy:-(Math.random()*.3+.1),opacity:Math.random()*.4+.05,size:Math.random()*1.5+.5});(function draw(){ctx.clearRect(0,0,W,H);pts.forEach((p,i)=>{p.y+=p.vy;if(p.y<-10){pts[i].y=H+5;pts[i].x=Math.random()*W;}ctx.save();ctx.globalAlpha=p.opacity;ctx.fillStyle='#b89a6a';ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();ctx.restore();});requestAnimationFrame(draw);})();}
+  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');obs.unobserve(e.target);}}),{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+});
+window.rsvp3=(resp,btn)=>{const msg=document.getElementById('rsvp-msg');document.querySelectorAll('.p3-rsvp-btn').forEach(b=>b.disabled=true);msg.textContent=resp==='si'?'Gracias por confirmar. Los esperamos con gusto.':'Gracias por avisarnos. Los tendremos en mente.';msg.style.opacity='1';};
+</script>
+</body>
+</html>

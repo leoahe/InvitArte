@@ -3,249 +3,170 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Invitación Premium — InvitArte</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
-
+  <title>Invitación Floral Pastel — InvitArte</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lato:wght@300;400;700&family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/plantilla2.css">
-  <script src="js/plantilla2.js" defer></script>
 </head>
+<body>
+<div class="petals-wrap" id="petals"></div>
+<audio id="music" loop><source src="musica.mp3" type="audio/mpeg"></audio>
+<button class="p2-music-btn" id="musicBtn" title="Música">♪</button>
 
-<body class="plantilla-body">
-
-  <!-- VIGENCIA FLOTANTE (exclusiva Premium) -->
-  <div class="vigencia-badge" id="vigencia-badge">
-    ✦ Invitación válida hasta: <span id="vigencia-fecha">—</span>
+<section class="p2-hero">
+  <div class="p2-hero__corner p2-hero__corner--tl"></div>
+  <div class="p2-hero__corner p2-hero__corner--tr"></div>
+  <div class="p2-hero__corner p2-hero__corner--bl"></div>
+  <div class="p2-hero__corner p2-hero__corner--br"></div>
+  <div class="p2-hero__inner reveal">
+    <p class="p2-eyebrow">Juntos para siempre</p>
+    <h1 class="p2-names"><span class="p2-name" id="nombre-novia">Valentina</span><span class="p2-amp">&amp;</span><span class="p2-name" id="nombre-novio">Sebastián</span></h1>
+    <div class="p2-ornament">✿ ────── ✿ ────── ✿</div>
+    <p class="p2-fecha" id="fecha-display">Sábado · 20 de Septiembre de 2025</p>
   </div>
+</section>
 
-  <!-- MARCO FLORAL -->
-  <div class="floral-frame"></div>
+<section class="p2-section" id="sec-invitado">
+  <div class="p2-card reveal">
+    <p class="p2-card__label">Esta invitación es especialmente para</p>
+    <div class="p2-divider"></div>
+    <p class="p2-guest" id="guestName">—</p>
+    <p class="p2-passes" id="guestPasses"></p>
+  </div>
+</section>
 
-  <!-- PÉTALOS -->
-  <div class="petals" id="petals"></div>
-  <div class="gold-particles" id="goldParticles"></div>
+<section class="p2-section">
+  <div class="p2-quote reveal">
+    <p class="p2-quote__mark">"</p>
+    <p class="p2-quote__text">El amor no se mide por el tiempo que llevan juntos, sino por la eternidad que sienten al mirarse.</p>
+    <div class="p2-ornament" style="margin-top:1.5rem">✿</div>
+  </div>
+</section>
 
-  <!-- MÚSICA -->
-  <audio id="music" loop>
-    <source src="musica.mp3" type="audio/mpeg">
-  </audio>
-  <button class="music-btn" id="musicBtn" title="Música">🎵</button>
+<section class="p2-section">
+  <div class="p2-card reveal">
+    <p class="p2-card__label">Nuestra boda</p>
+    <div class="p2-divider"></div>
+    <p class="p2-text">Con el corazón lleno de alegría, los invitamos a ser parte del día más especial de nuestras vidas.</p>
+    <img src="images/mockup-elegante.png" class="p2-couple-img" alt="Pareja">
+  </div>
+</section>
 
-  <!-- ══════════════════════════════════
-       HERO
-  ══════════════════════════════════ -->
-  <section class="plantilla-hero">
-    <div class="hero-content reveal">
-      <div class="hero-eyebrow">Nos complace invitarte a nuestra boda</div>
-
-      <div class="hero-names">
-        <span id="nombre-novia">Laura</span>
-        <span class="hero-amp">&amp;</span>
-        <span id="nombre-novio">Miguel</span>
-      </div>
-
-      <div id="decoracion"></div>
-
-      <div class="hero-fecha" id="fecha-display">
-        14 de Septiembre de 2026
-      </div>
+<section class="p2-section">
+  <div class="p2-card reveal">
+    <p class="p2-card__label">Con la bendición de nuestros padres</p>
+    <div class="p2-divider"></div>
+    <div class="p2-parents">
+      <div class="p2-parent"><p class="p2-parent__role">Padres de la novia</p><p class="p2-parent__names">Elena Ruiz de López<br>Fernando López Mora</p></div>
+      <div class="p2-parent__sep">✿</div>
+      <div class="p2-parent"><p class="p2-parent__role">Padres del novio</p><p class="p2-parent__names">Carmen Vega de Torres<br>Rodrigo Torres Salinas</p></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ══════════════════════════════════
-       INVITADO PERSONALIZADO
-  ══════════════════════════════════ -->
-  <section class="plantilla-section" id="seccion-invitado">
-    <div class="card reveal">
-      <h2>Esta invitación es especialmente para</h2>
-      <div class="divider"></div>
-      <div class="invitado-nombre" id="guestName">—</div>
-      <div class="invitado-pases" id="guestPasses"></div>
+<section class="p2-section">
+  <div class="p2-card reveal">
+    <p class="p2-card__label">Padrinos</p>
+    <div class="p2-divider"></div>
+    <p class="p2-text">Ana Gómez &amp; Luis Herrera</p>
+    <p class="p2-padrino-tipo">Padrinos de arras</p>
+  </div>
+</section>
+
+<section class="p2-section">
+  <div class="p2-card p2-card--lavender reveal">
+    <p class="p2-card__label">Falta poco para el gran día</p>
+    <div class="p2-divider"></div>
+    <div class="p2-countdown">
+      <div class="p2-time"><span id="cd-days">00</span><small>Días</small></div>
+      <div class="p2-time"><span id="cd-hours">00</span><small>Horas</small></div>
+      <div class="p2-time"><span id="cd-minutes">00</span><small>Min</small></div>
+      <div class="p2-time"><span id="cd-seconds">00</span><small>Seg</small></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ══════════════════════════════════
-       FRASE ROMÁNTICA
-  ══════════════════════════════════ -->
-  <section class="plantilla-section">
-    <div class="card rose reveal">
-      <h2>Un amor eterno</h2>
-      <div class="divider"></div>
-      <p>
-        Donde hay amor verdadero, cada instante se convierte en eternidad.<br>
-        Hoy iniciamos el capítulo más hermoso de nuestra historia.
-      </p>
+<section class="p2-section">
+  <div class="p2-card reveal">
+    <p class="p2-card__label">Ceremonia</p>
+    <div class="p2-divider"></div>
+    <p class="p2-event-name">Parroquia de Santa María</p>
+    <p class="p2-event-time">Sábado · 5:00 PM</p>
+    <iframe src="https://www.google.com/maps?q=Parroquia+Santa+Maria&output=embed" class="p2-map" loading="lazy" title="Ceremonia"></iframe>
+  </div>
+</section>
+
+<section class="p2-section">
+  <div class="p2-card reveal">
+    <p class="p2-card__label">Recepción</p>
+    <div class="p2-divider"></div>
+    <p class="p2-event-name">Jardín Villa Rosa</p>
+    <p class="p2-event-time">Sábado · 7:30 PM</p>
+    <iframe src="https://www.google.com/maps?q=Jardin+Villa+Rosa&output=embed" class="p2-map" loading="lazy" title="Recepción"></iframe>
+  </div>
+</section>
+
+<section class="p2-section">
+  <div class="p2-card reveal">
+    <p class="p2-card__label">Nuestra historia en imágenes</p>
+    <div class="p2-divider"></div>
+    <div class="p2-gallery">
+      <div class="p2-gallery__item" style="background:#f5d5d5"></div>
+      <div class="p2-gallery__item" style="background:#e8d5f0"></div>
+      <div class="p2-gallery__item" style="background:#d5e8f0"></div>
+      <div class="p2-gallery__item" style="background:#f0e8d5"></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ══════════════════════════════════
-       NUESTRA BODA
-  ══════════════════════════════════ -->
-  <section class="plantilla-section">
-    <div class="card reveal">
-      <h2>Nuestra Boda</h2>
-      <div class="divider"></div>
-      <p>Nos encantaría compartir contigo este momento inolvidable.</p>
-      <img src="images/mockup-elegante.png" class="pareja-img" alt="Pareja">
+<section class="p2-section">
+  <div class="p2-card p2-card--rsvp reveal">
+    <p class="p2-card__label">Confirma tu asistencia</p>
+    <div class="p2-divider"></div>
+    <p class="p2-text">Por favor confirma antes del 1 de agosto.</p>
+    <div class="p2-rsvp-btns">
+      <button class="p2-rsvp-btn p2-rsvp-btn--yes" onclick="rsvp('si',this)">✓ Asistiré con gusto</button>
+      <button class="p2-rsvp-btn p2-rsvp-btn--no" onclick="rsvp('no',this)">✗ No podré asistir</button>
     </div>
-  </section>
+    <p class="p2-rsvp-msg" id="rsvp-msg"></p>
+  </div>
+</section>
 
-  <!-- ══════════════════════════════════
-       PADRES
-  ══════════════════════════════════ -->
-  <section class="plantilla-section">
-    <div class="card reveal">
-      <h2>Con la bendición de Dios y nuestros padres</h2>
-      <div class="divider"></div>
+<section class="p2-section">
+  <div class="p2-cta reveal">
+    <p class="p2-cta__flowers">✿ ❀ ✿ ❀ ✿</p>
+    <h2 class="p2-cta__title">¿Te encantó este diseño?</h2>
+    <p class="p2-cta__sub">Personalízalo con tu historia de amor.</p>
+    <button class="p2-btn-quiero" onclick="window.location.href='precios.html?diseno=2'">✨ Lo quiero</button>
+  </div>
+</section>
 
-      <div class="parents-grid">
-        <div class="subcard">
-          <h3>Padres de la Novia</h3>
-          <p>María López<br>José Martínez</p>
-          <div class="image-box">
-            <img src="images/padres-novia.png" alt="Padres de la novia">
-          </div>
-        </div>
-        <div class="subcard">
-          <h3>Padres del Novio</h3>
-          <p>Carmen Rodríguez<br>Luis Fernández</p>
-          <div class="image-box">
-            <img src="images/padres-novio.png" alt="Padres del novio">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<footer class="p2-footer">
+  <p>Valentina &amp; Sebastián · 2025</p>
+  <p class="p2-footer__credit">Creado con ♥ en InvitArte</p>
+</footer>
 
-  <!-- ══════════════════════════════════
-       PADRINOS
-  ══════════════════════════════════ -->
-  <section class="plantilla-section">
-    <div class="card reveal">
-      <h2>Padrinos</h2>
-      <div class="divider"></div>
-      <p>Laura Gómez &amp; Pedro Sánchez</p>
-      <div class="image-box padrinos-img">
-        <img src="images/padrinos.png" alt="Padrinos">
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════
-       CUENTA REGRESIVA
-  ══════════════════════════════════ -->
-  <section class="plantilla-section">
-    <div class="card reveal">
-      <h2>Falta poco</h2>
-      <div class="divider"></div>
-      <div class="countdown" id="countdown"></div>
-
-      <div class="candles">
-        <div class="candle"><div class="flame"></div></div>
-        <div class="candle"><div class="flame"></div></div>
-        <div class="candle"><div class="flame"></div></div>
-      </div>
-    </div>
-
-    <div class="event-datetime">
-      <div class="divider"></div>
-      <p class="event-date" id="event-date-text">Sábado 14 de Septiembre de 2026</p>
-      <p class="event-time">5:00 PM</p>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════
-       CEREMONIA
-  ══════════════════════════════════ -->
-  <section class="plantilla-section">
-    <div class="card reveal">
-      <h2>Ceremonia</h2>
-      <div class="divider"></div>
-      <p>Iglesia San José · 5:00 PM</p>
-      <iframe
-        src="https://www.google.com/maps?q=Iglesia%20San%20Jose&output=embed"
-        title="Ubicación ceremonia"
-        loading="lazy">
-      </iframe>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════
-       RECEPCIÓN
-  ══════════════════════════════════ -->
-  <section class="plantilla-section">
-    <div class="card reveal">
-      <h2>Evento Social</h2>
-      <div class="divider"></div>
-      <p>Salón Real · 7:00 PM</p>
-      <iframe
-        src="https://www.google.com/maps?q=Salon%20Real&output=embed"
-        title="Ubicación recepción"
-        loading="lazy">
-      </iframe>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════
-       VIGENCIA (sección informativa)
-  ══════════════════════════════════ -->
-  <section class="plantilla-section">
-    <div class="card premium-dark reveal">
-      <h2>Invitación Premium</h2>
-      <div class="divider"></div>
-
-      <div class="vigencia-card">
-        <div class="vigencia-card__icon">⏳</div>
-        <div class="vigencia-card__title">Vigencia de tu invitación</div>
-        <div class="vigencia-card__text">
-          Esta invitación digital estará disponible en línea durante
-          <strong style="color:var(--accent-soft)">3 meses</strong> a partir de su activación,
-          para que tus invitados puedan consultarla en cualquier momento antes del gran día.
-        </div>
-        <div class="vigencia-card__date" id="vigencia-hasta">
-          Válida hasta: —
-        </div>
-      </div>
-
-      <div class="vigencia-card" style="margin-top:1.5rem">
-        <div class="vigencia-card__icon">🎵</div>
-        <div class="vigencia-card__title">Música de fondo incluida</div>
-        <div class="vigencia-card__text">
-          Tu invitación cuenta con música de fondo que se reproduce automáticamente
-          al ser abierta, creando una experiencia emotiva e inolvidable.
-        </div>
-      </div>
-
-      <div class="vigencia-card" style="margin-top:1.5rem">
-        <div class="vigencia-card__icon">✨</div>
-        <div class="vigencia-card__title">Nombre personalizado por invitado</div>
-        <div class="vigencia-card__text">
-          Cada invitado recibe su propio enlace con su nombre integrado en la invitación,
-          haciendo cada experiencia única y especial.
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════
-       CTA FINAL
-  ══════════════════════════════════ -->
-  <section class="plantilla-section">
-    <div class="card reveal cta-card">
-      <h2>¿Te gustó este diseño?</h2>
-      <div class="divider"></div>
-      <p>
-        Personaliza esta invitación Premium con tus datos.<br>
-        Incluye música, vigencia de 3 meses y nombres personalizados.
-      </p>
-
-      <button class="btn-quiero"
-        onclick="window.location.href='/precios.html?diseno=2'">
-        ✨ Lo quiero
-      </button>
-    </div>
-  </section>
-
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const params=new URLSearchParams(window.location.search);
+  const invitado=params.get('invitado');
+  const pases=parseInt(params.get('pases'))||1;
+  const FECHA='2025-09-20';
+  const secInv=document.getElementById('sec-invitado');
+  const gName=document.getElementById('guestName');
+  const gPass=document.getElementById('guestPasses');
+  if(invitado&&invitado.trim()){gName.textContent=decodeURIComponent(invitado);gPass.textContent=pases>1?'✿ '+pases+' pases reservados':'✿ 1 pase reservado';}else{if(secInv)secInv.style.display='none';}
+  function updateCD(){const diff=new Date(FECHA+'T17:00:00')-Date.now();if(diff<=0)return;document.getElementById('cd-days').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');document.getElementById('cd-hours').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');document.getElementById('cd-minutes').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');document.getElementById('cd-seconds').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');}
+  updateCD();setInterval(updateCD,1000);
+  const music=document.getElementById('music');const btn=document.getElementById('musicBtn');let playing=false;
+  const tryPlay=()=>{if(!playing&&music){music.volume=0.3;music.play().then(()=>{playing=true;btn.textContent='♫';}).catch(()=>{});}document.removeEventListener('click',tryPlay);};
+  document.addEventListener('click',tryPlay,{once:true});
+  btn.addEventListener('click',e=>{e.stopPropagation();if(playing){music.pause();playing=false;btn.textContent='♪';}else{music.play().catch(()=>{});playing=true;btn.textContent='♫';}});
+  const wrap=document.getElementById('petals');
+  for(let i=0;i<18;i++){const p=document.createElement('div');p.className='p2-petal';const colors=['#f9b8c4','#e8b4d8','#c9a8d4','#f5c6d0','#ddb8e8'];p.style.cssText='left:'+Math.random()*100+'%;width:'+(Math.random()*12+6)+'px;height:'+(Math.random()*12+6)+'px;background:'+colors[Math.floor(Math.random()*colors.length)]+';animation-duration:'+(Math.random()*10+8)+'s;animation-delay:-'+(Math.random()*12)+'s;';wrap.appendChild(p);}
+  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');obs.unobserve(e.target);}}),{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+});
+window.rsvp=(resp,btn)=>{const msg=document.getElementById('rsvp-msg');document.querySelectorAll('.p2-rsvp-btn').forEach(b=>b.disabled=true);if(resp==='si'){btn.style.background='#c9a8d4';msg.textContent='¡Gracias! Te esperamos con mucho cariño. 💐';}else{msg.textContent='Lo entendemos. Te enviamos todo nuestro amor. 🌸';}msg.style.opacity='1';};
+</script>
 </body>
 </html>

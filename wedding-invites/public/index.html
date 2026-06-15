@@ -4,522 +4,185 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>InvitArte — Invitaciones Digitales Premium para Bodas</title>
-  <meta name="description" content="Invitaciones digitales elegantes y personalizadas para tu boda. Diseños exclusivos, música, cuenta regresiva y nombres por invitado.">
-  <link rel="stylesheet" href="css/global.css">
+  <meta name="description" content="Invitaciones digitales elegantes para tu boda. Diseños exclusivos, música, cuenta regresiva y nombre personalizado.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
-
-<!-- ══════════════════════════════════════════
-     NAVBAR
-══════════════════════════════════════════ -->
 <nav class="navbar" id="navbar">
-  <a href="index.html" class="navbar__logo">
-    InvitArte
-    <span>Invitaciones Digitales</span>
-  </a>
-
+  <a href="index.html" class="navbar__logo">InvitArte<span>Invitaciones Digitales</span></a>
   <div class="navbar__nav">
     <a href="index.html" class="navbar__link active">Inicio</a>
     <a href="catalogo.html" class="navbar__link">Catálogo</a>
     <a href="precios.html" class="navbar__link">Precios</a>
-    <button class="navbar__link" onclick="abrirContacto()" style="background:none;border:none;cursor:pointer">Contacto</button>
+    <button class="navbar__link" id="nav-contacto-btn">Contacto</button>
   </div>
-
   <div class="navbar__actions">
     <a href="login.html" class="btn btn--ghost btn--sm">Iniciar sesión</a>
     <a href="catalogo.html" class="btn btn--primary btn--sm">Ver diseños</a>
   </div>
-
-  <button class="navbar__burger" id="burger" onclick="toggleMobileMenu()">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="navbar__burger" id="burger"><span></span><span></span><span></span></button>
 </nav>
-
-<!-- Mobile menu -->
 <div class="navbar__mobile" id="mobile-menu">
   <a href="index.html" class="navbar__link active">Inicio</a>
   <a href="catalogo.html" class="navbar__link">Catálogo</a>
   <a href="precios.html" class="navbar__link">Precios</a>
-  <button class="navbar__link" onclick="abrirContacto();toggleMobileMenu()" style="background:none;border:none;cursor:pointer;text-align:left">Contacto</button>
+  <button class="navbar__link" id="mob-contacto-btn">Contacto</button>
   <a href="catalogo.html" class="btn btn--primary" style="margin-top:8px">Ver diseños →</a>
 </div>
-
-<!-- ══════════════════════════════════════════
-     HERO
-══════════════════════════════════════════ -->
 <section class="hero" id="hero">
-
-  <!-- Partículas de fondo -->
   <canvas id="hero-canvas"></canvas>
-
-  <!-- Contenido izquierdo -->
   <div class="hero__content">
-    <div class="hero__eyebrow">
-      <span class="hero__dot"></span>
-      Invitaciones digitales premium
-    </div>
-
-    <h1 class="hero__title">
-      El amor merece una<br>
-      <em>presentación perfecta</em>
-    </h1>
-
-    <p class="hero__subtitle">
-      Diseños exclusivos, animados y personalizados para tu boda.
-      Cada invitado recibe su propio enlace con su nombre.
-    </p>
-
+    <div class="hero__eyebrow"><span class="hero__dot"></span>Invitaciones digitales premium</div>
+    <h1 class="hero__title">El amor merece una<br><em>presentación perfecta</em></h1>
+    <p class="hero__subtitle">Diseños exclusivos, animados y personalizados para tu boda. Cada invitado recibe su propio enlace con su nombre.</p>
     <div class="hero__stats">
-      <div class="hero__stat">
-        <span class="hero__stat-num">3</span>
-        <span class="hero__stat-label">Diseños únicos</span>
-      </div>
+      <div class="hero__stat"><span class="hero__stat-num">3</span><span class="hero__stat-label">Diseños únicos</span></div>
       <div class="hero__stat-divider"></div>
-      <div class="hero__stat">
-        <span class="hero__stat-num">∞</span>
-        <span class="hero__stat-label">Invitados</span>
-      </div>
+      <div class="hero__stat"><span class="hero__stat-num">∞</span><span class="hero__stat-label">Invitados</span></div>
       <div class="hero__stat-divider"></div>
-      <div class="hero__stat">
-        <span class="hero__stat-num">100%</span>
-        <span class="hero__stat-label">Digital</span>
-      </div>
+      <div class="hero__stat"><span class="hero__stat-num">100%</span><span class="hero__stat-label">Digital</span></div>
     </div>
-
     <div class="hero__cta">
-      <a href="catalogo.html" class="btn btn--primary btn--lg">
-        Ver catálogo de diseños
-      </a>
-      <button onclick="abrirContacto()" class="btn btn--outline btn--lg">
-        Hablar con nosotros
-      </button>
+      <a href="catalogo.html" class="btn btn--primary btn--lg">Ver catálogo de diseños</a>
+      <button id="hero-contacto-btn" class="btn btn--outline btn--lg">Hablar con nosotros</button>
     </div>
-
-    <!-- Trust badges -->
     <div class="hero__trust">
       <span class="trust-item">🔒 Pago seguro</span>
       <span class="trust-item">⚡ Entrega inmediata</span>
       <span class="trust-item">💬 Soporte incluido</span>
     </div>
   </div>
-
-  <!-- Teléfonos -->
-  <div class="hero__phones">
-
-    <!-- iPhone 1: Elegante -->
-    <div class="phone-wrapper phone-wrapper--left reveal-phone">
-      <div class="phone-label phone-label--top">
-        <span class="phone-label__tag">Nuevo</span>
-        Invitación Elegante
-      </div>
-      <div class="iphone">
-        <div class="iphone__side iphone__side--left">
-          <div class="iphone__btn iphone__btn--vol1"></div>
-          <div class="iphone__btn iphone__btn--vol2"></div>
-          <div class="iphone__btn iphone__btn--silent"></div>
-        </div>
-        <div class="iphone__side iphone__btn--right">
-          <div class="iphone__btn iphone__btn--power"></div>
-        </div>
+  <div class="hero__phones" id="hero-phones">
+    <div class="phone-wrapper phone-wrapper--left" id="pw1">
+      <div class="phone-label"><span class="phone-label__tag">Nuevo</span><span>Invitación Elegante</span></div>
+      <div class="iphone" id="iphone1">
+        <div class="iphone__btns-left"><div class="iphone__btn iphone__btn--silent"></div><div class="iphone__btn iphone__btn--vol"></div><div class="iphone__btn iphone__btn--vol"></div></div>
+        <div class="iphone__btn-right"><div class="iphone__btn iphone__btn--power"></div></div>
         <div class="iphone__body">
-          <div class="iphone__notch">
-            <div class="iphone__dynamic-island">
-              <div class="iphone__camera"></div>
-            </div>
-          </div>
-          <div class="iphone__screen">
-            <iframe
-              src="plantilla.html"
-              class="iphone__iframe"
-              scrolling="yes"
-              title="Diseño Elegante"
-              loading="lazy">
-            </iframe>
-          </div>
-          <div class="iphone__chin"></div>
+          <div class="iphone__island"><div class="iphone__camera"></div></div>
+          <div class="iphone__screen" id="screen1"><iframe id="iframe1" src="plantilla.html" title="Diseño Elegante" loading="lazy" scrolling="no"></iframe></div>
+          <div class="iphone__chin"><div class="iphone__bar"></div></div>
         </div>
-        <div class="iphone__reflection"></div>
+        <div class="iphone__shine"></div>
       </div>
       <div class="phone-actions">
-        <a href="plantilla.html" class="phone-btn phone-btn--secondary" target="_blank">Ver diseño</a>
-        <a href="precios.html?diseno=1" class="phone-btn phone-btn--primary">Lo quiero</a>
+        <a href="plantilla.html" class="phone-btn phone-btn--ghost" target="_blank">Ver diseño</a>
+        <a href="precios.html?diseno=1" class="phone-btn phone-btn--gold">Lo quiero</a>
       </div>
     </div>
-
-    <!-- iPhone 2: Premium (centro, más grande) -->
-    <div class="phone-wrapper phone-wrapper--center reveal-phone" style="animation-delay:.15s">
-      <div class="phone-label phone-label--top">
-        <span class="phone-label__tag phone-label__tag--premium">Premium</span>
-        Invitación Premium
-      </div>
-      <div class="iphone iphone--featured">
-        <div class="iphone__side iphone__side--left">
-          <div class="iphone__btn iphone__btn--vol1"></div>
-          <div class="iphone__btn iphone__btn--vol2"></div>
-          <div class="iphone__btn iphone__btn--silent"></div>
-        </div>
-        <div class="iphone__side iphone__btn--right">
-          <div class="iphone__btn iphone__btn--power"></div>
-        </div>
+    <div class="phone-wrapper phone-wrapper--center" id="pw2">
+      <div class="phone-label"><span class="phone-label__tag phone-label__tag--rose">Premium</span><span>Floral Pastel</span></div>
+      <div class="iphone iphone--featured" id="iphone2">
+        <div class="iphone__btns-left"><div class="iphone__btn iphone__btn--silent"></div><div class="iphone__btn iphone__btn--vol"></div><div class="iphone__btn iphone__btn--vol"></div></div>
+        <div class="iphone__btn-right"><div class="iphone__btn iphone__btn--power"></div></div>
         <div class="iphone__body">
-          <div class="iphone__notch">
-            <div class="iphone__dynamic-island">
-              <div class="iphone__camera"></div>
-            </div>
-          </div>
-          <div class="iphone__screen">
-            <iframe
-              src="plantilla2.html"
-              class="iphone__iframe"
-              scrolling="yes"
-              title="Diseño Premium"
-              loading="lazy">
-            </iframe>
-          </div>
-          <div class="iphone__chin"></div>
+          <div class="iphone__island"><div class="iphone__camera"></div></div>
+          <div class="iphone__screen" id="screen2"><iframe id="iframe2" src="plantilla2.html" title="Floral Pastel" loading="lazy" scrolling="no"></iframe></div>
+          <div class="iphone__chin"><div class="iphone__bar"></div></div>
         </div>
-        <div class="iphone__reflection"></div>
+        <div class="iphone__shine"></div>
       </div>
       <div class="phone-actions">
-        <a href="plantilla2.html" class="phone-btn phone-btn--secondary" target="_blank">Ver diseño</a>
-        <a href="precios.html?diseno=2" class="phone-btn phone-btn--primary">Lo quiero</a>
+        <a href="plantilla2.html" class="phone-btn phone-btn--ghost" target="_blank">Ver diseño</a>
+        <a href="precios.html?diseno=2" class="phone-btn phone-btn--gold">Lo quiero</a>
       </div>
     </div>
-
-    <!-- iPhone 3: Más vendido -->
-    <div class="phone-wrapper phone-wrapper--right reveal-phone" style="animation-delay:.3s">
-      <div class="phone-label phone-label--top">
-        <span class="phone-label__tag phone-label__tag--sold">Más vendido</span>
-        Invitación Moderna
-      </div>
-      <div class="iphone">
-        <div class="iphone__side iphone__side--left">
-          <div class="iphone__btn iphone__btn--vol1"></div>
-          <div class="iphone__btn iphone__btn--vol2"></div>
-          <div class="iphone__btn iphone__btn--silent"></div>
-        </div>
-        <div class="iphone__side iphone__btn--right">
-          <div class="iphone__btn iphone__btn--power"></div>
-        </div>
+    <div class="phone-wrapper phone-wrapper--right" id="pw3">
+      <div class="phone-label"><span class="phone-label__tag phone-label__tag--beige">Más vendido</span><span>Beige Premium</span></div>
+      <div class="iphone" id="iphone3">
+        <div class="iphone__btns-left"><div class="iphone__btn iphone__btn--silent"></div><div class="iphone__btn iphone__btn--vol"></div><div class="iphone__btn iphone__btn--vol"></div></div>
+        <div class="iphone__btn-right"><div class="iphone__btn iphone__btn--power"></div></div>
         <div class="iphone__body">
-          <div class="iphone__notch">
-            <div class="iphone__dynamic-island">
-              <div class="iphone__camera"></div>
-            </div>
-          </div>
-          <div class="iphone__screen">
-            <iframe
-              src="plantilla.html?diseno=3"
-              class="iphone__iframe"
-              scrolling="yes"
-              title="Diseño Moderno"
-              loading="lazy">
-            </iframe>
-          </div>
-          <div class="iphone__chin"></div>
+          <div class="iphone__island"><div class="iphone__camera"></div></div>
+          <div class="iphone__screen" id="screen3"><iframe id="iframe3" src="plantilla3.html" title="Beige Premium" loading="lazy" scrolling="no"></iframe></div>
+          <div class="iphone__chin"><div class="iphone__bar"></div></div>
         </div>
-        <div class="iphone__reflection"></div>
+        <div class="iphone__shine"></div>
       </div>
       <div class="phone-actions">
-        <a href="plantilla.html?diseno=3" class="phone-btn phone-btn--secondary" target="_blank">Ver diseño</a>
-        <a href="precios.html?diseno=3" class="phone-btn phone-btn--primary">Lo quiero</a>
+        <a href="plantilla3.html" class="phone-btn phone-btn--ghost" target="_blank">Ver diseño</a>
+        <a href="precios.html?diseno=3" class="phone-btn phone-btn--gold">Lo quiero</a>
       </div>
     </div>
-
-  </div><!-- /hero__phones -->
-
-  <!-- Scroll indicator -->
-  <div class="hero__scroll">
-    <div class="hero__scroll-line"></div>
-    <span>Descubre más</span>
   </div>
-
+  <div class="hero__scroll"><div class="hero__scroll-line"></div><span>Descubre más</span></div>
 </section>
-
-<!-- ══════════════════════════════════════════
-     ORNAMENTO SEPARADOR
-══════════════════════════════════════════ -->
-<div class="section-ornament">
-  <div class="section-ornament__line"></div>
-  <div class="section-ornament__symbol">✦</div>
-  <div class="section-ornament__line"></div>
-</div>
-
-<!-- ══════════════════════════════════════════
-     ¿POR QUÉ ELEGIR INVITARTE?
-══════════════════════════════════════════ -->
+<div class="sec-sep"><div class="sec-sep__line"></div><span>✦</span><div class="sec-sep__line"></div></div>
 <section class="benefits" id="beneficios">
-
   <div class="benefits__header reveal-up">
     <div class="section-tag">Por qué elegirnos</div>
-    <h2 class="section-title">
-      ¿Por qué las parejas eligen<br>
-      <em>InvitArte?</em>
-    </h2>
-    <p class="section-subtitle">
-      Más que una invitación, una experiencia digital inolvidable.
-    </p>
+    <h2 class="section-title">¿Por qué las parejas eligen <em>InvitArte?</em></h2>
+    <p class="section-subtitle">Más que una invitación, una experiencia digital inolvidable.</p>
   </div>
-
   <div class="benefits__grid">
-
-    <div class="benefit-card reveal-up" style="animation-delay:.05s">
-      <div class="benefit-card__icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
-        </svg>
-      </div>
-      <div class="benefit-card__content">
-        <h3 class="benefit-card__title">Diseños elegantes y exclusivos</h3>
-        <p class="benefit-card__text">
-          Cada plantilla está creada por diseñadores especializados en bodas premium. No encontrarás estos diseños en ningún otro lugar.
-        </p>
-      </div>
-    </div>
-
-    <div class="benefit-card reveal-up" style="animation-delay:.1s">
-      <div class="benefit-card__icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 010 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 010-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28z"/>
-          <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-        </svg>
-      </div>
-      <div class="benefit-card__content">
-        <h3 class="benefit-card__title">Personalización total</h3>
-        <p class="benefit-card__text">
-          Nombres, fecha, lugar, fotos, música, padres, padrinos. Cada detalle de tu boda reflejado en tu invitación.
-        </p>
-      </div>
-    </div>
-
-    <div class="benefit-card reveal-up" style="animation-delay:.15s">
-      <div class="benefit-card__icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/>
-        </svg>
-      </div>
-      <div class="benefit-card__content">
-        <h3 class="benefit-card__title">Confirmación de asistencia digital</h3>
-        <p class="benefit-card__text">
-          Tus invitados confirman su asistencia directamente desde la invitación. Sin llamadas, sin papeles, sin estrés.
-        </p>
-      </div>
-    </div>
-
-    <div class="benefit-card reveal-up" style="animation-delay:.2s">
-      <div class="benefit-card__icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"/>
-        </svg>
-      </div>
-      <div class="benefit-card__content">
-        <h3 class="benefit-card__title">Compatible con celular y computadora</h3>
-        <p class="benefit-card__text">
-          Tus invitados pueden ver la invitación desde cualquier dispositivo. Se ve perfecta en iPhone, Android y escritorio.
-        </p>
-      </div>
-    </div>
-
-    <div class="benefit-card reveal-up" style="animation-delay:.25s">
-      <div class="benefit-card__icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
-        </svg>
-      </div>
-      <div class="benefit-card__content">
-        <h3 class="benefit-card__title">Entrega inmediata</h3>
-        <p class="benefit-card__text">
-          Una vez que personalizas y pagas, tu invitación está lista al instante. Compártela por WhatsApp en segundos.
-        </p>
-      </div>
-    </div>
-
-    <div class="benefit-card reveal-up" style="animation-delay:.3s">
-      <div class="benefit-card__icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/>
-        </svg>
-      </div>
-      <div class="benefit-card__content">
-        <h3 class="benefit-card__title">Soporte personalizado</h3>
-        <p class="benefit-card__text">
-          Nuestro equipo te acompaña en cada paso. Estamos disponibles por WhatsApp para resolver cualquier duda.
-        </p>
-      </div>
-    </div>
-
-  </div><!-- /benefits__grid -->
-
+    <div class="benefit-card reveal-up" style="transition-delay:.05s"><div class="benefit-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg></div><div><h3 class="benefit-card__title">Diseños elegantes y exclusivos</h3><p class="benefit-card__text">Plantillas creadas por diseñadores especializados en bodas premium.</p></div></div>
+    <div class="benefit-card reveal-up" style="transition-delay:.1s"><div class="benefit-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 010 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 010-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.332-.183.582-.495.644-.869l.214-1.28z"/><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div><div><h3 class="benefit-card__title">Personalización total</h3><p class="benefit-card__text">Nombres, fecha, lugar, fotos, música, padres y padrinos. Todo a tu medida.</p></div></div>
+    <div class="benefit-card reveal-up" style="transition-delay:.15s"><div class="benefit-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/></svg></div><div><h3 class="benefit-card__title">Confirmación de asistencia</h3><p class="benefit-card__text">Tus invitados confirman directo desde la invitación. Sin llamadas ni papeles.</p></div></div>
+    <div class="benefit-card reveal-up" style="transition-delay:.2s"><div class="benefit-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"/></svg></div><div><h3 class="benefit-card__title">Compatible con cualquier dispositivo</h3><p class="benefit-card__text">Perfecta en iPhone, Android y computadora. Se ve hermosa en todos lados.</p></div></div>
+    <div class="benefit-card reveal-up" style="transition-delay:.25s"><div class="benefit-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg></div><div><h3 class="benefit-card__title">Entrega inmediata</h3><p class="benefit-card__text">Lista al instante. Compártela por WhatsApp en cuestión de segundos.</p></div></div>
+    <div class="benefit-card reveal-up" style="transition-delay:.3s"><div class="benefit-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg></div><div><h3 class="benefit-card__title">Soporte personalizado</h3><p class="benefit-card__text">Te acompañamos por WhatsApp en cada paso. Respuesta rápida garantizada.</p></div></div>
+  </div>
 </section>
-
-<!-- ══════════════════════════════════════════
-     ORNAMENTO SEPARADOR
-══════════════════════════════════════════ -->
-<div class="section-ornament">
-  <div class="section-ornament__line"></div>
-  <div class="section-ornament__symbol">✦</div>
-  <div class="section-ornament__line"></div>
-</div>
-
-<!-- ══════════════════════════════════════════
-     CTA FINAL
-══════════════════════════════════════════ -->
+<div class="sec-sep"><div class="sec-sep__line"></div><span>✦</span><div class="sec-sep__line"></div></div>
 <section class="cta-section reveal-up">
   <div class="cta-section__inner">
     <div class="section-tag">Empieza hoy</div>
-    <h2 class="cta-section__title">
-      Tu gran día merece<br>
-      <em>una invitación extraordinaria</em>
-    </h2>
-    <p class="cta-section__sub">
-      Elige tu diseño, personalízalo y compártelo en minutos.
-    </p>
+    <h2 class="cta-section__title">Tu gran día merece<br><em>una invitación extraordinaria</em></h2>
+    <p class="cta-section__sub">Elige tu diseño, personalízalo y compártelo en minutos.</p>
     <div class="cta-section__actions">
-      <a href="catalogo.html" class="btn btn--primary btn--lg">
-        Explorar diseños →
-      </a>
-      <button onclick="abrirContacto()" class="btn btn--outline btn--lg">
-        Tengo una pregunta
-      </button>
+      <a href="catalogo.html" class="btn btn--primary btn--lg">Explorar diseños →</a>
+      <button id="cta-contacto-btn" class="btn btn--outline btn--lg">Tengo una pregunta</button>
     </div>
   </div>
 </section>
-
-<!-- ══════════════════════════════════════════
-     FOOTER
-══════════════════════════════════════════ -->
 <footer class="footer">
   <div class="footer__inner">
-
-    <div class="footer__brand">
-      <span class="footer__logo">InvitArte</span>
-      <p class="footer__tagline">Invitaciones digitales premium para tu boda.</p>
-    </div>
-
+    <div><span class="footer__logo">InvitArte</span><p class="footer__tagline">Invitaciones digitales premium para tu boda.</p></div>
     <div class="footer__links">
       <a href="catalogo.html">Catálogo</a>
       <a href="precios.html">Precios</a>
-      <button onclick="abrirContacto()" style="background:none;border:none;cursor:pointer;color:var(--gris-texto);font-size:.82rem">Contacto</button>
+      <button id="footer-contacto-btn">Contacto</button>
       <a href="login.html">Mi cuenta</a>
     </div>
-
-    <div class="footer__copy">
-      © 2026 InvitArte · Todos los derechos reservados
-    </div>
-
+    <div class="footer__copy">© 2026 InvitArte · Todos los derechos reservados</div>
   </div>
 </footer>
-
-<!-- ══════════════════════════════════════════
-     MODAL CONTACTO
-══════════════════════════════════════════ -->
 <div class="modal-overlay" id="modal-contacto">
-  <div class="modal modal--contacto">
-
+  <div class="modal--contacto">
     <div class="modal__header">
       <span class="modal__title">Contáctanos</span>
-      <button class="modal__close" onclick="cerrarContacto()">✕</button>
+      <button class="modal__close" id="close-modal-btn">✕</button>
     </div>
-
     <div class="modal__body">
-
-      <!-- Opciones rápidas -->
       <div class="contact-options">
-        <a href="https://wa.me/5215500000000?text=Hola%2C%20me%20interesa%20una%20invitación%20digital"
-           target="_blank" class="contact-option contact-option--whatsapp">
-          <div class="contact-option__icon">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-            </svg>
-          </div>
-          <div class="contact-option__text">
-            <strong>WhatsApp</strong>
-            <span>Respuesta en minutos</span>
-          </div>
-          <div class="contact-option__arrow">→</div>
+        <a href="https://wa.me/5215500000000?text=Hola%2C%20me%20interesa%20una%20invitación%20digital" target="_blank" rel="noopener" class="contact-option contact-option--wa">
+          <div class="contact-option__icon contact-option__icon--wa"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+          <div class="contact-option__text"><strong>WhatsApp</strong><span>Respuesta en minutos</span></div>
+          <span class="contact-option__arrow">→</span>
         </a>
-
         <a href="mailto:hola@invitarte.mx" class="contact-option contact-option--email">
-          <div class="contact-option__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
-            </svg>
-          </div>
-          <div class="contact-option__text">
-            <strong>Correo electrónico</strong>
-            <span>hola@invitarte.mx</span>
-          </div>
-          <div class="contact-option__arrow">→</div>
+          <div class="contact-option__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg></div>
+          <div class="contact-option__text"><strong>Correo</strong><span>hola@invitarte.mx</span></div>
+          <span class="contact-option__arrow">→</span>
         </a>
       </div>
-
-      <!-- Separador -->
-      <div style="display:flex;align-items:center;gap:16px;margin:24px 0">
-        <div style="flex:1;height:1px;background:var(--gris-borde)"></div>
-        <span style="font-size:.72rem;color:var(--gris-texto);letter-spacing:.1em;text-transform:uppercase">o escríbenos aquí</span>
-        <div style="flex:1;height:1px;background:var(--gris-borde)"></div>
-      </div>
-
-      <!-- Formulario -->
+      <div class="contact-sep"><div></div><span>o escríbenos aquí</span><div></div></div>
       <form id="contact-form" novalidate>
-        <div style="display:flex;flex-direction:column;gap:16px">
-
-          <div class="form-group">
-            <label class="form-label">Tu nombre</label>
-            <input type="text" id="cf-nombre" class="form-input"
-              placeholder="María García" autocomplete="name">
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Correo electrónico</label>
-            <input type="email" id="cf-email" class="form-input"
-              placeholder="tu@correo.com" autocomplete="email">
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Mensaje</label>
-            <textarea id="cf-mensaje" class="form-input"
-              placeholder="¿En qué podemos ayudarte?"
-              rows="4" style="resize:vertical"></textarea>
-          </div>
-
-          <!-- Estado éxito -->
-          <div id="contact-success" style="
-            display:none;
-            text-align:center;
-            padding:24px;
-            background:rgba(94,196,122,0.08);
-            border:1px solid rgba(94,196,122,0.3);
-            border-radius:var(--r-lg);
-            animation: fadeUp .4s ease;
-          ">
-            <div style="font-size:2rem;margin-bottom:8px">✓</div>
-            <div style="font-family:var(--font-display);font-size:1.2rem;color:var(--blanco);margin-bottom:4px">
-              ¡Mensaje enviado!
-            </div>
-            <div style="font-size:.82rem;color:var(--gris-texto)">
-              Te respondemos en menos de 24 horas.
-            </div>
-          </div>
-
-          <button type="submit" id="cf-submit" class="btn btn--primary btn--full">
-            Enviar mensaje
-          </button>
-
+        <div class="form-group"><label class="form-label">Tu nombre</label><input type="text" id="cf-nombre" class="form-input" placeholder="María García" autocomplete="name"></div>
+        <div class="form-group" style="margin-top:13px"><label class="form-label">Correo electrónico</label><input type="email" id="cf-email" class="form-input" placeholder="tu@correo.com" autocomplete="email"></div>
+        <div class="form-group" style="margin-top:13px"><label class="form-label">Mensaje</label><textarea id="cf-mensaje" class="form-input" placeholder="¿En qué podemos ayudarte?" rows="4" style="resize:vertical"></textarea></div>
+        <div id="cf-success" style="display:none;text-align:center;padding:18px;background:rgba(90,154,96,.08);border:1px solid rgba(90,154,96,.28);border-radius:13px;margin-top:14px">
+          <div style="font-size:1.7rem;margin-bottom:5px">✓</div>
+          <p style="font-family:'Playfair Display',serif;font-size:1.05rem;color:#2C2C2C;margin-bottom:3px">¡Mensaje enviado!</p>
+          <p style="font-size:.78rem;color:#8A8078">Te respondemos en menos de 24 horas.</p>
         </div>
+        <button type="submit" id="cf-submit" class="btn btn--primary btn--full" style="margin-top:14px">Enviar mensaje</button>
       </form>
-
     </div>
-
   </div>
 </div>
-
-<!-- Toast container -->
 <div id="toast-container"></div>
-
-<script src="js/utils.js"></script>
 <script src="js/home.js"></script>
-
 </body>
 </html>
