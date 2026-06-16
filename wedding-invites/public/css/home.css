@@ -183,3 +183,26 @@ img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
 @media(max-width:1100px){.hero{grid-template-columns:1fr;padding:100px 32px 60px;text-align:center}.hero__content{max-width:100%;align-items:center;display:flex;flex-direction:column}.hero__phones{gap:12px}.iphone{width:168px}.iphone--featured{width:198px}.iphone__screen{height:345px}.iphone--featured .iphone__screen{height:408px}.iphone__iframe{transform:scale(.431)}.iphone--featured .iphone__iframe{transform:scale(.508)}.hero__scroll{display:none}.benefits{padding:64px 32px}.benefits__grid{grid-template-columns:repeat(2,1fr)}.cta-section{padding:64px 32px}.sec-sep{padding:0 32px}.footer{padding:24px 32px}}
 @media(max-width:768px){.hero{padding:88px 20px 60px}.hero__phones{flex-direction:column;align-items:center;gap:30px}.phone-wrapper--left,.phone-wrapper--right{display:none}.phone-wrapper--center.visible{transform:translateY(0) scale(1)!important;opacity:1!important}.iphone--featured{width:228px}.iphone--featured .iphone__screen{height:465px}.iphone--featured .iphone__iframe{transform:scale(.585)}.hero__stats,.hero__cta,.hero__trust{justify-content:center}.benefits{padding:52px 20px}.benefits__grid{grid-template-columns:1fr}.cta-section{padding:52px 20px}.cta-section__inner{padding:36px 20px}.footer__inner{flex-direction:column;text-align:center}.footer__links{justify-content:center}.sec-sep{padding:0 20px}}
 @media(max-width:480px){.hero__title{font-size:1.9rem}.hero__cta{flex-direction:column;width:100%}.hero__cta .btn{width:100%;justify-content:center}.cta-section__actions{flex-direction:column}.cta-section__actions .btn{width:100%;justify-content:center}}
+
+/* ── OVERRIDE: preview HTML dentro del iPhone ─────────────────
+   El .iphone__screen tiene overflow-y:scroll
+   El .phone-preview (div) es el contenido que hace scroll dentro
+   Se aplica transform:scale en el div, no en iframe
+──────────────────────────────────────────────────────────────── */
+.phone-preview{
+  width:390px;
+  transform-origin:top left;
+  display:block;
+  flex-shrink:0;
+}
+/* Escala normal (210px / 390px = 0.5385) */
+#screen1 .phone-preview,
+#screen3 .phone-preview {
+  transform:scale(0.5385);
+  /* La altura real es 900px × 0.5385 ≈ 485px
+     El contenedor tiene 428px → hace scroll ✓ */
+}
+/* Escala featured (248px / 390px = 0.636) */
+#screen2 .phone-preview {
+  transform:scale(0.636);
+}

@@ -5,8 +5,272 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>InvitArte — Invitaciones Digitales Premium para Bodas</title>
   <meta name="description" content="Invitaciones digitales elegantes para tu boda. Diseños exclusivos, música, cuenta regresiva y nombre personalizado.">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400;500;600;700&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/home.css">
+  <style>
+  /* ── PREVIEW CARDS DENTRO DE LOS IPHONES ─────────────────────
+     Se renderizan en HTML puro, sin iframe, para evitar problemas
+     de cross-origin, rutas relativas y viewport incorrecto.
+  ─────────────────────────────────────────────────────────────── */
+
+  .phone-preview{
+    width:390px;
+    min-height:900px;
+    transform-origin:top left;
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* ── DISEÑO 1: ELEGANTE NEGRO + DORADO ── */
+  .prev1{
+    background:linear-gradient(180deg,#0a0a0c 0%,#111114 100%);
+    display:flex;flex-direction:column;align-items:center;
+    padding:60px 24px 40px;
+    font-family:'Cormorant Garamond',serif;
+  }
+  .prev1__eyebrow{
+    font-size:.55rem;letter-spacing:.35em;text-transform:uppercase;
+    color:rgba(201,168,76,.55);margin-bottom:28px;
+  }
+  .prev1__divider{
+    width:120px;height:1px;
+    background:linear-gradient(90deg,transparent,#c9a84c,transparent);
+    margin-bottom:28px;
+  }
+  .prev1__names{
+    font-family:'Great Vibes',cursive;
+    font-size:4rem;color:#c9a84c;line-height:1.05;text-align:center;
+    margin-bottom:8px;
+  }
+  .prev1__amp{
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:1rem;color:rgba(201,168,76,.4);margin:6px 0;
+  }
+  .prev1__fecha{
+    font-size:.65rem;letter-spacing:.3em;color:rgba(201,168,76,.5);
+    text-transform:uppercase;margin-top:10px;
+  }
+  .prev1__ornament{
+    width:80px;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(201,168,76,.3),transparent);
+    margin:24px 0;
+  }
+  .prev1__card{
+    width:100%;background:rgba(201,168,76,.06);
+    border:1px solid rgba(201,168,76,.18);border-radius:16px;
+    padding:20px;text-align:center;margin-bottom:16px;
+  }
+  .prev1__card-label{
+    font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;
+    color:rgba(201,168,76,.5);margin-bottom:10px;
+  }
+  .prev1__card-content{
+    font-family:'Cormorant Garamond',serif;font-size:.85rem;
+    color:rgba(255,255,255,.6);line-height:1.6;
+  }
+  .prev1__countdown{
+    display:flex;gap:10px;justify-content:center;margin-bottom:16px;
+  }
+  .prev1__time{
+    background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);
+    border-radius:10px;padding:10px 12px;text-align:center;min-width:54px;
+  }
+  .prev1__time span{
+    display:block;font-family:'Cormorant Garamond',serif;
+    font-size:1.6rem;color:#c9a84c;line-height:1;
+  }
+  .prev1__time small{
+    display:block;font-size:.42rem;letter-spacing:.15em;
+    text-transform:uppercase;color:rgba(201,168,76,.4);margin-top:3px;
+  }
+  .prev1__candles{
+    display:flex;gap:20px;justify-content:center;margin:20px 0;
+  }
+  .prev1__candle{
+    display:flex;flex-direction:column;align-items:center;gap:2px;
+  }
+  .prev1__candle-flame{
+    width:8px;height:12px;
+    background:radial-gradient(ellipse at 50% 80%,#fff8c0,#f5a623 60%,transparent);
+    border-radius:50% 50% 30% 30%;
+    animation:flicker 1.5s ease-in-out infinite alternate;
+  }
+  @keyframes flicker{0%{transform:scale(1) rotate(-2deg)}100%{transform:scale(1.1) rotate(2deg)}}
+  .prev1__candle-body{width:6px;height:36px;background:linear-gradient(180deg,#f0e8d8,#d4c9b0);border-radius:3px}
+  .prev1__particles{
+    position:absolute;inset:0;pointer-events:none;overflow:hidden;
+  }
+  .prev1__particle{
+    position:absolute;width:2px;height:2px;border-radius:50%;
+    background:#c9a84c;opacity:.35;animation:pFloat linear infinite;
+  }
+  @keyframes pFloat{0%{transform:translateY(0);opacity:.35}100%{transform:translateY(-900px);opacity:0}}
+  .prev1__btn{
+    display:inline-block;padding:10px 28px;
+    background:linear-gradient(135deg,rgba(201,168,76,.15),rgba(201,168,76,.08));
+    border:1px solid rgba(201,168,76,.35);border-radius:999px;
+    font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;
+    color:#c9a84c;margin-top:10px;
+  }
+
+  /* ── DISEÑO 2: FLORAL PASTEL ── */
+  .prev2{
+    background:linear-gradient(160deg,#fff5f8,#f7eefa,#fdf5ff);
+    display:flex;flex-direction:column;align-items:center;
+    padding:55px 24px 40px;font-family:'Cormorant Garamond',serif;
+    position:relative;overflow:hidden;
+  }
+  .prev2__corner{position:absolute;width:160px;height:160px;opacity:.22;pointer-events:none}
+  .prev2__corner--tl{top:0;left:0;background:radial-gradient(circle at 0 0,#f2b8c6,transparent 70%)}
+  .prev2__corner--tr{top:0;right:0;background:radial-gradient(circle at 100% 0,#c9a8d4,transparent 70%)}
+  .prev2__corner--bl{bottom:0;left:0;background:radial-gradient(circle at 0 100%,#9b7db8,transparent 70%)}
+  .prev2__corner--br{bottom:0;right:0;background:radial-gradient(circle at 100% 100%,#f2b8c6,transparent 70%)}
+  .prev2__eyebrow{
+    font-size:.5rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;
+    color:#9b7db8;margin-bottom:16px;position:relative;z-index:1;
+  }
+  .prev2__names{
+    font-family:'Great Vibes',cursive;font-size:3.6rem;
+    color:#4a3545;line-height:1.05;text-align:center;position:relative;z-index:1;
+  }
+  .prev2__amp{
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:.95rem;color:rgba(201,168,212,.6);display:block;margin:5px 0;
+  }
+  .prev2__ornament{
+    font-size:.8rem;color:#e8889a;letter-spacing:.2em;
+    margin:12px 0;position:relative;z-index:1;
+  }
+  .prev2__fecha{
+    font-family:'Cormorant Garamond',serif;font-size:.85rem;
+    font-style:italic;color:#8a7080;margin-bottom:20px;position:relative;z-index:1;
+  }
+  .prev2__card{
+    width:100%;background:rgba(255,255,255,.85);
+    border:1px solid rgba(201,168,212,.35);border-radius:20px;
+    padding:18px;text-align:center;margin-bottom:14px;
+    backdrop-filter:blur(8px);position:relative;z-index:1;
+  }
+  .prev2__card-label{
+    font-size:.48rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+    color:#9b7db8;margin-bottom:8px;
+  }
+  .prev2__divider{
+    width:60px;height:1.5px;
+    background:linear-gradient(90deg,transparent,#e8889a,transparent);
+    margin:.7rem auto;
+  }
+  .prev2__card-text{font-size:.75rem;color:#8a7080;line-height:1.5}
+  .prev2__countdown{
+    display:flex;gap:8px;justify-content:center;margin:8px 0;
+  }
+  .prev2__time{
+    background:#fff;border:1px solid rgba(201,168,212,.35);
+    border-radius:12px;padding:10px 10px;text-align:center;min-width:50px;
+  }
+  .prev2__time span{
+    display:block;font-family:'Cormorant Garamond',serif;
+    font-size:1.5rem;font-weight:500;color:#9b7db8;line-height:1;
+  }
+  .prev2__time small{
+    display:block;font-size:.42rem;letter-spacing:.12em;
+    text-transform:uppercase;color:#8a7080;margin-top:3px;
+  }
+  .prev2__petals{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+  .prev2__petal{
+    position:absolute;top:-10px;
+    border-radius:50% 10% 50% 10%;opacity:.5;
+    animation:p2Float linear infinite;
+  }
+  @keyframes p2Float{0%{transform:translateY(-10px) rotate(0deg)}100%{transform:translateY(920px) rotate(360deg)}}
+  .prev2__btn{
+    display:inline-block;padding:10px 28px;
+    background:linear-gradient(135deg,#e8889a,#9b7db8);
+    border:none;border-radius:999px;font-size:.55rem;letter-spacing:.2em;
+    text-transform:uppercase;color:#fff;margin-top:8px;
+    box-shadow:0 6px 18px rgba(155,125,184,.35);
+  }
+
+  /* ── DISEÑO 3: BEIGE PREMIUM ── */
+  .prev3{
+    background:linear-gradient(180deg,#faf6f0,#eddfc8);
+    display:flex;flex-direction:column;align-items:center;
+    padding:55px 24px 40px;font-family:'Cormorant Garamond',serif;
+    position:relative;overflow:hidden;
+  }
+  .prev3__grid-bg{
+    position:absolute;inset:0;pointer-events:none;
+    background-image:
+      repeating-linear-gradient(0deg,transparent,transparent 50px,rgba(184,154,106,.05) 50px,rgba(184,154,106,.05) 51px),
+      repeating-linear-gradient(90deg,transparent,transparent 50px,rgba(184,154,106,.05) 50px,rgba(184,154,106,.05) 51px);
+  }
+  .prev3__line{width:50px;height:1px;background:rgba(184,154,106,.45);position:relative;z-index:1}
+  .prev3__eyebrow{
+    font-size:.5rem;font-weight:600;letter-spacing:.45em;text-transform:uppercase;
+    color:#b89a6a;margin:10px 0;position:relative;z-index:1;
+  }
+  .prev3__names{
+    font-family:'Great Vibes',cursive;font-size:3.6rem;
+    color:#2c2418;line-height:1.05;text-align:center;position:relative;z-index:1;
+  }
+  .prev3__amp{
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:.9rem;color:rgba(184,154,106,.5);display:block;
+    margin:5px 0;letter-spacing:.2em;
+  }
+  .prev3__rule{
+    width:100px;height:1px;
+    background:linear-gradient(90deg,transparent,#b89a6a,transparent);
+    margin:14px 0;position:relative;z-index:1;
+  }
+  .prev3__fecha{
+    font-family:'Cormorant Garamond',serif;font-size:.95rem;
+    letter-spacing:.25em;color:#3d3020;position:relative;z-index:1;
+  }
+  .prev3__lugar{
+    font-size:.5rem;font-weight:600;letter-spacing:.35em;
+    text-transform:uppercase;color:#8a7a60;margin:6px 0 20px;
+    position:relative;z-index:1;
+  }
+  .prev3__editorial{
+    width:100%;display:grid;grid-template-columns:44px 1fr;
+    gap:14px;margin-bottom:14px;position:relative;z-index:1;
+  }
+  .prev3__num{
+    font-family:'Cormorant Garamond',serif;font-size:2.8rem;
+    font-weight:300;color:#b89a6a;opacity:.22;line-height:1;padding-top:2px;
+  }
+  .prev3__content{text-align:left}
+  .prev3__label{
+    font-size:.48rem;font-weight:700;letter-spacing:.3em;
+    text-transform:uppercase;color:#b89a6a;margin-bottom:4px;
+  }
+  .prev3__thin-rule{
+    width:50px;height:1px;background:#b89a6a;opacity:.4;margin:.6rem 0;
+  }
+  .prev3__text{font-size:.74rem;color:#8a7a60;line-height:1.7}
+  .prev3__countdown{
+    display:flex;align-items:center;gap:10px;justify-content:center;
+    margin:16px 0;position:relative;z-index:1;
+  }
+  .prev3__time{text-align:center;min-width:50px}
+  .prev3__time span{
+    display:block;font-family:'Cormorant Garamond',serif;
+    font-size:2.4rem;font-weight:300;color:#d4b483;line-height:1;
+  }
+  .prev3__time small{
+    display:block;font-size:.42rem;font-weight:600;letter-spacing:.22em;
+    text-transform:uppercase;color:rgba(212,180,131,.5);margin-top:3px;
+  }
+  .prev3__sep{font-size:1.6rem;color:rgba(212,180,131,.25);font-weight:300}
+  .prev3__btn{
+    display:inline-block;padding:11px 32px;background:#2c2418;color:#eddfc8;
+    border:none;border-radius:2px;font-size:.55rem;font-weight:600;
+    letter-spacing:.25em;text-transform:uppercase;margin-top:8px;
+    position:relative;z-index:1;
+    box-shadow:0 6px 20px rgba(44,36,24,.22);
+  }
+  </style>
 </head>
 <body>
 <nav class="navbar" id="navbar">
@@ -30,8 +294,10 @@
   <button class="navbar__link" id="mob-contacto-btn">Contacto</button>
   <a href="catalogo.html" class="btn btn--primary" style="margin-top:8px">Ver diseños →</a>
 </div>
+
 <section class="hero" id="hero">
   <canvas id="hero-canvas"></canvas>
+
   <div class="hero__content">
     <div class="hero__eyebrow"><span class="hero__dot"></span>Invitaciones digitales premium</div>
     <h1 class="hero__title">El amor merece una<br><em>presentación perfecta</em></h1>
@@ -53,7 +319,11 @@
       <span class="trust-item">💬 Soporte incluido</span>
     </div>
   </div>
+
+  <!-- ══ IPHONES CON PREVIEW HTML PURO ══ -->
   <div class="hero__phones" id="hero-phones">
+
+    <!-- iPhone 1: Elegante Negro + Dorado -->
     <div class="phone-wrapper phone-wrapper--left" id="pw1">
       <div class="phone-label"><span class="phone-label__tag">Nuevo</span><span>Invitación Elegante</span></div>
       <div class="iphone" id="iphone1">
@@ -61,7 +331,43 @@
         <div class="iphone__btn-right"><div class="iphone__btn iphone__btn--power"></div></div>
         <div class="iphone__body">
           <div class="iphone__island"><div class="iphone__camera"></div></div>
-          <div class="iphone__screen" id="screen1"><iframe id="iframe1" src="plantilla.html" title="Diseño Elegante" loading="lazy" scrolling="no"></iframe></div>
+          <div class="iphone__screen" id="screen1">
+            <div class="phone-preview prev1" id="prev1">
+              <!-- Partículas -->
+              <div class="prev1__particles" id="p1particles"></div>
+              <p class="prev1__eyebrow">Con amor les invitamos a nuestra boda</p>
+              <div class="prev1__divider"></div>
+              <div class="prev1__names">Laura<span class="prev1__amp">&amp;</span>Miguel</div>
+              <div class="prev1__ornament"></div>
+              <p class="prev1__fecha">14 · SEP · 2026</p>
+              <div class="prev1__ornament"></div>
+              <!-- Velas -->
+              <div class="prev1__candles">
+                <div class="prev1__candle"><div class="prev1__candle-flame"></div><div class="prev1__candle-body"></div></div>
+                <div class="prev1__candle"><div class="prev1__candle-flame" style="animation-delay:.3s"></div><div class="prev1__candle-body" style="height:48px"></div></div>
+                <div class="prev1__candle"><div class="prev1__candle-flame" style="animation-delay:.6s"></div><div class="prev1__candle-body" style="height:28px"></div></div>
+              </div>
+              <div class="prev1__card">
+                <p class="prev1__card-label">Invitado especial</p>
+                <p class="prev1__card-content" style="font-family:'Great Vibes',cursive;font-size:1.4rem;color:#c9a84c">María González</p>
+              </div>
+              <div class="prev1__countdown">
+                <div class="prev1__time"><span id="d1-days">42</span><small>Días</small></div>
+                <div class="prev1__time"><span id="d1-hours">08</span><small>Horas</small></div>
+                <div class="prev1__time"><span id="d1-mins">30</span><small>Min</small></div>
+                <div class="prev1__time"><span id="d1-secs">00</span><small>Seg</small></div>
+              </div>
+              <div class="prev1__card">
+                <p class="prev1__card-label">Ceremonia</p>
+                <p class="prev1__card-content">Parroquia de Santa María<br><span style="color:rgba(201,168,76,.5);font-size:.7rem;letter-spacing:.1em">14 SEP · 5:00 PM</span></p>
+              </div>
+              <div class="prev1__card" style="margin-top:0">
+                <p class="prev1__card-label">Recepción</p>
+                <p class="prev1__card-content">Salón Imperial<br><span style="color:rgba(201,168,76,.5);font-size:.7rem;letter-spacing:.1em">14 SEP · 7:30 PM</span></p>
+              </div>
+              <div class="prev1__btn">CONFIRMAR ASISTENCIA</div>
+            </div>
+          </div>
           <div class="iphone__chin"><div class="iphone__bar"></div></div>
         </div>
         <div class="iphone__shine"></div>
@@ -71,6 +377,8 @@
         <a href="precios.html?diseno=1" class="phone-btn phone-btn--gold">Lo quiero</a>
       </div>
     </div>
+
+    <!-- iPhone 2: Floral Pastel (CENTRO) -->
     <div class="phone-wrapper phone-wrapper--center" id="pw2">
       <div class="phone-label"><span class="phone-label__tag phone-label__tag--rose">Premium</span><span>Floral Pastel</span></div>
       <div class="iphone iphone--featured" id="iphone2">
@@ -78,7 +386,50 @@
         <div class="iphone__btn-right"><div class="iphone__btn iphone__btn--power"></div></div>
         <div class="iphone__body">
           <div class="iphone__island"><div class="iphone__camera"></div></div>
-          <div class="iphone__screen" id="screen2"><iframe id="iframe2" src="plantilla2.html" title="Floral Pastel" loading="lazy" scrolling="no"></iframe></div>
+          <div class="iphone__screen" id="screen2">
+            <div class="phone-preview prev2" id="prev2">
+              <!-- Pétalos -->
+              <div class="prev2__petals" id="p2petals"></div>
+              <div class="prev2__corner prev2__corner--tl"></div>
+              <div class="prev2__corner prev2__corner--tr"></div>
+              <div class="prev2__corner prev2__corner--bl"></div>
+              <div class="prev2__corner prev2__corner--br"></div>
+              <p class="prev2__eyebrow">Juntos para siempre</p>
+              <div class="prev2__names">Valentina<span class="prev2__amp">&amp;</span>Sebastián</div>
+              <p class="prev2__ornament">✿ ────── ✿</p>
+              <p class="prev2__fecha">Sábado · 20 de Septiembre de 2025</p>
+              <div class="prev2__card">
+                <p class="prev2__card-label">Esta invitación es para</p>
+                <div class="prev2__divider"></div>
+                <p style="font-family:'Great Vibes',cursive;font-size:1.8rem;color:#9b7db8">Ana Martínez</p>
+                <p style="font-size:.65rem;color:#8a7080;margin-top:4px">✿ 2 pases reservados</p>
+              </div>
+              <div class="prev2__card">
+                <p class="prev2__card-label">Falta poco para el gran día</p>
+                <div class="prev2__divider"></div>
+                <div class="prev2__countdown">
+                  <div class="prev2__time"><span>38</span><small>Días</small></div>
+                  <div class="prev2__time"><span>14</span><small>Horas</small></div>
+                  <div class="prev2__time"><span>22</span><small>Min</small></div>
+                  <div class="prev2__time"><span>05</span><small>Seg</small></div>
+                </div>
+              </div>
+              <div class="prev2__card">
+                <p class="prev2__card-label">Ceremonia</p>
+                <div class="prev2__divider"></div>
+                <p style="font-family:'Cormorant Garamond',serif;font-size:.95rem;color:#4a3545">Parroquia de Santa María</p>
+                <p style="font-size:.65rem;color:#c9a8d4;letter-spacing:.12em;text-transform:uppercase;margin-top:3px">Sábado · 5:00 PM</p>
+              </div>
+              <div class="prev2__card">
+                <p class="prev2__card-label">Con la bendición de nuestros padres</p>
+                <div class="prev2__divider"></div>
+                <p style="font-family:'Cormorant Garamond',serif;font-size:.8rem;color:#4a3545;line-height:1.6">Elena Ruiz de López<br>Fernando López Mora</p>
+                <p style="font-size:.75rem;color:#c9a8d4;margin:8px 0">✿</p>
+                <p style="font-family:'Cormorant Garamond',serif;font-size:.8rem;color:#4a3545;line-height:1.6">Carmen Vega de Torres<br>Rodrigo Torres Salinas</p>
+              </div>
+              <div class="prev2__btn">✓ Confirmar asistencia</div>
+            </div>
+          </div>
           <div class="iphone__chin"><div class="iphone__bar"></div></div>
         </div>
         <div class="iphone__shine"></div>
@@ -88,6 +439,8 @@
         <a href="precios.html?diseno=2" class="phone-btn phone-btn--gold">Lo quiero</a>
       </div>
     </div>
+
+    <!-- iPhone 3: Beige Premium -->
     <div class="phone-wrapper phone-wrapper--right" id="pw3">
       <div class="phone-label"><span class="phone-label__tag phone-label__tag--beige">Más vendido</span><span>Beige Premium</span></div>
       <div class="iphone" id="iphone3">
@@ -95,7 +448,57 @@
         <div class="iphone__btn-right"><div class="iphone__btn iphone__btn--power"></div></div>
         <div class="iphone__body">
           <div class="iphone__island"><div class="iphone__camera"></div></div>
-          <div class="iphone__screen" id="screen3"><iframe id="iframe3" src="plantilla3.html" title="Beige Premium" loading="lazy" scrolling="no"></iframe></div>
+          <div class="iphone__screen" id="screen3">
+            <div class="phone-preview prev3" id="prev3">
+              <div class="prev3__grid-bg"></div>
+              <div class="prev3__line"></div>
+              <p class="prev3__eyebrow">Matrimonio</p>
+              <div class="prev3__line"></div>
+              <div class="prev3__names">Isabella<span class="prev3__amp">&amp;</span>Alejandro</div>
+              <div class="prev3__rule"></div>
+              <p class="prev3__fecha">20 · IX · 2025</p>
+              <p class="prev3__lugar">Ciudad de México</p>
+              <div class="prev3__editorial">
+                <div class="prev3__num">01</div>
+                <div class="prev3__content">
+                  <p class="prev3__label">Nuestra historia</p>
+                  <div class="prev3__thin-rule"></div>
+                  <p class="prev3__text">Dos almas que encontraron en el otro su lugar en el mundo. Los invitamos a ser testigos del inicio de nuestro capítulo más hermoso.</p>
+                </div>
+              </div>
+              <div class="prev3__editorial">
+                <div class="prev3__num">02</div>
+                <div class="prev3__content">
+                  <p class="prev3__label">Cuenta regresiva</p>
+                  <div class="prev3__thin-rule"></div>
+                  <div class="prev3__countdown">
+                    <div class="prev3__time"><span>42</span><small>Días</small></div>
+                    <div class="prev3__sep">·</div>
+                    <div class="prev3__time"><span>08</span><small>Hrs</small></div>
+                    <div class="prev3__sep">·</div>
+                    <div class="prev3__time"><span>30</span><small>Min</small></div>
+                  </div>
+                </div>
+              </div>
+              <div class="prev3__editorial">
+                <div class="prev3__num">03</div>
+                <div class="prev3__content">
+                  <p class="prev3__label">Ceremonia</p>
+                  <div class="prev3__thin-rule"></div>
+                  <p class="prev3__text">Parroquia de Santa María<br><span style="font-size:.65rem;color:#b89a6a;letter-spacing:.15em;text-transform:uppercase">Sábado · 17:00 hrs</span></p>
+                </div>
+              </div>
+              <div class="prev3__editorial">
+                <div class="prev3__num">04</div>
+                <div class="prev3__content">
+                  <p class="prev3__label">Nuestras familias</p>
+                  <div class="prev3__thin-rule"></div>
+                  <p class="prev3__text" style="font-family:'Cormorant Garamond',serif;font-style:italic">Sra. Elena Ruiz de López<br>Sr. Fernando López Mora</p>
+                </div>
+              </div>
+              <div class="prev3__btn">Confirmar asistencia</div>
+            </div>
+          </div>
           <div class="iphone__chin"><div class="iphone__bar"></div></div>
         </div>
         <div class="iphone__shine"></div>
@@ -105,10 +508,13 @@
         <a href="precios.html?diseno=3" class="phone-btn phone-btn--gold">Lo quiero</a>
       </div>
     </div>
-  </div>
+
+  </div><!-- /hero__phones -->
   <div class="hero__scroll"><div class="hero__scroll-line"></div><span>Descubre más</span></div>
 </section>
+
 <div class="sec-sep"><div class="sec-sep__line"></div><span>✦</span><div class="sec-sep__line"></div></div>
+
 <section class="benefits" id="beneficios">
   <div class="benefits__header reveal-up">
     <div class="section-tag">Por qué elegirnos</div>
@@ -124,7 +530,9 @@
     <div class="benefit-card reveal-up" style="transition-delay:.3s"><div class="benefit-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg></div><div><h3 class="benefit-card__title">Soporte personalizado</h3><p class="benefit-card__text">Te acompañamos por WhatsApp en cada paso. Respuesta rápida garantizada.</p></div></div>
   </div>
 </section>
+
 <div class="sec-sep"><div class="sec-sep__line"></div><span>✦</span><div class="sec-sep__line"></div></div>
+
 <section class="cta-section reveal-up">
   <div class="cta-section__inner">
     <div class="section-tag">Empieza hoy</div>
@@ -136,6 +544,7 @@
     </div>
   </div>
 </section>
+
 <footer class="footer">
   <div class="footer__inner">
     <div><span class="footer__logo">InvitArte</span><p class="footer__tagline">Invitaciones digitales premium para tu boda.</p></div>
@@ -148,12 +557,11 @@
     <div class="footer__copy">© 2026 InvitArte · Todos los derechos reservados</div>
   </div>
 </footer>
+
+<!-- MODAL CONTACTO -->
 <div class="modal-overlay" id="modal-contacto">
   <div class="modal--contacto">
-    <div class="modal__header">
-      <span class="modal__title">Contáctanos</span>
-      <button class="modal__close" id="close-modal-btn">✕</button>
-    </div>
+    <div class="modal__header"><span class="modal__title">Contáctanos</span><button class="modal__close" id="close-modal-btn">✕</button></div>
     <div class="modal__body">
       <div class="contact-options">
         <a href="https://wa.me/5215500000000?text=Hola%2C%20me%20interesa%20una%20invitación%20digital" target="_blank" rel="noopener" class="contact-option contact-option--wa">
@@ -183,6 +591,56 @@
   </div>
 </div>
 <div id="toast-container"></div>
+
+<script>
+// ── SCROLL WHEEL EN SCREENS ───────────────────────────────────
+// (para cuando se usen con overflow:scroll en móvil)
+['screen1','screen2','screen3'].forEach(id=>{
+  const s=document.getElementById(id);
+  if(!s)return;
+  s.addEventListener('wheel',e=>{e.preventDefault();s.scrollBy({top:e.deltaY,behavior:'auto'});},{passive:false});
+});
+
+// ── PARTÍCULAS DISEÑO 1 ──────────────────────────────────────
+(function(){
+  const wrap=document.getElementById('p1particles');
+  if(!wrap)return;
+  for(let i=0;i<20;i++){
+    const p=document.createElement('div');
+    p.className='prev1__particle';
+    p.style.cssText='left:'+Math.random()*100+'%;top:'+(Math.random()*900)+'px;animation-duration:'+(Math.random()*12+8)+'s;animation-delay:-'+(Math.random()*12)+'s;opacity:'+(Math.random()*.3+.05);
+    wrap.appendChild(p);
+  }
+})();
+
+// ── PÉTALOS DISEÑO 2 ─────────────────────────────────────────
+(function(){
+  const wrap=document.getElementById('p2petals');
+  if(!wrap)return;
+  const cols=['#f9b8c4','#e8b4d8','#c9a8d4','#f5c6d0','#ddb8e8'];
+  for(let i=0;i<14;i++){
+    const p=document.createElement('div');
+    p.className='prev2__petal';
+    p.style.cssText='left:'+Math.random()*100+'%;width:'+(Math.random()*10+5)+'px;height:'+(Math.random()*10+5)+'px;background:'+cols[Math.floor(Math.random()*cols.length)]+';animation-duration:'+(Math.random()*10+8)+'s;animation-delay:-'+(Math.random()*12)+'s;';
+    wrap.appendChild(p);
+  }
+})();
+
+// ── COUNTDOWN DISEÑO 1 (live) ────────────────────────────────
+(function(){
+  const FECHA='2026-09-14T17:00:00';
+  function upd(){
+    const d=new Date(FECHA)-Date.now();
+    if(d<=0)return;
+    const el=id=>document.getElementById(id);
+    if(el('d1-days'))  el('d1-days').textContent =String(Math.floor(d/86400000)).padStart(2,'0');
+    if(el('d1-hours')) el('d1-hours').textContent=String(Math.floor(d%86400000/3600000)).padStart(2,'0');
+    if(el('d1-mins'))  el('d1-mins').textContent =String(Math.floor(d%3600000/60000)).padStart(2,'0');
+    if(el('d1-secs'))  el('d1-secs').textContent =String(Math.floor(d%60000/1000)).padStart(2,'0');
+  }
+  upd();setInterval(upd,1000);
+})();
+</script>
 <script src="js/home.js"></script>
 </body>
 </html>
