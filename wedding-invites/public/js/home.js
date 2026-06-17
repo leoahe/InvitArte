@@ -1,47 +1,41 @@
 /**
  * INVITARTE — HOME.JS
- * Partículas + Pétalos en iPhones + Navbar + Modal Contacto
+ * Sin scroll en iPhones + Partículas + Pétalos + Navbar + Modal
  */
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initHeroCanvas();
-  initPreviewEffects();   // partículas/pétalos en los 3 iPhones
-  initPhoneScroll();
+  initPreviewEffects();
   initScrollReveal();
   initContactModal();
   initContactForm();
   initCountdown();
-
-  // Mostrar teléfonos con animación
   setTimeout(() => {
     document.querySelectorAll('.phone-wrapper').forEach(pw => pw.classList.add('visible'));
   }, 350);
 });
 
-/* ── NAVBAR ──────────────────────────────────────────────────── */
+/* ── NAVBAR ── */
 function initNavbar() {
   const nav    = document.getElementById('navbar');
   const burger = document.getElementById('burger');
   const menu   = document.getElementById('mobile-menu');
-
-  if (nav) {
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50), { passive: true });
-  }
+  if (nav) window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50), { passive: true });
   if (burger && menu) {
     burger.addEventListener('click', () => {
       const open = menu.classList.toggle('open');
       const ss = burger.querySelectorAll('span');
-      ss[0].style.transform = open ? 'rotate(45deg) translate(5px,5px)' : '';
+      ss[0].style.transform = open ? 'rotate(45deg) translate(5px,5px)'   : '';
       ss[1].style.opacity   = open ? '0' : '';
       ss[2].style.transform = open ? 'rotate(-45deg) translate(5px,-5px)' : '';
     });
   }
   window.addEventListener('scroll', () => menu?.classList.remove('open'), { passive: true });
-  ['nav-contacto-btn','mob-contacto-btn','hero-contacto-btn','cta-contacto-btn','footer-contacto-btn'].forEach(id =>
-    document.getElementById(id)?.addEventListener('click', openContact));
+  ['nav-contacto-btn','mob-contacto-btn','hero-contacto-btn','cta-contacto-btn','footer-contacto-btn']
+    .forEach(id => document.getElementById(id)?.addEventListener('click', openContact));
 }
 
-/* ── CANVAS PARTÍCULAS HERO ──────────────────────────────────── */
+/* ── CANVAS HERO ── */
 function initHeroCanvas() {
   const canvas = document.getElementById('hero-canvas');
   if (!canvas) return;
@@ -68,74 +62,45 @@ function initHeroCanvas() {
     raf = requestAnimationFrame(draw);
   };
   draw();
+  const hero = document.getElementById('hero');
+  if (hero) new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) { if (!raf) draw(); }
+    else { cancelAnimationFrame(raf); raf = null; }
+  }).observe(hero);
 }
 
-/* ══════════════════════════════════════════════════════════════
-   EFECTOS EN PREVIEWS DE IPHONE
-   Cada iPhone tiene un div .phone-preview con overflow:hidden
-   Los efectos (partículas, pétalos) se crean como canvas/divs
-   DENTRO del contenedor del preview para respetar el clip.
-══════════════════════════════════════════════════════════════ */
+/* ── EFECTOS EN PREVIEWS ── */
 function initPreviewEffects() {
   initParticlesElegante();
   initPetalosFloral();
   initPetalosBeige();
 }
 
-/* ── 1. PARTÍCULAS DORADAS — ELEGANTE ───────────────────────── */
+/* Partículas doradas iPhone 1 */
 function initParticlesElegante() {
-  const wrap = document.getElementById('p1particles');
-  if (!wrap) return;
-
-  // Canvas dentro del preview para respetar el clip
+  const container = document.getElementById('prev1');
+  if (!container) return;
   const canvas = document.createElement('canvas');
   canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2';
-  canvas.width  = 390;
-  canvas.height = 900;
-  wrap.parentElement.style.position = 'relative';
-  wrap.parentElement.appendChild(canvas);
-  // Ocultar el div placeholder
-  wrap.style.display = 'none';
-
+  canvas.width = 390; canvas.height = 900;
+  container.appendChild(canvas);
   const ctx = canvas.getContext('2d');
   const pts = [];
-  for (let i = 0; i < 55; i++) pts.push(mkGoldPt());
-
   function mkGoldPt() {
-    return {
-      x:       Math.random() * 390,
-      y:       Math.random() * 900,
-      size:    Math.random() * 2.5 + .5,
-      vy:      -(Math.random() * .8 + .2),
-      vx:      (Math.random() - .5) * .3,
-      opacity: Math.random() * .7 + .2,   // más visibles que antes
-      life: 1,
-      decay: Math.random() * .002 + .0005,
-    };
+    return { x:Math.random()*390, y:Math.random()*900, size:Math.random()*2.5+.5, vy:-(Math.random()*.8+.2), vx:(Math.random()-.5)*.3, opacity:Math.random()*.7+.2, life:1, decay:Math.random()*.002+.0005 };
   }
-
+  for (let i = 0; i < 55; i++) pts.push(mkGoldPt());
   (function draw() {
-    ctx.clearRect(0, 0, 390, 900);
-    pts.forEach((p, i) => {
-      p.x += p.vx; p.y += p.vy; p.life -= p.decay;
-      if (p.life <= 0 || p.y < -10) { pts[i] = mkGoldPt(); pts[i].y = 910; return; }
-      // Dibujar destello dorado: círculo + cruz de luz
-      ctx.save();
-      ctx.globalAlpha = p.opacity * p.life;
-      // Partícula principal
-      const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size*2);
-      grad.addColorStop(0,   'rgba(255,240,160,1)');
-      grad.addColorStop(0.4, 'rgba(201,168,76,.8)');
-      grad.addColorStop(1,   'rgba(201,168,76,0)');
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size * 2, 0, Math.PI * 2);
-      ctx.fill();
-      // Cruz de brillo en partículas grandes
-      if (p.size > 1.5) {
-        ctx.strokeStyle = 'rgba(255,240,160,.6)';
-        ctx.lineWidth   = .5;
-        const s = p.size * 3;
+    ctx.clearRect(0,0,390,900);
+    pts.forEach((p,i) => {
+      p.x+=p.vx; p.y+=p.vy; p.life-=p.decay;
+      if (p.life<=0||p.y<-10) { pts[i]=mkGoldPt(); pts[i].y=910; return; }
+      ctx.save(); ctx.globalAlpha=p.opacity*p.life;
+      const g = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.size*2);
+      g.addColorStop(0,'rgba(255,240,160,1)'); g.addColorStop(.4,'rgba(201,168,76,.8)'); g.addColorStop(1,'rgba(201,168,76,0)');
+      ctx.fillStyle=g; ctx.beginPath(); ctx.arc(p.x,p.y,p.size*2,0,Math.PI*2); ctx.fill();
+      if (p.size>1.5) {
+        ctx.strokeStyle='rgba(255,240,160,.6)'; ctx.lineWidth=.5; const s=p.size*3;
         ctx.beginPath(); ctx.moveTo(p.x-s,p.y); ctx.lineTo(p.x+s,p.y); ctx.stroke();
         ctx.beginPath(); ctx.moveTo(p.x,p.y-s); ctx.lineTo(p.x,p.y+s); ctx.stroke();
       }
@@ -145,152 +110,122 @@ function initParticlesElegante() {
   })();
 }
 
-/* ── 2. PÉTALOS ROSAS/LILA — FLORAL PASTEL ──────────────────── */
+/* Pétalos rosas iPhone 2 */
 function initPetalosFloral() {
   const wrap = document.getElementById('p2petals');
   if (!wrap) return;
-
   const colors = ['#f9b8c4','#e8b4d8','#c9a8d4','#f5c6d0','#ddb8e8','#f0a0c0','#e8c0f0'];
   for (let i = 0; i < 22; i++) {
     const p = document.createElement('div');
     p.className = 'prev2__petal';
-    const size  = Math.random() * 13 + 6;
-    const color = colors[Math.floor(Math.random() * colors.length)];
+    const size = Math.random()*13+6;
     p.style.cssText = [
-      'left:'            + Math.random() * 100 + '%',
-      'width:'           + size + 'px',
-      'height:'          + (size * (Math.random() * .6 + .6)) + 'px',
-      'background:'      + color,
-      'animation-duration:' + (Math.random() * 10 + 8) + 's',
-      'animation-delay:-'   + Math.random() * 14 + 's',
+      'left:'+Math.random()*100+'%',
+      'width:'+size+'px',
+      'height:'+(size*(Math.random()*.6+.6))+'px',
+      'background:'+colors[Math.floor(Math.random()*colors.length)],
+      'animation-duration:'+(Math.random()*10+8)+'s',
+      'animation-delay:-'+Math.random()*14+'s',
       'opacity:0',
     ].join(';');
     wrap.appendChild(p);
   }
 }
 
-/* ── 3. PÉTALOS CHAMPAGNE/DORADOS — BEIGE PREMIUM ───────────── */
+/* Pétalos champagne iPhone 3 */
 function initPetalosBeige() {
   const wrap = document.getElementById('p3petals-phone');
   if (!wrap) return;
-
   const colors = ['#D8C3A5','#C9A876','#e8d5b0','#f0e4c8','#dfc99a','#e8d4a8','#c8b48a'];
   for (let i = 0; i < 20; i++) {
     const p = document.createElement('div');
     p.className = 'prev3__petal';
-    const size  = Math.random() * 12 + 5;
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    // Formas variadas: hoja, oval, irregular
-    const br = Math.random() > .5
-      ? '60% 40% 60% 40%'
-      : (Math.random() > .5 ? '30% 70% 30% 70%' : '50% 50% 30% 70%');
+    const size = Math.random()*12+5;
+    const br = Math.random()>.5 ? '60% 40% 60% 40%' : (Math.random()>.5?'30% 70% 30% 70%':'50% 50% 30% 70%');
     p.style.cssText = [
-      'left:'            + Math.random() * 100 + '%',
-      'width:'           + size + 'px',
-      'height:'          + (size * (Math.random() * .7 + .5)) + 'px',
-      'background:'      + color,
-      'border-radius:'   + br,
-      'animation-duration:' + (Math.random() * 12 + 9) + 's',
-      'animation-delay:-'   + Math.random() * 14 + 's',
+      'left:'+Math.random()*100+'%',
+      'width:'+size+'px',
+      'height:'+(size*(Math.random()*.7+.5))+'px',
+      'background:'+colors[Math.floor(Math.random()*colors.length)],
+      'border-radius:'+br,
+      'animation-duration:'+(Math.random()*12+9)+'s',
+      'animation-delay:-'+Math.random()*14+'s',
       'opacity:0',
     ].join(';');
     wrap.appendChild(p);
   }
 }
 
-/* ── SCROLL WHEEL EN SCREENS (div, no iframe) ────────────────── */
-function initPhoneScroll() {
-  ['screen1','screen2','screen3'].forEach(id => {
-    const screen = document.getElementById(id);
-    if (!screen) return;
-    screen.addEventListener('wheel', e => {
-      e.preventDefault();
-      screen.scrollBy({ top: e.deltaY, behavior: 'auto' });
-    }, { passive: false });
-    screen.addEventListener('mouseenter', () => screen.style.cursor = 'ns-resize');
-    screen.addEventListener('mouseleave', () => screen.style.cursor = '');
-  });
-}
-
-/* ── COUNTDOWN DISEÑO 1 ──────────────────────────────────────── */
+/* ── COUNTDOWN ── */
 function initCountdown() {
   const FECHA = '2026-09-14T17:00:00';
   function upd() {
-    const d = new Date(FECHA) - Date.now();
-    if (d <= 0) return;
-    const el = id => document.getElementById(id);
-    if (el('d1-days'))  el('d1-days').textContent  = String(Math.floor(d/86400000)).padStart(2,'0');
-    if (el('d1-hours')) el('d1-hours').textContent = String(Math.floor(d%86400000/3600000)).padStart(2,'0');
-    if (el('d1-mins'))  el('d1-mins').textContent  = String(Math.floor(d%3600000/60000)).padStart(2,'0');
-    if (el('d1-secs'))  el('d1-secs').textContent  = String(Math.floor(d%60000/1000)).padStart(2,'0');
+    const d = new Date(FECHA) - Date.now(); if (d<=0) return;
+    const g = id => document.getElementById(id);
+    if(g('d1-days'))  g('d1-days').textContent  = String(Math.floor(d/86400000)).padStart(2,'0');
+    if(g('d1-hours')) g('d1-hours').textContent = String(Math.floor(d%86400000/3600000)).padStart(2,'0');
+    if(g('d1-mins'))  g('d1-mins').textContent  = String(Math.floor(d%3600000/60000)).padStart(2,'0');
+    if(g('d1-secs'))  g('d1-secs').textContent  = String(Math.floor(d%60000/1000)).padStart(2,'0');
   }
-  upd(); setInterval(upd, 1000);
+  upd(); setInterval(upd,1000);
 }
 
-/* ── SCROLL REVEAL ───────────────────────────────────────────── */
+/* ── SCROLL REVEAL ── */
 function initScrollReveal() {
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
-      const delay = parseFloat(e.target.style.transitionDelay || '0') * 1000;
+      const delay = parseFloat(e.target.style.transitionDelay||'0')*1000;
       setTimeout(() => e.target.classList.add('visible'), delay);
       obs.unobserve(e.target);
     });
-  }, { threshold: .1, rootMargin: '0px 0px -50px 0px' });
+  }, { threshold:.1, rootMargin:'0px 0px -50px 0px' });
   document.querySelectorAll('.reveal-up, .benefit-card, .cta-section').forEach(el => obs.observe(el));
 }
 
-/* ── MODAL CONTACTO ──────────────────────────────────────────── */
+/* ── MODAL CONTACTO ── */
 function openContact() {
   document.getElementById('modal-contacto')?.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  resetContactForm();
+  document.body.style.overflow='hidden'; resetContactForm();
 }
 function closeContact() {
   document.getElementById('modal-contacto')?.classList.remove('open');
-  document.body.style.overflow = '';
+  document.body.style.overflow='';
 }
 function initContactModal() {
   document.getElementById('close-modal-btn')?.addEventListener('click', closeContact);
-  document.getElementById('modal-contacto')?.addEventListener('click', e => { if (e.target === e.currentTarget) closeContact(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContact(); });
+  document.getElementById('modal-contacto')?.addEventListener('click', e => { if(e.target===e.currentTarget) closeContact(); });
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeContact(); });
 }
 function resetContactForm() {
-  const f = document.getElementById('contact-form');
-  const s = document.getElementById('cf-success');
-  const b = document.getElementById('cf-submit');
-  f?.querySelectorAll('.form-input').forEach(el => { el.value = ''; el.classList.remove('error','success'); });
-  f?.querySelectorAll('.form-error').forEach(el => el.classList.remove('visible'));
-  if (s) s.style.display = 'none';
-  if (b) { b.style.display = ''; b.disabled = false; b.textContent = 'Enviar mensaje'; b.classList.remove('btn--loading'); }
+  const f=document.getElementById('contact-form'), s=document.getElementById('cf-success'), b=document.getElementById('cf-submit');
+  f?.querySelectorAll('.form-input').forEach(el=>{el.value='';el.classList.remove('error','success');});
+  f?.querySelectorAll('.form-error').forEach(el=>el.classList.remove('visible'));
+  if(s) s.style.display='none';
+  if(b){b.style.display='';b.disabled=false;b.textContent='Enviar mensaje';b.classList.remove('btn--loading');}
 }
-
-/* ── FORMULARIO CONTACTO ─────────────────────────────────────── */
 function initContactForm() {
-  const form = document.getElementById('contact-form');
-  if (!form) return;
+  const form=document.getElementById('contact-form'); if(!form) return;
   form.addEventListener('submit', async e => {
     e.preventDefault();
-    const nombre  = document.getElementById('cf-nombre');
-    const email   = document.getElementById('cf-email');
-    const mensaje = document.getElementById('cf-mensaje');
-    const submit  = document.getElementById('cf-submit');
-    const success = document.getElementById('cf-success');
-    [nombre,email,mensaje].forEach(el => { el.classList.remove('error'); el.closest('.form-group')?.querySelector('.form-error')?.classList.remove('visible'); });
-    let err = false;
-    if (!nombre.value.trim() || nombre.value.trim().length < 2) { showErr(nombre,'Ingresa tu nombre'); err = true; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim()))  { showErr(email,'Correo inválido');  err = true; }
-    if (!mensaje.value.trim() || mensaje.value.trim().length < 8) { showErr(mensaje,'Escribe tu mensaje (mín. 8 caracteres)'); err = true; }
-    if (err) return;
-    submit.disabled = true; submit.textContent = 'Enviando...'; submit.classList.add('btn--loading');
-    await new Promise(r => setTimeout(r, 1400));
-    submit.style.display = 'none'; success.style.display = 'block';
+    const nombre=document.getElementById('cf-nombre'), email=document.getElementById('cf-email'),
+          mensaje=document.getElementById('cf-mensaje'), submit=document.getElementById('cf-submit'),
+          success=document.getElementById('cf-success');
+    [nombre,email,mensaje].forEach(el=>{el.classList.remove('error');el.closest('.form-group')?.querySelector('.form-error')?.classList.remove('visible');});
+    let err=false;
+    if(!nombre.value.trim()||nombre.value.trim().length<2){showErr(nombre,'Ingresa tu nombre');err=true;}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())){showErr(email,'Correo inválido');err=true;}
+    if(!mensaje.value.trim()||mensaje.value.trim().length<8){showErr(mensaje,'Escribe tu mensaje (mín. 8 caracteres)');err=true;}
+    if(err) return;
+    submit.disabled=true; submit.textContent='Enviando...'; submit.classList.add('btn--loading');
+    await new Promise(r=>setTimeout(r,1400));
+    submit.style.display='none'; success.style.display='block';
   });
 }
-function showErr(input, msg) {
+function showErr(input,msg){
   input.classList.add('error');
-  const g = input.closest('.form-group'); if (!g) return;
-  let el = g.querySelector('.form-error');
-  if (!el) { el = document.createElement('div'); el.className = 'form-error'; g.appendChild(el); }
-  el.textContent = '✗ ' + msg; el.classList.add('visible');
+  const g=input.closest('.form-group'); if(!g) return;
+  let el=g.querySelector('.form-error');
+  if(!el){el=document.createElement('div');el.className='form-error';g.appendChild(el);}
+  el.textContent='✗ '+msg; el.classList.add('visible');
 }

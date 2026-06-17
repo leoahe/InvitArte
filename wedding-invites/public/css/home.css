@@ -81,9 +81,8 @@ img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
 .iphone__island{position:absolute;top:13px;left:50%;transform:translateX(-50%);z-index:10;width:86px;height:27px;background:#000;border-radius:20px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px}
 .iphone__camera{width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#1a3550,#050505);box-shadow:0 0 0 1.5px rgba(255,255,255,.06)}
 /* SCROLL FIX — overflow:scroll en contenedor + pointer-events:none en iframe + wheel listener en JS */
-.iphone__screen{height:428px;overflow-y:scroll;overflow-x:hidden;position:relative;background:#fff;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.iphone__screen{height:428px;overflow:hidden;position:relative;background:#fff}
 .iphone--featured .iphone__screen{height:508px}
-.iphone__screen::-webkit-scrollbar{display:none}
 .iphone__iframe{width:390px;height:900px;border:none;transform-origin:top left;transform:scale(.5385);display:block;pointer-events:none;flex-shrink:0}
 .iphone--featured .iphone__iframe{transform:scale(.636)}
 .iphone__chin{height:26px;background:#000;display:flex;align-items:center;justify-content:center}
@@ -184,11 +183,6 @@ img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
 @media(max-width:768px){.hero{padding:88px 20px 60px}.hero__phones{flex-direction:column;align-items:center;gap:30px}.phone-wrapper--left,.phone-wrapper--right{display:none}.phone-wrapper--center.visible{transform:translateY(0) scale(1)!important;opacity:1!important}.iphone--featured{width:228px}.iphone--featured .iphone__screen{height:465px}.iphone--featured .iphone__iframe{transform:scale(.585)}.hero__stats,.hero__cta,.hero__trust{justify-content:center}.benefits{padding:52px 20px}.benefits__grid{grid-template-columns:1fr}.cta-section{padding:52px 20px}.cta-section__inner{padding:36px 20px}.footer__inner{flex-direction:column;text-align:center}.footer__links{justify-content:center}.sec-sep{padding:0 20px}}
 @media(max-width:480px){.hero__title{font-size:1.9rem}.hero__cta{flex-direction:column;width:100%}.hero__cta .btn{width:100%;justify-content:center}.cta-section__actions{flex-direction:column}.cta-section__actions .btn{width:100%;justify-content:center}}
 
-/* ── OVERRIDE: preview HTML dentro del iPhone ─────────────────
-   El .iphone__screen tiene overflow-y:scroll
-   El .phone-preview (div) es el contenido que hace scroll dentro
-   Se aplica transform:scale en el div, no en iframe
-──────────────────────────────────────────────────────────────── */
 .phone-preview{
   width:390px;
   transform-origin:top left;
