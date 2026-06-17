@@ -6,9 +6,38 @@
   <title>Invitación Beige Premium — InvitArte</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/plantilla3.css">
+  <style>
+    /* ── PÉTALOS CHAMPAGNE ──────────────────── */
+    .p3-petals-wrap {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .p3-petal {
+      position: absolute;
+      top: -20px;
+      border-radius: 60% 40% 60% 40%;
+      opacity: 0;
+      animation: p3PetalFall linear infinite;
+    }
+    @keyframes p3PetalFall {
+      0%   { transform: translateY(-20px) rotate(0deg) scale(1);   opacity: 0; }
+      5%   { opacity: .55; }
+      90%  { opacity: .35; }
+      100% { transform: translateY(110vh) rotate(380deg) scale(.7); opacity: 0; }
+    }
+  </style>
 </head>
 <body>
+
+<!-- PÉTALOS CHAMPAGNE -->
+<div class="p3-petals-wrap" id="p3petals"></div>
+
+<!-- CANVAS PARTÍCULAS (mantener original) -->
 <canvas class="p3-canvas" id="p3canvas"></canvas>
+
 <audio id="music" loop><source src="musica.mp3" type="audio/mpeg"></audio>
 <button class="p3-music-btn" id="musicBtn" title="Música">♪</button>
 
@@ -164,27 +193,125 @@
 </footer>
 
 <script>
-document.addEventListener('DOMContentLoaded',()=>{
-  const params=new URLSearchParams(window.location.search);
-  const invitado=params.get('invitado');
-  const pases=parseInt(params.get('pases'))||1;
-  const FECHA='2025-09-20';
-  const secInv=document.getElementById('sec-invitado');
-  const gName=document.getElementById('guestName');
-  const gPass=document.getElementById('guestPasses');
-  if(invitado&&invitado.trim()){gName.textContent=decodeURIComponent(invitado);gPass.textContent=pases>1?pases+' lugares reservados':'1 lugar reservado';}else{if(secInv)secInv.style.display='none';}
-  function updateCD(){const diff=new Date(FECHA+'T17:00:00')-Date.now();if(diff<=0)return;document.getElementById('cd-days').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');document.getElementById('cd-hours').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');document.getElementById('cd-minutes').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');document.getElementById('cd-seconds').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');}
-  updateCD();setInterval(updateCD,1000);
-  const music=document.getElementById('music');const btn=document.getElementById('musicBtn');let playing=false;
-  const tryPlay=()=>{if(!playing&&music){music.volume=0.3;music.play().then(()=>{playing=true;btn.textContent='♫';}).catch(()=>{});}document.removeEventListener('click',tryPlay);};
-  document.addEventListener('click',tryPlay,{once:true});
-  btn.addEventListener('click',e=>{e.stopPropagation();if(playing){music.pause();playing=false;btn.textContent='♪';}else{music.play().catch(()=>{});playing=true;btn.textContent='♫';}});
-  const canvas=document.getElementById('p3canvas');
-  if(canvas){const ctx=canvas.getContext('2d');let W,H,pts=[];const resize=()=>{W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;};resize();window.addEventListener('resize',resize,{passive:true});for(let i=0;i<35;i++)pts.push({x:Math.random()*1200,y:Math.random()*800,vy:-(Math.random()*.3+.1),opacity:Math.random()*.4+.05,size:Math.random()*1.5+.5});(function draw(){ctx.clearRect(0,0,W,H);pts.forEach((p,i)=>{p.y+=p.vy;if(p.y<-10){pts[i].y=H+5;pts[i].x=Math.random()*W;}ctx.save();ctx.globalAlpha=p.opacity;ctx.fillStyle='#b89a6a';ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();ctx.restore();});requestAnimationFrame(draw);})();}
-  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');obs.unobserve(e.target);}}),{threshold:.1});
-  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.addEventListener('DOMContentLoaded', () => {
+  const params   = new URLSearchParams(window.location.search);
+  const invitado = params.get('invitado');
+  const pases    = parseInt(params.get('pases')) || 1;
+  const FECHA    = '2025-09-20';
+
+  // Invitado
+  const secInv = document.getElementById('sec-invitado');
+  const gName  = document.getElementById('guestName');
+  const gPass  = document.getElementById('guestPasses');
+  if (invitado && invitado.trim()) {
+    gName.textContent = decodeURIComponent(invitado);
+    gPass.textContent = pases > 1 ? pases + ' lugares reservados' : '1 lugar reservado';
+  } else {
+    if (secInv) secInv.style.display = 'none';
+  }
+
+  // Countdown
+  function updateCD() {
+    const diff = new Date(FECHA + 'T17:00:00') - Date.now();
+    if (diff <= 0) return;
+    document.getElementById('cd-days').textContent    = String(Math.floor(diff/86400000)).padStart(2,'0');
+    document.getElementById('cd-hours').textContent   = String(Math.floor(diff%86400000/3600000)).padStart(2,'0');
+    document.getElementById('cd-minutes').textContent = String(Math.floor(diff%3600000/60000)).padStart(2,'0');
+    document.getElementById('cd-seconds').textContent = String(Math.floor(diff%60000/1000)).padStart(2,'0');
+  }
+  updateCD(); setInterval(updateCD, 1000);
+
+  // Música
+  const music = document.getElementById('music');
+  const btn   = document.getElementById('musicBtn');
+  let playing = false;
+  const tryPlay = () => {
+    if (!playing && music) { music.volume = 0.3; music.play().then(() => { playing = true; btn.textContent = '♫'; }).catch(() => {}); }
+    document.removeEventListener('click', tryPlay);
+  };
+  document.addEventListener('click', tryPlay, { once: true });
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    if (playing) { music.pause(); playing = false; btn.textContent = '♪'; }
+    else { music.play().catch(() => {}); playing = true; btn.textContent = '♫'; }
+  });
+
+  // ── PÉTALOS CHAMPAGNE/DORADOS ──────────────────────────────
+  const wrap = document.getElementById('p3petals');
+  const petalColors = [
+    '#D8C3A5', '#C9A876', '#e8d5b0', '#f0e4c8',
+    '#dfc99a', '#e8d4a8', '#c8b48a', '#f5ecd8'
+  ];
+  for (let i = 0; i < 22; i++) {
+    const p = document.createElement('div');
+    p.className = 'p3-petal';
+    const size = Math.random() * 14 + 6;
+    const color = petalColors[Math.floor(Math.random() * petalColors.length)];
+    // Variedad de formas: algunos redondos, algunos en forma de hoja
+    const br = Math.random() > 0.5
+      ? '60% 40% 60% 40%'
+      : `${Math.floor(Math.random()*40+40)}% ${Math.floor(Math.random()*40+20)}% ${Math.floor(Math.random()*40+40)}% ${Math.floor(Math.random()*40+20)}%`;
+    p.style.cssText = [
+      'left:'   + Math.random() * 100 + '%',
+      'width:'  + size + 'px',
+      'height:' + (size * (Math.random() * .6 + .7)) + 'px',
+      'background:' + color,
+      'border-radius:' + br,
+      'animation-duration:' + (Math.random() * 12 + 10) + 's',
+      'animation-delay:-'  + Math.random() * 15 + 's',
+      'opacity:0',
+    ].join(';');
+    wrap.appendChild(p);
+  }
+
+  // ── CANVAS PARTÍCULAS FLOTANTES ───────────────────────────
+  const canvas = document.getElementById('p3canvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let W, H, pts = [];
+    const resize = () => { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; };
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+    for (let i = 0; i < 40; i++) pts.push({
+      x: Math.random() * 1200, y: Math.random() * 800,
+      vy: -(Math.random() * .35 + .08),
+      vx: (Math.random() - .5) * .12,
+      opacity: Math.random() * .45 + .1,
+      size: Math.random() * 2 + .5
+    });
+    (function draw() {
+      ctx.clearRect(0, 0, W, H);
+      pts.forEach((p, i) => {
+        p.y += p.vy; p.x += p.vx;
+        if (p.y < -10) { pts[i].y = H + 5; pts[i].x = Math.random() * W; }
+        if (p.x < 0 || p.x > W) pts[i].vx *= -1;
+        ctx.save();
+        ctx.globalAlpha = p.opacity;
+        ctx.fillStyle = '#b89a6a';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      });
+      requestAnimationFrame(draw);
+    })();
+  }
+
+  // Reveal
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('show'); obs.unobserve(e.target); }
+  }), { threshold: .1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 });
-window.rsvp3=(resp,btn)=>{const msg=document.getElementById('rsvp-msg');document.querySelectorAll('.p3-rsvp-btn').forEach(b=>b.disabled=true);msg.textContent=resp==='si'?'Gracias por confirmar. Los esperamos con gusto.':'Gracias por avisarnos. Los tendremos en mente.';msg.style.opacity='1';};
+
+window.rsvp3 = (resp, btn) => {
+  const msg = document.getElementById('rsvp-msg');
+  document.querySelectorAll('.p3-rsvp-btn').forEach(b => b.disabled = true);
+  msg.textContent = resp === 'si'
+    ? 'Gracias por confirmar. Los esperamos con gusto.'
+    : 'Gracias por avisarnos. Los tendremos en mente.';
+  msg.style.opacity = '1';
+};
 </script>
 </body>
 </html>

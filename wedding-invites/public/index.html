@@ -8,271 +8,90 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400;500;600;700&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/home.css">
   <style>
-  /* ── PREVIEW CARDS DENTRO DE LOS IPHONES ─────────────────────
-     Se renderizan en HTML puro, sin iframe, para evitar problemas
-     de cross-origin, rutas relativas y viewport incorrecto.
-  ─────────────────────────────────────────────────────────────── */
-
-  .phone-preview{
-    width:390px;
-    min-height:900px;
-    transform-origin:top left;
-    position:relative;
-    overflow:hidden;
-  }
+  /* ════════════════════════════════════════════
+     PREVIEWS HTML PURO DENTRO DE IPHONES
+  ════════════════════════════════════════════ */
+  .phone-preview{width:390px;min-height:900px;transform-origin:top left;position:relative;overflow:hidden}
 
   /* ── DISEÑO 1: ELEGANTE NEGRO + DORADO ── */
-  .prev1{
-    background:linear-gradient(180deg,#0a0a0c 0%,#111114 100%);
-    display:flex;flex-direction:column;align-items:center;
-    padding:60px 24px 40px;
-    font-family:'Cormorant Garamond',serif;
-  }
-  .prev1__eyebrow{
-    font-size:.55rem;letter-spacing:.35em;text-transform:uppercase;
-    color:rgba(201,168,76,.55);margin-bottom:28px;
-  }
-  .prev1__divider{
-    width:120px;height:1px;
-    background:linear-gradient(90deg,transparent,#c9a84c,transparent);
-    margin-bottom:28px;
-  }
-  .prev1__names{
-    font-family:'Great Vibes',cursive;
-    font-size:4rem;color:#c9a84c;line-height:1.05;text-align:center;
-    margin-bottom:8px;
-  }
-  .prev1__amp{
-    font-family:'Cormorant Garamond',serif;font-style:italic;
-    font-size:1rem;color:rgba(201,168,76,.4);margin:6px 0;
-  }
-  .prev1__fecha{
-    font-size:.65rem;letter-spacing:.3em;color:rgba(201,168,76,.5);
-    text-transform:uppercase;margin-top:10px;
-  }
-  .prev1__ornament{
-    width:80px;height:1px;
-    background:linear-gradient(90deg,transparent,rgba(201,168,76,.3),transparent);
-    margin:24px 0;
-  }
-  .prev1__card{
-    width:100%;background:rgba(201,168,76,.06);
-    border:1px solid rgba(201,168,76,.18);border-radius:16px;
-    padding:20px;text-align:center;margin-bottom:16px;
-  }
-  .prev1__card-label{
-    font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;
-    color:rgba(201,168,76,.5);margin-bottom:10px;
-  }
-  .prev1__card-content{
-    font-family:'Cormorant Garamond',serif;font-size:.85rem;
-    color:rgba(255,255,255,.6);line-height:1.6;
-  }
-  .prev1__countdown{
-    display:flex;gap:10px;justify-content:center;margin-bottom:16px;
-  }
-  .prev1__time{
-    background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);
-    border-radius:10px;padding:10px 12px;text-align:center;min-width:54px;
-  }
-  .prev1__time span{
-    display:block;font-family:'Cormorant Garamond',serif;
-    font-size:1.6rem;color:#c9a84c;line-height:1;
-  }
-  .prev1__time small{
-    display:block;font-size:.42rem;letter-spacing:.15em;
-    text-transform:uppercase;color:rgba(201,168,76,.4);margin-top:3px;
-  }
-  .prev1__candles{
-    display:flex;gap:20px;justify-content:center;margin:20px 0;
-  }
-  .prev1__candle{
-    display:flex;flex-direction:column;align-items:center;gap:2px;
-  }
-  .prev1__candle-flame{
-    width:8px;height:12px;
-    background:radial-gradient(ellipse at 50% 80%,#fff8c0,#f5a623 60%,transparent);
-    border-radius:50% 50% 30% 30%;
-    animation:flicker 1.5s ease-in-out infinite alternate;
-  }
-  @keyframes flicker{0%{transform:scale(1) rotate(-2deg)}100%{transform:scale(1.1) rotate(2deg)}}
+  .prev1{background:linear-gradient(180deg,#0a0a0c 0%,#111114 100%);display:flex;flex-direction:column;align-items:center;padding:60px 24px 40px;font-family:'Cormorant Garamond',serif}
+  .prev1__eyebrow{font-size:.55rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(201,168,76,.55);margin-bottom:22px;text-align:center}
+  .prev1__divider{width:120px;height:1px;background:linear-gradient(90deg,transparent,#c9a84c,transparent);margin-bottom:22px}
+  .prev1__names{font-family:'Great Vibes',cursive;font-size:4rem;color:#c9a84c;line-height:1.05;text-align:center;margin-bottom:6px}
+  .prev1__amp{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:rgba(201,168,76,.4);margin:5px 0}
+  .prev1__fecha{font-size:.62rem;letter-spacing:.3em;color:rgba(201,168,76,.5);text-transform:uppercase;margin-top:8px}
+  .prev1__ornament{width:80px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.3),transparent);margin:20px 0}
+  .prev1__card{width:100%;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.18);border-radius:14px;padding:18px;text-align:center;margin-bottom:14px}
+  .prev1__card-label{font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(201,168,76,.5);margin-bottom:8px}
+  .prev1__card-content{font-family:'Cormorant Garamond',serif;font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.5}
+  .prev1__countdown{display:flex;gap:8px;justify-content:center;margin-bottom:14px}
+  .prev1__time{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:9px 10px;text-align:center;min-width:52px}
+  .prev1__time span{display:block;font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#c9a84c;line-height:1}
+  .prev1__time small{display:block;font-size:.4rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(201,168,76,.4);margin-top:3px}
+  .prev1__candles{display:flex;gap:18px;justify-content:center;margin:18px 0}
+  .prev1__candle{display:flex;flex-direction:column;align-items:center;gap:2px}
+  .prev1__candle-flame{width:8px;height:12px;background:radial-gradient(ellipse at 50% 80%,#fff8c0,#f5a623 60%,transparent);border-radius:50% 50% 30% 30%;animation:flicker 1.5s ease-in-out infinite alternate}
+  @keyframes flicker{0%{transform:scale(1) rotate(-2deg)}100%{transform:scale(1.12) rotate(2deg)}}
   .prev1__candle-body{width:6px;height:36px;background:linear-gradient(180deg,#f0e8d8,#d4c9b0);border-radius:3px}
-  .prev1__particles{
-    position:absolute;inset:0;pointer-events:none;overflow:hidden;
-  }
-  .prev1__particle{
-    position:absolute;width:2px;height:2px;border-radius:50%;
-    background:#c9a84c;opacity:.35;animation:pFloat linear infinite;
-  }
-  @keyframes pFloat{0%{transform:translateY(0);opacity:.35}100%{transform:translateY(-900px);opacity:0}}
-  .prev1__btn{
-    display:inline-block;padding:10px 28px;
-    background:linear-gradient(135deg,rgba(201,168,76,.15),rgba(201,168,76,.08));
-    border:1px solid rgba(201,168,76,.35);border-radius:999px;
-    font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;
-    color:#c9a84c;margin-top:10px;
-  }
+  .prev1__btn{display:inline-block;padding:10px 26px;background:linear-gradient(135deg,rgba(201,168,76,.15),rgba(201,168,76,.08));border:1px solid rgba(201,168,76,.35);border-radius:999px;font-size:.52rem;letter-spacing:.24em;text-transform:uppercase;color:#c9a84c;margin-top:10px}
+  /* Canvas de partículas se inserta via JS dentro de .prev1 */
 
   /* ── DISEÑO 2: FLORAL PASTEL ── */
-  .prev2{
-    background:linear-gradient(160deg,#fff5f8,#f7eefa,#fdf5ff);
-    display:flex;flex-direction:column;align-items:center;
-    padding:55px 24px 40px;font-family:'Cormorant Garamond',serif;
-    position:relative;overflow:hidden;
-  }
+  .prev2{background:linear-gradient(160deg,#fff5f8,#f7eefa,#fdf5ff);display:flex;flex-direction:column;align-items:center;padding:55px 22px 40px;font-family:'Cormorant Garamond',serif;position:relative;overflow:hidden}
   .prev2__corner{position:absolute;width:160px;height:160px;opacity:.22;pointer-events:none}
   .prev2__corner--tl{top:0;left:0;background:radial-gradient(circle at 0 0,#f2b8c6,transparent 70%)}
   .prev2__corner--tr{top:0;right:0;background:radial-gradient(circle at 100% 0,#c9a8d4,transparent 70%)}
   .prev2__corner--bl{bottom:0;left:0;background:radial-gradient(circle at 0 100%,#9b7db8,transparent 70%)}
   .prev2__corner--br{bottom:0;right:0;background:radial-gradient(circle at 100% 100%,#f2b8c6,transparent 70%)}
-  .prev2__eyebrow{
-    font-size:.5rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;
-    color:#9b7db8;margin-bottom:16px;position:relative;z-index:1;
-  }
-  .prev2__names{
-    font-family:'Great Vibes',cursive;font-size:3.6rem;
-    color:#4a3545;line-height:1.05;text-align:center;position:relative;z-index:1;
-  }
-  .prev2__amp{
-    font-family:'Cormorant Garamond',serif;font-style:italic;
-    font-size:.95rem;color:rgba(201,168,212,.6);display:block;margin:5px 0;
-  }
-  .prev2__ornament{
-    font-size:.8rem;color:#e8889a;letter-spacing:.2em;
-    margin:12px 0;position:relative;z-index:1;
-  }
-  .prev2__fecha{
-    font-family:'Cormorant Garamond',serif;font-size:.85rem;
-    font-style:italic;color:#8a7080;margin-bottom:20px;position:relative;z-index:1;
-  }
-  .prev2__card{
-    width:100%;background:rgba(255,255,255,.85);
-    border:1px solid rgba(201,168,212,.35);border-radius:20px;
-    padding:18px;text-align:center;margin-bottom:14px;
-    backdrop-filter:blur(8px);position:relative;z-index:1;
-  }
-  .prev2__card-label{
-    font-size:.48rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
-    color:#9b7db8;margin-bottom:8px;
-  }
-  .prev2__divider{
-    width:60px;height:1.5px;
-    background:linear-gradient(90deg,transparent,#e8889a,transparent);
-    margin:.7rem auto;
-  }
-  .prev2__card-text{font-size:.75rem;color:#8a7080;line-height:1.5}
-  .prev2__countdown{
-    display:flex;gap:8px;justify-content:center;margin:8px 0;
-  }
-  .prev2__time{
-    background:#fff;border:1px solid rgba(201,168,212,.35);
-    border-radius:12px;padding:10px 10px;text-align:center;min-width:50px;
-  }
-  .prev2__time span{
-    display:block;font-family:'Cormorant Garamond',serif;
-    font-size:1.5rem;font-weight:500;color:#9b7db8;line-height:1;
-  }
-  .prev2__time small{
-    display:block;font-size:.42rem;letter-spacing:.12em;
-    text-transform:uppercase;color:#8a7080;margin-top:3px;
-  }
+  .prev2__eyebrow{font-size:.5rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#9b7db8;margin-bottom:14px;position:relative;z-index:1}
+  .prev2__names{font-family:'Great Vibes',cursive;font-size:3.5rem;color:#4a3545;line-height:1.05;text-align:center;position:relative;z-index:1}
+  .prev2__amp{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.92rem;color:rgba(201,168,212,.6);display:block;margin:5px 0}
+  .prev2__ornament{font-size:.78rem;color:#e8889a;letter-spacing:.2em;margin:10px 0;position:relative;z-index:1}
+  .prev2__fecha{font-family:'Cormorant Garamond',serif;font-size:.82rem;font-style:italic;color:#8a7080;margin-bottom:18px;position:relative;z-index:1}
+  .prev2__card{width:100%;background:rgba(255,255,255,.88);border:1px solid rgba(201,168,212,.35);border-radius:18px;padding:16px;text-align:center;margin-bottom:12px;backdrop-filter:blur(6px);position:relative;z-index:1}
+  .prev2__card-label{font-size:.46rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:#9b7db8;margin-bottom:7px}
+  .prev2__divider{width:55px;height:1.5px;background:linear-gradient(90deg,transparent,#e8889a,transparent);margin:.65rem auto}
+  .prev2__card-text{font-size:.73rem;color:#8a7080;line-height:1.5}
+  .prev2__countdown{display:flex;gap:7px;justify-content:center;margin:7px 0}
+  .prev2__time{background:#fff;border:1px solid rgba(201,168,212,.35);border-radius:11px;padding:9px 9px;text-align:center;min-width:48px}
+  .prev2__time span{display:block;font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:500;color:#9b7db8;line-height:1}
+  .prev2__time small{display:block;font-size:.4rem;letter-spacing:.12em;text-transform:uppercase;color:#8a7080;margin-top:3px}
+  /* Pétalos */
   .prev2__petals{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
-  .prev2__petal{
-    position:absolute;top:-10px;
-    border-radius:50% 10% 50% 10%;opacity:.5;
-    animation:p2Float linear infinite;
-  }
-  @keyframes p2Float{0%{transform:translateY(-10px) rotate(0deg)}100%{transform:translateY(920px) rotate(360deg)}}
-  .prev2__btn{
-    display:inline-block;padding:10px 28px;
-    background:linear-gradient(135deg,#e8889a,#9b7db8);
-    border:none;border-radius:999px;font-size:.55rem;letter-spacing:.2em;
-    text-transform:uppercase;color:#fff;margin-top:8px;
-    box-shadow:0 6px 18px rgba(155,125,184,.35);
-  }
+  .prev2__petal{position:absolute;top:-10px;border-radius:50% 10% 50% 10%;opacity:0;animation:p2Fall linear infinite}
+  @keyframes p2Fall{0%{transform:translateY(-10px) rotate(0deg);opacity:0}5%{opacity:.6}90%{opacity:.35}100%{transform:translateY(920px) rotate(370deg);opacity:0}}
+  .prev2__btn{display:inline-block;padding:10px 26px;background:linear-gradient(135deg,#e8889a,#9b7db8);border:none;border-radius:999px;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;margin-top:8px;box-shadow:0 6px 18px rgba(155,125,184,.35);position:relative;z-index:1}
 
   /* ── DISEÑO 3: BEIGE PREMIUM ── */
-  .prev3{
-    background:linear-gradient(180deg,#faf6f0,#eddfc8);
-    display:flex;flex-direction:column;align-items:center;
-    padding:55px 24px 40px;font-family:'Cormorant Garamond',serif;
-    position:relative;overflow:hidden;
-  }
-  .prev3__grid-bg{
-    position:absolute;inset:0;pointer-events:none;
-    background-image:
-      repeating-linear-gradient(0deg,transparent,transparent 50px,rgba(184,154,106,.05) 50px,rgba(184,154,106,.05) 51px),
-      repeating-linear-gradient(90deg,transparent,transparent 50px,rgba(184,154,106,.05) 50px,rgba(184,154,106,.05) 51px);
-  }
+  .prev3{background:linear-gradient(180deg,#faf6f0,#eddfc8);display:flex;flex-direction:column;align-items:center;padding:55px 22px 40px;font-family:'Cormorant Garamond',serif;position:relative;overflow:hidden}
+  .prev3__grid-bg{position:absolute;inset:0;pointer-events:none;background-image:repeating-linear-gradient(0deg,transparent,transparent 50px,rgba(184,154,106,.05) 50px,rgba(184,154,106,.05) 51px),repeating-linear-gradient(90deg,transparent,transparent 50px,rgba(184,154,106,.05) 50px,rgba(184,154,106,.05) 51px)}
   .prev3__line{width:50px;height:1px;background:rgba(184,154,106,.45);position:relative;z-index:1}
-  .prev3__eyebrow{
-    font-size:.5rem;font-weight:600;letter-spacing:.45em;text-transform:uppercase;
-    color:#b89a6a;margin:10px 0;position:relative;z-index:1;
-  }
-  .prev3__names{
-    font-family:'Great Vibes',cursive;font-size:3.6rem;
-    color:#2c2418;line-height:1.05;text-align:center;position:relative;z-index:1;
-  }
-  .prev3__amp{
-    font-family:'Cormorant Garamond',serif;font-style:italic;
-    font-size:.9rem;color:rgba(184,154,106,.5);display:block;
-    margin:5px 0;letter-spacing:.2em;
-  }
-  .prev3__rule{
-    width:100px;height:1px;
-    background:linear-gradient(90deg,transparent,#b89a6a,transparent);
-    margin:14px 0;position:relative;z-index:1;
-  }
-  .prev3__fecha{
-    font-family:'Cormorant Garamond',serif;font-size:.95rem;
-    letter-spacing:.25em;color:#3d3020;position:relative;z-index:1;
-  }
-  .prev3__lugar{
-    font-size:.5rem;font-weight:600;letter-spacing:.35em;
-    text-transform:uppercase;color:#8a7a60;margin:6px 0 20px;
-    position:relative;z-index:1;
-  }
-  .prev3__editorial{
-    width:100%;display:grid;grid-template-columns:44px 1fr;
-    gap:14px;margin-bottom:14px;position:relative;z-index:1;
-  }
-  .prev3__num{
-    font-family:'Cormorant Garamond',serif;font-size:2.8rem;
-    font-weight:300;color:#b89a6a;opacity:.22;line-height:1;padding-top:2px;
-  }
+  .prev3__eyebrow{font-size:.5rem;font-weight:600;letter-spacing:.44em;text-transform:uppercase;color:#b89a6a;margin:10px 0;position:relative;z-index:1}
+  .prev3__names{font-family:'Great Vibes',cursive;font-size:3.5rem;color:#2c2418;line-height:1.05;text-align:center;position:relative;z-index:1}
+  .prev3__amp{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.88rem;color:rgba(184,154,106,.5);display:block;margin:5px 0;letter-spacing:.2em}
+  .prev3__rule{width:100px;height:1px;background:linear-gradient(90deg,transparent,#b89a6a,transparent);margin:13px 0;position:relative;z-index:1}
+  .prev3__fecha{font-family:'Cormorant Garamond',serif;font-size:.93rem;letter-spacing:.25em;color:#3d3020;position:relative;z-index:1}
+  .prev3__lugar{font-size:.5rem;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:#8a7a60;margin:5px 0 18px;position:relative;z-index:1}
+  .prev3__editorial{width:100%;display:grid;grid-template-columns:42px 1fr;gap:12px;margin-bottom:12px;position:relative;z-index:1}
+  .prev3__num{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:300;color:#b89a6a;opacity:.22;line-height:1;padding-top:2px}
   .prev3__content{text-align:left}
-  .prev3__label{
-    font-size:.48rem;font-weight:700;letter-spacing:.3em;
-    text-transform:uppercase;color:#b89a6a;margin-bottom:4px;
-  }
-  .prev3__thin-rule{
-    width:50px;height:1px;background:#b89a6a;opacity:.4;margin:.6rem 0;
-  }
-  .prev3__text{font-size:.74rem;color:#8a7a60;line-height:1.7}
-  .prev3__countdown{
-    display:flex;align-items:center;gap:10px;justify-content:center;
-    margin:16px 0;position:relative;z-index:1;
-  }
-  .prev3__time{text-align:center;min-width:50px}
-  .prev3__time span{
-    display:block;font-family:'Cormorant Garamond',serif;
-    font-size:2.4rem;font-weight:300;color:#d4b483;line-height:1;
-  }
-  .prev3__time small{
-    display:block;font-size:.42rem;font-weight:600;letter-spacing:.22em;
-    text-transform:uppercase;color:rgba(212,180,131,.5);margin-top:3px;
-  }
-  .prev3__sep{font-size:1.6rem;color:rgba(212,180,131,.25);font-weight:300}
-  .prev3__btn{
-    display:inline-block;padding:11px 32px;background:#2c2418;color:#eddfc8;
-    border:none;border-radius:2px;font-size:.55rem;font-weight:600;
-    letter-spacing:.25em;text-transform:uppercase;margin-top:8px;
-    position:relative;z-index:1;
-    box-shadow:0 6px 20px rgba(44,36,24,.22);
-  }
+  .prev3__label{font-size:.46rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#b89a6a;margin-bottom:4px}
+  .prev3__thin-rule{width:46px;height:1px;background:#b89a6a;opacity:.4;margin:.55rem 0}
+  .prev3__text{font-size:.72rem;color:#8a7a60;line-height:1.65}
+  .prev3__countdown{display:flex;align-items:center;gap:9px;justify-content:center;margin:14px 0;position:relative;z-index:1}
+  .prev3__time{text-align:center;min-width:48px}
+  .prev3__time span{display:block;font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:#d4b483;line-height:1}
+  .prev3__time small{display:block;font-size:.4rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(212,180,131,.55);margin-top:3px}
+  .prev3__sep{font-size:1.5rem;color:rgba(212,180,131,.28);font-weight:300}
+  /* Pétalos champagne */
+  .prev3__petals{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+  .prev3__petal{position:absolute;top:-10px;opacity:0;animation:p3Fall linear infinite}
+  @keyframes p3Fall{0%{transform:translateY(-10px) rotate(0deg) scale(1);opacity:0}5%{opacity:.55}90%{opacity:.3}100%{transform:translateY(920px) rotate(390deg) scale(.8);opacity:0}}
+  .prev3__btn{display:inline-block;padding:11px 30px;background:#2c2418;color:#eddfc8;border:none;border-radius:2px;font-size:.52rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;margin-top:8px;position:relative;z-index:1;box-shadow:0 6px 18px rgba(44,36,24,.22)}
   </style>
 </head>
 <body>
+
 <nav class="navbar" id="navbar">
   <a href="index.html" class="navbar__logo">InvitArte<span>Invitaciones Digitales</span></a>
   <div class="navbar__nav">
@@ -320,7 +139,7 @@
     </div>
   </div>
 
-  <!-- ══ IPHONES CON PREVIEW HTML PURO ══ -->
+  <!-- ══ IPHONES ══ -->
   <div class="hero__phones" id="hero-phones">
 
     <!-- iPhone 1: Elegante Negro + Dorado -->
@@ -333,15 +152,14 @@
           <div class="iphone__island"><div class="iphone__camera"></div></div>
           <div class="iphone__screen" id="screen1">
             <div class="phone-preview prev1" id="prev1">
-              <!-- Partículas -->
-              <div class="prev1__particles" id="p1particles"></div>
+              <!-- Canvas de partículas se inserta aquí via JS -->
+              <div id="p1particles"></div>
               <p class="prev1__eyebrow">Con amor les invitamos a nuestra boda</p>
               <div class="prev1__divider"></div>
               <div class="prev1__names">Laura<span class="prev1__amp">&amp;</span>Miguel</div>
               <div class="prev1__ornament"></div>
               <p class="prev1__fecha">14 · SEP · 2026</p>
               <div class="prev1__ornament"></div>
-              <!-- Velas -->
               <div class="prev1__candles">
                 <div class="prev1__candle"><div class="prev1__candle-flame"></div><div class="prev1__candle-body"></div></div>
                 <div class="prev1__candle"><div class="prev1__candle-flame" style="animation-delay:.3s"></div><div class="prev1__candle-body" style="height:48px"></div></div>
@@ -352,18 +170,18 @@
                 <p class="prev1__card-content" style="font-family:'Great Vibes',cursive;font-size:1.4rem;color:#c9a84c">María González</p>
               </div>
               <div class="prev1__countdown">
-                <div class="prev1__time"><span id="d1-days">42</span><small>Días</small></div>
-                <div class="prev1__time"><span id="d1-hours">08</span><small>Horas</small></div>
-                <div class="prev1__time"><span id="d1-mins">30</span><small>Min</small></div>
+                <div class="prev1__time"><span id="d1-days">00</span><small>Días</small></div>
+                <div class="prev1__time"><span id="d1-hours">00</span><small>Horas</small></div>
+                <div class="prev1__time"><span id="d1-mins">00</span><small>Min</small></div>
                 <div class="prev1__time"><span id="d1-secs">00</span><small>Seg</small></div>
               </div>
               <div class="prev1__card">
                 <p class="prev1__card-label">Ceremonia</p>
-                <p class="prev1__card-content">Parroquia de Santa María<br><span style="color:rgba(201,168,76,.5);font-size:.7rem;letter-spacing:.1em">14 SEP · 5:00 PM</span></p>
+                <p class="prev1__card-content">Parroquia de Santa María<br><span style="color:rgba(201,168,76,.5);font-size:.68rem;letter-spacing:.1em">14 SEP · 5:00 PM</span></p>
               </div>
               <div class="prev1__card" style="margin-top:0">
                 <p class="prev1__card-label">Recepción</p>
-                <p class="prev1__card-content">Salón Imperial<br><span style="color:rgba(201,168,76,.5);font-size:.7rem;letter-spacing:.1em">14 SEP · 7:30 PM</span></p>
+                <p class="prev1__card-content">Salón Imperial<br><span style="color:rgba(201,168,76,.5);font-size:.68rem;letter-spacing:.1em">14 SEP · 7:30 PM</span></p>
               </div>
               <div class="prev1__btn">CONFIRMAR ASISTENCIA</div>
             </div>
@@ -388,7 +206,6 @@
           <div class="iphone__island"><div class="iphone__camera"></div></div>
           <div class="iphone__screen" id="screen2">
             <div class="phone-preview prev2" id="prev2">
-              <!-- Pétalos -->
               <div class="prev2__petals" id="p2petals"></div>
               <div class="prev2__corner prev2__corner--tl"></div>
               <div class="prev2__corner prev2__corner--tr"></div>
@@ -401,8 +218,8 @@
               <div class="prev2__card">
                 <p class="prev2__card-label">Esta invitación es para</p>
                 <div class="prev2__divider"></div>
-                <p style="font-family:'Great Vibes',cursive;font-size:1.8rem;color:#9b7db8">Ana Martínez</p>
-                <p style="font-size:.65rem;color:#8a7080;margin-top:4px">✿ 2 pases reservados</p>
+                <p style="font-family:'Great Vibes',cursive;font-size:1.75rem;color:#9b7db8">Ana Martínez</p>
+                <p style="font-size:.62rem;color:#8a7080;margin-top:4px">✿ 2 pases reservados</p>
               </div>
               <div class="prev2__card">
                 <p class="prev2__card-label">Falta poco para el gran día</p>
@@ -417,15 +234,15 @@
               <div class="prev2__card">
                 <p class="prev2__card-label">Ceremonia</p>
                 <div class="prev2__divider"></div>
-                <p style="font-family:'Cormorant Garamond',serif;font-size:.95rem;color:#4a3545">Parroquia de Santa María</p>
-                <p style="font-size:.65rem;color:#c9a8d4;letter-spacing:.12em;text-transform:uppercase;margin-top:3px">Sábado · 5:00 PM</p>
+                <p style="font-family:'Cormorant Garamond',serif;font-size:.93rem;color:#4a3545">Parroquia de Santa María</p>
+                <p style="font-size:.62rem;color:#c9a8d4;letter-spacing:.12em;text-transform:uppercase;margin-top:3px">Sábado · 5:00 PM</p>
               </div>
               <div class="prev2__card">
                 <p class="prev2__card-label">Con la bendición de nuestros padres</p>
                 <div class="prev2__divider"></div>
-                <p style="font-family:'Cormorant Garamond',serif;font-size:.8rem;color:#4a3545;line-height:1.6">Elena Ruiz de López<br>Fernando López Mora</p>
-                <p style="font-size:.75rem;color:#c9a8d4;margin:8px 0">✿</p>
-                <p style="font-family:'Cormorant Garamond',serif;font-size:.8rem;color:#4a3545;line-height:1.6">Carmen Vega de Torres<br>Rodrigo Torres Salinas</p>
+                <p style="font-family:'Cormorant Garamond',serif;font-size:.78rem;color:#4a3545;line-height:1.55">Elena Ruiz de López<br>Fernando López Mora</p>
+                <p style="font-size:.72rem;color:#c9a8d4;margin:7px 0">✿</p>
+                <p style="font-family:'Cormorant Garamond',serif;font-size:.78rem;color:#4a3545;line-height:1.55">Carmen Vega de Torres<br>Rodrigo Torres Salinas</p>
               </div>
               <div class="prev2__btn">✓ Confirmar asistencia</div>
             </div>
@@ -451,6 +268,8 @@
           <div class="iphone__screen" id="screen3">
             <div class="phone-preview prev3" id="prev3">
               <div class="prev3__grid-bg"></div>
+              <!-- Pétalos champagne -->
+              <div class="prev3__petals" id="p3petals-phone"></div>
               <div class="prev3__line"></div>
               <p class="prev3__eyebrow">Matrimonio</p>
               <div class="prev3__line"></div>
@@ -463,7 +282,7 @@
                 <div class="prev3__content">
                   <p class="prev3__label">Nuestra historia</p>
                   <div class="prev3__thin-rule"></div>
-                  <p class="prev3__text">Dos almas que encontraron en el otro su lugar en el mundo. Los invitamos a ser testigos del inicio de nuestro capítulo más hermoso.</p>
+                  <p class="prev3__text">Dos almas que encontraron en el otro su lugar en el mundo. Los invitamos a ser testigos de nuestro capítulo más hermoso.</p>
                 </div>
               </div>
               <div class="prev3__editorial">
@@ -485,7 +304,7 @@
                 <div class="prev3__content">
                   <p class="prev3__label">Ceremonia</p>
                   <div class="prev3__thin-rule"></div>
-                  <p class="prev3__text">Parroquia de Santa María<br><span style="font-size:.65rem;color:#b89a6a;letter-spacing:.15em;text-transform:uppercase">Sábado · 17:00 hrs</span></p>
+                  <p class="prev3__text">Parroquia de Santa María<br><span style="font-size:.62rem;color:#b89a6a;letter-spacing:.14em;text-transform:uppercase">Sábado · 17:00 hrs</span></p>
                 </div>
               </div>
               <div class="prev3__editorial">
@@ -523,7 +342,7 @@
   </div>
   <div class="benefits__grid">
     <div class="benefit-card reveal-up" style="transition-delay:.05s"><div class="benefit-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg></div><div><h3 class="benefit-card__title">Diseños elegantes y exclusivos</h3><p class="benefit-card__text">Plantillas creadas por diseñadores especializados en bodas premium.</p></div></div>
-    <div class="benefit-card reveal-up" style="transition-delay:.1s"><div class="benefit-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 010 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 010-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.332-.183.582-.495.644-.869l.214-1.28z"/><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div><div><h3 class="benefit-card__title">Personalización total</h3><p class="benefit-card__text">Nombres, fecha, lugar, fotos, música, padres y padrinos. Todo a tu medida.</p></div></div>
+    <div class="benefit-card reveal-up" style="transition-delay:.1s"><div class="benefit-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></div><div><h3 class="benefit-card__title">Personalización total</h3><p class="benefit-card__text">Nombres, fecha, lugar, fotos, música, padres y padrinos. Todo a tu medida.</p></div></div>
     <div class="benefit-card reveal-up" style="transition-delay:.15s"><div class="benefit-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/></svg></div><div><h3 class="benefit-card__title">Confirmación de asistencia</h3><p class="benefit-card__text">Tus invitados confirman directo desde la invitación. Sin llamadas ni papeles.</p></div></div>
     <div class="benefit-card reveal-up" style="transition-delay:.2s"><div class="benefit-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"/></svg></div><div><h3 class="benefit-card__title">Compatible con cualquier dispositivo</h3><p class="benefit-card__text">Perfecta en iPhone, Android y computadora. Se ve hermosa en todos lados.</p></div></div>
     <div class="benefit-card reveal-up" style="transition-delay:.25s"><div class="benefit-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg></div><div><h3 class="benefit-card__title">Entrega inmediata</h3><p class="benefit-card__text">Lista al instante. Compártela por WhatsApp en cuestión de segundos.</p></div></div>
@@ -549,8 +368,7 @@
   <div class="footer__inner">
     <div><span class="footer__logo">InvitArte</span><p class="footer__tagline">Invitaciones digitales premium para tu boda.</p></div>
     <div class="footer__links">
-      <a href="catalogo.html">Catálogo</a>
-      <a href="precios.html">Precios</a>
+      <a href="catalogo.html">Catálogo</a><a href="precios.html">Precios</a>
       <button id="footer-contacto-btn">Contacto</button>
       <a href="login.html">Mi cuenta</a>
     </div>
@@ -566,13 +384,11 @@
       <div class="contact-options">
         <a href="https://wa.me/5215500000000?text=Hola%2C%20me%20interesa%20una%20invitación%20digital" target="_blank" rel="noopener" class="contact-option contact-option--wa">
           <div class="contact-option__icon contact-option__icon--wa"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
-          <div class="contact-option__text"><strong>WhatsApp</strong><span>Respuesta en minutos</span></div>
-          <span class="contact-option__arrow">→</span>
+          <div class="contact-option__text"><strong>WhatsApp</strong><span>Respuesta en minutos</span></div><span class="contact-option__arrow">→</span>
         </a>
-        <a href="mailto:hola@invitarte.mx" class="contact-option contact-option--email">
+        <a href="mailto:hola@invitarte.mx" class="contact-option">
           <div class="contact-option__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg></div>
-          <div class="contact-option__text"><strong>Correo</strong><span>hola@invitarte.mx</span></div>
-          <span class="contact-option__arrow">→</span>
+          <div class="contact-option__text"><strong>Correo</strong><span>hola@invitarte.mx</span></div><span class="contact-option__arrow">→</span>
         </a>
       </div>
       <div class="contact-sep"><div></div><span>o escríbenos aquí</span><div></div></div>
@@ -591,56 +407,6 @@
   </div>
 </div>
 <div id="toast-container"></div>
-
-<script>
-// ── SCROLL WHEEL EN SCREENS ───────────────────────────────────
-// (para cuando se usen con overflow:scroll en móvil)
-['screen1','screen2','screen3'].forEach(id=>{
-  const s=document.getElementById(id);
-  if(!s)return;
-  s.addEventListener('wheel',e=>{e.preventDefault();s.scrollBy({top:e.deltaY,behavior:'auto'});},{passive:false});
-});
-
-// ── PARTÍCULAS DISEÑO 1 ──────────────────────────────────────
-(function(){
-  const wrap=document.getElementById('p1particles');
-  if(!wrap)return;
-  for(let i=0;i<20;i++){
-    const p=document.createElement('div');
-    p.className='prev1__particle';
-    p.style.cssText='left:'+Math.random()*100+'%;top:'+(Math.random()*900)+'px;animation-duration:'+(Math.random()*12+8)+'s;animation-delay:-'+(Math.random()*12)+'s;opacity:'+(Math.random()*.3+.05);
-    wrap.appendChild(p);
-  }
-})();
-
-// ── PÉTALOS DISEÑO 2 ─────────────────────────────────────────
-(function(){
-  const wrap=document.getElementById('p2petals');
-  if(!wrap)return;
-  const cols=['#f9b8c4','#e8b4d8','#c9a8d4','#f5c6d0','#ddb8e8'];
-  for(let i=0;i<14;i++){
-    const p=document.createElement('div');
-    p.className='prev2__petal';
-    p.style.cssText='left:'+Math.random()*100+'%;width:'+(Math.random()*10+5)+'px;height:'+(Math.random()*10+5)+'px;background:'+cols[Math.floor(Math.random()*cols.length)]+';animation-duration:'+(Math.random()*10+8)+'s;animation-delay:-'+(Math.random()*12)+'s;';
-    wrap.appendChild(p);
-  }
-})();
-
-// ── COUNTDOWN DISEÑO 1 (live) ────────────────────────────────
-(function(){
-  const FECHA='2026-09-14T17:00:00';
-  function upd(){
-    const d=new Date(FECHA)-Date.now();
-    if(d<=0)return;
-    const el=id=>document.getElementById(id);
-    if(el('d1-days'))  el('d1-days').textContent =String(Math.floor(d/86400000)).padStart(2,'0');
-    if(el('d1-hours')) el('d1-hours').textContent=String(Math.floor(d%86400000/3600000)).padStart(2,'0');
-    if(el('d1-mins'))  el('d1-mins').textContent =String(Math.floor(d%3600000/60000)).padStart(2,'0');
-    if(el('d1-secs'))  el('d1-secs').textContent =String(Math.floor(d%60000/1000)).padStart(2,'0');
-  }
-  upd();setInterval(upd,1000);
-})();
-</script>
 <script src="js/home.js"></script>
 </body>
 </html>
