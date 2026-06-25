@@ -4,17 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Invitación Floral Pastel — InvitArte</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lato:wght@300;400;700&family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/plantilla2.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lato:wght@300;400;700&family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
-  /* ════════════════════════════════════════════════════
-     MARCO FLORAL — Acuarela real (PNG transparente)
-     Mismas posiciones/zonas que el marco anterior:
-     esquinas superiores e inferiores, fixed, no interactivo.
-     Tamaño ~35-45% mayor que la versión SVG previa, según
-     lo solicitado, sin invadir el área central de lectura.
-  ════════════════════════════════════════════════════ */
+  /* ══ RESET ══ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  /* ══ VARIABLES ══ */
+  :root {
+    --p2-rosa:     #f2b8c6;
+    --p2-rosa2:    #e8889a;
+    --p2-lavanda:  #c9a8d4;
+    --p2-lila:     #9b7db8;
+    --p2-blanco:   #fdf8f8;
+    --p2-crema:    #fef5f0;
+    --p2-texto:    #4a3545;
+    --p2-muted:    #8a7080;
+    --p2-borde:    rgba(201,168,212,.32);
+  }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--p2-blanco);
+    color: var(--p2-texto);
+    overflow-x: hidden;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+
+  /* ══ MARCO FLORAL ══ */
   .floral-frame {
     position: fixed;
     inset: 0;
@@ -22,108 +40,536 @@
     z-index: 10;
     overflow: hidden;
   }
-
   .floral-piece {
     position: absolute;
     opacity: 0;
-    animation: floralReveal 1.8s cubic-bezier(.16,1,.3,1) both;
+    animation: floralReveal 2s cubic-bezier(.16,1,.3,1) both;
   }
-
+  .floral-piece img { display: block; width: 100%; height: auto; }
   @keyframes floralReveal {
-    from { opacity: 0; transform: translateY(-8px) scale(.96); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
+    from { opacity: 0; transform: scale(.95); }
+    to   { opacity: 1; transform: scale(1); }
   }
+  .floral-tl { top: -4px;    left: -4px;  width: 300px; animation-delay: .1s; }
+  .floral-tr { top: -4px;    right: -4px; width: 300px; animation-delay: .25s; }
+  .floral-bl { bottom: -4px; left: -4px;  width: 320px; animation-delay: .45s; }
+  .floral-br { bottom: -4px; right: -4px; width: 320px; animation-delay: .6s; }
 
-  .floral-piece img {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-
-  /* Esquina superior izquierda */
-  .floral-tl {
-    top: -6px; left: -6px;
-    width: 300px;
-    animation-delay: .15s;
-  }
-
-  /* Esquina superior derecha */
-  .floral-tr {
-    top: -6px; right: -6px;
-    width: 300px;
-    animation-delay: .3s;
-  }
-
-  /* Esquina inferior izquierda — arreglo más grande (igual que la referencia) */
-  .floral-bl {
-    bottom: -6px; left: -6px;
-    width: 320px;
-    animation-delay: .5s;
-  }
-
-  /* Esquina inferior derecha — arreglo más grande */
-  .floral-br {
-    bottom: -6px; right: -6px;
-    width: 320px;
-    animation-delay: .65s;
-  }
-
-  /* Responsive: reducir proporcionalmente para no tapar contenido en móvil,
-     manteniendo siempre visibles las flores como marco decorativo */
   @media (max-width: 680px) {
-    .floral-tl, .floral-tr { width: 195px; }
+    .floral-tl, .floral-tr { width: 190px; }
     .floral-bl, .floral-br { width: 210px; }
   }
-
   @media (max-width: 420px) {
-    .floral-tl, .floral-tr { width: 150px; }
-    .floral-bl, .floral-br { width: 165px; }
+    .floral-tl, .floral-tr { width: 145px; }
+    .floral-bl, .floral-br { width: 160px; }
   }
 
-  /* El botón de música siempre flota por encima del marco floral */
-  .p2-music-btn { z-index: 999 !important; }
+  /* ══ PÉTALOS FLOTANTES ══ */
+  .petals-wrap {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .p2-petal {
+    position: absolute;
+    top: -20px;
+    border-radius: 50% 10% 50% 10%;
+    opacity: 0;
+    animation: p2Fall linear infinite;
+  }
+  @keyframes p2Fall {
+    0%   { transform: translateY(-20px) rotate(0deg);   opacity: 0; }
+    5%   { opacity: .55; }
+    90%  { opacity: .3; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* ══ BOTÓN MÚSICA ══ */
+  .p2-music-btn {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--p2-rosa), var(--p2-lavanda));
+    border: 2px solid rgba(255,255,255,.5);
+    color: #fff;
+    font-size: 1.4rem;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 6px 20px rgba(201,168,212,.5);
+    transition: transform .3s, box-shadow .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .p2-music-btn:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(201,168,212,.65); }
+  .p2-music-btn.muted { background: linear-gradient(135deg, #c8c8c8, #a0a0a0); }
+
+  /* ══ HERO ══ */
+  .p2-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(160deg, #fff5f8 0%, #f7eefa 50%, #fdf5ff 100%);
+    padding: 100px 24px 80px;
+    z-index: 2;
+  }
+  .p2-hero__inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 560px;
+  }
+  .p2-eyebrow {
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .32em;
+    text-transform: uppercase;
+    color: var(--p2-lila);
+    margin-bottom: 1.6rem;
+  }
+  .p2-names {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(4rem, 12vw, 6.5rem);
+    color: var(--p2-texto);
+    line-height: 1.05;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .2rem;
+  }
+  .p2-amp {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: var(--p2-lavanda);
+    font-style: italic;
+  }
+  .p2-ornament {
+    font-size: 1rem;
+    color: var(--p2-rosa2);
+    letter-spacing: .22em;
+    margin: 1.6rem 0;
+  }
+  .p2-fecha {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--p2-muted);
+    letter-spacing: .1em;
+  }
+
+  /* ══ SECCIONES ══ */
+  .p2-section {
+    padding: 4rem 1.5rem;
+    position: relative;
+    z-index: 2;
+    background: var(--p2-blanco);
+  }
+  .p2-section:nth-child(even) { background: var(--p2-crema); }
+
+  /* ══ CARDS ══ */
+  .p2-card {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--p2-borde);
+    border-radius: 26px;
+    padding: 3.2rem 2.8rem;
+    text-align: center;
+    box-shadow: 0 8px 36px rgba(201,168,212,.14);
+  }
+  .p2-card--lavender {
+    background: linear-gradient(160deg, #f5eeff, #ffe8f4);
+    border-color: rgba(155,125,184,.3);
+  }
+  .p2-card--rsvp {
+    background: linear-gradient(160deg, #fff0f5, #f5eeff);
+  }
+
+  /* ══ TIPOGRAFÍA DE CARDS ══ */
+  .p2-card__label {
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .32em;
+    text-transform: uppercase;
+    color: var(--p2-lila);
+    margin-bottom: .6rem;
+  }
+  .p2-divider {
+    width: 90px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--p2-rosa2), transparent);
+    margin: 1.4rem auto;
+  }
+
+  /* ══ INVITADO ══ */
+  .p2-guest {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.4rem;
+    color: var(--p2-lila);
+    line-height: 1.2;
+    margin: .5rem 0;
+  }
+  .p2-passes {
+    font-size: .9rem;
+    color: var(--p2-muted);
+    letter-spacing: .1em;
+    margin-top: .5rem;
+  }
+
+  /* ══ TEXTO GENERAL ══ */
+  .p2-text {
+    font-size: 1.05rem;
+    color: var(--p2-muted);
+    line-height: 1.85;
+    margin-top: .8rem;
+  }
+
+  /* ══ QUOTE ══ */
+  .p2-quote {
+    max-width: 620px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2.8rem 2rem;
+  }
+  .p2-quote__mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 6rem;
+    color: var(--p2-rosa);
+    line-height: .6;
+    margin-bottom: 1rem;
+    opacity: .45;
+  }
+  .p2-quote__text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem;
+    font-style: italic;
+    color: var(--p2-texto);
+    line-height: 1.65;
+  }
+
+  /* ══ IMAGEN PAREJA ══ */
+  .p2-couple-img {
+    width: 240px;
+    border-radius: 18px;
+    margin: 2rem auto 0;
+    box-shadow: 0 16px 44px rgba(201,168,212,.32);
+  }
+
+  /* ══ PADRES ══ */
+  .p2-parents {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-top: 1.6rem;
+    flex-wrap: wrap;
+  }
+  .p2-parent { text-align: center; }
+  .p2-parent__role {
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--p2-lavanda);
+    margin-bottom: .5rem;
+  }
+  .p2-parent__names {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--p2-texto);
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .p2-parent__sep {
+    font-size: 1.8rem;
+    color: var(--p2-rosa2);
+    opacity: .38;
+  }
+
+  /* ══ PADRINOS ══ */
+  .p2-padrinos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: center;
+    margin-top: 1.6rem;
+  }
+  .p2-padrino-card {
+    background: linear-gradient(135deg, rgba(201,168,212,.1), rgba(242,184,198,.1));
+    border: 1px solid var(--p2-borde);
+    border-radius: 16px;
+    padding: 1.4rem 2rem;
+    text-align: center;
+    min-width: 200px;
+  }
+  .p2-padrino-card__tipo {
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--p2-lila);
+    margin-bottom: .5rem;
+  }
+  .p2-padrino-card__nombres {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--p2-texto);
+    line-height: 1.5;
+  }
+  .p2-padrino-tipo {
+    font-size: .82rem;
+    color: var(--p2-lavanda);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-top: .7rem;
+  }
+
+  /* ══ COUNTDOWN ══ */
+  .p2-countdown {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 1.4rem;
+    flex-wrap: wrap;
+  }
+  .p2-time {
+    background: #fff;
+    border: 1.5px solid var(--p2-borde);
+    border-radius: 16px;
+    padding: 18px 20px;
+    min-width: 76px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(201,168,212,.18);
+  }
+  .p2-time span {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.6rem;
+    font-weight: 500;
+    color: var(--p2-lila);
+    line-height: 1;
+  }
+  .p2-time small {
+    display: block;
+    font-size: .65rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--p2-muted);
+    margin-top: 5px;
+  }
+
+  /* ══ EVENTO ══ */
+  .p2-event-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem;
+    color: var(--p2-texto);
+    margin-top: .9rem;
+  }
+  .p2-event-time {
+    font-size: .85rem;
+    color: var(--p2-lavanda);
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    margin: .4rem 0 1.2rem;
+  }
+  .p2-map {
+    width: 100%; height: 230px;
+    border: none;
+    border-radius: 16px;
+    margin-top: .9rem;
+    box-shadow: 0 8px 26px rgba(0,0,0,.09);
+  }
+
+  /* ══ GALERÍA ══ */
+  .p2-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 1.4rem;
+  }
+  .p2-gallery-item {
+    height: 150px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--p2-crema), rgba(201,168,212,.15));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .p2-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    display: block;
+  }
+  .p2-gallery-item .p2-gallery-placeholder {
+    font-size: .72rem;
+    color: var(--p2-muted);
+    text-align: center;
+    padding: 1rem;
+    line-height: 1.5;
+    letter-spacing: .08em;
+  }
+
+  /* ══ RSVP ══ */
+  .p2-rsvp-btns {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    margin-top: 1.8rem;
+    flex-wrap: wrap;
+  }
+  .p2-rsvp-btn {
+    padding: 14px 32px;
+    border-radius: 999px;
+    font-family: 'Lato', sans-serif;
+    font-size: .85rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .3s;
+    border: 2px solid;
+  }
+  .p2-rsvp-btn--yes {
+    background: var(--p2-lavanda);
+    border-color: var(--p2-lavanda);
+    color: #fff;
+    box-shadow: 0 6px 22px rgba(155,125,184,.38);
+  }
+  .p2-rsvp-btn--yes:hover { background: var(--p2-lila); border-color: var(--p2-lila); }
+  .p2-rsvp-btn--no {
+    background: transparent;
+    border-color: var(--p2-borde);
+    color: var(--p2-muted);
+  }
+  .p2-rsvp-btn--no:hover { border-color: var(--p2-rosa2); color: var(--p2-rosa2); }
+  .p2-rsvp-btn:disabled { opacity: .45; pointer-events: none; }
+  .p2-rsvp-msg {
+    margin-top: 1.2rem;
+    font-size: .95rem;
+    color: var(--p2-lila);
+    font-style: italic;
+    opacity: 0;
+    transition: opacity .5s;
+  }
+
+  /* ══ CTA ══ */
+  .p2-cta {
+    max-width: 540px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 3.5rem 2rem;
+    background: linear-gradient(160deg, #fff0f8, #f0e8ff);
+    border: 1px solid var(--p2-borde);
+    border-radius: 30px;
+  }
+  .p2-cta__flowers { font-size: 1.5rem; color: var(--p2-rosa2); letter-spacing: .3em; margin-bottom: 1rem; }
+  .p2-cta__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--p2-texto);
+    margin-bottom: .7rem;
+  }
+  .p2-cta__sub { font-size: .95rem; color: var(--p2-muted); margin-bottom: 1.8rem; }
+  .p2-btn-quiero {
+    padding: 16px 44px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--p2-rosa2), var(--p2-lila));
+    color: #fff;
+    border: none;
+    font-family: 'Lato', sans-serif;
+    font-size: .88rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 8px 26px rgba(155,125,184,.42);
+    transition: all .3s;
+  }
+  .p2-btn-quiero:hover { transform: translateY(-2px); box-shadow: 0 12px 34px rgba(155,125,184,.58); }
+
+  /* ══ FOOTER ══ */
+  .p2-footer {
+    padding: 2.5rem;
+    text-align: center;
+    background: linear-gradient(160deg, #fff5f8, #f7eefa);
+    border-top: 1px solid var(--p2-borde);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--p2-texto);
+    position: relative;
+    z-index: 2;
+  }
+  .p2-footer__credit {
+    font-size: .78rem;
+    color: var(--p2-lavanda);
+    letter-spacing: .12em;
+    margin-top: .5rem;
+  }
+
+  /* ══ REVEAL ══ */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .85s ease, transform .85s ease; }
+  .reveal.show { opacity: 1; transform: translateY(0); }
+
+  /* ══ RESPONSIVE ══ */
+  @media (max-width: 540px) {
+    .p2-names { font-size: 3.6rem; }
+    .p2-card  { padding: 2.2rem 1.6rem; }
+    .p2-parents { flex-direction: column; gap: 1.4rem; }
+    .p2-parent__sep { display: none; }
+    .p2-padrinos-grid { flex-direction: column; align-items: center; }
+    .p2-padrino-card { min-width: 0; width: 100%; }
+    .p2-gallery { grid-template-columns: 1fr; }
+    .p2-gallery-item { height: 180px; }
+  }
   </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════════════
-     MARCO FLORAL — acuarela real, fixed, no interfiere
-     con clics ni con el contenido (pointer-events:none)
-══════════════════════════════════════════════════════ -->
+<!-- ══ MARCO FLORAL REAL ══ -->
 <div class="floral-frame">
-  <div class="floral-piece floral-tl">
-    <img src="images/floral/floral-tl.png" alt="" loading="eager">
-  </div>
-  <div class="floral-piece floral-tr">
-    <img src="images/floral/floral-tr.png" alt="" loading="eager">
-  </div>
-  <div class="floral-piece floral-bl">
-    <img src="images/floral/floral-bl.png" alt="" loading="eager">
-  </div>
-  <div class="floral-piece floral-br">
-    <img src="images/floral/floral-br.png" alt="" loading="eager">
-  </div>
+  <div class="floral-piece floral-tl"><img src="images/floral/floral-tl.png" alt=""></div>
+  <div class="floral-piece floral-tr"><img src="images/floral/floral-tr.png" alt=""></div>
+  <div class="floral-piece floral-bl"><img src="images/floral/floral-bl.png" alt=""></div>
+  <div class="floral-piece floral-br"><img src="images/floral/floral-br.png" alt=""></div>
 </div>
-<!-- ══ FIN MARCO FLORAL ══ -->
 
-<!-- ══ RESTO DEL DISEÑO ══ -->
+<!-- ══ PÉTALOS ══ -->
 <div class="petals-wrap" id="petals"></div>
-<audio id="music" loop><source src="musica.mp3" type="audio/mpeg"></audio>
-<button class="p2-music-btn" id="musicBtn" title="Música">♪</button>
 
+<!-- ══ MÚSICA — botón mute/unmute con ícono SVG ══ -->
+<audio id="music" loop preload="auto">
+  <source src="audio/musica.mp3" type="audio/mpeg">
+  <source src="audio/musica.ogg" type="audio/ogg">
+</audio>
+<button class="p2-music-btn muted" id="musicBtn" title="Reproducir música" aria-label="Reproducir música">
+  <svg id="icon-play"  width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M9 18V6l10 6-10 6z"/></svg>
+  <svg id="icon-pause" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+</button>
+
+<!-- ══ HERO ══ -->
 <section class="p2-hero">
-  <div class="p2-hero__corner p2-hero__corner--tl"></div>
-  <div class="p2-hero__corner p2-hero__corner--tr"></div>
-  <div class="p2-hero__corner p2-hero__corner--bl"></div>
-  <div class="p2-hero__corner p2-hero__corner--br"></div>
   <div class="p2-hero__inner reveal">
     <p class="p2-eyebrow">Juntos para siempre</p>
-    <h1 class="p2-names"><span class="p2-name" id="nombre-novia">Valentina</span><span class="p2-amp">&amp;</span><span class="p2-name" id="nombre-novio">Sebastián</span></h1>
+    <h1 class="p2-names">
+      <span id="nombre-novia">Valentina</span>
+      <span class="p2-amp">&amp;</span>
+      <span id="nombre-novio">Sebastián</span>
+    </h1>
     <div class="p2-ornament">✿ ────── ✿ ────── ✿</div>
     <p class="p2-fecha" id="fecha-display">Sábado · 20 de Septiembre de 2025</p>
   </div>
 </section>
 
+<!-- ══ INVITADO ══ -->
 <section class="p2-section" id="sec-invitado">
   <div class="p2-card reveal">
     <p class="p2-card__label">Esta invitación es especialmente para</p>
@@ -133,44 +579,68 @@
   </div>
 </section>
 
+<!-- ══ FRASE ══ -->
 <section class="p2-section">
   <div class="p2-quote reveal">
     <p class="p2-quote__mark">"</p>
     <p class="p2-quote__text">El amor no se mide por el tiempo que llevan juntos, sino por la eternidad que sienten al mirarse.</p>
-    <div class="p2-ornament" style="margin-top:1.5rem">✿</div>
+    <div class="p2-ornament" style="margin-top:1.8rem">✿</div>
   </div>
 </section>
 
+<!-- ══ NUESTRA BODA ══ -->
 <section class="p2-section">
   <div class="p2-card reveal">
     <p class="p2-card__label">Nuestra boda</p>
     <div class="p2-divider"></div>
-    <p class="p2-text">Con el corazón lleno de alegría, los invitamos a ser parte del día más especial de nuestras vidas.</p>
-    <img src="images/mockup-elegante.png" class="p2-couple-img" alt="Pareja">
+    <p class="p2-text">Con el corazón lleno de alegría, los invitamos a ser parte del día más especial de nuestras vidas. Su presencia es el regalo más valioso que podemos recibir.</p>
+    <img src="images/pareja.jpg" class="p2-couple-img" alt="Pareja"
+      onerror="this.style.display='none'">
   </div>
 </section>
 
+<!-- ══ PADRES ══ -->
 <section class="p2-section">
   <div class="p2-card reveal">
     <p class="p2-card__label">Con la bendición de nuestros padres</p>
     <div class="p2-divider"></div>
     <div class="p2-parents">
-      <div class="p2-parent"><p class="p2-parent__role">Padres de la novia</p><p class="p2-parent__names">Elena Ruiz de López<br>Fernando López Mora</p></div>
+      <div class="p2-parent">
+        <p class="p2-parent__role">Padres de la novia</p>
+        <p class="p2-parent__names">Elena Ruiz de López<br>Fernando López Mora</p>
+      </div>
       <div class="p2-parent__sep">✿</div>
-      <div class="p2-parent"><p class="p2-parent__role">Padres del novio</p><p class="p2-parent__names">Carmen Vega de Torres<br>Rodrigo Torres Salinas</p></div>
+      <div class="p2-parent">
+        <p class="p2-parent__role">Padres del novio</p>
+        <p class="p2-parent__names">Carmen Vega de Torres<br>Rodrigo Torres Salinas</p>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- ══ PADRINOS ══ -->
 <section class="p2-section">
   <div class="p2-card reveal">
-    <p class="p2-card__label">Padrinos</p>
+    <p class="p2-card__label">Nuestros padrinos</p>
     <div class="p2-divider"></div>
-    <p class="p2-text">Ana Gómez &amp; Luis Herrera</p>
-    <p class="p2-padrino-tipo">Padrinos de arras</p>
+    <div class="p2-padrinos-grid">
+      <div class="p2-padrino-card">
+        <p class="p2-padrino-card__tipo">Padrinos de arras</p>
+        <p class="p2-padrino-card__nombres">Ana Gómez<br>&amp; Luis Herrera</p>
+      </div>
+      <div class="p2-padrino-card">
+        <p class="p2-padrino-card__tipo">Padrinos de lazo</p>
+        <p class="p2-padrino-card__nombres">María Ruiz<br>&amp; Carlos Mendez</p>
+      </div>
+      <div class="p2-padrino-card">
+        <p class="p2-padrino-card__tipo">Padrinos de anillos</p>
+        <p class="p2-padrino-card__nombres">Sofía Reyes<br>&amp; Jorge Vega</p>
+      </div>
+    </div>
   </div>
 </section>
 
+<!-- ══ CUENTA REGRESIVA ══ -->
 <section class="p2-section">
   <div class="p2-card p2-card--lavender reveal">
     <p class="p2-card__label">Falta poco para el gran día</p>
@@ -184,89 +654,291 @@
   </div>
 </section>
 
+<!-- ══ CEREMONIA ══ -->
 <section class="p2-section">
   <div class="p2-card reveal">
     <p class="p2-card__label">Ceremonia</p>
     <div class="p2-divider"></div>
     <p class="p2-event-name">Parroquia de Santa María</p>
     <p class="p2-event-time">Sábado · 5:00 PM</p>
-    <iframe src="https://www.google.com/maps?q=Parroquia+Santa+Maria&output=embed" class="p2-map" loading="lazy" title="Ceremonia"></iframe>
+    <iframe src="https://www.google.com/maps?q=Parroquia+Santa+Maria&output=embed"
+      class="p2-map" loading="lazy" title="Mapa Ceremonia"></iframe>
   </div>
 </section>
 
+<!-- ══ RECEPCIÓN ══ -->
 <section class="p2-section">
   <div class="p2-card reveal">
     <p class="p2-card__label">Recepción</p>
     <div class="p2-divider"></div>
     <p class="p2-event-name">Jardín Villa Rosa</p>
     <p class="p2-event-time">Sábado · 7:30 PM</p>
-    <iframe src="https://www.google.com/maps?q=Jardin+Villa+Rosa&output=embed" class="p2-map" loading="lazy" title="Recepción"></iframe>
+    <iframe src="https://www.google.com/maps?q=Jardin+Villa+Rosa&output=embed"
+      class="p2-map" loading="lazy" title="Mapa Recepción"></iframe>
   </div>
 </section>
 
+<!-- ══ GALERÍA ══ -->
 <section class="p2-section">
   <div class="p2-card reveal">
     <p class="p2-card__label">Nuestra historia en imágenes</p>
     <div class="p2-divider"></div>
+    <p class="p2-text" style="margin-bottom:1.2rem">Momentos que guardamos en el corazón.</p>
     <div class="p2-gallery">
-      <div class="p2-gallery__item" style="background:#f5d5d5"></div>
-      <div class="p2-gallery__item" style="background:#e8d5f0"></div>
-      <div class="p2-gallery__item" style="background:#d5e8f0"></div>
-      <div class="p2-gallery__item" style="background:#f0e8d5"></div>
+      <div class="p2-gallery-item">
+        <img src="images/galeria/foto1.jpg" alt="Foto 1"
+          onerror="this.parentElement.innerHTML='<div class=\'p2-gallery-placeholder\'>📷<br>foto1.jpg</div>'">
+      </div>
+      <div class="p2-gallery-item">
+        <img src="images/galeria/foto2.jpg" alt="Foto 2"
+          onerror="this.parentElement.innerHTML='<div class=\'p2-gallery-placeholder\'>📷<br>foto2.jpg</div>'">
+      </div>
+      <div class="p2-gallery-item">
+        <img src="images/galeria/foto3.jpg" alt="Foto 3"
+          onerror="this.parentElement.innerHTML='<div class=\'p2-gallery-placeholder\'>📷<br>foto3.jpg</div>'">
+      </div>
+      <div class="p2-gallery-item">
+        <img src="images/galeria/foto4.jpg" alt="Foto 4"
+          onerror="this.parentElement.innerHTML='<div class=\'p2-gallery-placeholder\'>📷<br>foto4.jpg</div>'">
+      </div>
     </div>
   </div>
 </section>
 
+<!-- ══ CONFIRMACIÓN ══ -->
 <section class="p2-section">
   <div class="p2-card p2-card--rsvp reveal">
     <p class="p2-card__label">Confirma tu asistencia</p>
     <div class="p2-divider"></div>
-    <p class="p2-text">Por favor confirma antes del 1 de agosto.</p>
+    <p class="p2-text">Por favor confirma tu asistencia antes del 1 de agosto.<br>Tu respuesta nos ayuda a preparar todo con amor.</p>
     <div class="p2-rsvp-btns">
       <button class="p2-rsvp-btn p2-rsvp-btn--yes" onclick="rsvp('si',this)">✓ Asistiré con gusto</button>
-      <button class="p2-rsvp-btn p2-rsvp-btn--no" onclick="rsvp('no',this)">✗ No podré asistir</button>
+      <button class="p2-rsvp-btn p2-rsvp-btn--no"  onclick="rsvp('no',this)">✗ No podré asistir</button>
     </div>
     <p class="p2-rsvp-msg" id="rsvp-msg"></p>
   </div>
 </section>
 
+<!-- ══ CTA ══ -->
 <section class="p2-section">
   <div class="p2-cta reveal">
     <p class="p2-cta__flowers">✿ ❀ ✿ ❀ ✿</p>
     <h2 class="p2-cta__title">¿Te encantó este diseño?</h2>
     <p class="p2-cta__sub">Personalízalo con tu historia de amor.</p>
-    <button class="p2-btn-quiero" onclick="window.location.href='precios.html?diseno=2'">✨ Lo quiero</button>
+    <button class="p2-btn-quiero" onclick="window.location.href='precios.html?diseno=2'">
+      ✨ Lo quiero
+    </button>
   </div>
 </section>
 
+<!-- ══ FOOTER ══ -->
 <footer class="p2-footer">
   <p>Valentina &amp; Sebastián · 2025</p>
   <p class="p2-footer__credit">Creado con ♥ en InvitArte</p>
 </footer>
 
 <script>
-document.addEventListener('DOMContentLoaded',()=>{
-  const params=new URLSearchParams(window.location.search);
-  const invitado=params.get('invitado');
-  const pases=parseInt(params.get('pases'))||1;
-  const FECHA='2025-09-20';
-  const secInv=document.getElementById('sec-invitado');
-  const gName=document.getElementById('guestName');
-  const gPass=document.getElementById('guestPasses');
-  if(invitado&&invitado.trim()){gName.textContent=decodeURIComponent(invitado);gPass.textContent=pases>1?'✿ '+pases+' pases reservados':'✿ 1 pase reservado';}else{if(secInv)secInv.style.display='none';}
-  function updateCD(){const diff=new Date(FECHA+'T17:00:00')-Date.now();if(diff<=0)return;document.getElementById('cd-days').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');document.getElementById('cd-hours').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');document.getElementById('cd-minutes').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');document.getElementById('cd-seconds').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');}
-  updateCD();setInterval(updateCD,1000);
-  const music=document.getElementById('music');const btn=document.getElementById('musicBtn');let playing=false;
-  const tryPlay=()=>{if(!playing&&music){music.volume=0.3;music.play().then(()=>{playing=true;btn.textContent='♫';}).catch(()=>{});}document.removeEventListener('click',tryPlay);};
-  document.addEventListener('click',tryPlay,{once:true});
-  btn.addEventListener('click',e=>{e.stopPropagation();if(playing){music.pause();playing=false;btn.textContent='♪';}else{music.play().catch(()=>{});playing=true;btn.textContent='♫';}});
-  const wrap=document.getElementById('petals');
-  const colors=['#f9b8c4','#e8b4d8','#c9a8d4','#f5c6d0','#ddb8e8'];
-  for(let i=0;i<18;i++){const p=document.createElement('div');p.className='p2-petal';p.style.cssText='left:'+Math.random()*100+'%;width:'+(Math.random()*12+6)+'px;height:'+(Math.random()*12+6)+'px;background:'+colors[Math.floor(Math.random()*colors.length)]+';animation-duration:'+(Math.random()*10+8)+'s;animation-delay:-'+(Math.random()*12)+'s;';wrap.appendChild(p);}
-  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');obs.unobserve(e.target);}}),{threshold:.1});
-  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+/* ══════════════════════════════════════════════
+   PLANTILLA 2 — JS COMPLETO
+   · Parámetros URL (invitado, pases, fecha)
+   · Cuenta regresiva en tiempo real
+   · Música con mute/unmute robusto
+   · Pétalos flotantes
+   · Reveal on scroll
+══════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── PARÁMETROS URL ── */
+  const params   = new URLSearchParams(window.location.search);
+  const invitado = params.get('invitado');
+  const pases    = parseInt(params.get('pases')) || 1;
+  const fechaParam = params.get('fecha'); // formato: 2025-09-20
+
+  /* ── FECHA DEL EVENTO ── */
+  // Si viene por URL se usa esa, si no la del HTML por defecto
+  const FECHA_EVENTO = fechaParam || '2025-09-20';
+  const HORA_EVENTO  = 'T17:00:00'; // 5:00 PM
+
+  /* ── MOSTRAR INVITADO ── */
+  const secInv = document.getElementById('sec-invitado');
+  const gName  = document.getElementById('guestName');
+  const gPass  = document.getElementById('guestPasses');
+  if (invitado && invitado.trim()) {
+    gName.textContent = decodeURIComponent(invitado);
+    gPass.textContent = pases > 1
+      ? `✿ ${pases} pases reservados`
+      : '✿ 1 pase reservado';
+  } else {
+    if (secInv) secInv.style.display = 'none';
+  }
+
+  /* ── CUENTA REGRESIVA ── */
+  function pad(n) { return String(Math.floor(n)).padStart(2, '0'); }
+
+  function updateCountdown() {
+    const ahora  = Date.now();
+    const target = new Date(FECHA_EVENTO + HORA_EVENTO).getTime();
+    const diff   = target - ahora;
+
+    if (diff <= 0) {
+      // El gran día llegó
+      document.getElementById('cd-days').textContent    = '¡Hoy!';
+      document.getElementById('cd-hours').textContent   = '00';
+      document.getElementById('cd-minutes').textContent = '00';
+      document.getElementById('cd-seconds').textContent = '00';
+      return;
+    }
+
+    const days    = Math.floor(diff / 86400000);
+    const hours   = Math.floor((diff % 86400000) / 3600000);
+    const minutes = Math.floor((diff % 3600000) / 60000);
+    const seconds = Math.floor((diff % 60000) / 1000);
+
+    document.getElementById('cd-days').textContent    = pad(days);
+    document.getElementById('cd-hours').textContent   = pad(hours);
+    document.getElementById('cd-minutes').textContent = pad(minutes);
+    document.getElementById('cd-seconds').textContent = pad(seconds);
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  /* ── MÚSICA con mute/unmute robusto ──
+     Estrategia:
+     1. El audio empieza MUTEADO (atributo muted) para pasar la política
+        de autoplay de los navegadores modernos.
+     2. Al primer clic del usuario en CUALQUIER parte de la página,
+        se intenta reproducir automáticamente y se quita el mute.
+     3. El botón permite al usuario pausar/reanudar manualmente.
+     4. Si el archivo no carga, el botón se deshabilita gracefully.
+  ── */
+  const music     = document.getElementById('music');
+  const musicBtn  = document.getElementById('musicBtn');
+  const iconPlay  = document.getElementById('icon-play');
+  const iconPause = document.getElementById('icon-pause');
+  let musicReady  = false;
+  let isPlaying   = false;
+
+  function setPlayingUI() {
+    isPlaying = true;
+    iconPlay.style.display  = 'none';
+    iconPause.style.display = '';
+    musicBtn.classList.remove('muted');
+    musicBtn.setAttribute('aria-label', 'Pausar música');
+    musicBtn.setAttribute('title', 'Pausar música');
+  }
+
+  function setPausedUI() {
+    isPlaying = false;
+    iconPlay.style.display  = '';
+    iconPause.style.display = 'none';
+    musicBtn.classList.add('muted');
+    musicBtn.setAttribute('aria-label', 'Reproducir música');
+    musicBtn.setAttribute('title', 'Reproducir música');
+  }
+
+  // Intentar reproducir (se llama tras interacción del usuario)
+  function tryPlay() {
+    if (!music || !musicReady) return;
+    music.volume = 0.28;
+    const promise = music.play();
+    if (promise !== undefined) {
+      promise
+        .then(() => setPlayingUI())
+        .catch(() => {
+          // Bloqueado por el navegador — el usuario debe hacer clic
+          setPausedUI();
+        });
+    }
+  }
+
+  // Verificar que el audio puede cargarse
+  music.addEventListener('canplaythrough', () => {
+    musicReady = true;
+  }, { once: true });
+
+  // Error al cargar el archivo (mp3 no encontrado, etc.)
+  music.addEventListener('error', () => {
+    musicBtn.disabled = true;
+    musicBtn.style.opacity = '.4';
+    musicBtn.setAttribute('title', 'Audio no disponible');
+  });
+
+  // Primer clic en cualquier parte → intentar autoplay
+  const startOnFirstClick = () => {
+    tryPlay();
+    document.removeEventListener('click', startOnFirstClick);
+  };
+  document.addEventListener('click', startOnFirstClick);
+
+  // Clic en el botón → toggle play/pause
+  musicBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // no disparar el startOnFirstClick
+    if (!musicReady) {
+      // Aún cargando, intentar igual
+      tryPlay();
+      return;
+    }
+    if (isPlaying) {
+      music.pause();
+      setPausedUI();
+    } else {
+      tryPlay();
+    }
+  });
+
+  // Sincronizar si el navegador pausa el audio externamente
+  music.addEventListener('pause', () => {
+    if (isPlaying) setPausedUI();
+  });
+  music.addEventListener('play', () => {
+    if (!isPlaying) setPlayingUI();
+  });
+
+  /* ── PÉTALOS ── */
+  const wrap = document.getElementById('petals');
+  const petalColors = ['#f9b8c4','#e8b4d8','#c9a8d4','#f5c6d0','#ddb8e8','#f0a0c0','#e8c0f0'];
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'p2-petal';
+    const size  = Math.random() * 13 + 6;
+    const color = petalColors[Math.floor(Math.random() * petalColors.length)];
+    p.style.cssText = [
+      `left:${Math.random()*100}%`,
+      `width:${size}px`,
+      `height:${size * (.6 + Math.random()*.5)}px`,
+      `background:${color}`,
+      `animation-duration:${Math.random()*10+8}s`,
+      `animation-delay:-${Math.random()*14}s`,
+    ].join(';');
+    wrap.appendChild(p);
+  }
+
+  /* ── REVEAL ON SCROLL ── */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('show');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: .1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
 });
-window.rsvp=(resp,btn)=>{const msg=document.getElementById('rsvp-msg');document.querySelectorAll('.p2-rsvp-btn').forEach(b=>b.disabled=true);if(resp==='si'){btn.style.background='#c9a8d4';msg.textContent='¡Gracias! Te esperamos con mucho cariño. 💐';}else{msg.textContent='Lo entendemos. Te enviamos todo nuestro amor. 🌸';}msg.style.opacity='1';};
+
+/* ── RSVP ── */
+window.rsvp = (resp, btn) => {
+  const msg = document.getElementById('rsvp-msg');
+  document.querySelectorAll('.p2-rsvp-btn').forEach(b => b.disabled = true);
+  if (resp === 'si') {
+    btn.style.background = 'linear-gradient(135deg,#c9a8d4,#9b7db8)';
+    msg.textContent = '¡Gracias! Te esperamos con muchísimo cariño. 💐';
+  } else {
+    msg.textContent = 'Lo entendemos. Te enviamos todo nuestro amor. 🌸';
+  }
+  msg.style.opacity = '1';
+};
 </script>
 </body>
 </html>
