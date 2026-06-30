@@ -9,7 +9,6 @@
   /* ══ RESET ══ */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* ══ VARIABLES ══ */
   :root {
     --p2-rosa:     #f2b8c6;
     --p2-rosa2:    #e8889a;
@@ -33,52 +32,20 @@
   img { max-width: 100%; display: block; }
 
   /* ══ MARCO FLORAL ══ */
-  .floral-frame {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 10;
-    overflow: hidden;
-  }
-  .floral-piece {
-    position: absolute;
-    opacity: 0;
-    animation: floralReveal 2s cubic-bezier(.16,1,.3,1) both;
-  }
+  .floral-frame { position: fixed; inset: 0; pointer-events: none; z-index: 10; overflow: hidden; }
+  .floral-piece { position: absolute; opacity: 0; animation: floralReveal 2s cubic-bezier(.16,1,.3,1) both; }
   .floral-piece img { display: block; width: 100%; height: auto; }
-  @keyframes floralReveal {
-    from { opacity: 0; transform: scale(.95); }
-    to   { opacity: 1; transform: scale(1); }
-  }
+  @keyframes floralReveal { from { opacity: 0; transform: scale(.95); } to { opacity: 1; transform: scale(1); } }
   .floral-tl { top: -4px;    left: -4px;  width: 300px; animation-delay: .1s; }
   .floral-tr { top: -4px;    right: -4px; width: 300px; animation-delay: .25s; }
   .floral-bl { bottom: -4px; left: -4px;  width: 320px; animation-delay: .45s; }
   .floral-br { bottom: -4px; right: -4px; width: 320px; animation-delay: .6s; }
+  @media (max-width: 680px) { .floral-tl, .floral-tr { width: 190px; } .floral-bl, .floral-br { width: 210px; } }
+  @media (max-width: 420px) { .floral-tl, .floral-tr { width: 145px; } .floral-bl, .floral-br { width: 160px; } }
 
-  @media (max-width: 680px) {
-    .floral-tl, .floral-tr { width: 190px; }
-    .floral-bl, .floral-br { width: 210px; }
-  }
-  @media (max-width: 420px) {
-    .floral-tl, .floral-tr { width: 145px; }
-    .floral-bl, .floral-br { width: 160px; }
-  }
-
-  /* ══ PÉTALOS FLOTANTES ══ */
-  .petals-wrap {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
-  }
-  .p2-petal {
-    position: absolute;
-    top: -20px;
-    border-radius: 50% 10% 50% 10%;
-    opacity: 0;
-    animation: p2Fall linear infinite;
-  }
+  /* ══ PÉTALOS ══ */
+  .petals-wrap { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+  .p2-petal { position: absolute; top: -20px; border-radius: 50% 10% 50% 10%; opacity: 0; animation: p2Fall linear infinite; }
   @keyframes p2Fall {
     0%   { transform: translateY(-20px) rotate(0deg);   opacity: 0; }
     5%   { opacity: .55; }
@@ -88,438 +55,152 @@
 
   /* ══ BOTÓN MÚSICA ══ */
   .p2-music-btn {
-    position: fixed;
-    bottom: 24px; right: 24px;
-    width: 56px; height: 56px;
-    border-radius: 50%;
+    position: fixed; bottom: 24px; right: 24px;
+    width: 56px; height: 56px; border-radius: 50%;
     background: linear-gradient(135deg, var(--p2-rosa), var(--p2-lavanda));
     border: 2px solid rgba(255,255,255,.5);
-    color: #fff;
-    font-size: 1.4rem;
-    cursor: pointer;
-    z-index: 999;
+    color: #fff; font-size: 1.4rem; cursor: pointer; z-index: 999;
     box-shadow: 0 6px 20px rgba(201,168,212,.5);
     transition: transform .3s, box-shadow .3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
   .p2-music-btn:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(201,168,212,.65); }
   .p2-music-btn.muted { background: linear-gradient(135deg, #c8c8c8, #a0a0a0); }
+  .p2-music-btn:active { transform: scale(.92); }
 
   /* ══ HERO ══ */
   .p2-hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
     background: linear-gradient(160deg, #fff5f8 0%, #f7eefa 50%, #fdf5ff 100%);
-    padding: 100px 24px 80px;
-    z-index: 2;
+    padding: 100px 24px 80px; z-index: 2;
   }
-  .p2-hero__inner {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    max-width: 560px;
-  }
-  .p2-eyebrow {
-    font-size: .8rem;
-    font-weight: 700;
-    letter-spacing: .32em;
-    text-transform: uppercase;
-    color: var(--p2-lila);
-    margin-bottom: 1.6rem;
-  }
+  .p2-hero__inner { position: relative; z-index: 2; text-align: center; max-width: 560px; }
+  .p2-eyebrow { font-size: .8rem; font-weight: 700; letter-spacing: .32em; text-transform: uppercase; color: var(--p2-lila); margin-bottom: 1.6rem; }
   .p2-names {
-    font-family: 'Great Vibes', cursive;
-    font-size: clamp(4rem, 12vw, 6.5rem);
-    color: var(--p2-texto);
-    line-height: 1.05;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: .2rem;
+    font-family: 'Great Vibes', cursive; font-size: clamp(4rem, 12vw, 6.5rem);
+    color: var(--p2-texto); line-height: 1.05;
+    display: flex; flex-direction: column; align-items: center; gap: .2rem;
   }
-  .p2-amp {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.8rem;
-    color: var(--p2-lavanda);
-    font-style: italic;
-  }
-  .p2-ornament {
-    font-size: 1rem;
-    color: var(--p2-rosa2);
-    letter-spacing: .22em;
-    margin: 1.6rem 0;
-  }
-  .p2-fecha {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
-    font-style: italic;
-    color: var(--p2-muted);
-    letter-spacing: .1em;
-  }
+  .p2-amp { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--p2-lavanda); font-style: italic; }
+  .p2-ornament { font-size: 1rem; color: var(--p2-rosa2); letter-spacing: .22em; margin: 1.6rem 0; }
+  .p2-fecha { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-style: italic; color: var(--p2-muted); letter-spacing: .1em; }
 
   /* ══ SECCIONES ══ */
-  .p2-section {
-    padding: 4rem 1.5rem;
-    position: relative;
-    z-index: 2;
-    background: var(--p2-blanco);
-  }
+  .p2-section { padding: 4rem 1.5rem; position: relative; z-index: 2; background: var(--p2-blanco); }
   .p2-section:nth-child(even) { background: var(--p2-crema); }
 
   /* ══ CARDS ══ */
   .p2-card {
-    max-width: 720px;
-    margin: 0 auto;
-    background: #fff;
-    border: 1px solid var(--p2-borde);
-    border-radius: 26px;
-    padding: 3.2rem 2.8rem;
-    text-align: center;
+    max-width: 720px; margin: 0 auto; background: #fff;
+    border: 1px solid var(--p2-borde); border-radius: 26px;
+    padding: 3.2rem 2.8rem; text-align: center;
     box-shadow: 0 8px 36px rgba(201,168,212,.14);
   }
-  .p2-card--lavender {
-    background: linear-gradient(160deg, #f5eeff, #ffe8f4);
-    border-color: rgba(155,125,184,.3);
-  }
-  .p2-card--rsvp {
-    background: linear-gradient(160deg, #fff0f5, #f5eeff);
-  }
+  .p2-card--lavender { background: linear-gradient(160deg, #f5eeff, #ffe8f4); border-color: rgba(155,125,184,.3); }
+  .p2-card--rsvp { background: linear-gradient(160deg, #fff0f5, #f5eeff); }
 
-  /* ══ TIPOGRAFÍA DE CARDS ══ */
-  .p2-card__label {
-    font-size: .75rem;
-    font-weight: 700;
-    letter-spacing: .32em;
-    text-transform: uppercase;
-    color: var(--p2-lila);
-    margin-bottom: .6rem;
-  }
-  .p2-divider {
-    width: 90px; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--p2-rosa2), transparent);
-    margin: 1.4rem auto;
-  }
+  .p2-card__label { font-size: .75rem; font-weight: 700; letter-spacing: .32em; text-transform: uppercase; color: var(--p2-lila); margin-bottom: .6rem; }
+  .p2-divider { width: 90px; height: 2px; background: linear-gradient(90deg, transparent, var(--p2-rosa2), transparent); margin: 1.4rem auto; }
 
-  /* ══ INVITADO ══ */
-  .p2-guest {
-    font-family: 'Great Vibes', cursive;
-    font-size: 3.4rem;
-    color: var(--p2-lila);
-    line-height: 1.2;
-    margin: .5rem 0;
-  }
-  .p2-passes {
-    font-size: .9rem;
-    color: var(--p2-muted);
-    letter-spacing: .1em;
-    margin-top: .5rem;
-  }
+  .p2-guest { font-family: 'Great Vibes', cursive; font-size: 3.4rem; color: var(--p2-lila); line-height: 1.2; margin: .5rem 0; }
+  .p2-passes { font-size: .9rem; color: var(--p2-muted); letter-spacing: .1em; margin-top: .5rem; }
 
-  /* ══ TEXTO GENERAL ══ */
-  .p2-text {
-    font-size: 1.05rem;
-    color: var(--p2-muted);
-    line-height: 1.85;
-    margin-top: .8rem;
-  }
+  .p2-text { font-size: 1.05rem; color: var(--p2-muted); line-height: 1.85; margin-top: .8rem; }
 
-  /* ══ QUOTE ══ */
-  .p2-quote {
-    max-width: 620px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 2.8rem 2rem;
-  }
-  .p2-quote__mark {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 6rem;
-    color: var(--p2-rosa);
-    line-height: .6;
-    margin-bottom: 1rem;
-    opacity: .45;
-  }
-  .p2-quote__text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.55rem;
-    font-style: italic;
-    color: var(--p2-texto);
-    line-height: 1.65;
-  }
+  .p2-quote { max-width: 620px; margin: 0 auto; text-align: center; padding: 2.8rem 2rem; }
+  .p2-quote__mark { font-family: 'Cormorant Garamond', serif; font-size: 6rem; color: var(--p2-rosa); line-height: .6; margin-bottom: 1rem; opacity: .45; }
+  .p2-quote__text { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-style: italic; color: var(--p2-texto); line-height: 1.65; }
 
-  /* ══ IMAGEN PAREJA ══ */
+  /* ══ FOTO PAREJA — igual que Diseño 1 ══ */
   .p2-couple-img {
-    width: 240px;
-    border-radius: 18px;
-    margin: 2rem auto 0;
-    box-shadow: 0 16px 44px rgba(201,168,212,.32);
+    margin-top: 2rem;
+    width: 280px;
+    border-radius: 4px;
+    box-shadow: 0 20px 45px rgba(155,125,184,.32);
   }
 
-  /* ══ PADRES ══ */
-  .p2-parents {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2.5rem;
-    margin-top: 1.6rem;
-    flex-wrap: wrap;
-  }
+  .p2-parents { display: flex; align-items: center; justify-content: center; gap: 2.5rem; margin-top: 1.6rem; flex-wrap: wrap; }
   .p2-parent { text-align: center; }
-  .p2-parent__role {
-    font-size: .75rem;
-    font-weight: 700;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: var(--p2-lavanda);
-    margin-bottom: .5rem;
-  }
-  .p2-parent__names {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    color: var(--p2-texto);
-    line-height: 1.6;
-    font-style: italic;
-  }
-  .p2-parent__sep {
-    font-size: 1.8rem;
-    color: var(--p2-rosa2);
-    opacity: .38;
-  }
+  .p2-parent__role { font-size: .75rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--p2-lavanda); margin-bottom: .5rem; }
+  .p2-parent__names { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--p2-texto); line-height: 1.6; font-style: italic; }
+  .p2-parent__sep { font-size: 1.8rem; color: var(--p2-rosa2); opacity: .38; }
 
-  /* ══ PADRINOS ══ */
-  .p2-padrinos-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.2rem;
-    justify-content: center;
-    margin-top: 1.6rem;
-  }
+  .p2-padrinos-grid { display: flex; flex-wrap: wrap; gap: 1.2rem; justify-content: center; margin-top: 1.6rem; }
   .p2-padrino-card {
     background: linear-gradient(135deg, rgba(201,168,212,.1), rgba(242,184,198,.1));
-    border: 1px solid var(--p2-borde);
-    border-radius: 16px;
-    padding: 1.4rem 2rem;
-    text-align: center;
-    min-width: 200px;
+    border: 1px solid var(--p2-borde); border-radius: 16px;
+    padding: 1.4rem 2rem; text-align: center; min-width: 200px;
   }
-  .p2-padrino-card__tipo {
-    font-size: .68rem;
-    font-weight: 700;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: var(--p2-lila);
-    margin-bottom: .5rem;
-  }
-  .p2-padrino-card__nombres {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem;
-    font-style: italic;
-    color: var(--p2-texto);
-    line-height: 1.5;
-  }
-  .p2-padrino-tipo {
-    font-size: .82rem;
-    color: var(--p2-lavanda);
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    margin-top: .7rem;
-  }
+  .p2-padrino-card__tipo { font-size: .68rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--p2-lila); margin-bottom: .5rem; }
+  .p2-padrino-card__nombres { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; color: var(--p2-texto); line-height: 1.5; }
 
-  /* ══ COUNTDOWN ══ */
-  .p2-countdown {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    margin-top: 1.4rem;
-    flex-wrap: wrap;
-  }
+  /* ══ COUNTDOWN — igual estructura que Diseño 1 (números + fecha + hora debajo) ══ */
+  .p2-countdown { display: flex; gap: 16px; justify-content: center; margin-top: 1.4rem; flex-wrap: wrap; }
   .p2-time {
-    background: #fff;
-    border: 1.5px solid var(--p2-borde);
-    border-radius: 16px;
-    padding: 18px 20px;
-    min-width: 76px;
-    text-align: center;
+    background: linear-gradient(180deg, #ffffff 0%, #fbf3f7 100%);
+    border: 1.5px solid var(--p2-borde); border-radius: 16px;
+    padding: 18px 20px; min-width: 76px; text-align: center;
     box-shadow: 0 4px 16px rgba(201,168,212,.18);
   }
-  .p2-time span {
-    display: block;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.6rem;
-    font-weight: 500;
-    color: var(--p2-lila);
-    line-height: 1;
-  }
-  .p2-time small {
-    display: block;
-    font-size: .65rem;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: var(--p2-muted);
-    margin-top: 5px;
-  }
+  .p2-time span { display: block; font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 500; color: var(--p2-lila); line-height: 1; }
+  .p2-time small { display: block; font-size: .65rem; letter-spacing: .18em; text-transform: uppercase; color: var(--p2-muted); margin-top: 5px; }
 
-  /* ══ EVENTO ══ */
-  .p2-event-name {
+  /* Fecha y hora debajo del countdown, igual que Diseño 1 */
+  .p2-event-date {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.45rem;
+    font-size: 1.3rem;
+    font-style: italic;
     color: var(--p2-texto);
-    margin-top: .9rem;
+    margin-top: 1.8rem;
   }
-  .p2-event-time {
+  .p2-event-time-label {
     font-size: .85rem;
-    color: var(--p2-lavanda);
     letter-spacing: .18em;
     text-transform: uppercase;
-    margin: .4rem 0 1.2rem;
-  }
-  .p2-map {
-    width: 100%; height: 230px;
-    border: none;
-    border-radius: 16px;
-    margin-top: .9rem;
-    box-shadow: 0 8px 26px rgba(0,0,0,.09);
+    color: var(--p2-lavanda);
+    margin-top: .4rem;
   }
 
-  /* ══ GALERÍA ══ */
-  .p2-gallery {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    margin-top: 1.4rem;
-  }
-  .p2-gallery-item {
-    height: 150px;
-    border-radius: 16px;
-    overflow: hidden;
-    background: linear-gradient(135deg, var(--p2-crema), rgba(201,168,212,.15));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .p2-gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 16px;
-    display: block;
-  }
-  .p2-gallery-item .p2-gallery-placeholder {
-    font-size: .72rem;
-    color: var(--p2-muted);
-    text-align: center;
-    padding: 1rem;
-    line-height: 1.5;
-    letter-spacing: .08em;
-  }
+  .p2-event-name { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; color: var(--p2-texto); margin-top: .9rem; }
+  .p2-event-time { font-size: .85rem; color: var(--p2-lavanda); letter-spacing: .18em; text-transform: uppercase; margin: .4rem 0 1.2rem; }
+  .p2-map { width: 100%; height: 230px; border: none; border-radius: 16px; margin-top: .9rem; box-shadow: 0 8px 26px rgba(0,0,0,.09); }
 
-  /* ══ RSVP ══ */
-  .p2-rsvp-btns {
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-    margin-top: 1.8rem;
-    flex-wrap: wrap;
-  }
-  .p2-rsvp-btn {
-    padding: 14px 32px;
-    border-radius: 999px;
-    font-family: 'Lato', sans-serif;
-    font-size: .85rem;
-    font-weight: 700;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all .3s;
-    border: 2px solid;
-  }
-  .p2-rsvp-btn--yes {
-    background: var(--p2-lavanda);
-    border-color: var(--p2-lavanda);
-    color: #fff;
-    box-shadow: 0 6px 22px rgba(155,125,184,.38);
-  }
+  .p2-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 1.4rem; }
+  .p2-gallery-item { height: 150px; border-radius: 16px; overflow: hidden; background: linear-gradient(135deg, var(--p2-crema), rgba(201,168,212,.15)); display: flex; align-items: center; justify-content: center; }
+  .p2-gallery-item img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; display: block; }
+  .p2-gallery-placeholder { font-size: .72rem; color: var(--p2-muted); text-align: center; padding: 1rem; line-height: 1.5; letter-spacing: .08em; }
+
+  .p2-rsvp-btns { display: flex; gap: 14px; justify-content: center; margin-top: 1.8rem; flex-wrap: wrap; }
+  .p2-rsvp-btn { padding: 14px 32px; border-radius: 999px; font-family: 'Lato', sans-serif; font-size: .85rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: all .3s; border: 2px solid; }
+  .p2-rsvp-btn--yes { background: var(--p2-lavanda); border-color: var(--p2-lavanda); color: #fff; box-shadow: 0 6px 22px rgba(155,125,184,.38); }
   .p2-rsvp-btn--yes:hover { background: var(--p2-lila); border-color: var(--p2-lila); }
-  .p2-rsvp-btn--no {
-    background: transparent;
-    border-color: var(--p2-borde);
-    color: var(--p2-muted);
-  }
+  .p2-rsvp-btn--no { background: transparent; border-color: var(--p2-borde); color: var(--p2-muted); }
   .p2-rsvp-btn--no:hover { border-color: var(--p2-rosa2); color: var(--p2-rosa2); }
   .p2-rsvp-btn:disabled { opacity: .45; pointer-events: none; }
-  .p2-rsvp-msg {
-    margin-top: 1.2rem;
-    font-size: .95rem;
-    color: var(--p2-lila);
-    font-style: italic;
-    opacity: 0;
-    transition: opacity .5s;
-  }
+  .p2-rsvp-msg { margin-top: 1.2rem; font-size: .95rem; color: var(--p2-lila); font-style: italic; opacity: 0; transition: opacity .5s; }
 
-  /* ══ CTA ══ */
-  .p2-cta {
-    max-width: 540px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 3.5rem 2rem;
-    background: linear-gradient(160deg, #fff0f8, #f0e8ff);
-    border: 1px solid var(--p2-borde);
-    border-radius: 30px;
-  }
+  .p2-cta { max-width: 540px; margin: 0 auto; text-align: center; padding: 3.5rem 2rem; background: linear-gradient(160deg, #fff0f8, #f0e8ff); border: 1px solid var(--p2-borde); border-radius: 30px; }
   .p2-cta__flowers { font-size: 1.5rem; color: var(--p2-rosa2); letter-spacing: .3em; margin-bottom: 1rem; }
-  .p2-cta__title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.2rem;
-    font-weight: 400;
-    color: var(--p2-texto);
-    margin-bottom: .7rem;
-  }
+  .p2-cta__title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 400; color: var(--p2-texto); margin-bottom: .7rem; }
   .p2-cta__sub { font-size: .95rem; color: var(--p2-muted); margin-bottom: 1.8rem; }
   .p2-btn-quiero {
-    padding: 16px 44px;
-    border-radius: 999px;
+    padding: 16px 44px; border-radius: 999px;
     background: linear-gradient(135deg, var(--p2-rosa2), var(--p2-lila));
-    color: #fff;
-    border: none;
-    font-family: 'Lato', sans-serif;
-    font-size: .88rem;
-    font-weight: 700;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    cursor: pointer;
-    box-shadow: 0 8px 26px rgba(155,125,184,.42);
-    transition: all .3s;
+    color: #fff; border: none; font-family: 'Lato', sans-serif;
+    font-size: .88rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    cursor: pointer; box-shadow: 0 8px 26px rgba(155,125,184,.42); transition: all .3s;
   }
   .p2-btn-quiero:hover { transform: translateY(-2px); box-shadow: 0 12px 34px rgba(155,125,184,.58); }
 
-  /* ══ FOOTER ══ */
-  .p2-footer {
-    padding: 2.5rem;
-    text-align: center;
-    background: linear-gradient(160deg, #fff5f8, #f7eefa);
-    border-top: 1px solid var(--p2-borde);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    color: var(--p2-texto);
-    position: relative;
-    z-index: 2;
-  }
-  .p2-footer__credit {
-    font-size: .78rem;
-    color: var(--p2-lavanda);
-    letter-spacing: .12em;
-    margin-top: .5rem;
-  }
+  .p2-footer { padding: 2.5rem; text-align: center; background: linear-gradient(160deg, #fff5f8, #f7eefa); border-top: 1px solid var(--p2-borde); font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--p2-texto); position: relative; z-index: 2; }
+  .p2-footer__credit { font-size: .78rem; color: var(--p2-lavanda); letter-spacing: .12em; margin-top: .5rem; }
 
-  /* ══ REVEAL ══ */
   .reveal { opacity: 0; transform: translateY(30px); transition: opacity .85s ease, transform .85s ease; }
   .reveal.show { opacity: 1; transform: translateY(0); }
 
-  /* ══ RESPONSIVE ══ */
   @media (max-width: 540px) {
     .p2-names { font-size: 3.6rem; }
     .p2-card  { padding: 2.2rem 1.6rem; }
@@ -529,12 +210,13 @@
     .p2-padrino-card { min-width: 0; width: 100%; }
     .p2-gallery { grid-template-columns: 1fr; }
     .p2-gallery-item { height: 180px; }
+    .p2-couple-img { width: 220px; }
   }
   </style>
 </head>
 <body>
 
-<!-- ══ MARCO FLORAL REAL ══ -->
+<!-- ══ MARCO FLORAL ══ -->
 <div class="floral-frame">
   <div class="floral-piece floral-tl"><img src="images/floral/floral-tl.png" alt=""></div>
   <div class="floral-piece floral-tr"><img src="images/floral/floral-tr.png" alt=""></div>
@@ -545,12 +227,11 @@
 <!-- ══ PÉTALOS ══ -->
 <div class="petals-wrap" id="petals"></div>
 
-<!-- ══ MÚSICA — botón mute/unmute con ícono SVG ══ -->
-<audio id="music" loop preload="auto">
+<!-- ══ MÚSICA — ruta corregida para coincidir con el proyecto real ══ -->
+<audio id="music" loop preload="auto" playsinline webkit-playsinline muted>
   <source src="audio/musica.mp3" type="audio/mpeg">
-  <source src="audio/musica.ogg" type="audio/ogg">
 </audio>
-<button class="p2-music-btn muted" id="musicBtn" title="Reproducir música" aria-label="Reproducir música">
+<button class="p2-music-btn muted" id="musicBtn" type="button" title="Reproducir música" aria-label="Reproducir música">
   <svg id="icon-play"  width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M9 18V6l10 6-10 6z"/></svg>
   <svg id="icon-pause" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
 </button>
@@ -588,14 +269,13 @@
   </div>
 </section>
 
-<!-- ══ NUESTRA BODA ══ -->
+<!-- ══ NUESTRA BODA — con foto, misma imagen que Diseño 1 ══ -->
 <section class="p2-section">
   <div class="p2-card reveal">
     <p class="p2-card__label">Nuestra boda</p>
     <div class="p2-divider"></div>
     <p class="p2-text">Con el corazón lleno de alegría, los invitamos a ser parte del día más especial de nuestras vidas. Su presencia es el regalo más valioso que podemos recibir.</p>
-    <img src="images/pareja.jpg" class="p2-couple-img" alt="Pareja"
-      onerror="this.style.display='none'">
+    <img src="images/mockup-elegante.png" class="p2-couple-img" alt="Foto de los novios">
   </div>
 </section>
 
@@ -640,7 +320,7 @@
   </div>
 </section>
 
-<!-- ══ CUENTA REGRESIVA ══ -->
+<!-- ══ CUENTA REGRESIVA — números + fecha + hora debajo, igual que Diseño 1 ══ -->
 <section class="p2-section">
   <div class="p2-card p2-card--lavender reveal">
     <p class="p2-card__label">Falta poco para el gran día</p>
@@ -651,6 +331,8 @@
       <div class="p2-time"><span id="cd-minutes">00</span><small>Min</small></div>
       <div class="p2-time"><span id="cd-seconds">00</span><small>Seg</small></div>
     </div>
+    <p class="p2-event-date" id="event-date-display">Sábado 20 de Septiembre de 2025</p>
+    <p class="p2-event-time-label">5:00 PM</p>
   </div>
 </section>
 
@@ -687,19 +369,19 @@
     <div class="p2-gallery">
       <div class="p2-gallery-item">
         <img src="images/galeria/foto1.jpg" alt="Foto 1"
-          onerror="this.parentElement.innerHTML='<div class=\'p2-gallery-placeholder\'>📷<br>foto1.jpg</div>'">
+          onerror="this.parentElement.innerHTML='<div class=&quot;p2-gallery-placeholder&quot;>📷<br>foto1.jpg</div>'">
       </div>
       <div class="p2-gallery-item">
         <img src="images/galeria/foto2.jpg" alt="Foto 2"
-          onerror="this.parentElement.innerHTML='<div class=\'p2-gallery-placeholder\'>📷<br>foto2.jpg</div>'">
+          onerror="this.parentElement.innerHTML='<div class=&quot;p2-gallery-placeholder&quot;>📷<br>foto2.jpg</div>'">
       </div>
       <div class="p2-gallery-item">
         <img src="images/galeria/foto3.jpg" alt="Foto 3"
-          onerror="this.parentElement.innerHTML='<div class=\'p2-gallery-placeholder\'>📷<br>foto3.jpg</div>'">
+          onerror="this.parentElement.innerHTML='<div class=&quot;p2-gallery-placeholder&quot;>📷<br>foto3.jpg</div>'">
       </div>
       <div class="p2-gallery-item">
         <img src="images/galeria/foto4.jpg" alt="Foto 4"
-          onerror="this.parentElement.innerHTML='<div class=\'p2-gallery-placeholder\'>📷<br>foto4.jpg</div>'">
+          onerror="this.parentElement.innerHTML='<div class=&quot;p2-gallery-placeholder&quot;>📷<br>foto4.jpg</div>'">
       </div>
     </div>
   </div>
@@ -738,26 +420,16 @@
 </footer>
 
 <script>
-/* ══════════════════════════════════════════════
-   PLANTILLA 2 — JS COMPLETO
-   · Parámetros URL (invitado, pases, fecha)
-   · Cuenta regresiva en tiempo real
-   · Música con mute/unmute robusto
-   · Pétalos flotantes
-   · Reveal on scroll
-══════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ── PARÁMETROS URL ── */
-  const params   = new URLSearchParams(window.location.search);
-  const invitado = params.get('invitado');
-  const pases    = parseInt(params.get('pases')) || 1;
-  const fechaParam = params.get('fecha'); // formato: 2025-09-20
+  const params      = new URLSearchParams(window.location.search);
+  const invitado     = params.get('invitado');
+  const pases        = parseInt(params.get('pases')) || 1;
+  const fechaParam   = params.get('fecha');
 
-  /* ── FECHA DEL EVENTO ── */
-  // Si viene por URL se usa esa, si no la del HTML por defecto
   const FECHA_EVENTO = fechaParam || '2025-09-20';
-  const HORA_EVENTO  = 'T17:00:00'; // 5:00 PM
+  const HORA_EVENTO  = 'T17:00:00';
 
   /* ── MOSTRAR INVITADO ── */
   const secInv = document.getElementById('sec-invitado');
@@ -765,9 +437,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const gPass  = document.getElementById('guestPasses');
   if (invitado && invitado.trim()) {
     gName.textContent = decodeURIComponent(invitado);
-    gPass.textContent = pases > 1
-      ? `✿ ${pases} pases reservados`
-      : '✿ 1 pase reservado';
+    gPass.textContent = pases > 1 ? `✿ ${pases} pases reservados` : '✿ 1 pase reservado';
   } else {
     if (secInv) secInv.style.display = 'none';
   }
@@ -776,19 +446,16 @@ document.addEventListener('DOMContentLoaded', () => {
   function pad(n) { return String(Math.floor(n)).padStart(2, '0'); }
 
   function updateCountdown() {
-    const ahora  = Date.now();
     const target = new Date(FECHA_EVENTO + HORA_EVENTO).getTime();
-    const diff   = target - ahora;
+    const diff   = target - Date.now();
 
     if (diff <= 0) {
-      // El gran día llegó
       document.getElementById('cd-days').textContent    = '¡Hoy!';
       document.getElementById('cd-hours').textContent   = '00';
       document.getElementById('cd-minutes').textContent = '00';
       document.getElementById('cd-seconds').textContent = '00';
       return;
     }
-
     const days    = Math.floor(diff / 86400000);
     const hours   = Math.floor((diff % 86400000) / 3600000);
     const minutes = Math.floor((diff % 3600000) / 60000);
@@ -799,25 +466,30 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('cd-minutes').textContent = pad(minutes);
     document.getElementById('cd-seconds').textContent = pad(seconds);
   }
-
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  /* ── MÚSICA con mute/unmute robusto ──
-     Estrategia:
-     1. El audio empieza MUTEADO (atributo muted) para pasar la política
-        de autoplay de los navegadores modernos.
-     2. Al primer clic del usuario en CUALQUIER parte de la página,
-        se intenta reproducir automáticamente y se quita el mute.
-     3. El botón permite al usuario pausar/reanudar manualmente.
-     4. Si el archivo no carga, el botón se deshabilita gracefully.
-  ── */
+  /* ══════════════════════════════════════════════
+     MÚSICA — FIX MÓVIL
+     Los navegadores móviles (iOS Safari, Chrome Android)
+     bloquean audio.play() salvo que:
+     1. El <audio> tenga el atributo "muted" en el HTML inicial
+        (permite que el elemento se "active" sin gesto).
+     2. Se llame a .play() DENTRO del propio gesto táctil del
+        usuario (mismo "tick" del evento touchend/click), sin
+        await ni código async previo que rompa la cadena de
+        confianza del navegador.
+     3. Tras iniciar la reproducción en mute, se quita el mute
+        inmediatamente — así sí suena.
+     4. Se usa 'touchend' además de 'click' porque en iOS
+        Safari 'click' a veces llega tarde y pierde el gesto.
+  ══════════════════════════════════════════════ */
   const music     = document.getElementById('music');
   const musicBtn  = document.getElementById('musicBtn');
   const iconPlay  = document.getElementById('icon-play');
   const iconPause = document.getElementById('icon-pause');
-  let musicReady  = false;
   let isPlaying   = false;
+  let userInteracted = false;
 
   function setPlayingUI() {
     isPlaying = true;
@@ -827,7 +499,6 @@ document.addEventListener('DOMContentLoaded', () => {
     musicBtn.setAttribute('aria-label', 'Pausar música');
     musicBtn.setAttribute('title', 'Pausar música');
   }
-
   function setPausedUI() {
     isPlaying = false;
     iconPlay.style.display  = '';
@@ -837,63 +508,70 @@ document.addEventListener('DOMContentLoaded', () => {
     musicBtn.setAttribute('title', 'Reproducir música');
   }
 
-  // Intentar reproducir (se llama tras interacción del usuario)
-  function tryPlay() {
-    if (!music || !musicReady) return;
+  // Esta función SIEMPRE se llama directamente dentro de un
+  // evento de usuario (click/touchend), nunca después de un await.
+  function playMusicFromUserGesture() {
+    if (!music) return;
+    music.muted  = false;
     music.volume = 0.28;
-    const promise = music.play();
-    if (promise !== undefined) {
-      promise
-        .then(() => setPlayingUI())
-        .catch(() => {
-          // Bloqueado por el navegador — el usuario debe hacer clic
-          setPausedUI();
-        });
+    const p = music.play();
+    if (p !== undefined) {
+      p.then(() => { setPlayingUI(); userInteracted = true; })
+       .catch(() => {
+         // Reintento: algunos navegadores móviles necesitan
+         // que el play() ocurra estrictamente en touchend
+         setPausedUI();
+       });
+    } else {
+      setPlayingUI();
     }
   }
 
-  // Verificar que el audio puede cargarse
-  music.addEventListener('canplaythrough', () => {
-    musicReady = true;
-  }, { once: true });
+  function pauseMusic() {
+    if (!music) return;
+    music.pause();
+    setPausedUI();
+  }
 
-  // Error al cargar el archivo (mp3 no encontrado, etc.)
+  // Toggle del botón — funciona igual en desktop y móvil porque
+  // el propio click/touchend ES el gesto de usuario requerido.
+  function handleToggle(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (isPlaying) {
+      pauseMusic();
+    } else {
+      playMusicFromUserGesture();
+    }
+  }
+
+  // 'click' cubre desktop y la mayoría de Android.
+  musicBtn.addEventListener('click', handleToggle);
+  // 'touchend' asegura compatibilidad con iOS Safari, donde el
+  // gesto debe capturarse en el evento táctil nativo.
+  musicBtn.addEventListener('touchend', handleToggle, { passive: false });
+
+  // Si el usuario toca en cualquier parte de la página antes de
+  // usar el botón, intentamos arrancar igual (mejora UX en quienes
+  // tocan la invitación sin reparar en el botón de música).
+  function tryAutoStartOnFirstTouch() {
+    if (userInteracted) return;
+    playMusicFromUserGesture();
+  }
+  document.addEventListener('click', tryAutoStartOnFirstTouch, { once: true });
+  document.addEventListener('touchend', tryAutoStartOnFirstTouch, { once: true, passive: true });
+
+  // Manejo de error de carga del archivo
   music.addEventListener('error', () => {
     musicBtn.disabled = true;
     musicBtn.style.opacity = '.4';
     musicBtn.setAttribute('title', 'Audio no disponible');
   });
 
-  // Primer clic en cualquier parte → intentar autoplay
-  const startOnFirstClick = () => {
-    tryPlay();
-    document.removeEventListener('click', startOnFirstClick);
-  };
-  document.addEventListener('click', startOnFirstClick);
-
-  // Clic en el botón → toggle play/pause
-  musicBtn.addEventListener('click', (e) => {
-    e.stopPropagation(); // no disparar el startOnFirstClick
-    if (!musicReady) {
-      // Aún cargando, intentar igual
-      tryPlay();
-      return;
-    }
-    if (isPlaying) {
-      music.pause();
-      setPausedUI();
-    } else {
-      tryPlay();
-    }
-  });
-
-  // Sincronizar si el navegador pausa el audio externamente
-  music.addEventListener('pause', () => {
-    if (isPlaying) setPausedUI();
-  });
-  music.addEventListener('play', () => {
-    if (!isPlaying) setPlayingUI();
-  });
+  // Sincronizar UI si el sistema pausa el audio externamente
+  // (ej: llamada entrante en el celular, cambio de pestaña)
+  music.addEventListener('pause', () => { if (isPlaying) setPausedUI(); });
+  music.addEventListener('play',  () => { if (!isPlaying) setPlayingUI(); });
 
   /* ── PÉTALOS ── */
   const wrap = document.getElementById('petals');
@@ -917,10 +595,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── REVEAL ON SCROLL ── */
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('show');
-        obs.unobserve(e.target);
-      }
+      if (e.isIntersecting) { e.target.classList.add('show'); obs.unobserve(e.target); }
     });
   }, { threshold: .1 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
