@@ -415,7 +415,7 @@
 
 <!-- ══ FOOTER ══ -->
 <footer class="p2-footer">
-  <p>Valentina &amp; Sebastián · 2025</p>
+  <p><span id="nombre-novia-footer">Valentina</span> &amp; <span id="nombre-novio-footer">Sebastián</span> · <span id="footer-year">2025</span></p>
   <p class="p2-footer__credit">Creado con ♥ en InvitArte</p>
 </footer>
 
@@ -489,6 +489,21 @@ document.addEventListener('DOMContentLoaded', () => {
   if (rsvpDeadlineEl) {
     rsvpDeadlineEl.textContent = formatearFechaCorta(fechaLimiteObj);
   }
+
+  // Footer: mismo año del evento, para que coincida siempre
+  const footerYearEl = document.getElementById('footer-year');
+  if (footerYearEl) {
+    footerYearEl.textContent = eventDateObj.getFullYear();
+  }
+
+  // Footer: mismos nombres que el hero, para mantener consistencia
+  const novioNombre = document.getElementById('nombre-novia')?.textContent;
+  const noviaFooter = document.getElementById('nombre-novia-footer');
+  if (novioNombre && noviaFooter) noviaFooter.textContent = novioNombre;
+
+  const novioNombre2 = document.getElementById('nombre-novio')?.textContent;
+  const novioFooter = document.getElementById('nombre-novio-footer');
+  if (novioNombre2 && novioFooter) novioFooter.textContent = novioNombre2;
 
   /* ── MOSTRAR INVITADO ── */
   const secInv = document.getElementById('sec-invitado');
