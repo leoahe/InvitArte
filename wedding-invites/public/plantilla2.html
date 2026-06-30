@@ -392,7 +392,7 @@
   <div class="p2-card p2-card--rsvp reveal">
     <p class="p2-card__label">Confirma tu asistencia</p>
     <div class="p2-divider"></div>
-    <p class="p2-text">Por favor confirma tu asistencia antes del 1 de agosto.<br>Tu respuesta nos ayuda a preparar todo con amor.</p>
+    <p class="p2-text">Por favor confirma tu asistencia antes del <span id="rsvp-deadline">—</span>.<br>Tu respuesta nos ayuda a preparar todo con amor.</p>
     <div class="p2-rsvp-btns">
       <button class="p2-rsvp-btn p2-rsvp-btn--yes" onclick="rsvp('si',this)">✓ Asistiré con gusto</button>
       <button class="p2-rsvp-btn p2-rsvp-btn--no"  onclick="rsvp('no',this)">✗ No podré asistir</button>
@@ -428,8 +428,67 @@ document.addEventListener('DOMContentLoaded', () => {
   const pases        = parseInt(params.get('pases')) || 1;
   const fechaParam   = params.get('fecha');
 
-  const FECHA_EVENTO = fechaParam || '2025-09-20';
+  /* ── FECHA DEL EVENTO ──
+     Si no viene "fecha" por URL, se calcula automáticamente
+     como HOY + 1 año, para que el countdown nunca esté vencido
+     y la invitación funcione siempre, sin tener que editar el
+     código a mano cada vez que se genera una nueva invitación. */
+  function calcularFechaPorDefecto() {
+    const hoy = new Date();
+    const fechaEvento = new Date(hoy.getFullYear() + 1, hoy.getMonth(), hoy.getDate());
+    const yyyy = fechaEvento.getFullYear();
+    const mm   = String(fechaEvento.getMonth() + 1).padStart(2, '0');
+    const dd   = String(fechaEvento.getDate()).padStart(2, '0');
+    return `${yyyy}-${mm}-${dd}`;
+  }
+
+  const FECHA_EVENTO = fechaParam || calcularFechaPorDefecto();
   const HORA_EVENTO  = 'T17:00:00';
+
+  /* ── FORMATEAR FECHAS EN ESPAÑOL ── */
+  const DIAS_SEMANA = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+  const MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+
+  function formatearFechaLarga(dateObj) {
+    const dia    = DIAS_SEMANA[dateObj.getDay()];
+    const numero = dateObj.getDate();
+    const mes    = MESES[dateObj.getMonth()];
+    const anio   = dateObj.getFullYear();
+    const diaCap = dia.charAt(0).toUpperCase() + dia.slice(1);
+    return `${diaCap} ${numero} de ${mes.charAt(0).toUpperCase() + mes.slice(1)} de ${anio}`;
+  }
+
+  function formatearFechaCorta(dateObj) {
+    const numero = dateObj.getDate();
+    const mes    = MESES[dateObj.getMonth()];
+    return `${numero} de ${mes}`;
+  }
+
+  const eventDateObj = new Date(FECHA_EVENTO + HORA_EVENTO);
+
+  // Hero: "Sábado · 20 de Septiembre de 2026"
+  const fechaHeroEl = document.getElementById('fecha-display');
+  if (fechaHeroEl) {
+    const diaCap = DIAS_SEMANA[eventDateObj.getDay()];
+    const diaTxt = diaCap.charAt(0).toUpperCase() + diaCap.slice(1);
+    const mesTxt = MESES[eventDateObj.getMonth()];
+    const mesCap = mesTxt.charAt(0).toUpperCase() + mesTxt.slice(1);
+    fechaHeroEl.textContent = `${diaTxt} · ${eventDateObj.getDate()} de ${mesCap} de ${eventDateObj.getFullYear()}`;
+  }
+
+  // Countdown card: misma fecha, formato "Sábado 20 de Septiembre de 2025"
+  const eventDateDisplayEl = document.getElementById('event-date-display');
+  if (eventDateDisplayEl) {
+    eventDateDisplayEl.textContent = formatearFechaLarga(eventDateObj);
+  }
+
+  // RSVP: fecha límite = 1 mes antes del evento
+  const fechaLimiteObj = new Date(eventDateObj);
+  fechaLimiteObj.setMonth(fechaLimiteObj.getMonth() - 1);
+  const rsvpDeadlineEl = document.getElementById('rsvp-deadline');
+  if (rsvpDeadlineEl) {
+    rsvpDeadlineEl.textContent = formatearFechaCorta(fechaLimiteObj);
+  }
 
   /* ── MOSTRAR INVITADO ── */
   const secInv = document.getElementById('sec-invitado');
@@ -446,7 +505,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function pad(n) { return String(Math.floor(n)).padStart(2, '0'); }
 
   function updateCountdown() {
-    const target = new Date(FECHA_EVENTO + HORA_EVENTO).getTime();
+    const target = eventDateObj.getTime();
     const diff   = target - Date.now();
 
     if (diff <= 0) {
