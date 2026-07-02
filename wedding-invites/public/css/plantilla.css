@@ -22,36 +22,94 @@ body{
   overflow-x:hidden;
 }
 
-/* ===== MARCO FLORAL ===== */
+/* ===== MARCO FLORAL — esquinas doradas (nueva imagen) =====
+   Mismo contenedor .floral-frame, mismo z-index, mismo
+   pointer-events:none y position:fixed que la versión anterior.
+   Se sustituye el sistema de bandas verticales repetidas por
+   4 esquinas independientes (igual composición que la imagen
+   de referencia: flores+marco dorado entrando desde cada esquina). */
 .floral-frame{
   position:fixed;
   inset:0;
   pointer-events:none;
   z-index:1;
+  overflow:hidden;
 }
 .floral-frame::before,
-.floral-frame::after{
+.floral-frame::after,
+.floral-frame i.fc-bl,
+.floral-frame i.fc-br{
   content:"";
   position:absolute;
-  top:0;
-  width:220px;
-  height:100%;
+  display:block;
   background-size:contain;
   background-repeat:no-repeat;
-  opacity:.7;
-  animation:floralMove 12s ease-in-out infinite alternate;
+  opacity:.92;
 }
+/* Esquina superior izquierda: flores grandes + marco dorado */
 .floral-frame::before{
-  left:0;
-  background-image:url("../images/floral-left.png");
+  top:-6px; left:-6px;
+  width:300px; height:246px;
+  background-image:url("../images/floral/gold-tl.png");
+  animation:floralFadeTL 2s ease both;
 }
+/* Esquina superior derecha: marco dorado ornamentado + colgantes */
 .floral-frame::after{
-  right:0;
-  background-image:url("../images/floral-right.png");
+  top:-6px; right:-6px;
+  width:300px; height:283px;
+  background-image:url("../images/floral/gold-tr.png");
+  animation:floralFadeTR 2s ease .15s both;
 }
-@keyframes floralMove{
-  from{transform:translateY(0)}
-  to{transform:translateY(-30px)}
+@keyframes floralFadeTL{
+  from{opacity:0;transform:translateY(-10px) scale(.95)}
+  to{opacity:.92;transform:translateY(0) scale(1)}
+}
+@keyframes floralFadeTR{
+  from{opacity:0;transform:translateY(-10px) scale(.95)}
+  to{opacity:.92;transform:translateY(0) scale(1)}
+}
+@keyframes floralFadeBL{
+  from{opacity:0;transform:translateY(10px) scale(.95)}
+  to{opacity:.88;transform:translateY(0) scale(1)}
+}
+@keyframes floralFadeBR{
+  from{opacity:0;transform:translateY(10px) scale(.95)}
+  to{opacity:.92;transform:translateY(0) scale(1)}
+}
+
+/* Esquina inferior izquierda: marco dorado ornamentado */
+.floral-frame i.fc-bl{
+  bottom:-6px; left:-6px;
+  width:220px; height:374px;
+  background-image:url("../images/floral/gold-bl.png");
+  background-position:bottom left;
+  opacity:.88;
+  animation:floralFadeBL 2s ease .3s both;
+}
+/* Esquina inferior derecha: flores grandes + marco dorado */
+.floral-frame i.fc-br{
+  bottom:-6px; right:-6px;
+  width:300px; height:374px;
+  background-image:url("../images/floral/gold-br.png");
+  background-position:bottom right;
+  opacity:.92;
+  animation:floralFadeBR 2s ease .45s both;
+}
+
+/* Responsive — reducir tamaño en móvil para no tapar contenido */
+@media(max-width:680px){
+  .floral-frame::before,.floral-frame::after{width:200px}
+  .floral-frame::before{height:164px}
+  .floral-frame::after{height:189px}
+  .floral-frame i.fc-bl{width:148px;height:252px}
+  .floral-frame i.fc-br{width:200px;height:252px}
+}
+@media(max-width:420px){
+  .floral-frame::before,.floral-frame::after{width:150px}
+  .floral-frame::before{height:123px}
+  .floral-frame::after{height:142px}
+  .floral-frame i.fc-bl{width:110px;height:186px}
+  .floral-frame i.fc-br{width:150px;height:186px}
 }
 
 /* ===== PETALOS ===== */
