@@ -155,7 +155,6 @@ body{
   justify-content:center;
   text-align:center;
   position:relative;
-  z-index:5;
 }
 .plantilla-hero h2{
   letter-spacing:4px;
@@ -189,7 +188,6 @@ body{
 .plantilla-section{
   padding:4.5rem 1.5rem;
   position:relative;
-  z-index:5;
 }
 
 
@@ -203,7 +201,6 @@ body{
   padding:3.8rem 2.8rem;
   text-align:center;
   position:relative;
-  z-index:6;
 
   background:linear-gradient(
     180deg,
