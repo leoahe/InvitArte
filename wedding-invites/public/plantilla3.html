@@ -38,7 +38,7 @@
 <!-- CANVAS PARTÍCULAS (mantener original) -->
 <canvas class="p3-canvas" id="p3canvas"></canvas>
 
-<audio id="music" loop><source src="musica.mp3" type="audio/mpeg"></audio>
+<audio id="music" loop muted preload="auto" playsinline webkit-playsinline><source src="audio/musica3.mp3" type="audio/mpeg"></audio>
 <button class="p3-music-btn" id="musicBtn" title="Música">♪</button>
 
 <section class="p3-hero">
@@ -120,6 +120,8 @@
       <div class="p3-time__sep">·</div>
       <div class="p3-time"><span id="cd-seconds">00</span><small>Seg</small></div>
     </div>
+    <p class="p3-event-date-display" id="event-date-display">Sábado 20 de Septiembre de 2026</p>
+    <p class="p3-event-time-display">5:00 PM</p>
   </div>
 </section>
 
@@ -154,10 +156,15 @@
     <p class="p3-label">Galería</p>
     <div class="p3-thin-rule"></div>
     <div class="p3-gallery">
-      <div class="p3-gallery__main"></div>
+      <div class="p3-gallery__main">
+        <img src="images/galeria/foto1.jpg" alt="Foto 1" style="width:100%;height:100%;object-fit:cover;border-radius:4px;display:block"
+          onerror="this.style.display='none'">
+      </div>
       <div class="p3-gallery__grid">
-        <div class="p3-gallery__sm"></div><div class="p3-gallery__sm"></div>
-        <div class="p3-gallery__sm"></div><div class="p3-gallery__sm"></div>
+        <div class="p3-gallery__sm"><img src="images/galeria/foto2.jpg" alt="Foto 2" style="width:100%;height:100%;object-fit:cover;border-radius:4px;display:block" onerror="this.style.display='none'"></div>
+        <div class="p3-gallery__sm"><img src="images/galeria/foto3.jpg" alt="Foto 3" style="width:100%;height:100%;object-fit:cover;border-radius:4px;display:block" onerror="this.style.display='none'"></div>
+        <div class="p3-gallery__sm"><img src="images/galeria/foto4.jpg" alt="Foto 4" style="width:100%;height:100%;object-fit:cover;border-radius:4px;display:block" onerror="this.style.display='none'"></div>
+        <div class="p3-gallery__sm"><img src="images/galeria/foto5.jpg" alt="Foto 5" style="width:100%;height:100%;object-fit:cover;border-radius:4px;display:block" onerror="this.style.display='none'"></div>
       </div>
     </div>
   </div>
@@ -167,7 +174,7 @@
   <div class="p3-block reveal">
     <p class="p3-label">Confirmación de asistencia</p>
     <div class="p3-thin-rule"></div>
-    <p class="p3-body-text">Agradecemos confirmar tu asistencia antes del 1 de agosto.</p>
+    <p class="p3-body-text">Agradecemos confirmar tu asistencia antes del <span id="rsvp-deadline">—</span>.</p>
     <div class="p3-rsvp">
       <button class="p3-rsvp-btn p3-rsvp-btn--yes" onclick="rsvp3('si',this)">Confirmar asistencia</button>
       <button class="p3-rsvp-btn p3-rsvp-btn--no" onclick="rsvp3('no',this)">No podré asistir</button>
@@ -188,7 +195,7 @@
 </section>
 
 <footer class="p3-footer">
-  <p>Isabella &amp; Alejandro · 2025</p>
+  <p><span id="nombre-novia-footer">Isabella</span> &amp; <span id="nombre-novio-footer">Alejandro</span> · <span id="footer-year">2025</span></p>
   <p class="p3-footer__credit">InvitArte · Invitaciones Digitales Premium</p>
 </footer>
 
@@ -197,7 +204,45 @@ document.addEventListener('DOMContentLoaded', () => {
   const params   = new URLSearchParams(window.location.search);
   const invitado = params.get('invitado');
   const pases    = parseInt(params.get('pases')) || 1;
-  const FECHA    = '2025-09-20';
+  /* ── FECHA DINÁMICA: HOY + 1 AÑO (o desde URL ?fecha=YYYY-MM-DD) ── */
+  const fechaParam = params.get('fecha');
+  function calcFechaDefault() {
+    const h = new Date();
+    const e = new Date(h.getFullYear()+1, h.getMonth(), h.getDate());
+    return e.getFullYear()+'-'+String(e.getMonth()+1).padStart(2,'0')+'-'+String(e.getDate()).padStart(2,'0');
+  }
+  const FECHA_EVENTO = fechaParam || calcFechaDefault();
+  const eventDateObj = new Date(FECHA_EVENTO + 'T17:00:00');
+
+  const MESES_ES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  const DIAS_ES  = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+  function cap(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
+
+  // Actualizar textos de fecha en el HTML
+  const fechaEl = document.getElementById('fecha-display');
+  if (fechaEl) {
+    fechaEl.textContent = cap(DIAS_ES[eventDateObj.getDay()]) + ' · ' +
+      eventDateObj.getDate() + ' de ' + cap(MESES_ES[eventDateObj.getMonth()]) + ' de ' + eventDateObj.getFullYear();
+  }
+  const eventDateDisplay = document.getElementById('event-date-display');
+  if (eventDateDisplay) {
+    eventDateDisplay.textContent = cap(DIAS_ES[eventDateObj.getDay()]) + ' ' +
+      eventDateObj.getDate() + ' de ' + cap(MESES_ES[eventDateObj.getMonth()]) + ' de ' + eventDateObj.getFullYear();
+  }
+
+  // RSVP deadline = 1 mes antes
+  const rsvpDate = new Date(eventDateObj);
+  rsvpDate.setMonth(rsvpDate.getMonth()-1);
+  const rsvpEl = document.getElementById('rsvp-deadline');
+  if (rsvpEl) rsvpEl.textContent = rsvpDate.getDate() + ' de ' + cap(MESES_ES[rsvpDate.getMonth()]);
+
+  // Footer: año y nombres dinámicos
+  const footerYearEl = document.getElementById('footer-year');
+  if (footerYearEl) footerYearEl.textContent = eventDateObj.getFullYear();
+  const noviaFooter = document.getElementById('nombre-novia-footer');
+  const novioFooter = document.getElementById('nombre-novio-footer');
+  if (noviaFooter) noviaFooter.textContent = document.getElementById('nombre-novia')?.textContent || 'Isabella';
+  if (novioFooter) novioFooter.textContent = document.getElementById('nombre-novio')?.textContent || 'Alejandro';
 
   // Invitado
   const secInv = document.getElementById('sec-invitado');
@@ -210,31 +255,64 @@ document.addEventListener('DOMContentLoaded', () => {
     if (secInv) secInv.style.display = 'none';
   }
 
-  // Countdown
+  /* ── COUNTDOWN ── */
+  function pad(n){ return String(Math.floor(n)).padStart(2,'0'); }
   function updateCD() {
-    const diff = new Date(FECHA + 'T17:00:00') - Date.now();
-    if (diff <= 0) return;
-    document.getElementById('cd-days').textContent    = String(Math.floor(diff/86400000)).padStart(2,'0');
-    document.getElementById('cd-hours').textContent   = String(Math.floor(diff%86400000/3600000)).padStart(2,'0');
-    document.getElementById('cd-minutes').textContent = String(Math.floor(diff%3600000/60000)).padStart(2,'0');
-    document.getElementById('cd-seconds').textContent = String(Math.floor(diff%60000/1000)).padStart(2,'0');
+    const diff = eventDateObj.getTime() - Date.now();
+    if (diff <= 0) {
+      document.getElementById('cd-days').textContent    = '¡Hoy!';
+      document.getElementById('cd-hours').textContent   = '00';
+      document.getElementById('cd-minutes').textContent = '00';
+      document.getElementById('cd-seconds').textContent = '00';
+      return;
+    }
+    document.getElementById('cd-days').textContent    = pad(diff/86400000);
+    document.getElementById('cd-hours').textContent   = pad(diff%86400000/3600000);
+    document.getElementById('cd-minutes').textContent = pad(diff%3600000/60000);
+    document.getElementById('cd-seconds').textContent = pad(diff%60000/1000);
   }
   updateCD(); setInterval(updateCD, 1000);
 
-  // Música
-  const music = document.getElementById('music');
-  const btn   = document.getElementById('musicBtn');
-  let playing = false;
-  const tryPlay = () => {
-    if (!playing && music) { music.volume = 0.3; music.play().then(() => { playing = true; btn.textContent = '♫'; }).catch(() => {}); }
-    document.removeEventListener('click', tryPlay);
-  };
-  document.addEventListener('click', tryPlay, { once: true });
-  btn.addEventListener('click', e => {
-    e.stopPropagation();
-    if (playing) { music.pause(); playing = false; btn.textContent = '♪'; }
-    else { music.play().catch(() => {}); playing = true; btn.textContent = '♫'; }
-  });
+  /* ── MÚSICA — fix móvil (iOS Safari + Android Chrome) ── */
+  const music    = document.getElementById('music');
+  const btn      = document.getElementById('musicBtn');
+  let isPlaying  = false;
+  let userStarted = false;
+
+  function setPlayUI()  { isPlaying=true;  if(btn){btn.textContent='♫';} }
+  function setPauseUI() { isPlaying=false; if(btn){btn.textContent='♪';} }
+
+  function playNow() {
+    if (!music) return;
+    music.muted  = false;
+    music.volume = 0.28;
+    const p = music.play();
+    if (p !== undefined) {
+      p.then(()=>{ setPlayUI(); userStarted=true; }).catch(()=>{ setPauseUI(); });
+    } else { setPlayUI(); }
+  }
+
+  function toggleMusic() {
+    if (isPlaying) { music.pause(); setPauseUI(); }
+    else { playNow(); }
+  }
+
+  if (btn) {
+    btn.addEventListener('click',    (e)=>{ e.stopPropagation(); toggleMusic(); });
+    btn.addEventListener('touchend', (e)=>{ e.preventDefault(); e.stopPropagation(); toggleMusic(); }, { passive:false });
+  }
+  function tryAutoplay() {
+    if (!userStarted) playNow();
+    document.removeEventListener('click',    tryAutoplay);
+    document.removeEventListener('touchend', tryAutoplay);
+  }
+  document.addEventListener('click',    tryAutoplay, { once:true });
+  document.addEventListener('touchend', tryAutoplay, { once:true, passive:true });
+  if (music) {
+    music.addEventListener('pause', ()=>{ if(isPlaying) setPauseUI(); });
+    music.addEventListener('play',  ()=>{ if(!isPlaying) setPlayUI(); });
+    music.addEventListener('error', ()=>{ if(btn){btn.disabled=true;btn.style.opacity='.4';} });
+  }
 
   // ── PÉTALOS CHAMPAGNE/DORADOS ──────────────────────────────
   const wrap = document.getElementById('p3petals');
