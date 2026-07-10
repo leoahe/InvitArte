@@ -9,6 +9,59 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="css/plantilla.css">
+  <!-- TIPOGRAFÍA AUMENTADA — igual tamaño que Diseño 2 -->
+  <style>
+    /* Hero: nombres más grandes y responsivos */
+    .plantilla-hero h1 {
+      font-size: clamp(3.2rem, 9vw, 5.5rem) !important;
+      line-height: 1.08 !important;
+    }
+    .plantilla-hero h2 {
+      font-size: .92rem !important;
+      letter-spacing: .38em !important;
+    }
+    .fecha {
+      font-size: 1.25rem !important;
+    }
+    /* Cards: h2 y p más visibles */
+    .card h2 {
+      font-size: 1.5rem !important;
+      margin-bottom: .4rem !important;
+    }
+    .card p {
+      font-size: 1.05rem !important;
+      line-height: 1.85 !important;
+    }
+    /* Countdown: números más grandes */
+    .time {
+      font-size: 2.8rem !important;
+      min-width: 72px !important;
+      padding: 16px 18px !important;
+    }
+    .time span, .time br + span {
+      font-size: .7rem !important;
+    }
+    /* Evento fecha/hora debajo del countdown */
+    .event-date {
+      font-size: 1.3rem !important;
+    }
+    .event-time {
+      font-size: .9rem !important;
+    }
+    /* Subcard (padres) */
+    .subcard h3 {
+      font-size: 1.1rem !important;
+    }
+    .subcard p {
+      font-size: 1rem !important;
+    }
+    @media(max-width:480px){
+      .plantilla-hero h1 { font-size: 2.8rem !important; }
+      .card h2 { font-size: 1.3rem !important; }
+      .time { font-size: 2.2rem !important; min-width: 58px !important; }
+    }
+  </style>
+
 
   <!-- JS -->
   <script src="js/plantilla.js" defer></script>
@@ -26,8 +79,8 @@
 
 
   <!-- MUSICA -->
-  <audio id="music" loop>
-    <source src="musica.mp3" type="audio/mpeg">
+  <audio id="music" loop muted preload="auto" playsinline webkit-playsinline>
+    <source src="audio/musica.mp3" type="audio/mpeg">
   </audio>
   <button class="music-btn" id="musicBtn">🔊</button>
 
