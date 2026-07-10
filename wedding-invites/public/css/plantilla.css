@@ -96,20 +96,34 @@ body{
   animation:floralFadeBR 2s ease .45s both;
 }
 
-/* Responsive — reducir tamaño en móvil para no tapar contenido */
-@media(max-width:680px){
-  .floral-frame::before,.floral-frame::after{width:200px}
-  .floral-frame::before{height:164px}
-  .floral-frame::after{height:189px}
-  .floral-frame i.fc-bl{width:148px;height:252px}
-  .floral-frame i.fc-br{width:200px;height:252px}
+/* Responsive — marco floral proporcional, nunca tapa contenido */
+@media(max-width:900px){
+  .floral-frame::before,.floral-frame::after{width:220px}
+  .floral-frame::before{height:181px}
+  .floral-frame::after{height:207px}
+  .floral-frame i.fc-bl{width:165px;height:282px}
+  .floral-frame i.fc-br{width:220px;height:282px}
 }
-@media(max-width:420px){
+@media(max-width:680px){
   .floral-frame::before,.floral-frame::after{width:150px}
   .floral-frame::before{height:123px}
   .floral-frame::after{height:142px}
-  .floral-frame i.fc-bl{width:110px;height:186px}
-  .floral-frame i.fc-br{width:150px;height:186px}
+  .floral-frame i.fc-bl{width:112px;height:192px}
+  .floral-frame i.fc-br{width:150px;height:192px}
+}
+@media(max-width:480px){
+  .floral-frame::before,.floral-frame::after{width:110px}
+  .floral-frame::before{height:90px}
+  .floral-frame::after{height:104px}
+  .floral-frame i.fc-bl{width:82px;height:141px}
+  .floral-frame i.fc-br{width:110px;height:141px}
+}
+@media(max-width:380px){
+  .floral-frame::before,.floral-frame::after{width:88px}
+  .floral-frame::before{height:72px}
+  .floral-frame::after{height:83px}
+  .floral-frame i.fc-bl{width:66px;height:112px}
+  .floral-frame i.fc-br{width:88px;height:112px}
 }
 
 /* ===== PETALOS ===== */
