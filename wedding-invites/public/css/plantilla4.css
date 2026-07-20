@@ -44,88 +44,80 @@ body::before {
     radial-gradient(ellipse 70% 50% at 80% 80%, rgba(74,144,184,.05), transparent 55%);
 }
 
-/* ── MARCO FLORAL ── */
+/* ── MARCO FLORAL — 4 PNGs únicos, sin transformaciones CSS ── */
 .ji-floral-frame {
-  position: fixed; inset: 0;
-  pointer-events: none; z-index: 20;
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
   overflow: hidden;
 }
+
+/* Cada esquina es un PNG ya orientado correctamente.
+   NO usamos transform: scale() porque rompe el posicionamiento fixed.
+   top/left/right/bottom en 0 = pegado exacto al borde. */
 .ji-floral-piece {
   position: absolute;
   opacity: 0;
-  animation: jiFadeIn 2.2s cubic-bezier(.16,1,.3,1) both;
-  /* Asegurar que toca exactamente el borde */
-  margin: 0; padding: 0;
+  animation: jiFadeIn 2s ease-out both;
 }
 .ji-floral-piece img {
   display: block;
-  width: 100%; height: auto;
+  width: 100%;
+  height: auto;
 }
+
 @keyframes jiFadeIn {
-  from { opacity: 0; transform: scale(.92); }
+  from { opacity: 0; transform: scale(.95); }
   to   { opacity: 1; transform: scale(1); }
 }
 
-/* ── ESQUINAS: pegadas al borde, tamaño abundante ── */
-
-/* TL: rama izquierda superior — se alinea al borde izq y arriba */
+/* ── ESQUINA SUPERIOR IZQUIERDA ── */
 .ji-tl {
-  top: 0; left: 0;
-  width: clamp(220px, 28vw, 420px);
+  top: 0;
+  left: 0;
+  width: clamp(260px, 40vw, 480px);
   transform-origin: top left;
   animation-delay: .1s;
 }
 
-/* TR: rama derecha superior — espejada horizontalmente */
+/* ── ESQUINA SUPERIOR DERECHA ── */
 .ji-tr {
-  top: 0; right: 0;
-  width: clamp(220px, 28vw, 420px);
+  top: 0;
+  right: 0;
+  width: clamp(260px, 40vw, 480px);
   transform-origin: top right;
-  transform: scaleX(-1);
-  animation: jiFadeInMirror 2.2s cubic-bezier(.16,1,.3,1) .25s both;
-}
-@keyframes jiFadeInMirror {
-  from { opacity: 0; transform: scaleX(-1) scale(.92); }
-  to   { opacity: 1; transform: scaleX(-1) scale(1); }
+  animation-delay: .2s;
 }
 
-/* BL: rama izquierda inferior — espejada verticalmente */
+/* ── ESQUINA INFERIOR IZQUIERDA ── */
 .ji-bl {
-  bottom: 0; left: 0;
-  width: clamp(220px, 28vw, 420px);
+  bottom: 0;
+  left: 0;
+  width: clamp(260px, 40vw, 480px);
   transform-origin: bottom left;
-  transform: scaleY(-1);
-  animation: jiFadeInBL 2.2s cubic-bezier(.16,1,.3,1) .45s both;
-}
-@keyframes jiFadeInBL {
-  from { opacity: 0; transform: scaleY(-1) scale(.92); }
-  to   { opacity: 1; transform: scaleY(-1) scale(1); }
+  animation-delay: .35s;
 }
 
-/* BR: rama derecha inferior — espejada en ambos ejes */
+/* ── ESQUINA INFERIOR DERECHA ── */
 .ji-br {
-  bottom: 0; right: 0;
-  width: clamp(220px, 28vw, 420px);
+  bottom: 0;
+  right: 0;
+  width: clamp(260px, 40vw, 480px);
   transform-origin: bottom right;
-  transform: scale(-1,-1);
-  animation: jiFadeInBR 2.2s cubic-bezier(.16,1,.3,1) .6s both;
-}
-@keyframes jiFadeInBR {
-  from { opacity: 0; transform: scale(-1,-1) scale(.92); }
-  to   { opacity: 1; transform: scale(-1,-1) scale(1); }
+  animation-delay: .5s;
 }
 
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
-  .ji-tl,.ji-tr { width: clamp(180px, 26vw, 340px); }
-  .ji-bl,.ji-br { width: clamp(180px, 26vw, 340px); }
+  .ji-tl,.ji-tr,.ji-bl,.ji-br { width: clamp(200px, 38vw, 380px); }
 }
 @media(max-width:600px){
-  .ji-tl,.ji-tr { width: clamp(140px, 42vw, 230px); }
-  .ji-bl,.ji-br { width: clamp(140px, 42vw, 230px); }
+  .ji-tl,.ji-tr,.ji-bl,.ji-br { width: clamp(160px, 46vw, 280px); }
 }
 @media(max-width:380px){
-  .ji-tl,.ji-tr { width: 130px; }
+  .ji-tl,.ji-tr,.ji-bl,.ji-br { width: 150px; }
+}
   .ji-bl,.ji-br { width: 130px; }
 }
 
