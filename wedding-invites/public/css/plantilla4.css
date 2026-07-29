@@ -76,7 +76,7 @@ body::before {
 .ji-tl {
   top: 0;
   left: 0;
-  width: clamp(260px, 40vw, 480px);
+  width: clamp(240px, 34vw, 460px);
   transform-origin: top left;
   animation-delay: .1s;
 }
@@ -85,40 +85,45 @@ body::before {
 .ji-tr {
   top: 0;
   right: 0;
-  width: clamp(260px, 40vw, 480px);
+  width: clamp(240px, 34vw, 460px);
   transform-origin: top right;
   animation-delay: .2s;
 }
 
-/* ── ESQUINA INFERIOR IZQUIERDA ── */
+/* ── ESQUINA INFERIOR IZQUIERDA — más grande que superiores ── */
 .ji-bl {
   bottom: 0;
   left: 0;
-  width: clamp(260px, 40vw, 480px);
+  width: clamp(300px, 44vw, 580px);
   transform-origin: bottom left;
   animation-delay: .35s;
 }
 
-/* ── ESQUINA INFERIOR DERECHA ── */
+/* ── ESQUINA INFERIOR DERECHA — más grande que superiores ── */
 .ji-br {
   bottom: 0;
   right: 0;
-  width: clamp(260px, 40vw, 480px);
+  width: clamp(300px, 44vw, 580px);
   transform-origin: bottom right;
   animation-delay: .5s;
 }
 
 /* ── RESPONSIVE ── */
+@media(max-width:1200px){
+  .ji-tl,.ji-tr          { width: clamp(220px, 32vw, 400px); }
+  .ji-bl,.ji-br          { width: clamp(270px, 40vw, 500px); }
+}
 @media(max-width:900px){
-  .ji-tl,.ji-tr,.ji-bl,.ji-br { width: clamp(200px, 38vw, 380px); }
+  .ji-tl,.ji-tr          { width: clamp(190px, 30vw, 320px); }
+  .ji-bl,.ji-br          { width: clamp(240px, 38vw, 420px); }
 }
 @media(max-width:600px){
-  .ji-tl,.ji-tr,.ji-bl,.ji-br { width: clamp(160px, 46vw, 280px); }
+  .ji-tl,.ji-tr          { width: clamp(140px, 42vw, 230px); }
+  .ji-bl,.ji-br          { width: clamp(175px, 50vw, 290px); }
 }
 @media(max-width:380px){
-  .ji-tl,.ji-tr,.ji-bl,.ji-br { width: 150px; }
-}
-  .ji-bl,.ji-br { width: 130px; }
+  .ji-tl,.ji-tr          { width: 130px; }
+  .ji-bl,.ji-br          { width: 165px; }
 }
 
 /* ── PARTÍCULAS: hojas azul-verde ── */
