@@ -65,6 +65,138 @@
 
   <!-- JS -->
   <script src="js/plantilla.js" defer></script>
+
+<style>
+/* ════════════════════════════════
+   ITINERARIO / TIMELINE — P1
+════════════════════════════════ */
+.p1-timeline {
+  position: relative;
+  max-width: 560px;
+  margin: 2rem auto 0;
+  padding: 0 0 1rem;
+}
+
+/* Línea vertical central */
+.p1-timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg,
+    transparent,
+    #c9a84c 8%,
+    #c9a84c 92%,
+    transparent);
+  transform: translateX(-50%);
+}
+
+/* Items */
+.p1-tl-item {
+  display: flex;
+  width: 50%;
+  margin-bottom: 2.8rem;
+  position: relative;
+}
+
+/* Punto en la línea */
+.p1-tl-item::after {
+  content: '♥';
+  position: absolute;
+  top: 50%;
+  font-size: .65rem;
+  color: #c9a84c;
+  transform: translateY(-50%);
+  background: transparent;
+  line-height: 1;
+  z-index: 2;
+}
+
+/* Items lado IZQUIERDO */
+.p1-tl-left {
+  left: 0;
+  padding-right: 2.4rem;
+  justify-content: flex-end;
+  text-align: right;
+}
+.p1-tl-left::after {
+  right: -0.5rem;
+}
+
+/* Items lado DERECHO */
+.p1-tl-right {
+  left: 50%;
+  padding-left: 2.4rem;
+  justify-content: flex-start;
+  text-align: left;
+}
+.p1-tl-right::after {
+  left: -0.5rem;
+}
+
+/* Tarjeta de contenido */
+.p1-tl-content {
+  background: rgba(201,168,76,.06);
+  border: 1px solid rgba(201,168,76,.2);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  max-width: 200px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.06);
+}
+
+/* Ícono emoji */
+.p1-tl-icon {
+  font-size: 1.6rem;
+  display: block;
+  margin-bottom: .3rem;
+  line-height: 1;
+}
+
+/* Hora */
+.p1-tl-hora {
+  font-family: 'Playfair Display', serif;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  color: #c9a84c;
+  margin-bottom: .15rem;
+}
+
+/* Nombre del evento */
+.p1-tl-evento {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(255,255,255,.85);
+  line-height: 1.3;
+}
+
+/* RESPONSIVE: una columna en móvil */
+@media(max-width: 520px) {
+  .p1-timeline::before {
+    left: 22px;
+  }
+  .p1-tl-item,
+  .p1-tl-left,
+  .p1-tl-right {
+    width: 100%;
+    left: 0;
+    padding-left: 52px;
+    padding-right: 0;
+    justify-content: flex-start;
+    text-align: left;
+  }
+  .p1-tl-left::after,
+  .p1-tl-right::after {
+    left: 14px;
+    right: auto;
+  }
+  .p1-tl-content {
+    max-width: 100%;
+  }
+}
+</style>
 </head>
 
 <body class="plantilla-body">
@@ -252,3 +384,57 @@
 
 </body>
 </html>
+<!-- ══ ITINERARIO ══ -->
+<section class="plantilla-section">
+  <div class="card reveal">
+    <h2>Programa del Día</h2>
+    <div class="gold-line"></div>
+    <div class="timeline">
+
+    <div class="timeline-item timeline-left reveal">
+      <div class="timeline-content">
+        <span class="timeline-icon">⛪</span>
+        <p class="timeline-hora">18:00 hrs</p>
+        <p class="timeline-evento">Ceremonia</p>
+      </div>
+    </div>
+    <div class="timeline-item timeline-right reveal">
+      <div class="timeline-content">
+        <span class="timeline-icon">💍</span>
+        <p class="timeline-hora">19:00 hrs</p>
+        <p class="timeline-evento">Boda Civil</p>
+      </div>
+    </div>
+    <div class="timeline-item timeline-left reveal">
+      <div class="timeline-content">
+        <span class="timeline-icon">🥂</span>
+        <p class="timeline-hora">20:00 hrs</p>
+        <p class="timeline-evento">Recepción</p>
+      </div>
+    </div>
+    <div class="timeline-item timeline-right reveal">
+      <div class="timeline-content">
+        <span class="timeline-icon">🍽</span>
+        <p class="timeline-hora">20:30 hrs</p>
+        <p class="timeline-evento">Cena</p>
+      </div>
+    </div>
+    <div class="timeline-item timeline-left reveal">
+      <div class="timeline-content">
+        <span class="timeline-icon">💃</span>
+        <p class="timeline-hora">21:30 hrs</p>
+        <p class="timeline-evento">Baile</p>
+      </div>
+    </div>
+    <div class="timeline-item timeline-right reveal">
+      <div class="timeline-content">
+        <span class="timeline-icon">🌙</span>
+        <p class="timeline-hora">02:00 hrs</p>
+        <p class="timeline-evento">Fin del evento</p>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+
