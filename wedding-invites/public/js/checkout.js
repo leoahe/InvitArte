@@ -10,7 +10,7 @@
  */
 
 const IVA_RATE     = 0.16;
-let selectedPlanId = 'premium';
+let selectedPlanId = 'elegante';
 let extraGuests    = 0;
 let paymentMethod  = 'stripe';
 let mpSubMethod    = null;

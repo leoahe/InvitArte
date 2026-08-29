@@ -24,7 +24,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .btn-sm{padding:8px 17px;font-size:.6rem}
 .btn-outline{background:transparent;color:var(--gold);border:1.5px solid rgba(201,168,118,.4)}
 .btn-outline:hover{background:rgba(201,168,118,.07)}
-.page{position:relative;z-index:1;padding:108px 24px 60px;max-width:980px;margin:0 auto}
+.page{position:relative;z-index:1;padding:108px 24px 60px;max-width:1100px;margin:0 auto}
 .hdr{text-align:center;margin-bottom:48px}
 .hdr-eye{font-size:.6rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:block}
 .hdr-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:400;color:var(--titulo);line-height:1.15;margin-bottom:10px}
@@ -34,35 +34,64 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .orn::before,.orn::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,var(--champ))}
 .orn::after{background:linear-gradient(to left,transparent,var(--champ))}
 .orn span{color:var(--gold);font-size:.85rem;opacity:.5}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:36px}
-.card{background:#fff;border:1.5px solid var(--borde);border-radius:22px;padding:34px 30px;position:relative;transition:all .35s;box-shadow:0 4px 18px rgba(60,40,20,.07)}
+/* GRID 3 COLUMNAS */
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-bottom:36px;align-items:start}
+.card{background:#fff;border:1.5px solid var(--borde);border-radius:22px;padding:32px 26px;position:relative;transition:all .35s;box-shadow:0 4px 18px rgba(60,40,20,.07)}
 .card:hover{border-color:var(--borde2);box-shadow:0 12px 38px rgba(60,40,20,.12);transform:translateY(-4px)}
-.card.elegante{border-color:rgba(201,168,118,.25)}.card.elegante:hover{border-color:rgba(201,168,118,.5)}
-.card.premium{border-color:rgba(201,168,118,.4);background:linear-gradient(180deg,rgba(234,223,207,.2),#fff 60%);box-shadow:0 0 0 1px rgba(201,168,118,.2),0 8px 36px rgba(60,40,20,.1)}
-.card.premium:hover{border-color:rgba(201,168,118,.65)}
+.card.esencial{border-color:rgba(201,168,118,.2)}
+.card.esencial:hover{border-color:rgba(201,168,118,.45)}
+.card.elegante{border-color:rgba(201,168,118,.45);background:linear-gradient(180deg,rgba(234,223,207,.18),#fff 55%);box-shadow:0 0 0 1px rgba(201,168,118,.25),0 10px 42px rgba(60,40,20,.12)}
+.card.elegante:hover{border-color:rgba(201,168,118,.7);box-shadow:0 0 0 2px rgba(201,168,118,.4),0 20px 55px rgba(60,40,20,.16)}
+.card.premium-card{border-color:rgba(44,44,44,.18);background:linear-gradient(180deg,#2C2C2C,#3a3025);color:#FAF8F4}
+.card.premium-card:hover{border-color:rgba(201,168,118,.6);box-shadow:0 0 0 1.5px rgba(201,168,118,.4),0 20px 55px rgba(20,15,5,.35)}
+/* Badge */
 .pop{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),#dfc085);color:#fff;font-size:.57rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:5px 17px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 13px rgba(201,168,118,.35)}
+.pop-dark{background:linear-gradient(135deg,#2C2C2C,#4a3f28);color:var(--gold)}
+/* Card content */
 .ctag{font-size:.57rem;font-weight:700;letter-spacing:.27em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
-.cname{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:400;color:var(--titulo);margin-bottom:4px}
-.cdesc{font-size:.77rem;color:var(--muted);line-height:1.5;margin-bottom:20px}
-.porig{font-size:.73rem;color:var(--muted);text-decoration:line-through;margin-bottom:2px}
+.ctag-dark{color:rgba(201,168,118,.7)}
+.cname{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:400;color:var(--titulo);margin-bottom:4px}
+.cname-dark{color:#FAF8F4}
+.cdesc{font-size:.75rem;color:var(--muted);line-height:1.5;margin-bottom:18px}
+.cdesc-dark{color:rgba(250,248,244,.55)}
+/* Precio */
+.porig{font-size:.73rem;color:var(--muted);text-decoration:line-through;margin-bottom:2px;height:18px}
+.porig-dark{color:rgba(250,248,244,.35)}
 .pblock{display:flex;align-items:flex-end;gap:4px;margin-bottom:5px}
 .pcur{font-size:.93rem;color:var(--gold);font-weight:600;padding-bottom:5px}
-.pamt{font-family:'Playfair Display',serif;font-size:2.9rem;font-weight:400;color:var(--gold);line-height:1}
-.pper{font-size:.67rem;color:var(--muted);padding-bottom:8px}
-.pnote{display:inline-block;background:rgba(201,168,118,.1);border:1px solid rgba(201,168,118,.22);border-radius:999px;padding:3px 11px;font-size:.6rem;color:var(--gold2);font-weight:600;letter-spacing:.06em;margin-bottom:16px}
-.cdiv{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--champ),transparent);margin:16px 0}
+.pamt{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:400;color:var(--gold);line-height:1}
+.pper{font-size:.65rem;color:var(--muted);padding-bottom:7px}
+.pper-dark{color:rgba(250,248,244,.4)}
+.pnote{display:inline-block;background:rgba(201,168,118,.1);border:1px solid rgba(201,168,118,.22);border-radius:999px;padding:3px 11px;font-size:.6rem;color:var(--gold2);font-weight:600;letter-spacing:.06em;margin-bottom:14px}
+.pnote-dark{background:rgba(201,168,118,.15);border-color:rgba(201,168,118,.3);color:var(--gold)}
+.cdiv{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--champ),transparent);margin:14px 0}
+.cdiv-dark{background:linear-gradient(90deg,transparent,rgba(201,168,118,.35),transparent)}
 .ftit{font-size:.57rem;font-weight:700;letter-spacing:.21em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
-.flist{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
-.flist li{display:flex;align-items:flex-start;gap:8px;font-size:.79rem;color:var(--muted);line-height:1.4}
+.ftit-dark{color:rgba(250,248,244,.4)}
+.flist{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+.flist li{display:flex;align-items:flex-start;gap:8px;font-size:.77rem;color:var(--muted);line-height:1.4}
 .flist li::before{content:'✓';color:var(--gold);font-weight:700;font-size:.72rem;flex-shrink:0;margin-top:1px}
+.flist-dark li{color:rgba(250,248,244,.65)}
+.flist-dark li::before{color:var(--gold)}
 .fex{color:var(--titulo)!important;font-weight:500}.fex::before{content:'✦'!important}
-.extra{background:var(--marfil);border:1px solid var(--borde);border-radius:13px;padding:13px 15px;margin-bottom:20px}
+.fex-dark{color:rgba(250,248,244,.92)!important;font-weight:500}
+/* Extra */
+.extra{background:var(--marfil);border:1px solid var(--borde);border-radius:13px;padding:12px 14px;margin-bottom:18px}
+.extra-dark{background:rgba(255,255,255,.06);border-color:rgba(201,168,118,.2)}
 .etit{font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold2);margin-bottom:4px}
-.etxt{font-size:.75rem;color:var(--muted);line-height:1.55}
+.etit-dark{color:var(--gold)}
+.etxt{font-size:.73rem;color:var(--muted);line-height:1.55}
+.etxt-dark{color:rgba(250,248,244,.5)}
 .eprice{display:inline-block;margin-top:5px;font-size:.75rem;font-weight:600;color:var(--gold2)}
+.eprice-dark{color:var(--gold)}
 .note{text-align:center;font-size:.73rem;color:var(--muted);line-height:1.8}
 .note a{color:var(--gold);text-decoration:none;font-weight:600}
-@media(max-width:680px){.grid{grid-template-columns:1fr}.card{padding:26px 20px}.nav{padding:12px 18px}.nav-links,.nav-actions{display:none}}
+/* Garantía */
+.garantia{display:flex;align-items:center;justify-content:center;gap:22px;margin:32px 0 24px;flex-wrap:wrap}
+.gtag{display:flex;align-items:center;gap:7px;font-size:.7rem;color:var(--muted)}
+.gtag span{font-size:1rem}
+@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:580px){.grid{grid-template-columns:1fr}.card{padding:24px 18px}.nav{padding:12px 18px}.nav-links,.nav-actions{display:none}}
   </style>
 </head>
 <body>
@@ -78,84 +107,173 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
     <a href="catalogo.html" class="btn btn-primary btn-sm">Ver diseños</a>
   </div>
 </nav>
+
 <div class="page">
   <div class="hdr">
     <span class="hdr-eye">Planes y precios</span>
     <h1 class="hdr-title">Elige tu <em>invitación perfecta</em></h1>
-    <p class="hdr-sub">Pago único, sin suscripciones. Tu invitación lista en minutos.</p>
+    <p class="hdr-sub">Pago único, sin suscripciones. Tu invitación digital lista en minutos, con la calidad de una agencia.</p>
     <div class="orn"><span>✦</span></div>
   </div>
+
   <div class="grid">
-    <div class="card elegante" id="card-elegante">
-      <div class="ctag">Diseño 1</div>
-      <div class="cname">Invitación Elegante</div>
-      <div class="cdesc">Todo lo esencial para una invitación digital perfecta.</div>
-      <div class="pblock"><span class="pcur">$</span><span class="pamt">199</span><span class="pper">MXN · pago único</span></div>
+
+    <!-- ── PLAN ESENCIAL ── -->
+    <div class="card esencial" id="card-esencial">
+      <div class="ctag">Plan Esencial</div>
+      <div class="cname">Esencial</div>
+      <div class="cdesc">Lo que necesitas para una invitación digital elegante y funcional.</div>
+      <div class="porig" style="visibility:hidden">—</div>
+      <div class="pblock">
+        <span class="pcur">$</span>
+        <span class="pamt">399</span>
+        <span class="pper">MXN · pago único</span>
+      </div>
+      <div class="pnote">Incluye 30 invitados</div>
       <div class="cdiv"></div>
       <div class="ftit">Incluye</div>
       <ul class="flist">
         <li>Invitación digital animada</li>
         <li>Cuenta regresiva al evento</li>
         <li>Música de fondo</li>
-        <li>Mapas de ceremonia y recepción</li>
+        <li>Mapa de ceremonia y recepción</li>
         <li>Sección de padres y padrinos</li>
+        <li>Itinerario del día</li>
         <li>Galería de fotos</li>
         <li>Confirmación de asistencia</li>
-        <li>Pétalos y partículas animadas</li>
         <li>Compatible con celular y computadora</li>
+        <li>Vigencia 3 meses</li>
       </ul>
       <div class="extra">
-        <div class="etit">Nombres personalizados</div>
-        <div class="etxt">Agrega el nombre de cada invitado en su enlace. Sube tu lista en Excel o CSV.</div>
-        <span class="eprice">+ $5 MXN por invitado</span>
+        <div class="etit">Invitados adicionales</div>
+        <div class="etxt">Los primeros 30 invitados están incluidos. Agrega más según necesites.</div>
+        <span class="eprice">+ $8 MXN por invitado adicional</span>
       </div>
-      <button class="btn btn-outline" style="width:100%" id="btn-elegante">Crear mi invitación Elegante</button>
+      <button class="btn btn-outline" style="width:100%" id="btn-esencial">Crear mi invitación</button>
     </div>
-    <div class="card premium" id="card-premium">
-      <div class="pop">✦ Más completo</div>
-      <div class="ctag">Diseño 2 — Premium</div>
-      <div class="cname">Invitación Premium</div>
-      <div class="cdesc">La experiencia más completa e inolvidable para tu gran día.</div>
-      <div class="porig" id="p-orig"></div>
-      <div class="pblock"><span class="pcur">$</span><span class="pamt" id="p-amt">289</span><span class="pper">MXN · pago único</span></div>
-      <div class="pnote" id="p-note">Incluye 45% de beneficios adicionales</div>
+
+    <!-- ── PLAN ELEGANTE — MÁS VENDIDO ── -->
+    <div class="card elegante" id="card-elegante">
+      <div class="pop">⭐ Más vendido</div>
+      <div class="ctag">Plan Elegante</div>
+      <div class="cname">Elegante</div>
+      <div class="cdesc">La opción favorita: diseño premium, más invitados y mayor vigencia.</div>
+      <div class="porig">Precio regular: $890 MXN</div>
+      <div class="pblock">
+        <span class="pcur">$</span>
+        <span class="pamt">649</span>
+        <span class="pper">MXN · pago único</span>
+      </div>
+      <div class="pnote">Incluye 100 invitados · Ahorra $241 MXN</div>
       <div class="cdiv"></div>
-      <div class="ftit">Todo lo de Elegante, más</div>
+      <div class="ftit">Todo lo del Plan Esencial, más</div>
       <ul class="flist">
         <li>Invitación digital animada</li>
         <li>Cuenta regresiva al evento</li>
-        <li>Mapas de ubicación</li>
-        <li>Galería de fotos</li>
+        <li>Música de fondo</li>
+        <li>Mapa de ceremonia y recepción</li>
         <li>Sección de padres y padrinos</li>
+        <li>Itinerario del día</li>
+        <li>Galería de fotos</li>
         <li>Confirmación de asistencia</li>
-        <li class="fex">Música de fondo incluida</li>
-        <li class="fex">Vigencia de 3 meses en línea</li>
-        <li class="fex">Nombre del invitado incluido</li>
-        <li class="fex">Tipografía y animaciones Premium</li>
-        <li class="fex">Diseño floral exclusivo</li>
+        <li class="fex">Nombre personalizado por invitado</li>
+        <li class="fex">Hasta 100 invitados incluidos</li>
+        <li class="fex">5 diseños exclusivos disponibles</li>
+        <li class="fex">Animaciones y tipografías premium</li>
+        <li class="fex">Marco floral exclusivo</li>
+        <li class="fex">Vigencia 6 meses</li>
       </ul>
       <div class="extra" style="border-color:rgba(201,168,118,.22);background:rgba(201,168,118,.05)">
         <div class="etit">Invitados adicionales</div>
-        <div class="etxt">Los nombres personalizados <strong style="color:#2C2C2C">están incluidos</strong>. Para más de 100 invitados aplica costo mínimo.</div>
-        <span class="eprice">+ $4 MXN por invitado extra (después de 100)</span>
+        <div class="etxt">Primeros 100 invitados incluidos con nombre personalizado.</div>
+        <span class="eprice">+ $8 MXN por invitado adicional</span>
       </div>
-      <button class="btn btn-primary" style="width:100%" id="btn-premium">✨ Crear mi invitación Premium</button>
+      <button class="btn btn-primary" style="width:100%" id="btn-elegante">✨ Crear mi invitación Elegante</button>
     </div>
+
+    <!-- ── PLAN PREMIUM ── -->
+    <div class="card premium-card" id="card-premium">
+      <div class="pop pop-dark">✦ Todo incluido</div>
+      <div class="ctag ctag-dark">Plan Premium</div>
+      <div class="cname cname-dark">Premium</div>
+      <div class="cdesc cdesc-dark">La experiencia más exclusiva. Invitados ilimitados y soporte prioritario.</div>
+      <div class="porig porig-dark" style="visibility:hidden">—</div>
+      <div class="pblock">
+        <span class="pcur">$</span>
+        <span class="pamt" style="color:var(--gold)">999</span>
+        <span class="pper pper-dark">MXN · pago único</span>
+      </div>
+      <div class="pnote pnote-dark">Invitados ilimitados · Sin costo extra</div>
+      <div class="cdiv cdiv-dark"></div>
+      <div class="ftit ftit-dark">Todo lo de Elegante, más</div>
+      <ul class="flist flist-dark">
+        <li>Invitación digital animada</li>
+        <li>Cuenta regresiva al evento</li>
+        <li>Música de fondo</li>
+        <li>Mapa de ceremonia y recepción</li>
+        <li>Sección de padres y padrinos</li>
+        <li>Itinerario del día</li>
+        <li>Galería de fotos</li>
+        <li>Confirmación de asistencia</li>
+        <li class="fex fex-dark">Nombre personalizado por invitado</li>
+        <li class="fex fex-dark">Invitados ilimitados sin costo extra</li>
+        <li class="fex fex-dark">5 diseños exclusivos disponibles</li>
+        <li class="fex fex-dark">Animaciones y tipografías premium</li>
+        <li class="fex fex-dark">Marco floral exclusivo</li>
+        <li class="fex fex-dark">Vigencia 12 meses</li>
+        <li class="fex fex-dark">Soporte prioritario por WhatsApp</li>
+      </ul>
+      <div class="extra extra-dark">
+        <div class="etit etit-dark">Sin costo por invitado</div>
+        <div class="etxt etxt-dark">Agrega todos los invitados que necesites sin cargos adicionales.</div>
+        <span class="eprice eprice-dark">Invitados ilimitados incluidos</span>
+      </div>
+      <button class="btn btn-primary" style="width:100%;background:linear-gradient(135deg,var(--gold),#dfc085)" id="btn-premium">✦ Crear mi invitación Premium</button>
+    </div>
+
+  </div><!-- /grid -->
+
+  <!-- Garantías -->
+  <div class="garantia">
+    <div class="gtag"><span>🔒</span> Pago seguro</div>
+    <div class="gtag"><span>📱</span> Compatible con todos los dispositivos</div>
+    <div class="gtag"><span>⚡</span> Lista en minutos</div>
+    <div class="gtag"><span>💬</span> Soporte incluido</div>
   </div>
+
+  <!-- Extensión de vigencia -->
+  <div style="max-width:520px;margin:0 auto 32px;background:#fff;border:1px solid var(--borde);border-radius:16px;padding:20px 24px;text-align:center">
+    <div style="font-size:.6rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2);margin-bottom:6px">¿Necesitas más tiempo?</div>
+    <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--titulo);margin-bottom:6px">Extensión de vigencia</div>
+    <div style="font-size:.78rem;color:var(--muted);margin-bottom:8px">Prolonga la disponibilidad de tu invitación cuando lo necesites.</div>
+    <div style="font-size:.85rem;font-weight:600;color:var(--gold2)">$149 MXN por mes adicional</div>
+  </div>
+
   <p class="note">Pago único · Sin suscripción · Sin renovación automática<br>¿Tienes dudas? <a href="mailto:hola@invitarte.mx">hola@invitarte.mx</a> · <a href="https://wa.me/5215500000000" target="_blank">WhatsApp</a></p>
 </div>
+
 <script>
 (function(){
-  const p=new URLSearchParams(window.location.search);
-  const d=p.get('diseno')||'1';
-  const pr=Math.round(199*1.45);
-  document.getElementById('p-amt').textContent=pr;
-  document.getElementById('p-orig').textContent='Precio base: $199 MXN';
-  document.getElementById('p-note').textContent='Incluye 45% de beneficios adicionales — solo $'+(pr-199)+' MXN más';
-  function hl(id){var c=document.getElementById(id);if(!c)return;c.style.transform='scale(1.02)';c.style.boxShadow='0 0 0 2.5px #C9A876,0 20px 50px rgba(201,168,118,.2)';c.style.borderColor='rgba(201,168,118,.65)';}
-  if(d==='2')hl('card-premium');else hl('card-elegante');
-  document.getElementById('btn-elegante').onclick=()=>window.location.href='registro.html?diseno=1';
-  document.getElementById('btn-premium').onclick=()=>window.location.href='registro.html?diseno=2';
+  const p = new URLSearchParams(window.location.search);
+  const d = p.get('diseno') || '1';
+
+  function hl(id) {
+    var c = document.getElementById(id);
+    if (!c) return;
+    c.style.transform = 'scale(1.02)';
+    c.style.transition = 'all .35s';
+    c.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  // Resaltar la card según el diseño seleccionado
+  if (d === '1') hl('card-esencial');
+  else if (d === '2') hl('card-elegante');
+  else hl('card-elegante'); // default: elegante
+
+  // Botones
+  document.getElementById('btn-esencial').onclick  = () => window.location.href = 'registro.html?plan=esencial';
+  document.getElementById('btn-elegante').onclick  = () => window.location.href = 'registro.html?plan=elegante';
+  document.getElementById('btn-premium').onclick   = () => window.location.href = 'registro.html?plan=premium';
 })();
 </script>
 </body>
