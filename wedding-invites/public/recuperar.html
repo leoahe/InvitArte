@@ -7,76 +7,197 @@
   <link rel="stylesheet" href="css/auth-light.css">
 </head>
 <body>
-<div id="page-loader" class="ia-loader"><div class="ia-loader__logo">InvitArte</div><div class="ia-loader__bar"></div></div>
+<div id="page-loader" class="ia-loader">
+  <div class="ia-loader__logo">InvitArte</div>
+  <div class="ia-loader__bar"></div>
+</div>
+
 <div class="auth-page">
+
+  <!-- LADO VISUAL -->
   <aside class="auth-visual">
     <div class="auth-visual__content">
       <span class="auth-visual__logo">InvitArte</span>
       <p class="auth-visual__tagline">Recupera el acceso<br><em>a tus invitaciones</em></p>
-      <p class="auth-visual__description">Te enviaremos un correo para restablecer tu contraseña en segundos.</p>
+      <p class="auth-visual__description">Te enviaremos un enlace seguro para restablecer tu contraseña.</p>
+      <div class="auth-visual__mockup">
+        <div class="auth-visual__card">
+          <span class="auth-visual__card-logo">Sofía &amp; Mateo</span>
+          <span class="auth-visual__card-date">· 15 · NOVIEMBRE · 2025 ·</span>
+        </div>
+      </div>
     </div>
   </aside>
+
+  <!-- LADO FORMULARIO -->
   <main class="auth-form-side">
     <div class="auth-container">
-      <a href="login.html" class="auth-header__back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Volver al login</a>
-      <h1 class="auth-header__title">Recuperar <em>contraseña</em></h1>
+
+      <a href="login.html" class="auth-header__back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          style="width:14px;height:14px;vertical-align:middle">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Volver al login
+      </a>
+
+      <!-- ══ PASO 1: Ingresar correo ══ -->
       <div id="step-1" class="recovery-step active">
-        <p class="auth-header__subtitle" style="margin-bottom:26px">Ingresa el correo de tu cuenta y te enviaremos las instrucciones.</p>
+        <div class="auth-header">
+          <h1 class="auth-header__title">Recuperar <em>contraseña</em></h1>
+          <p class="auth-header__subtitle">
+            Ingresa el correo asociado a tu cuenta y te enviaremos las instrucciones.
+          </p>
+        </div>
         <form id="recovery-form" class="auth-form" novalidate>
           <div class="form-group">
-            <label class="form-label">Correo electrónico</label>
+            <label class="form-label" for="email">Correo electrónico</label>
             <div class="form-input-wrapper">
-              <input type="email" id="email" name="email" class="form-input" placeholder="tu@correo.com" autocomplete="email" required>
+              <input type="email" id="email" name="email" class="form-input"
+                placeholder="tu@correo.com" autocomplete="email" required>
               <span class="form-input-icon">✉</span>
             </div>
+            <span class="form-error" id="email-error"></span>
           </div>
-          <button type="submit" id="submit-btn" class="btn btn--primary btn--full btn--lg">Enviar instrucciones</button>
-          <div class="auth-form__footer" style="margin-top:14px"><p>¿Recordaste tu contraseña? <a href="login.html">Inicia sesión</a></p></div>
+          <button type="submit" id="submit-btn" class="btn btn--primary btn--full btn--lg">
+            Enviar instrucciones
+          </button>
+          <div class="auth-form__footer">
+            <p>¿Recordaste tu contraseña? <a href="login.html">Inicia sesión aquí</a></p>
+          </div>
         </form>
       </div>
+
+      <!-- ══ PASO 2: Revisa tu correo ══ -->
       <div id="step-2" class="recovery-step">
         <div class="auth-success">
-          <div class="auth-success__icon" style="background:rgba(201,168,118,.1);border-color:rgba(201,168,118,.5)">✉</div>
+          <div class="auth-success__icon">✉</div>
           <h2 class="auth-success__title">Revisa tu correo</h2>
-          <p class="auth-success__subtitle">Enviamos las instrucciones a<br><strong id="sent-email" style="color:#C9A876"></strong></p>
-          <p style="font-size:.78rem;color:#8A8078;margin-bottom:22px">No olvides revisar spam. El enlace es válido por 60 minutos.</p>
-          <div style="background:#FAF8F4;border:1px solid rgba(201,168,118,.28);border-radius:16px;padding:22px;text-align:left;margin-bottom:18px">
-            <p style="font-size:.64rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C9A876;margin-bottom:14px">Modo Demo — Nueva contraseña</p>
-            <form id="new-password-form" class="auth-form" novalidate>
-              <div class="form-group">
-                <label class="form-label">Nueva contraseña</label>
-                <div class="form-input-wrapper">
-                  <input type="password" id="new-password" class="form-input" placeholder="Mínimo 8 caracteres" autocomplete="new-password">
-                  <span class="form-input-icon" id="toggle-new" style="cursor:pointer;user-select:none">👁</span>
-                </div>
-                <div id="new-strength"></div>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Confirmar contraseña</label>
-                <div class="form-input-wrapper">
-                  <input type="password" id="confirm-new-password" class="form-input" placeholder="Repite tu nueva contraseña" autocomplete="new-password">
-                </div>
-              </div>
-              <button type="submit" id="new-pass-btn" class="btn btn--primary btn--full" style="margin-top:8px">Restablecer contraseña</button>
-            </form>
+          <p class="auth-success__subtitle">
+            Enviamos las instrucciones a<br>
+            <strong id="sent-email" style="color:#C9A876"></strong>
+          </p>
+          <p style="font-size:.78rem;color:#A09890;line-height:1.6;margin:12px 0 24px">
+            El enlace expira en <strong>2 horas</strong>.<br>
+            Si no lo encuentras, revisa tu carpeta de spam.
+          </p>
+
+          <!-- Bloque solo visible en desarrollo -->
+          <div id="dev-block" style="display:none;background:#FFF8E7;border:1px solid #F0D070;
+            border-radius:12px;padding:16px 20px;text-align:left;margin-bottom:16px">
+            <p style="font-size:.72rem;font-weight:700;color:#8A6A00;
+              letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">
+              🛠 Modo desarrollo — token disponible
+            </p>
+            <p style="font-size:.75rem;color:#6A5A00;margin-bottom:10px">
+              El correo no está configurado. Usa este token para probar el flujo:
+            </p>
+            <code id="dev-token" style="display:block;background:#FFF3C0;padding:8px 12px;
+              border-radius:6px;font-size:.72rem;color:#4A3A00;word-break:break-all;
+              margin-bottom:10px"></code>
+            <button onclick="useDevToken()" class="btn btn--primary btn--full"
+              style="font-size:.75rem;padding:10px">
+              Usar este token →
+            </button>
           </div>
-          <button class="btn btn--ghost btn--full" onclick="showStep(1)">Intentar con otro correo</button>
+
+          <button onclick="goToStep(1)" class="btn btn--ghost btn--full">
+            Intentar con otro correo
+          </button>
         </div>
       </div>
+
+      <!-- ══ PASO 3: Nueva contraseña (desde URL o token dev) ══ -->
       <div id="step-3" class="recovery-step">
+        <div class="auth-header">
+          <h1 class="auth-header__title">Nueva <em>contraseña</em></h1>
+          <p class="auth-header__subtitle">Elige una contraseña segura para tu cuenta.</p>
+        </div>
+        <form id="new-password-form" class="auth-form" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="new-password">Nueva contraseña</label>
+            <div class="form-input-wrapper">
+              <input type="password" id="new-password" class="form-input"
+                placeholder="Mínimo 8 caracteres" autocomplete="new-password">
+              <span class="form-input-icon" id="toggle-new"
+                style="cursor:pointer;user-select:none">👁</span>
+            </div>
+            <div id="new-strength"></div>
+            <span class="form-error" id="new-password-error"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="confirm-new-password">Confirmar contraseña</label>
+            <div class="form-input-wrapper">
+              <input type="password" id="confirm-new-password" class="form-input"
+                placeholder="Repite tu nueva contraseña" autocomplete="new-password">
+            </div>
+            <span class="form-error" id="confirm-new-password-error"></span>
+          </div>
+          <button type="submit" id="new-pass-btn" class="btn btn--primary btn--full btn--lg">
+            Restablecer contraseña
+          </button>
+        </form>
+      </div>
+
+      <!-- ══ PASO 4: Éxito ══ -->
+      <div id="step-4" class="recovery-step">
         <div class="auth-success">
-          <div class="auth-success__icon">✓</div>
+          <div class="auth-success__icon" style="background:rgba(56,161,105,.1);
+            border-color:rgba(56,161,105,.4);color:#38A169">✓</div>
           <h2 class="auth-success__title">¡Contraseña actualizada!</h2>
-          <p class="auth-success__subtitle">Ya puedes iniciar sesión con tu nueva contraseña.</p>
-          <a href="login.html" class="btn btn--primary btn--lg">Ir a iniciar sesión</a>
+          <p class="auth-success__subtitle">
+            Ya puedes iniciar sesión con tu nueva contraseña.
+          </p>
+          <a href="login.html" class="btn btn--primary btn--lg" style="margin-top:20px">
+            Ir a iniciar sesión
+          </a>
         </div>
       </div>
+
     </div>
   </main>
 </div>
+
 <div id="toast-container"></div>
+
 <script src="js/storage.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/auth.js"></script>
+
+<script>
+  /* ── Navegación entre pasos ── */
+  function goToStep(n) {
+    document.querySelectorAll('.recovery-step').forEach(s => s.classList.remove('active'));
+    const s = document.getElementById('step-' + n);
+    if (s) s.classList.add('active');
+  }
+  window.showStep = goToStep;
+
+  /* ── Token dev: rellenar y avanzar al paso 3 ── */
+  function useDevToken() {
+    const tok = document.getElementById('dev-token')?.textContent?.trim();
+    if (tok) { window._resetToken = tok; goToStep(3); }
+  }
+
+  /* ── Toggle contraseña ── */
+  document.getElementById('toggle-new')?.addEventListener('click', function() {
+    const inp = document.getElementById('new-password');
+    if (!inp) return;
+    inp.type = inp.type === 'password' ? 'text' : 'password';
+    this.textContent = inp.type === 'password' ? '👁' : '🙈';
+  });
+
+  /* ── Si viene ?token=... en la URL, ir directo al paso 3 ── */
+  (function checkUrlToken() {
+    const tok = new URLSearchParams(window.location.search).get('token');
+    if (tok) {
+      window._resetToken = tok;
+      // Esperar a que el DOM esté listo
+      document.addEventListener('DOMContentLoaded', () => goToStep(3));
+      // Por si DOMContentLoaded ya pasó
+      if (document.readyState !== 'loading') goToStep(3);
+    }
+  })();
+</script>
 </body>
 </html>

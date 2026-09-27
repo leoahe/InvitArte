@@ -1,376 +1,268 @@
 /**
  * INVITARTE — STORAGE.JS
- * Capa de persistencia local.
- * Estructura preparada para reemplazar con API calls en producción.
- * Todas las funciones retornan Promises para simular async.
+ * Registro/login con bcrypt en el servidor.
+ * Sesión en localStorage — compatible con dashboard.js existente.
+ * Invitaciones, invitados y órdenes en localStorage (sin cambios).
  */
-
 const InvitArteDB = (() => {
-  /* ── KEYS ────────────────────────────────── */
+
+  const API  = '/api/auth';
   const KEYS = {
-    USERS:        'ia_users',
     CURRENT_USER: 'ia_session',
     INVITATIONS:  'ia_invitations',
     GUESTS:       'ia_guests',
     ORDERS:       'ia_orders',
+    USERS:        'ia_users',
   };
 
-  /* ── HELPERS ─────────────────────────────── */
-  const get = (key) => {
+  const lsGet = (k) => { try { const v=localStorage.getItem(k); return v?JSON.parse(v):null; } catch{return null;} };
+  const lsSet = (k,v)=> { try { localStorage.setItem(k,JSON.stringify(v)); return true; } catch{return false;} };
+  const lsDel = (k)  => { try { localStorage.removeItem(k); } catch{} };
+  const generateId   = () => Date.now().toString(36)+Math.random().toString(36).substr(2,9);
+  const delay = (ms=300) => new Promise(r=>setTimeout(r,ms));
+
+  // Llamada a la API del servidor
+  async function apiFetch(path, opts={}) {
+    let res, data;
     try {
-      const val = localStorage.getItem(key);
-      return val ? JSON.parse(val) : null;
-    } catch { return null; }
-  };
+      res = await fetch(API+path, {
+        credentials: 'include',
+        headers: { 'Content-Type':'application/json', ...(opts.headers||{}) },
+        ...opts,
+      });
+    } catch { throw new Error('Sin conexión con el servidor. ¿Está corriendo node server.js?'); }
+    try { data = await res.json(); } catch { throw new Error('Error de conexión con el servidor'); }
+    if (!res.ok) {
+      const err = new Error(data.message || 'Error del servidor');
+      err.code   = data.code;
+      err.errors = data.errors || [];
+      err.status = res.status;
+      throw err;
+    }
+    return data;
+  }
 
-  const set = (key, value) => {
-    try {
-      localStorage.setItem(key, JSON.stringify(value));
-      return true;
-    } catch { return false; }
-  };
+  // Guardar sesión en localStorage con el formato exacto que usa dashboard.js
+  function saveSession(user) {
+    const session = {
+      id:        user.id,
+      nombre:    user.nombre,
+      email:     user.email,
+      telefono:  user.telefono  || '',
+      plan:      user.plan      || 'free',
+      rol:       user.rol       || 'usuario',
+      createdAt: user.created_at|| user.createdAt || new Date().toISOString(),
+      avatar:    user.avatar    || null,
+    };
+    lsSet(KEYS.CURRENT_USER, session);
+    return session;
+  }
 
-  const generateId = () =>
-    Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
-
-  const delay = (ms = 300) =>
-    new Promise(resolve => setTimeout(resolve, ms));
-
-  /* ── USUARIOS ────────────────────────────── */
+  /* ── USUARIOS ── */
   const users = {
-    async getAll() {
-      await delay(100);
-      return get(KEYS.USERS) || [];
-    },
-
-    async findByEmail(email) {
-      const users = await this.getAll();
-      return users.find(u => u.email.toLowerCase() === email.toLowerCase()) || null;
-    },
-
     async create(userData) {
-      await delay(400);
-      const all = await this.getAll();
-
-      const exists = all.find(u => u.email.toLowerCase() === userData.email.toLowerCase());
-      if (exists) throw new Error('Este correo ya está registrado');
-
-      const newUser = {
-        id: generateId(),
-        nombre: userData.nombre.trim(),
-        email: userData.email.trim().toLowerCase(),
-        telefono: userData.telefono || '',
-        passwordHash: btoa(userData.password), // producción: bcrypt/argon2
-        plan: 'free',
-        createdAt: new Date().toISOString(),
-        avatar: null,
-      };
-
-      all.push(newUser);
-      set(KEYS.USERS, all);
-      return { ...newUser, passwordHash: undefined };
+      const data = await apiFetch('/registro', {
+        method: 'POST',
+        body: JSON.stringify({
+          nombre:   (userData.nombre   || '').trim(),
+          apellido: (userData.apellido || '').trim(),
+          email:    (userData.email    || '').trim(),
+          telefono: (userData.telefono || '').trim(),
+          password:  userData.password,
+        }),
+      });
+      return saveSession(data.user);
     },
 
     async login(email, password) {
-      await delay(500);
-      const all = await this.getAll();
-      const user = all.find(
-        u => u.email.toLowerCase() === email.toLowerCase() &&
-             u.passwordHash === btoa(password)
-      );
-      if (!user) throw new Error('Correo o contraseña incorrectos');
-      const session = { ...user, passwordHash: undefined };
-      set(KEYS.CURRENT_USER, session);
-      return session;
+      const data = await apiFetch('/login', {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+      });
+      return saveSession(data.user);
     },
 
     async logout() {
-      localStorage.removeItem(KEYS.CURRENT_USER);
-      return true;
+      try { await apiFetch('/logout', { method:'POST' }); } catch {}
+      lsDel(KEYS.CURRENT_USER);
+      window.location.href = '/login.html';
     },
 
     async getCurrentUser() {
-      return get(KEYS.CURRENT_USER);
+      return lsGet(KEYS.CURRENT_USER);
     },
 
     async update(userId, data) {
-      const all = await this.getAll();
-      const idx = all.findIndex(u => u.id === userId);
-      if (idx === -1) throw new Error('Usuario no encontrado');
-      all[idx] = { ...all[idx], ...data };
-      set(KEYS.USERS, all);
-      const session = get(KEYS.CURRENT_USER);
-      if (session && session.id === userId) {
-        set(KEYS.CURRENT_USER, { ...session, ...data });
-      }
-      return all[idx];
+      const session = lsGet(KEYS.CURRENT_USER);
+      if (!session) throw new Error('No hay sesión activa');
+      const updated = { ...session, ...data };
+      lsSet(KEYS.CURRENT_USER, updated);
+      return updated;
     },
 
     async resetPasswordRequest(email) {
-      await delay(600);
-      const user = await this.findByEmail(email);
-      if (!user) throw new Error('No existe cuenta con ese correo');
-      const token = generateId();
-      const all = await this.getAll();
-      const idx = all.findIndex(u => u.email === user.email);
-      all[idx].resetToken = token;
-      all[idx].resetExpiry = Date.now() + 3600000;
-      set(KEYS.USERS, all);
-      return token; // en producción se envía por email
+      const data = await apiFetch('/solicitar-reset', {
+        method: 'POST',
+        body: JSON.stringify({ email }),
+      });
+      // En desarrollo: mostrar token en la UI para pruebas
+      if (data._devToken) {
+        window._resetToken = data._devToken;
+        // Mostrar bloque dev en recuperar.html
+        const devBlock = document.getElementById('dev-block');
+        const devTok   = document.getElementById('dev-token');
+        if (devBlock) devBlock.style.display = 'block';
+        if (devTok)   devTok.textContent = data._devToken;
+      }
+      return data;
     },
 
     async resetPassword(token, newPassword) {
-      await delay(400);
-      const all = await this.getAll();
-      const user = all.find(u => u.resetToken === token && u.resetExpiry > Date.now());
-      if (!user) throw new Error('Token inválido o expirado');
-      const idx = all.findIndex(u => u.id === user.id);
-      all[idx].passwordHash = btoa(newPassword);
-      all[idx].resetToken = null;
-      all[idx].resetExpiry = null;
-      set(KEYS.USERS, all);
+      await apiFetch('/reset-password', {
+        method: 'POST',
+        body: JSON.stringify({ token, newPassword }),
+      });
+      lsDel(KEYS.CURRENT_USER);
       return true;
-    }
+    },
+
+    // Compatibilidad con utils.js
+    async getAll()           { return []; },
+    async findByEmail(email) { return null; },
+
+    redirectIfLoggedIn: async (dest='/dashboard.html') => {
+      const u = lsGet(KEYS.CURRENT_USER);
+      if (u) { window.location.href = dest; return true; }
+      return false;
+    },
+    requireAuth: async (loginUrl='/login.html') => {
+      const u = lsGet(KEYS.CURRENT_USER);
+      if (!u) { window.location.href = loginUrl; return false; }
+      return true;
+    },
   };
 
-  /* ── INVITACIONES ────────────────────────── */
+  /* ── INVITACIONES (localStorage — sin cambios) ── */
   const invitations = {
     async getAllByUser(userId) {
-      await delay(200);
-      const all = get(KEYS.INVITATIONS) || [];
-      return all.filter(i => i.userId === userId);
+      await delay(100);
+      return (lsGet(KEYS.INVITATIONS)||[]).filter(i=>i.userId===userId);
     },
-
     async getById(id) {
-      const all = get(KEYS.INVITATIONS) || [];
-      return all.find(i => i.id === id) || null;
+      return (lsGet(KEYS.INVITATIONS)||[]).find(i=>i.id===id)||null;
     },
-
     async create(userId, data) {
-      await delay(400);
-      const all = get(KEYS.INVITATIONS) || [];
-      const invitation = {
-        id: generateId(),
-        userId,
-        slug: generateId().substr(0, 10),
-        status: 'borrador',
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        views: 0,
-        rsvpCount: 0,
-        ...data,
-      };
-      all.push(invitation);
-      set(KEYS.INVITATIONS, all);
-      return invitation;
+      await delay(300);
+      const all = lsGet(KEYS.INVITATIONS)||[];
+      const inv = { id:generateId(), userId, slug:generateId().substr(0,10),
+        status:'borrador', createdAt:new Date().toISOString(),
+        updatedAt:new Date().toISOString(), views:0, rsvpCount:0, ...data };
+      all.push(inv); lsSet(KEYS.INVITATIONS,all); return inv;
     },
-
     async update(id, data) {
-      await delay(300);
-      const all = get(KEYS.INVITATIONS) || [];
-      const idx = all.findIndex(i => i.id === id);
-      if (idx === -1) throw new Error('Invitación no encontrada');
-      all[idx] = { ...all[idx], ...data, updatedAt: new Date().toISOString() };
-      set(KEYS.INVITATIONS, all);
-      return all[idx];
+      await delay(200);
+      const all=lsGet(KEYS.INVITATIONS)||[];
+      const idx=all.findIndex(i=>i.id===id);
+      if(idx===-1) throw new Error('Invitación no encontrada');
+      all[idx]={...all[idx],...data,updatedAt:new Date().toISOString()};
+      lsSet(KEYS.INVITATIONS,all); return all[idx];
     },
-
     async delete(id) {
-      await delay(300);
-      const all = get(KEYS.INVITATIONS) || [];
-      const filtered = all.filter(i => i.id !== id);
-      set(KEYS.INVITATIONS, filtered);
+      lsSet(KEYS.INVITATIONS,(lsGet(KEYS.INVITATIONS)||[]).filter(i=>i.id!==id));
       return true;
     },
-
     async incrementViews(id) {
-      const all = get(KEYS.INVITATIONS) || [];
-      const idx = all.findIndex(i => i.id === id);
-      if (idx !== -1) {
-        all[idx].views = (all[idx].views || 0) + 1;
-        set(KEYS.INVITATIONS, all);
-      }
-    }
+      const all=lsGet(KEYS.INVITATIONS)||[];
+      const idx=all.findIndex(i=>i.id===id);
+      if(idx!==-1){all[idx].views=(all[idx].views||0)+1;lsSet(KEYS.INVITATIONS,all);}
+    },
   };
 
-  /* ── INVITADOS ───────────────────────────── */
+  /* ── INVITADOS (localStorage — sin cambios) ── */
   const guests = {
     async getAllByInvitation(invitationId) {
-      await delay(150);
-      const all = get(KEYS.GUESTS) || [];
-      return all.filter(g => g.invitationId === invitationId);
+      await delay(100);
+      return (lsGet(KEYS.GUESTS)||[]).filter(g=>g.invitationId===invitationId);
     },
-
     async create(invitationId, guestData) {
-      await delay(200);
-      const all = get(KEYS.GUESTS) || [];
-      const guest = {
-        id: generateId(),
-        invitationId,
-        nombre: guestData.nombre.trim(),
-        pases: parseInt(guestData.pases) || 1,
-        mesa: guestData.mesa || '',
-        confirmed: null,
-        createdAt: new Date().toISOString(),
-      };
-      all.push(guest);
-      set(KEYS.GUESTS, all);
-      return guest;
+      const all=lsGet(KEYS.GUESTS)||[];
+      const g={id:generateId(),invitationId,nombre:guestData.nombre.trim(),
+        pases:parseInt(guestData.pases)||1,mesa:guestData.mesa||'',
+        confirmed:null,createdAt:new Date().toISOString()};
+      all.push(g); lsSet(KEYS.GUESTS,all); return g;
     },
-
     async bulkCreate(invitationId, guestsArray) {
-      await delay(500);
-      const all = get(KEYS.GUESTS) || [];
-      const existing = all.filter(g => g.invitationId === invitationId);
-      const newGuests = guestsArray.map(g => ({
-        id: generateId(),
-        invitationId,
-        nombre: g.nombre.trim(),
-        pases: parseInt(g.pases) || 1,
-        mesa: g.mesa || '',
-        confirmed: null,
-        createdAt: new Date().toISOString(),
-      }));
-      const allUpdated = [
-        ...all.filter(g => g.invitationId !== invitationId),
-        ...existing,
-        ...newGuests
-      ];
-      set(KEYS.GUESTS, allUpdated);
-      return newGuests;
+      await delay(400);
+      const all=lsGet(KEYS.GUESTS)||[];
+      const existing=all.filter(g=>g.invitationId===invitationId);
+      const newG=guestsArray.map(g=>({id:generateId(),invitationId,
+        nombre:g.nombre.trim(),pases:parseInt(g.pases)||1,mesa:g.mesa||'',
+        confirmed:null,createdAt:new Date().toISOString()}));
+      lsSet(KEYS.GUESTS,[...all.filter(g=>g.invitationId!==invitationId),...existing,...newG]);
+      return newG;
     },
-
     async update(id, data) {
-      await delay(200);
-      const all = get(KEYS.GUESTS) || [];
-      const idx = all.findIndex(g => g.id === id);
-      if (idx === -1) throw new Error('Invitado no encontrado');
-      all[idx] = { ...all[idx], ...data };
-      set(KEYS.GUESTS, all);
-      return all[idx];
+      const all=lsGet(KEYS.GUESTS)||[];
+      const idx=all.findIndex(g=>g.id===id);
+      if(idx===-1) throw new Error('Invitado no encontrado');
+      all[idx]={...all[idx],...data}; lsSet(KEYS.GUESTS,all); return all[idx];
     },
-
     async delete(id) {
-      await delay(200);
-      const all = get(KEYS.GUESTS) || [];
-      set(KEYS.GUESTS, all.filter(g => g.id !== id));
+      lsSet(KEYS.GUESTS,(lsGet(KEYS.GUESTS)||[]).filter(g=>g.id!==id)); return true;
+    },
+    async deleteAllByInvitation(invitationId) {
+      lsSet(KEYS.GUESTS,(lsGet(KEYS.GUESTS)||[]).filter(g=>g.invitationId!==invitationId));
       return true;
     },
-
-    async deleteAllByInvitation(invitationId) {
-      await delay(300);
-      const all = get(KEYS.GUESTS) || [];
-      set(KEYS.GUESTS, all.filter(g => g.invitationId !== invitationId));
-      return true;
-    }
   };
 
-  /* ── ÓRDENES ─────────────────────────────── */
+  /* ── ÓRDENES (localStorage — sin cambios) ── */
   const orders = {
     async getAllByUser(userId) {
-      await delay(200);
-      const all = get(KEYS.ORDERS) || [];
-      return all.filter(o => o.userId === userId);
+      await delay(100);
+      return (lsGet(KEYS.ORDERS)||[]).filter(o=>o.userId===userId);
     },
-
     async create(userId, orderData) {
-      await delay(600);
-      const all = get(KEYS.ORDERS) || [];
-      const order = {
-        id: generateId(),
-        userId,
-        status: 'pending',
-        createdAt: new Date().toISOString(),
-        ...orderData,
-      };
-      all.push(order);
-      set(KEYS.ORDERS, all);
-      return order;
+      const all=lsGet(KEYS.ORDERS)||[];
+      const order={id:generateId(),userId,status:'pending',
+        createdAt:new Date().toISOString(),...orderData};
+      all.push(order); lsSet(KEYS.ORDERS,all); return order;
     },
-
     async updateStatus(id, status) {
-      const all = get(KEYS.ORDERS) || [];
-      const idx = all.findIndex(o => o.id === id);
-      if (idx !== -1) {
-        all[idx].status = status;
-        all[idx].updatedAt = new Date().toISOString();
-        set(KEYS.ORDERS, all);
-      }
-    }
+      const all=lsGet(KEYS.ORDERS)||[];
+      const idx=all.findIndex(o=>o.id===id);
+      if(idx!==-1){all[idx].status=status;all[idx].updatedAt=new Date().toISOString();
+        lsSet(KEYS.ORDERS,all);}
+    },
   };
 
-  /* ── ADMIN STATS ─────────────────────────── */
+  /* ── ADMIN ── */
   const admin = {
     async getStats() {
-      await delay(300);
-      const allUsers = get(KEYS.USERS) || [];
-      const allInvitations = get(KEYS.INVITATIONS) || [];
-      const allOrders = get(KEYS.ORDERS) || [];
-
-      const revenue = allOrders
-        .filter(o => o.status === 'completed')
-        .reduce((sum, o) => sum + (o.total || 0), 0);
-
-      const planCounts = allUsers.reduce((acc, u) => {
-        acc[u.plan] = (acc[u.plan] || 0) + 1;
-        return acc;
-      }, {});
-
-      return {
-        totalUsers: allUsers.length,
-        totalInvitations: allInvitations.length,
-        totalOrders: allOrders.length,
-        revenue,
-        planCounts,
-        activeInvitations: allInvitations.filter(i => i.status === 'activa').length,
-        recentUsers: [...allUsers]
-          .sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt))
-          .slice(0, 5)
-          .map(u => ({ ...u, passwordHash: undefined })),
-      };
-    }
+      const allInv=lsGet(KEYS.INVITATIONS)||[];
+      const allOrd=lsGet(KEYS.ORDERS)||[];
+      return { totalUsers:0, totalInvitations:allInv.length, totalOrders:allOrd.length,
+        revenue:0, planCounts:{}, activeInvitations:allInv.filter(i=>i.status==='activa').length,
+        recentUsers:[] };
+    },
   };
-
-  /* ── SEEDDATA (para demo) ────────────────── */
-  const seed = () => {
-    if (get(KEYS.USERS) !== null) return;
-    const demo = [{
-      id: 'demo001',
-      nombre: 'Ana García',
-      email: 'demo@invitarte.mx',
-      telefono: '5555555555',
-      passwordHash: btoa('Demo1234!'),
-      plan: 'premium',
-      createdAt: new Date(Date.now() - 86400000 * 30).toISOString(),
-      avatar: null,
-    }];
-    set(KEYS.USERS, demo);
-
-    const demoInvitation = [{
-      id: 'inv001',
-      userId: 'demo001',
-      slug: 'ana-y-carlos',
-      status: 'activa',
-      novio: 'Carlos Méndez',
-      novia: 'Ana García',
-      fecha: '2025-11-15',
-      hora: '18:00',
-      lugarCeremonia: 'Catedral Metropolitana, CDMX',
-      lugarRecepcion: 'Hacienda Los Morales',
-      template: 'clasico',
-      plan: 'premium',
-      views: 142,
-      rsvpCount: 67,
-      createdAt: new Date(Date.now() - 86400000 * 10).toISOString(),
-      updatedAt: new Date().toISOString(),
-    }];
-    set(KEYS.INVITATIONS, demoInvitation);
-  };
-
-  /* ── INIT ────────────────────────────────── */
-  seed();
 
   return { users, invitations, guests, orders, admin, generateId };
 })();
 
 window.InvitArteDB = InvitArteDB;
+
+// Auth global — compatible con utils.js que lo sobreescribe después
+if (typeof window.Auth === 'undefined') {
+  window.Auth = {
+    async requireLogin(redirectTo='/login.html') {
+      const u = await InvitArteDB.users.getCurrentUser();
+      if (!u) { window.location.href = redirectTo; return null; }
+      return u;
+    },
+    async redirectIfLoggedIn(to='/dashboard.html') {
+      await InvitArteDB.users.redirectIfLoggedIn(to);
+    },
+    async logout() { await InvitArteDB.users.logout(); },
+  };
+}
